@@ -110,12 +110,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\main\model\interactable\Character.h" />
-    <ClInclude Include="src\main\model\interactable\Fighter.h" />
-    <ClInclude Include="src\main\model\interactable\FriendlyNpc.h" />
-    <ClInclude Include="src\main\model\interactable\HostileNpc.h" />
-    <ClInclude Include="src\main\model\interactable\Interactable.h" />
-    <ClInclude Include="src\main\model\interactable\NonPlayerCharacter.h" />
+    <ClInclude Include="src\main\helper\Location.h" />
+    <ClInclude Include="src\main\model\interactable\header\Character.h" />
+    <ClInclude Include="src\main\model\interactable\header\Chest.h" />
+    <ClInclude Include="src\main\model\interactable\header\Fighter.h" />
+    <ClInclude Include="src\main\model\interactable\header\FighterBuilder.h" />
+    <ClInclude Include="src\main\model\interactable\header\FriendlyNpc.h" />
+    <ClInclude Include="src\main\model\interactable\header\HostileNpc.h" />
+    <ClInclude Include="src\main\model\interactable\header\Interactable.h" />
+    <ClInclude Include="src\main\model\interactable\header\NonPlayerCharacter.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main\helper\Location.cpp" />
+    <ClCompile Include="src\main\model\interactable\Source.cpp" />
+    <ClCompile Include="src\main\model\interactable\source\Fighter.cpp" />
+    <ClCompile Include="src\main\model\interactable\source\FighterBuilder.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

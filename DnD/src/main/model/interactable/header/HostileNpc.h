@@ -13,7 +13,7 @@ public:
 	};
 
 	HostileNpc();
-	HostileNpc(string name, string description, int level, int range, int size, int attack, int damage, int armorClass);
+	HostileNpc(string name, string description, Location location, int level, int range, int size, int attack, int damage, int armorClass);
 	void interact() = 0;
 
 private:
