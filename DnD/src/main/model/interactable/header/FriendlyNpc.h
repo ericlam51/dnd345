@@ -8,7 +8,7 @@ class FriendlyNpc : public NonPlayerCharacter
 {
 public:
 	FriendlyNpc();
-	FriendlyNpc(string name, string description, int level, int range);
+	FriendlyNpc(string name, string description, Location location, int level, int range);
 	void interact() = 0;
 
 private:
