@@ -1,6 +1,6 @@
 #pragma once
-#include <iostream>;
-#include "Character.h";
+#include <iostream>
+#include "Character.h"
 
 using namespace std;
 
@@ -18,15 +18,25 @@ class Fighter : public Character
 {
 public:
 	Fighter();
-	Fighter(string name, string description, int level);
-	void interact() = 0;
+	Fighter(string name, string description, Location location, int level);
+	void interact();
 
 	bool validateNewPlayer();
 	void hit(int damage);
+	bool equipItem(const char item);
+	void move(int x, int y);
+	void printEquipments();
+
 	int getArmorClass() const;
 	int getAttackBonus() const;
 	int getDamageBonus() const;
 	int getCurrentHitPoints();
+	void setStrength(int str);
+	void setDexterity(int dex);
+	void setConstitution(int con);
+	void setIntelligence(int intel);
+	void setWisdom(int wis);
+	void setCharisma(int cha);
 	int getStrength() const;
 	int getDexterity() const;
 	int getConstitution() const;
@@ -41,8 +51,6 @@ public:
 	char getBelt() const;
 	char getBoots() const;
 	char getWeapon() const;
-	bool equipItem(const char item);
-	void printEquipments();
 
 private:
 	int level;
