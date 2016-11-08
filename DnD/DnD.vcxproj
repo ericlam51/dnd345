@@ -110,15 +110,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\main\model\map\Cell.h" />
+    <ClInclude Include="src\main\view\map\godmode\GodmodeMapView.h" />
+    <ClInclude Include="src\main\controller\map\godmode\GodmodeMapController.h" />
     <ClInclude Include="src\main\model\interactable\Character.h" />
     <ClInclude Include="src\main\model\interactable\Fighter.h" />
     <ClInclude Include="src\main\model\interactable\FriendlyNpc.h" />
     <ClInclude Include="src\main\model\interactable\HostileNpc.h" />
     <ClInclude Include="src\main\model\interactable\Interactable.h" />
     <ClInclude Include="src\main\model\interactable\NonPlayerCharacter.h" />
+    <ClInclude Include="src\main\model\map\Map.h" />
+    <ClInclude Include="src\main\model\map\WallCell.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\main\model\map\Cell.cpp" />
+    <ClCompile Include="src\main\controller\map\godmode\GodmodeMapController.cpp" />
+    <ClCompile Include="src\main\helper\ViewHelper.cpp" />
+    <ClCompile Include="src\main\view\map\godmode\GodmodeMapView.cpp" />
     <ClCompile Include="src\main\Main.cpp" />
+    <ClCompile Include="src\main\model\map\WallCell.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
