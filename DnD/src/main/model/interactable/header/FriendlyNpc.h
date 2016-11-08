@@ -1,16 +1,17 @@
 #pragma once
-#include <iostream>;
-#include "NonPlayerCharacter.h";
+#include <iostream>
+#include "Passive.h"
+#include <string>
 
 using namespace std;
 
-class FriendlyNpc : public NonPlayerCharacter
+class FriendlyNpc : public Passive
 {
 public:
 	FriendlyNpc();
-	FriendlyNpc(string name, string description, Location location, int level, int range);
-	void interact() = 0;
+	FriendlyNpc(string name, string description, Location location, string dialog);
+	void interact();
 
 private:
-	int range;
+	string dialog;
 };

@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "../../../helper/Location.h"
+#include "../../Location.h"
 
 using namespace std;
 
@@ -9,8 +9,9 @@ class Interactable
 public:
 	Interactable();
 	Interactable(string name, string description, Location location);
-	int getXCoordinate();
-	int getYCoordinate();
+	string getName() const;
+	string getDescription() const;
+	Location getLocation() const;
 	virtual void interact() = 0;
 
 protected:

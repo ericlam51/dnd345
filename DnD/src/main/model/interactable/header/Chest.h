@@ -1,13 +1,17 @@
 #pragma once
 #include <iostream>
-#include "Interactable.h"
+#include "Passive.h"
 
 using namespace std;
 
-class Chest : public Interactable
+class Chest : public Passive
 {
 public:
 	Chest();
 	Chest(string name, string description, Location location);
-	void interact() = 0;
+	void interact();
+	void open();
+
+private:
+	//item
 };
