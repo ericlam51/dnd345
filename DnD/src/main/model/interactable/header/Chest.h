@@ -8,7 +8,7 @@ class Chest : public Passive
 {
 public:
 	Chest();
-	Chest(string name, string description, Location location);
+	Chest(string name, string description);
 	void interact();
 	void open();
 

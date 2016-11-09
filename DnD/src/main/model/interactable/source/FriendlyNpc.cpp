@@ -6,7 +6,7 @@ using namespace std;
 
 FriendlyNpc::FriendlyNpc() {}
 
-FriendlyNpc::FriendlyNpc(string name, string description, Location location, string dialog) : Passive(name, description, location), dialog(dialog) {
+FriendlyNpc::FriendlyNpc(string name, string description, string dialog) : Passive(name, description), dialog(dialog) {
 
 }
 

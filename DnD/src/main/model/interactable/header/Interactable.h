@@ -8,7 +8,8 @@ class Interactable
 {
 public:
 	Interactable();
-	Interactable(string name, string description, Location location);
+	Interactable(string name, string description);
+	void setLocation(Location location);
 	string getName() const;
 	string getDescription() const;
 	Location getLocation() const;

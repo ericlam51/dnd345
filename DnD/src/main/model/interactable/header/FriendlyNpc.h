@@ -9,7 +9,7 @@ class FriendlyNpc : public Passive
 {
 public:
 	FriendlyNpc();
-	FriendlyNpc(string name, string description, Location location, string dialog);
+	FriendlyNpc(string name, string description, string dialog);
 	void interact();
 
 private:

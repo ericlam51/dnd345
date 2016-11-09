@@ -6,7 +6,7 @@ HostileNpc::HostileNpc(){
 
 }
 
-HostileNpc::HostileNpc(string name, string description, Location location, int level) : Active(name, description, location, level), size(size){
+HostileNpc::HostileNpc(string name, string description, int level) : Active(name, description, level), size(size){
 
 }
 

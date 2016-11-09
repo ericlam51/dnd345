@@ -10,7 +10,7 @@ class HostileNpc : public Active
 public:
 
 	HostileNpc();
-	HostileNpc(string name, string description, Location location, int level);
+	HostileNpc(string name, string description, int level);
 	void interact();
 
 private:

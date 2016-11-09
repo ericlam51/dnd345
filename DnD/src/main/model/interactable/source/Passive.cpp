@@ -6,7 +6,7 @@ using namespace std;
 
 Passive::Passive() {}
 
-Passive::Passive(string name, string description, Location location) : Interactable(name, description, location) {
+Passive::Passive(string name, string description) : Interactable(name, description) {
 }
 
 void Passive::interact() {

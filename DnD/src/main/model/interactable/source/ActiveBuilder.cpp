@@ -9,11 +9,11 @@
 using namespace std;
 
 ActiveBuilder::ActiveBuilder() {}
-ActiveBuilder::ActiveBuilder(string name, string description, Location location, int level, int type) : type(type) {
+ActiveBuilder::ActiveBuilder(string name, string description, int level, int type) : type(type) {
 	if(type == 0)
-		_activeObj = new Fighter(name, description, location, level);
+		_activeObj = new Fighter(name, description, level);
 	else
-		_activeObj = new HostileNpc(name, description, location, level);
+		_activeObj = new HostileNpc(name, description, level);
 }
 
 ActiveBuilder::~ActiveBuilder() {

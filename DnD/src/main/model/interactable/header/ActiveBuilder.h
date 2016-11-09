@@ -8,7 +8,7 @@ class ActiveBuilder
 {
 public:
 	ActiveBuilder::ActiveBuilder();
-	ActiveBuilder::ActiveBuilder(string name, string description, Location location, int level, int type);
+	ActiveBuilder::ActiveBuilder(string name, string description, int level, int type);
 	ActiveBuilder::~ActiveBuilder();
 	Active* build();
 

@@ -4,7 +4,7 @@
 #include "../header/Interactable.h"
 
 Interactable::Interactable() {}
-Interactable::Interactable(string name, string description, Location location) :name(name), description(description), location(location) {
+Interactable::Interactable(string name, string description) :name(name), description(description){
 
 }
 
@@ -16,4 +16,8 @@ string Interactable::getDescription() const{
 }
 Location Interactable::getLocation() const{
 	return location;
+}
+
+void Interactable::setLocation(Location newlocation) {
+	location = newlocation;
 }

@@ -9,6 +9,6 @@ class Passive : public Interactable
 {
 public:
 	Passive();
-	Passive(string name, string description, Location location);
+	Passive(string name, string description);
 	void interact();
 };

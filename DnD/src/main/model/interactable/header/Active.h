@@ -19,7 +19,7 @@ class Active : public Interactable
 {
 public:
 	Active();
-	Active(string name, string description, Location location, int level);
+	Active(string name, string description, int level);
 
 	bool validateNewPlayer();
 	void attack(Active &activeObj);
