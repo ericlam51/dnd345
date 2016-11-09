@@ -8,5 +8,7 @@ public:
 	~ExitCell();
 	bool interactable();
 	bool walkable();
+	void Serialize(CArchive& archive);
+	DECLARE_SERIAL(ExitCell);
 };
 

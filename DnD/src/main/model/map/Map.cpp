@@ -1,11 +1,21 @@
 #include "Map.h"
 #include "../../view/map/godmode/GodmodeMapView.h"
 
+IMPLEMENT_SERIAL(Map, CObject, 1)
+
 Map::Map(int width, int height) {
 	this->width = width;
 	this->height = height;
 	
 	initMap();
+}
+
+Map::~Map() {
+
+}
+
+Map::Map() {
+
 }
 
 void Map::initMap() {
@@ -269,4 +279,23 @@ void Map::resetPassed() {
 			passed[y][x] = false;
 		}
 	}
+}
+
+void Map::Serialize(CArchive& archive) {
+	// call base class function first
+	// base class is CObject in this case
+	CObject::Serialize(archive);
+
+	// now do the stuff for our specific class
+	if (archive.IsStoring()) {
+		archive << height << width;
+	}
+
+	for (int y = 0; y < height; y++) {
+		for (int x = 0; x < width; x++) {
+			archive << map[y][x];
+		}
+	}
+	/*else
+		archive >> m_name >> m_number;*/
 }

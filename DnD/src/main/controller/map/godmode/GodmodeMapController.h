@@ -18,5 +18,7 @@ public:
 	void mapOptions(int input);
 	void validateMap();
 
+	void saveMap();
+
 	void print();
 };

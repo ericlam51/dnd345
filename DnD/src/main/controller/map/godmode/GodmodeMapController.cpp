@@ -61,11 +61,25 @@ void GodmodeMapController::mapOptions(int input) {
 	case 2:
 		GodmodeMapController::instance()->validateMap();
 		break; 
+	case 3:
+		GodmodeMapController::instance()->saveMap();
+		break;
 	default:
 		GodmodeMapView::warningMsgInvalidInput();
 		GodmodeMapView::mapOptionsMenuView();
 		break;
 	}
+}
+
+void GodmodeMapController::saveMap() {
+	CFile theFile;
+	theFile.Open(_T("CArchiveTest.txt"), CFile::modeCreate | CFile::modeWrite);
+	CArchive archive(&theFile, CArchive::store);
+
+	map->Serialize(archive);
+
+	archive.Close();
+	theFile.Close();
 }
 
 void GodmodeMapController::validateMap() {

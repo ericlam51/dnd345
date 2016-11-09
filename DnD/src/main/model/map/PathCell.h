@@ -8,5 +8,7 @@ public:
 	~PathCell();
 	bool interactable();
 	bool walkable();
+	void Serialize(CArchive& archive);
+	DECLARE_SERIAL(PathCell);
 };
 

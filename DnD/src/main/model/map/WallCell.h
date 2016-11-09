@@ -8,5 +8,7 @@ public:
 	~WallCell();
 	bool interactable();
 	bool walkable();
+	void Serialize(CArchive& archive);
+	DECLARE_SERIAL(WallCell);
 };
 

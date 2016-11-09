@@ -1,5 +1,8 @@
 #include "GodmodeMapView.h";
 
+/* https://stackoverflow.com/questions/1904635/warning-c4003-and-errors-c2589-and-c2059-on-x-stdnumeric-limitsintmax/28102459#28102459 */
+#undef max
+
 void GodmodeMapView::fileOptionsMenuView() {
 	int input = 0;
 
@@ -58,6 +61,7 @@ void GodmodeMapView::mapOptionsMenuView() {
 	cout << "------------------------------" << endl
 		<< "1. Fill cell" << endl
 		<< "2. Validate map" << endl
+		<< "3. Save map" << endl
 		<< "Selection: ";
 
 	cin >> input;
