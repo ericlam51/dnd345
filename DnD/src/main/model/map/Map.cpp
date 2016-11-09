@@ -42,7 +42,7 @@ void Map::fillCell(int x, int y, Cell* cell) {
 		if (startingCell != NULL) {
 			int previousStartingX = startingCell->getPosX();
 			int previousStartingY = startingCell->getPosY();
-			map[previousStartingY][previousStartingY] = new PathCell();
+			map[previousStartingY][previousStartingX] = new PathCell();
 
 			delete startingCell;
 			startingCell = cell;
@@ -51,7 +51,7 @@ void Map::fillCell(int x, int y, Cell* cell) {
 		startingCell = cell;
 	}
 
-	if (cell->getType() == CellHelper::ENTRANCE_TYPE) {
+	if (cell->getType() == CellHelper::EXIT_TYPE) {
 		if (exitCell != NULL) {
 			int previousExitX = startingCell->getPosX();
 			int previousExitY = startingCell->getPosY();
