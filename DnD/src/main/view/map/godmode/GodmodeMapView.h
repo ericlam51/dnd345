@@ -29,4 +29,6 @@ public:
 	static void warningMsgChangingEntranceCell();
 	static void warningMsgChangingExitCell();
 	static void warningMsgInvalidInput();
+	static void warningMsgInvalidMap();
+	static void warningMsgValidMap();
 };

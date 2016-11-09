@@ -22,10 +22,11 @@ void GodmodeMapController::newMap(int width, int height) {
 	else {
 		map = new Map(width, height);
 		map->print();
+		GodmodeMapView::mapOptionsMenuView();
 	}
 }
 
-void GodmodeMapController::mapOptionsView(int x, int y, char charType) {
+void GodmodeMapController::fillCell(int x, int y, char charType) {
 	switch (charType) {
 	case CellHelper::WALL_TYPE:
 		s_instance->setCell(x, y, new WallCell());
@@ -52,8 +53,37 @@ void GodmodeMapController::mapOptionsView(int x, int y, char charType) {
 	}
 }
 
+void GodmodeMapController::mapOptions(int input) {
+	switch (input) {
+	case 1:
+		GodmodeMapView::mapFillOptionsMenuView();
+		break;
+	case 2:
+		GodmodeMapController::instance()->validateMap();
+		break; 
+	default:
+		GodmodeMapView::warningMsgInvalidInput();
+		GodmodeMapView::mapOptionsMenuView();
+		break;
+	}
+}
+
+void GodmodeMapController::validateMap() {
+	bool valid = map->validateMap();
+
+	if (valid)
+		GodmodeMapView::warningMsgValidMap();
+	else
+		GodmodeMapView::warningMsgInvalidMap();
+
+	GodmodeMapView::mapOptionsMenuView();
+}
+
 void GodmodeMapController::setCell(int x, int y, Cell* cell) {
 	map->fillCell(x, y, cell);
+	map->print();
+
+	GodmodeMapView::mapOptionsMenuView();
 }
 
 void GodmodeMapController::print() {

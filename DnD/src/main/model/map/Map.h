@@ -18,6 +18,10 @@ private:
 	Cell* exitCell = NULL;
 
 	void initMap();
+	void resetPassed();
+	bool isPathValid(int x, int y, int prevX, int prevY);
+	bool isAllWalkableCellsAccessible();
+	bool walkThroughMap(int x, int y, int prevX, int prevY);
 
 public:
 	Map(int width, int height);

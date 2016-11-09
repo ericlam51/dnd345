@@ -52,6 +52,35 @@ void GodmodeMapView::warningMsgChangingExitCell() {
 	cout << "The previous exit cell has been removed." << endl;
 }
 
+void GodmodeMapView::mapOptionsMenuView() {
+	int input;
+
+	cout << "------------------------------" << endl
+		<< "1. Fill cell" << endl
+		<< "2. Validate map" << endl
+		<< "Selection: ";
+
+	cin >> input;
+
+	cin.clear(); //if cin fails because of wrong data type, clear error flag
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');  //clears the cin buffer
+
+	cout << "------------------------------" << endl;
+
+	GodmodeMapController::instance()->mapOptions(input);
+}
+
+void GodmodeMapView::warningMsgInvalidMap() {
+	cout << "The map is invalid. To be a valid map, it must"
+		<< "have an entrance and an exit cell, have a valid path between those two points"
+		<< "and have all walkable cells be reachable (that is, all non-wall type)"
+		<< endl;
+}
+
+void GodmodeMapView::warningMsgValidMap() {
+	cout << "This is a valid map." << endl;
+}
+
 void GodmodeMapView::mapFillOptionsMenuView() {
 	int x, y;
 	int option;
@@ -72,22 +101,22 @@ void GodmodeMapView::mapFillOptionsMenuView() {
 
 	switch (option) {
 	case 1:
-		GodmodeMapController::instance()->mapOptionsView(x, y, CellHelper::WALL_TYPE);
+		GodmodeMapController::instance()->fillCell(x, y, CellHelper::WALL_TYPE);
 		break;
 	case 2:
-		GodmodeMapController::instance()->mapOptionsView(x, y, CellHelper::ENTRANCE_TYPE);
+		GodmodeMapController::instance()->fillCell(x, y, CellHelper::ENTRANCE_TYPE);
 		break;
 	case 3:
-		GodmodeMapController::instance()->mapOptionsView(x, y, CellHelper::EXIT_TYPE);
+		GodmodeMapController::instance()->fillCell(x, y, CellHelper::EXIT_TYPE);
 		break;
 	case 4:
-		GodmodeMapController::instance()->mapOptionsView(x, y, CellHelper::CHEST_TYPE);
+		GodmodeMapController::instance()->fillCell(x, y, CellHelper::CHEST_TYPE);
 		break;
 	case 5:
-		GodmodeMapController::instance()->mapOptionsView(x, y, CellHelper::ENTITY_TYPE);
+		GodmodeMapController::instance()->fillCell(x, y, CellHelper::ENTITY_TYPE);
 		break;
 	case 6:
-		GodmodeMapController::instance()->mapOptionsView(x, y, CellHelper::PATH_TYPE);
+		GodmodeMapController::instance()->fillCell(x, y, CellHelper::PATH_TYPE);
 		break;
 	default: cout << "Invalid input"; break;
 	}

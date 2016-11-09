@@ -15,5 +15,5 @@ bool EntityCell::interactable() {
 }
 
 bool  EntityCell::walkable() {
-	return false;
+	return true;
 }
