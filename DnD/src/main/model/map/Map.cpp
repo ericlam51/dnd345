@@ -1,4 +1,5 @@
 #include "Map.h"
+#include "../../view/map/godmode/GodmodeMapView.h"
 
 Map::Map(int width, int height) {
 	this->width = width;
@@ -40,6 +41,7 @@ void Map::print() {
 void Map::fillCell(int x, int y, Cell* cell) {
 	if (cell->getType() == CellHelper::ENTRANCE_TYPE) {
 		if (startingCell != NULL) {
+			GodmodeMapView::warningMsgChangingEntranceCell();
 			int previousStartingX = startingCell->getPosX();
 			int previousStartingY = startingCell->getPosY();
 			map[previousStartingY][previousStartingX] = new PathCell();
@@ -53,6 +55,7 @@ void Map::fillCell(int x, int y, Cell* cell) {
 
 	if (cell->getType() == CellHelper::EXIT_TYPE) {
 		if (exitCell != NULL) {
+			GodmodeMapView::warningMsgChangingExitCell();
 			int previousExitX = startingCell->getPosX();
 			int previousExitY = startingCell->getPosY();
 			map[previousExitY][previousExitX] = new PathCell();
