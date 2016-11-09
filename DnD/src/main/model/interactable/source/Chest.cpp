@@ -2,7 +2,7 @@
 
 Chest::Chest() {}
 
-Chest::Chest(string name, string description) : Passive(name, description, location) {
+Chest::Chest(string name, string description) : Passive(name, description) {
 
 
 }

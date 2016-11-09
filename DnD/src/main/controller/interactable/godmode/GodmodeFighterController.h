@@ -12,4 +12,9 @@ private:
 public:
 	static GodmodeFighterController* instance();
 	void newFighter(string name, string description, int level);
+	void postCreation(bool input);
+	void postCreationYes(int input);
+	void modifyAbilityScore(int abilityScore[6]);
+	void equipItem(char item);
+
 }; 

@@ -11,5 +11,5 @@ private:
 	Chest* _chest;
 public:
 	static GodmodeChestController* instance();
-	void newChest(string name, string description, int level);
+	void newChest(string name, string description);
 };

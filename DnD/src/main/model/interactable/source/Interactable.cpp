@@ -1,4 +1,3 @@
-#pragma once
 #include <iostream>
 #include "../../Location.h"
 #include "../header/Interactable.h"
@@ -16,11 +15,8 @@ string Interactable::getDescription() const{
 }
 Location Interactable::getLocation() const{
 	return location;
-<<<<<<< HEAD
 }
 
 void Interactable::setLocation(Location newlocation) {
 	location = newlocation;
-=======
->>>>>>> FETCH_HEAD
 }

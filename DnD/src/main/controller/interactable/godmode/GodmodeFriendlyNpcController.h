@@ -11,5 +11,5 @@ private:
 	FriendlyNpc* _friendlyNpc;
 public:
 	static GodmodeFriendlyNpcController* instance();
-	void newFriendlyNpc(string name, string description, int level);
+	void newFriendlyNpc(string name, string description, string dialog);
 };

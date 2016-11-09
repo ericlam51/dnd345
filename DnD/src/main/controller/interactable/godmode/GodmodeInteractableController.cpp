@@ -7,6 +7,7 @@ void GodmodeInteractableController::interactableFileSelection(int input) {
 		break;
 	case 2:
 		GodmodeInteractableView::interactableFileSelectionView();
+		break;
 	default:
 		GodmodeInteractableView::interactableFileSelectionView();
 		break;
@@ -19,19 +20,18 @@ void GodmodeInteractableController::interactableCreation(int input) {
 		GodmodeFighterView::newfighterView();
 		break;
 	case 2:
-		GodmodeInteractableView::interactableFileSelectionView();
+		GodmodeHostileNpcView::newHostileNpctView();
+		break;
 	case 3:
-		GodmodeInteractableView::interactableFileSelectionView();
+		GodmodeFriendlyNpcView::newFriendlyNpcView();
+		break;
 	case 4:
-		GodmodeInteractableView::interactableFileSelectionView();
+		GodmodeChestView::newChestView();
+		break;
 	default:
-		GodmodeInteractableView::interactableFileSelectionView();
+		GodmodeInteractableView::interactableElementSelectionView();
 		break;
 	}
-}
-
-void GodmodeInteractableController::fighterCreation(string name, string description, int level) {
-
 }
 
 GodmodeInteractableController* GodmodeInteractableController::instance() {

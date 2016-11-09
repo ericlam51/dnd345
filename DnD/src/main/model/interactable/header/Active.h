@@ -25,6 +25,8 @@ public:
 	void attack(Active &activeObj);
 	void hit(int damage);
 	bool equipItem(const char item);
+
+	void print();
 	void printEquipments();
 
 	int getLevel() const;
@@ -68,6 +70,6 @@ private:
 	int calculateHitPoints();
 	int calculateAttackBonus();
 	int calculateArmorClass();
+	int calculateBonusAbilityScore();
 
-	friend std::ostream& operator<<(std::ostream &strm, Active &player);
 };

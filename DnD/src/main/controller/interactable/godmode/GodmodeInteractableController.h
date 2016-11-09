@@ -2,6 +2,9 @@
 
 #include "../../../view/interactable/godmode/GodmodeInteractableView.h"
 #include "../../../view/interactable/godmode/GodmodeFighterView.h"
+#include "../../../view/interactable/godmode/GodmodeHostileNpcView.h"
+#include "../../../view/interactable/godmode/GodmodeFriendlyNpcView.h"
+#include "../../../view/interactable/godmode/GodmodeChestView.h"
 
 class GodmodeInteractableController {
 	static GodmodeInteractableController *s_instance;

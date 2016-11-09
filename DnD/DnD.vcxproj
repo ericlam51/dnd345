@@ -110,6 +110,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\main\controller\interactable\godmode\GodmodeChestController.h" />
+    <ClInclude Include="src\main\controller\interactable\godmode\GodmodeFighterController.h" />
+    <ClInclude Include="src\main\controller\interactable\godmode\GodmodeFriendlyNpcController.h" />
+    <ClInclude Include="src\main\controller\interactable\godmode\GodmodeHostileNpcController.h" />
     <ClInclude Include="src\main\controller\interactable\godmode\GodmodeInteractableController.h" />
     <ClInclude Include="src\main\model\Location.h" />
     <ClInclude Include="src\main\model\interactable\header\Active.h" />
@@ -120,10 +124,18 @@
     <ClInclude Include="src\main\model\interactable\header\HostileNpc.h" />
     <ClInclude Include="src\main\model\interactable\header\Interactable.h" />
     <ClInclude Include="src\main\model\interactable\header\Passive.h" />
+    <ClInclude Include="src\main\view\interactable\godmode\GodmodeChestView.h" />
+    <ClInclude Include="src\main\view\interactable\godmode\GodmodeFighterView.h" />
+    <ClInclude Include="src\main\view\interactable\godmode\GodmodeFriendlyNpcView.h" />
+    <ClInclude Include="src\main\view\interactable\godmode\GodmodeHostileNpcView.h" />
     <ClInclude Include="src\main\view\interactable\godmode\GodmodeInteractableView.h" />
     <ClInclude Include="src\main\view\map\godmode\GodmodeMapMainView.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\main\controller\interactable\godmode\GodmodeChestController.cpp" />
+    <ClCompile Include="src\main\controller\interactable\godmode\GodmodeFighterController.cpp" />
+    <ClCompile Include="src\main\controller\interactable\godmode\GodmodeFriendlyNpcController.cpp" />
+    <ClCompile Include="src\main\controller\interactable\godmode\GodmodeHostileNpcController.cpp" />
     <ClCompile Include="src\main\controller\interactable\godmode\GodmodeInteractableController.cpp" />
     <ClCompile Include="src\main\helper\ViewHelper.cpp" />
     <ClCompile Include="src\main\helper\ViewHelper.h" />
@@ -139,6 +151,10 @@
     <ClCompile Include="src\main\model\interactable\source\Active.cpp" />
     <ClCompile Include="src\main\model\interactable\source\Fighter.cpp" />
     <ClCompile Include="src\main\model\interactable\source\ActiveBuilder.cpp" />
+    <ClCompile Include="src\main\view\interactable\godmode\GodmodeChestView.cpp" />
+    <ClCompile Include="src\main\view\interactable\godmode\GodmodeFighterView.cpp" />
+    <ClCompile Include="src\main\view\interactable\godmode\GodmodeFriendlyNpcView.cpp" />
+    <ClCompile Include="src\main\view\interactable\godmode\GodmodeHostileNpcView.cpp" />
     <ClCompile Include="src\main\view\interactable\godmode\GodmodeInteractableView.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -7,9 +7,9 @@ using namespace std;
 class ActiveBuilder
 {
 public:
-	ActiveBuilder::ActiveBuilder();
-	ActiveBuilder::ActiveBuilder(string name, string description, int level, int type);
-	ActiveBuilder::~ActiveBuilder();
+	ActiveBuilder();
+	ActiveBuilder(string name, string description, int level, int type);
+	~ActiveBuilder();
 	Active* build();
 
 	ActiveBuilder* setStrength(int str);

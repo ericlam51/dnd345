@@ -3,6 +3,7 @@
 #include <math.h>
 #include "../header/Active.h"
 #include <string>
+#include <cstdlib>
 
 using namespace std;
 
@@ -20,7 +21,7 @@ Active::Active(string name, string description, int level) : Interactable(name, 
 
 bool Active::validateNewPlayer() {
 	for (int i = 0; i <= 5; i++)
-		if (abilityScores[i]<3 || abilityScores[i]>18)
+		if (abilityScores[i] < 3 || abilityScores[i] > (18 + calculateBonusAbilityScore()))
 			return false;
 	return true;
 }
@@ -54,6 +55,9 @@ int Active::calculateArmorClass() {
 	return 10 + getAbilityModifier(getDexterity());
 }
 
+int Active::calculateBonusAbilityScore() {
+	return (level % 4); //Players receive +1 ability score per 4 levels
+}
 //Generated a number between max and min
 int Active::generateRandomNumber(int min, int max) {
 	/* initialize random seed: */
@@ -101,22 +105,21 @@ void Active::printEquipments() {
 	cout << "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 }
 
-std::ostream& operator<<(std::ostream &strm, Active &player) {
-	return strm
-		<< "Your player has the following attributes:"
-		<< "Name:" << player.getName() << "\n"
-		<< "Ability Modifier" << player.getAbilityModifier(player.getConstitution()) << "\n"
-		<< "Level: " << player.getLevel() << "\n"
-		<< "Strength: " << player.getStrength() << "\n"
-		<< "Dexterity: " << player.getDexterity() << "\n"
-		<< "Constitution: " << player.getConstitution() << "\n"
-		<< "Intelligence: " << player.getIntelligence() << "\n"
-		<< "Wisdom: " << player.getWisdom() << "\n"
-		<< "Charisma: " << player.getCharisma() << "\n"
-		<< "Hit Point: " << player.getCurrentHitPoints() << "\n"
-		<< "Attack bonus: " << player.getAttackBonus() << "\n"
-		<< "Armor class: " << player.getArmorClass() << "\n"
-		<< "Damage bonus: " << player.getDamageBonus() << endl;
+void Active::print() {
+	cout << "Your player has the following attributes:" << endl
+		<< "Name:" << name << endl
+		<< "Ability Modifier" << getAbilityModifier(abilityScores[2]) << endl
+		<< "Level: " << level << endl
+		<< "Strength: " << abilityScores[0] << endl
+		<< "Dexterity: " << abilityScores[1] << endl
+		<< "Constitution: " << abilityScores[2] << endl
+		<< "Intelligence: " << abilityScores[3] << endl
+		<< "Wisdom: " << abilityScores[4] << endl
+		<< "Charisma: " << abilityScores[5] << endl
+		<< "Hit Point: " << abilityScores[6] << endl
+		<< "Attack bonus: " << attackBonus << endl
+		<< "Armor class: " << armorClass << endl
+		<< "Damage bonus: " << damageBonus << endl;
 }
 
 void Active::setStrength(int str) {

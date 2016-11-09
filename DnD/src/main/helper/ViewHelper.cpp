@@ -4,35 +4,35 @@
 
 using namespace std;
 
-const string ViewHelper::DELIMITER = "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-";
-const string ViewHelper::INVALID_INPUT = "Invalid input!";
+namespace ViewHelper {
 
-void ViewHelper::printDelimiter() {
-	cout << DELIMITER << endl;
-}
-
-bool ViewHelper::readBooleanInput(char input) {
-	if (input == 'y' || input == 'Y')
-		return true;
-
-	if (input == 'n' || input == 'N')
-		return false;
-
-	return false;
-}
-
-
-bool ViewHelper::isInputInValidRange(int input, int min, int max) {
-	if (input >= min && input <= max) {
-		return true;
+	void printDelimiter() {
+		cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 	}
-	else {
-		printErrorMessage();
+
+	bool readBooleanInput(char input) {
+		if (input == 'y' || input == 'Y')
+			return true;
+
+		if (input == 'n' || input == 'N')
+			return false;
+
 		return false;
 	}
-		
-}
 
-void ViewHelper::printErrorMessage() {
-	cout << INVALID_INPUT << endl;
+
+	bool isInputInValidRange(int input, int min, int max) {
+		if (input >= min && input <= max) {
+			return true;
+		}
+		else {
+			printErrorMessage();
+			return false;
+		}
+
+	}
+
+	void printErrorMessage() {
+		cout << "Invalid input!" << endl;
+	}
 }
