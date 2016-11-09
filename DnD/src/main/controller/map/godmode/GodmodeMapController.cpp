@@ -7,10 +7,6 @@ void GodmodeMapController::mapFileSelection(int input) {
 		break;
 	case 2:
 		break; //TODO
-	case 0:
-		GodmodeMapView::invalidInputView();
-		GodmodeMapView::mapFileSelectionView();
-		break; 
 	default: 
 		GodmodeMapView::invalidInputView();
 		GodmodeMapView::mapFileSelectionView();
@@ -24,7 +20,8 @@ void GodmodeMapController::newMap(int width, int height) {
 		GodmodeMapView::mapCreationParamSelectionView();
 	}
 	else {
-		map = new Map();
+		map = new Map(width, height);
+		map->print();
 	}
 }
 

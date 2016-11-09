@@ -1,12 +1,11 @@
 #pragma once
 #include "Cell.h"
-//#include "../../helper/CellHelper.cpp"
 
-class WallCell : public Cell
+class PathCell : public Cell
 {
 public:
-	WallCell();
-	~WallCell();
+	PathCell();
+	~PathCell();
 	bool interactable();
 	bool walkable();
 	inline char getType();

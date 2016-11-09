@@ -110,6 +110,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\main\model\map\PathCell.h" />
     <ClInclude Include="src\main\model\map\Cell.h" />
     <ClInclude Include="src\main\view\map\godmode\GodmodeMapView.h" />
     <ClInclude Include="src\main\controller\map\godmode\GodmodeMapController.h" />
@@ -123,6 +124,9 @@
     <ClInclude Include="src\main\model\map\WallCell.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\main\model\map\Map.cpp" />
+    <ClCompile Include="src\main\model\map\PathCell.cpp" />
+    <ClCompile Include="src\main\helper\CellHelper.cpp" />
     <ClCompile Include="src\main\model\map\Cell.cpp" />
     <ClCompile Include="src\main\controller\map\godmode\GodmodeMapController.cpp" />
     <ClCompile Include="src\main\helper\ViewHelper.cpp" />

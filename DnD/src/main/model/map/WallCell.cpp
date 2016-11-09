@@ -1,21 +1,19 @@
 #include "WallCell.h"
 
-
-
 WallCell::WallCell()
 {
+	type = CellHelper::WALL_TYPE;
 }
-
 
 WallCell::~WallCell()
 {
 }
 
-bool WallCell::getType() {
-	return false;
+char WallCell::getType() {
+	return type;
 }
 
-bool WallCell::iterable() {
+bool WallCell::interactable() {
 	return false;
 }
 
