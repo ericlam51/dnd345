@@ -2,7 +2,6 @@
 
 int main()
 {
-	GodmodeMapView::mapFileSelectionView();
 
 	return 0;
 }
