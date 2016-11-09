@@ -1,7 +1,5 @@
 #include "PathCell.h"
 
-
-
 PathCell::PathCell()
 {
 	type = CellHelper::PATH_TYPE;
@@ -10,10 +8,6 @@ PathCell::PathCell()
 
 PathCell::~PathCell()
 {
-}
-
-char PathCell::getType() {
-	return type;
 }
 
 bool PathCell::interactable() {

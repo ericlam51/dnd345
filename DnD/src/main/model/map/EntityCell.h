@@ -1,11 +1,11 @@
 #pragma once
 #include "Cell.h"
 
-class WallCell : public Cell
+class EntityCell : public Cell
 {
 public:
-	WallCell();
-	~WallCell();
+	EntityCell();
+	~EntityCell();
 	bool interactable();
 	bool walkable();
 };

@@ -18,9 +18,13 @@ int Cell::getPosY() {
 }
 
 void Cell::setPosY(int y) {
-	this->posY = y;
+	posY = y;
 }
 
 void Cell::setPosX(int x) {
-	this->posX = x;
+	posX = x;
+}
+
+char Cell::getType() {
+	return type;
 }

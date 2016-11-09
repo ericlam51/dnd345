@@ -9,10 +9,6 @@ WallCell::~WallCell()
 {
 }
 
-char WallCell::getType() {
-	return type;
-}
-
 bool WallCell::interactable() {
 	return false;
 }

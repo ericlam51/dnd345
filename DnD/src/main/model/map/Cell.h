@@ -13,10 +13,10 @@ public:
 	~Cell();
 	virtual bool interactable() = 0;
 	virtual bool walkable() = 0;
-	virtual inline char getType() = 0;
-	 int getPosX();
-	 int getPosY();
-	 void setPosX(int x);
-	 void setPosY(int y);
+	char getType();
+	int getPosX();
+	int getPosY();
+	void setPosX(int x);
+	void setPosY(int y);
 };
 

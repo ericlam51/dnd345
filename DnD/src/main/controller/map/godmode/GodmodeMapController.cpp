@@ -25,6 +25,41 @@ void GodmodeMapController::newMap(int width, int height) {
 	}
 }
 
+void GodmodeMapController::mapOptionsView(int x, int y, char charType) {
+	switch (charType) {
+	case CellHelper::WALL_TYPE:
+		s_instance->setCell(x, y, new WallCell());
+		break;
+	case  CellHelper::ENTRANCE_TYPE:
+		s_instance->setCell(x, y, new EntranceCell());
+		break;
+	case  CellHelper::EXIT_TYPE:
+		s_instance->setCell(x, y, new ExitCell());
+		break;
+	case  CellHelper::CHEST_TYPE:
+		s_instance->setCell(x, y, new ChestCell());
+		break;
+	case  CellHelper::ENTITY_TYPE:
+		s_instance->setCell(x, y, new EntityCell());
+		break;
+	case  CellHelper::PATH_TYPE:
+		s_instance->setCell(x, y, new PathCell());
+		break;
+	default:
+		GodmodeMapView::invalidInputView();
+		GodmodeMapView::mapOptionsView();
+		break;
+	}
+}
+
+void GodmodeMapController::setCell(int x, int y, Cell* cell) {
+	map->fillCell(x, y, cell);
+}
+
+void GodmodeMapController::print() {
+	map->print();
+}
+
 GodmodeMapController* GodmodeMapController::instance() {
 	if (!s_instance)
 		s_instance = new GodmodeMapController();

@@ -11,9 +11,11 @@ using namespace std;
 class Map {
 private:
 	int height, width;
-	//vector<vector<Cell>> map;
-	Cell** map;
+	vector<vector<Cell*>> map;
+	//Cell** map;
 	vector<vector<bool>> passed;
+	Cell* startingCell = NULL;
+	Cell* exitCell = NULL;
 
 	void initMap();
 

@@ -110,6 +110,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\main\model\map\ChestCell.h" />
+    <ClInclude Include="src\main\model\map\EntityCell.h" />
+    <ClInclude Include="src\main\model\map\EntranceCell.h" />
+    <ClInclude Include="src\main\model\map\ExitCell.h" />
     <ClInclude Include="src\main\model\map\PathCell.h" />
     <ClInclude Include="src\main\model\map\Cell.h" />
     <ClInclude Include="src\main\view\map\godmode\GodmodeMapView.h" />
@@ -124,6 +128,10 @@
     <ClInclude Include="src\main\model\map\WallCell.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\main\model\map\ChestCell.cpp" />
+    <ClCompile Include="src\main\model\map\EntityCell.cpp" />
+    <ClCompile Include="src\main\model\map\EntranceCell.cpp" />
+    <ClCompile Include="src\main\model\map\ExitCell.cpp" />
     <ClCompile Include="src\main\model\map\Map.cpp" />
     <ClCompile Include="src\main\model\map\PathCell.cpp" />
     <ClCompile Include="src\main\helper\CellHelper.cpp" />
