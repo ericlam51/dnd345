@@ -16,14 +16,17 @@ using namespace std;
 
 class GodmodeMapView {
 public:
-	static void mapFileSelectionView();
-	static void mapCreationParamSelectionView();
-	static void mapOptionsView();
+	/* Option menus */
+	static void fileOptionsMenuView();
+	static void mapCreationInputView();
+	static void mapFillOptionsMenuView();
+	static void mapOptionsMenuView();
+	
 	static void mapElementSelectionView();
 	static void mapDetailsView();
-	static void invalidInputView();
 
 	/* Warning messages */
 	static void warningMsgChangingEntranceCell();
 	static void warningMsgChangingExitCell();
+	static void warningMsgInvalidInput();
 };

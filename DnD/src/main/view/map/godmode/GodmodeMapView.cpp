@@ -1,6 +1,6 @@
 #include "GodmodeMapView.h";
 
-void GodmodeMapView::mapFileSelectionView() {
+void GodmodeMapView::fileOptionsMenuView() {
 	int input = 0;
 
 	cout << "------------------------------" << endl
@@ -18,7 +18,7 @@ void GodmodeMapView::mapFileSelectionView() {
 	GodmodeMapController::instance()->mapFileSelection(input);
 }
 
-void GodmodeMapView::mapCreationParamSelectionView() {
+void GodmodeMapView::mapCreationInputView() {
 	int width = 0, height = 0;
 
 	cout << "------------------------------" << endl
@@ -40,7 +40,7 @@ void GodmodeMapView::mapCreationParamSelectionView() {
 	GodmodeMapController::instance()->newMap(width, height);
 }
 
-void GodmodeMapView::invalidInputView() {
+void GodmodeMapView::warningMsgInvalidInput() {
 	cout << "Invalid input!" << endl;
 }
 
@@ -52,7 +52,7 @@ void GodmodeMapView::warningMsgChangingExitCell() {
 	cout << "The previous exit cell has been removed." << endl;
 }
 
-void GodmodeMapView::mapOptionsView() {
+void GodmodeMapView::mapFillOptionsMenuView() {
 	int x, y;
 	int option;
 

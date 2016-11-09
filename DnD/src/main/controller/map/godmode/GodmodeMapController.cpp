@@ -3,21 +3,21 @@
 void GodmodeMapController::mapFileSelection(int input) {
 	switch (input) {
 	case 1:
-		GodmodeMapView::mapCreationParamSelectionView();
+		GodmodeMapView::mapCreationInputView();
 		break;
 	case 2:
 		break; //TODO
 	default: 
-		GodmodeMapView::invalidInputView();
-		GodmodeMapView::mapFileSelectionView();
+		GodmodeMapView::warningMsgInvalidInput();
+		GodmodeMapView::fileOptionsMenuView();
 		break;
 	}
 }
 
 void GodmodeMapController::newMap(int width, int height) {
 	if (width == 0 || height == 0) {
-		GodmodeMapView::invalidInputView();
-		GodmodeMapView::mapCreationParamSelectionView();
+		GodmodeMapView::warningMsgInvalidInput();
+		GodmodeMapView::mapCreationInputView();
 	}
 	else {
 		map = new Map(width, height);
@@ -46,8 +46,8 @@ void GodmodeMapController::mapOptionsView(int x, int y, char charType) {
 		s_instance->setCell(x, y, new PathCell());
 		break;
 	default:
-		GodmodeMapView::invalidInputView();
-		GodmodeMapView::mapOptionsView();
+		GodmodeMapView::warningMsgInvalidInput();
+		GodmodeMapView::mapFillOptionsMenuView();
 		break;
 	}
 }
