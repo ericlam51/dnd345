@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-int main()
-{
-	return 0;
-}
-=======
 #include <iostream>
 #include <ctime>
 #include <math.h>
@@ -31,4 +25,3 @@ int main() {
 
 	return 0;
 }
->>>>>>> Finish structure for Interactables

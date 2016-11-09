@@ -7,6 +7,7 @@
 using namespace std;
 
 Fighter::Fighter() {}
+
 Fighter::Fighter(string name, string description, int level) : Active(name, description, level){
 }
 

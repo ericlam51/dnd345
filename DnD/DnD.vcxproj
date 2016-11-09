@@ -127,6 +127,8 @@
     <ClCompile Include="src\main\controller\interactable\godmode\GodmodeInteractableController.cpp" />
     <ClCompile Include="src\main\helper\ViewHelper.cpp" />
     <ClCompile Include="src\main\helper\ViewHelper.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="src\main\Main.cpp" />
     <ClCompile Include="src\main\model\interactable\source\Chest.cpp" />
     <ClCompile Include="src\main\model\interactable\source\FriendlyNpc.cpp" />

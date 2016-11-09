@@ -7,6 +7,7 @@
 using namespace std;
 
 Active::Active(){}
+
 Active::Active(string name, string description, int level) : Interactable(name, description), level(level){
 	for (int i = 0; i < sizeof(abilityScores); i++)
 		abilityScores[i] = generateRandomNumber(3, 18);

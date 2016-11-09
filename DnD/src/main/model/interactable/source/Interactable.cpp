@@ -16,8 +16,11 @@ string Interactable::getDescription() const{
 }
 Location Interactable::getLocation() const{
 	return location;
+<<<<<<< HEAD
 }
 
 void Interactable::setLocation(Location newlocation) {
 	location = newlocation;
+=======
+>>>>>>> FETCH_HEAD
 }

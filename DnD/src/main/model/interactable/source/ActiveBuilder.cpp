@@ -9,6 +9,7 @@
 using namespace std;
 
 ActiveBuilder::ActiveBuilder() {}
+
 ActiveBuilder::ActiveBuilder(string name, string description, int level, int type) : type(type) {
 	if(type == 0)
 		_activeObj = new Fighter(name, description, level);
