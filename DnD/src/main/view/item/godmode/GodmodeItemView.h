@@ -11,7 +11,10 @@ class GodmodeItemView
 {
 public:
 	static void createItem();
-	static void viewItems();
+	static void viewItemByType();
+	static void viewAllItems();
 	static void removeItem();
+private:
+	static void displayItemHelper(int);
 };
 

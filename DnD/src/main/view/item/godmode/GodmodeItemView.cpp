@@ -26,7 +26,7 @@ void GodmodeItemView::createItem()
 	GodmodeItemController::instance()->addItem(selection, name);
 }
 
-void GodmodeItemView::viewItems()
+void GodmodeItemView::viewItemByType()
 {
 	int selection = 0;
 	string name;
@@ -46,17 +46,35 @@ void GodmodeItemView::viewItems()
 		cin >> selection;
 	} while (selection < 1 || selection > 6);
 
+	GodmodeItemView::displayItemHelper(selection);
+}
+
+void GodmodeItemView::viewAllItems()
+{
+	cout << "All items: " << endl;
+
+	for (int i = 1; i <= HELMET + 1; i++) 
+	{
+		GodmodeItemView::displayItemHelper(i);
+	}
+
+}
+
+void GodmodeItemView::displayItemHelper(int selection) 
+{
 	vector<Item*> itemsSelected = GodmodeItemController::instance()->getItemsOfType(selection);
 
-	if (itemsSelected.size() == 0) 
+	if (itemsSelected.size() == 0)
 	{
-		cout << "No items of that type" << endl;
+		cout << endl << "No items of type:" << ItemTypes[selection - 1] <<  endl;
 	}
 	else
 	{
-		cout << "Displaying all items of type: " << ItemTypes[selection - 1] << endl;
-		for (vector<Item*>::iterator it = itemsSelected.begin(); it != itemsSelected.end(); ++it) 
+		cout << endl << "Displaying all items of type: " << ItemTypes[selection - 1] << endl;
+		int i = 1;
+		for (vector<Item*>::iterator it = itemsSelected.begin(); it != itemsSelected.end(); ++it)
 		{
+			cout << "Item: " << i++ << endl;
 			cout << "Item name: " << (*it)->getItemName() << endl;
 		}
 	}
