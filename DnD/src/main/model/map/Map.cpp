@@ -447,12 +447,12 @@ void Map::interact(char side) {
 		break;
 	}
 
-	//TODO I'M HERE
+	map[newY][newX]->interact();
 }
 
-void Map::startMap() {
+void Map::startMap(Interactable* fighter) {
 	playerCell = new EntityCell();
-	//playerCell->setEntity(player);
+	playerCell->setEntity(fighter);
 	playerCell->setType(CellHelper::PLAYER_TYPE);
 
 	int posX = startingCell->getPosX();
@@ -463,19 +463,6 @@ void Map::startMap() {
 
 	cachedCell = map[posY][posX];
 	map[posY][posX] = playerCell;
-
-	print();
-
-	map[1][1]->interact();
-
-	//cout << getNextCellInteractibility('R');
-	//cout << getNextCellWalkability('R');
-
-	//movePlayer('R');
-
-	//print();
-
-	cin >> posX;
 }
 
 bool Map::getNextCellInteractibility(char side) {

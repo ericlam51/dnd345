@@ -160,11 +160,9 @@ void GodmodeMapController::loadMap() {
 	archive.Close();
 	theFile.Close();
 
-	map->startMap();
-
-	/*s_instance->print();
+	print();
 	GodmodeMapView::warningMsgMapLoaded();
-	GodmodeMapView::mapOptionsMenuView();*/
+	GodmodeMapView::mapOptionsMenuView();
 }
 
 GodmodeMapController* GodmodeMapController::instance() {
