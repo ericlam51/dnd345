@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../view/map/godmode/GodmodeMapView.h";
+#include "../../../view/map/godmode/GodmodeMapView.h"
 #include "../../../model/map/Map.h"
 #include "../../../model/map/Cell.h"
 

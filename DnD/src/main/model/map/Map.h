@@ -7,7 +7,7 @@
 #include "ExitCell.h"
 #include "EntranceCell.h"
 #include "EntityCell.h"
-#include "../interactable/Fighter.h"
+#include "../interactable/header/Fighter.h"
 #include <vector>
 #include <iostream>
 #include <afx.h>

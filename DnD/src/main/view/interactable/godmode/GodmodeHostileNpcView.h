@@ -1,6 +1,4 @@
 #pragma once
-
-#include "../../../helper/ViewHelper.h"
 #include "../../../controller/interactable/godmode/GodmodeHostileNpcController.h"
 #include <stdio.h>
 #include <iostream>

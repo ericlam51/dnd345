@@ -4,7 +4,7 @@ void GodmodeChestView::newChestView() {
 
 	string name, description;
 
-	ViewHelper::printDelimiter();
+	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	cout << "Enter chest's name: " << endl;
 	cin >> name;
@@ -23,7 +23,7 @@ void GodmodeChestView::loadChestView() {
 void GodmodeChestView::postCreationView(){
 	int input;
 
-	ViewHelper::printDelimiter();
+	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	cout << "Please select an option" << endl;
 	cout << "1. Create another Chest" << endl

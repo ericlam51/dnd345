@@ -2,12 +2,22 @@
 
 string GodmodeActiveView::typeStr = "";
 
+bool readBooleanInput(char input) {
+	if (input == 'y' || input == 'Y')
+		return true;
+
+	if (input == 'n' || input == 'N')
+		return false;
+
+	return false;
+
+}
 void GodmodeActiveView::newActiveView(int type) {
 
 	string name, description;
 	int level;
 
-	ViewHelper::printDelimiter();
+	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	if(type == 0)
 		typeStr = "Fighter";
@@ -30,7 +40,7 @@ void GodmodeActiveView::newActiveView(int type) {
 }
 
 void GodmodeActiveView::loadActiveView(int type) {
-	ViewHelper::printDelimiter();
+	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	if (type == 0)
 		typeStr = "Fighter";
@@ -48,19 +58,19 @@ void GodmodeActiveView::loadActiveView(int type) {
 void GodmodeActiveView::postCreationView() {
 	char input;
 
-	ViewHelper::printDelimiter();
+	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	cout << "Do you want to customize your " << typeStr << "'s stats or equip item(s) [Y/n]? " << endl;
 	cin >> input;
 
-	GodmodeActiveController::instance()->postCreation(ViewHelper::readBooleanInput(input));
+	GodmodeActiveController::instance()->postCreation(readBooleanInput(input));
 
 }
 
 void GodmodeActiveView::postCreationYesView() {
 	int input;
 
-	ViewHelper::printDelimiter();
+	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	cout << "Please select and option" << endl;
 	cout << "1. Change starting ability score" << endl
@@ -69,15 +79,13 @@ void GodmodeActiveView::postCreationYesView() {
 		<< "Selection: ";
 
 	cin >> input;
-
-	if (ViewHelper::isInputInValidRange(input, 1, 3))
-		GodmodeActiveController::instance()->postCreationYes(input);
+	GodmodeActiveController::instance()->postCreationYes(input);
 }
 
 void GodmodeActiveView::changeAbilityScoreView() {
 	int abilityScore[6];
 
-	ViewHelper::printDelimiter();
+	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	cout << "To modify ability score enter the ability score in the following format: str,dex,cons,int,wis,cha" << endl;
 	cout << "To leave the ability score unchanged enter a -1 at the index of the ability score" << endl;
@@ -102,7 +110,7 @@ void GodmodeActiveView::equipItemView() {
 		cout << "Do you want to continue to equip item? ([Y/n])" << endl;
 		cin >> input;
 
-		cont = ViewHelper::readBooleanInput(input);
+		cont = readBooleanInput(input);
 	}
 	postCreationYesView();
 }

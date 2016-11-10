@@ -5,7 +5,7 @@ void GodmodeHostileNpcView::newHostileNpctView() {
 	string name, description;
 	int level;
 
-	ViewHelper::printDelimiter();
+	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	cout << "Enter monster's name: " << endl;
 	cin >> name;

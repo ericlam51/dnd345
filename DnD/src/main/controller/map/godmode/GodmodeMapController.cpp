@@ -1,5 +1,5 @@
 #include "GodmodeMapController.h"
-#include "../../../model/interactable/Fighter.h";
+#include "../../../model/interactable/header/Fighter.h"
 
 void GodmodeMapController::mapFileSelection(int input) {
 	switch (input) {

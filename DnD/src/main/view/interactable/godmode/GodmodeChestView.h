@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../../../helper/ViewHelper.h"
 #include "../../../controller/interactable/godmode/GodmodeChestController.h"
 #include "../../../model/interactable/header/Chest.h"
 #include <stdio.h>

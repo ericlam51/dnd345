@@ -4,7 +4,7 @@ void GodmodeFriendlyNpcView::newFriendlyNpcView() {
 
 	string name, description, dialog;
 
-	ViewHelper::printDelimiter();
+	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	cout << "Enter NPC's name: " << endl;
 	cin >> name;
@@ -26,7 +26,7 @@ void GodmodeFriendlyNpcView::loadFriendlyNpcView() {
 void GodmodeFriendlyNpcView::postCreationView(){
 	int input;
 
-	ViewHelper::printDelimiter();
+	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	cout << "Please select an option" << endl;
 	cout << "1. Create another NPC" << endl

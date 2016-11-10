@@ -4,7 +4,7 @@
 void GodmodeInteractableView::interactableFileSelectionView() {
 	int input = 0;
 
-	ViewHelper::printDelimiter();
+	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;;
 	
 	cout << "Interactable (Fighter, Monster, NPC, Chest)" << endl;
 	cout << "1. New Interactable" << endl
@@ -13,8 +13,7 @@ void GodmodeInteractableView::interactableFileSelectionView() {
 
 	cin >> input;
 
-	if (ViewHelper::isInputInValidRange(input, 1, 2))
-		GodmodeInteractableController::instance()->interactableFileSelection(input);
+	GodmodeInteractableController::instance()->interactableFileSelection(input);
 }
 
 
@@ -22,7 +21,7 @@ void GodmodeInteractableView::interactableElementSelectionView() {
 
 	int input = 0;
 
-	ViewHelper::printDelimiter();
+	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	cout << "Which of the following do you want to create?" << endl;
 	cout << "1. Fighter" << endl
@@ -32,14 +31,13 @@ void GodmodeInteractableView::interactableElementSelectionView() {
 		<< "Selection: ";
 
 	cin >> input;
-	if (ViewHelper::isInputInValidRange(input, 1, 4))
-		GodmodeInteractableController::instance()->interactableCreation(input);
+	GodmodeInteractableController::instance()->interactableCreation(input);
 }
 
 void GodmodeInteractableView::interactableLoadView() {
 	int input = 0;
 
-	ViewHelper::printDelimiter();
+	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	cout << "Which of the following do you want to load?" << endl;
 	cout << "1. Fighter" << endl
@@ -49,6 +47,5 @@ void GodmodeInteractableView::interactableLoadView() {
 		<< "Selection: ";
 
 	cin >> input;
-	if (ViewHelper::isInputInValidRange(input, 1, 4))
-		GodmodeInteractableController::instance()->interactableLoad(input);
+	GodmodeInteractableController::instance()->interactableLoad(input);
 }
