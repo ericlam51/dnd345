@@ -1,3 +1,7 @@
+#pragma once
+
+#include <iostream>
+#include <string>
 
 namespace ViewHelper {
 	void printDelimiter();
@@ -5,3 +9,4 @@ namespace ViewHelper {
 	bool isInputInValidRange(int input, int min, int max);
 	void printErrorMessage();
 };
+

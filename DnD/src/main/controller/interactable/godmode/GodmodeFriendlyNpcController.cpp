@@ -20,7 +20,13 @@ void GodmodeFriendlyNpcController::postCreation(int input) {
 }
 
 void GodmodeFriendlyNpcController::saveAndQuit(){
-	//TODO serialize obj
+	CFile theFile;
+	theFile.Open(_T("FriendlyNpc"), CFile::modeCreate | CFile::modeWrite);
+	CArchive archive(&theFile, CArchive::store);
+	_friendlyNpc->Serialize(archive);
+	archive.Close();
+	theFile.Close();
+
 	delete(_friendlyNpc);
 	_friendlyNpc = NULL;
 	GodmodeInteractableView::interactableFileSelectionView();

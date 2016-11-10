@@ -2,10 +2,14 @@
 #include "../../Location.h"
 #include "../header/Interactable.h"
 
+IMPLEMENT_SERIAL(Interactable, CObject, 1)
+
 Interactable::Interactable() {}
 Interactable::Interactable(string name, string description) :name(name), description(description){
 
 }
+
+Interactable::~Interactable() {}
 
 string Interactable::getName() const{
 	return name;
@@ -19,4 +23,18 @@ Location Interactable::getLocation() const{
 
 void Interactable::setLocation(Location newlocation) {
 	location = newlocation;
+}
+
+void Interactable::interact() {
+
+}
+
+void Interactable::Serialize(CArchive& archive) {
+	CObject::Serialize(archive);
+
+	if (archive.IsStoring()) {
+		CString cName(name.c_str());
+		CString cDescription(description.c_str());
+		archive << cName << cDescription;
+	}
 }

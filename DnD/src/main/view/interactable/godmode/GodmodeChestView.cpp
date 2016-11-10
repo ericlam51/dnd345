@@ -3,7 +3,6 @@
 void GodmodeChestView::newChestView() {
 
 	string name, description;
-	int level;
 
 	ViewHelper::printDelimiter();
 
@@ -31,7 +30,6 @@ void GodmodeChestView::postCreationView(){
 }
 
 void GodmodeChestView::saveAndQuitView(Chest* chest){
-	//chest->print(); TODO
-	cout << "NPC successfully created!" << endl;
+	cout << "Chest successfully created!" << endl;
 	GodmodeChestController::instance()->saveAndQuit();
 }

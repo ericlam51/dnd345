@@ -20,7 +20,7 @@ class Active : public Interactable
 public:
 	Active();
 	Active(string name, string description, int level);
-
+	~Active();
 	bool validateNewPlayer();
 	void attack(Active &activeObj);
 	void hit(int damage);
@@ -56,6 +56,9 @@ public:
 	char getWeapon() const;
 
 	void interact();
+
+	void Serialize(CArchive& archive);
+	DECLARE_SERIAL(Active);
 
 private:
 	int level;

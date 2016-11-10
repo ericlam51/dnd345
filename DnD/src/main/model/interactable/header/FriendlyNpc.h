@@ -10,9 +10,12 @@ class FriendlyNpc : public Passive
 public:
 	FriendlyNpc();
 	FriendlyNpc(string name, string description, string dialog);
+	~FriendlyNpc();
 	void print();
 	void interact();
 
+	void Serialize(CArchive& archive);
+	DECLARE_SERIAL(FriendlyNpc);
 private:
 	string dialog;
 };

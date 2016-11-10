@@ -20,7 +20,13 @@ void GodmodeChestController::postCreation(int input){
 }
 
 void GodmodeChestController::saveAndQuit(){
-	//TODO serialize obj
+	CFile theFile;
+	theFile.Open(_T("Chest"), CFile::modeCreate | CFile::modeWrite);
+	CArchive archive(&theFile, CArchive::store);
+	_chest->Serialize(archive);
+	archive.Close();
+	theFile.Close(); 
+
 	delete _chest;
 	_chest = NULL;
 }

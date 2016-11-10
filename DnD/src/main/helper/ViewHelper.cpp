@@ -1,12 +1,9 @@
 #include "ViewHelper.h"
-#include <iostream>
-#include <string>
 
 using namespace std;
 
 namespace ViewHelper {
-
-	void printDelimiter() {
+	void ViewHelper::printDelimiter() {
 		cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 	}
 

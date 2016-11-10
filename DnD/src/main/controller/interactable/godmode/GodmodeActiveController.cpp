@@ -66,7 +66,18 @@ void GodmodeActiveController::equipItem(char item) {
 }
 
 void GodmodeActiveController::saveAndQuit(){
-	//TODO serialize obj
+	CFile theFile;
+
+	if(strcmp(_active->GetRuntimeClass()->m_lpszClassName, "Fighter"))
+		theFile.Open(_T("Fighter"), CFile::modeCreate | CFile::modeWrite);
+	else if (strcmp(_active->GetRuntimeClass()->m_lpszClassName, "HostileNpc"))
+		theFile.Open(_T("HostileNpc"), CFile::modeCreate | CFile::modeWrite);
+
+	CArchive archive(&theFile, CArchive::store);
+	_active->Serialize(archive);
+	archive.Close();
+	theFile.Close();
+
 	delete _active;
 	_active = NULL;
 	GodmodeInteractableView::interactableFileSelectionView();

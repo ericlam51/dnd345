@@ -7,6 +7,8 @@
 
 using namespace std;
 
+IMPLEMENT_SERIAL(Active, CObject, 1)
+
 Active::Active(){}
 
 Active::Active(string name, string description, int level) : Interactable(name, description), level(level){
@@ -18,6 +20,8 @@ Active::Active(string name, string description, int level) : Interactable(name, 
 	attackBonus = calculateAttackBonus();
 	damageBonus = getStrength();
 }
+
+Active::~Active() {}
 
 bool Active::validateNewPlayer() {
 	for (int i = 0; i <= 5; i++)
@@ -107,9 +111,9 @@ void Active::printEquipments() {
 
 void Active::print() {
 	cout << "Your player has the following attributes:" << endl
-		<< "Name:" << name << endl
-		<< "Ability Modifier" << getAbilityModifier(abilityScores[2]) << endl
-		<< "Level: " << level << endl
+		<< "Name: " << name << endl
+		<< "Ability Modifier: " << getAbilityModifier(abilityScores[2]) << endl
+		<< "Level: " << getLevel() << endl
 		<< "Strength: " << abilityScores[0] << endl
 		<< "Dexterity: " << abilityScores[1] << endl
 		<< "Constitution: " << abilityScores[2] << endl
@@ -215,4 +219,16 @@ char Active::getBoots() const {
 
 char Active::getWeapon() const {
 	return inventory.weapon;
+}
+
+void Active::Serialize(CArchive& archive) {
+	CObject::Serialize(archive);
+
+	if (archive.IsStoring()) {
+		CString cName(getName().c_str());
+		CString cDescription(getDescription().c_str());
+		archive << cName << cDescription << getLevel()
+			<< getStrength() << getDexterity() << getConstitution()
+			<< getIntelligence() << getWisdom() << getCharisma(); //TODO serialize item
+	}
 }
