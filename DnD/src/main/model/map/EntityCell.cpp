@@ -12,6 +12,14 @@ EntityCell::~EntityCell()
 {
 }
 
+void EntityCell::setEntity(Interactable* entity) {
+	this->entity = entity;
+}
+
+void EntityCell::setType(char type) {
+	this->type = type;
+}
+
 bool EntityCell::interactable() {
 	return true;
 }
