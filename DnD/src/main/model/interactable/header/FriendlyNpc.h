@@ -10,6 +10,7 @@ class FriendlyNpc : public Passive
 public:
 	FriendlyNpc();
 	FriendlyNpc(string name, string description, string dialog);
+	void print();
 	void interact();
 
 private:

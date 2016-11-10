@@ -17,10 +17,10 @@ void GodmodeInteractableController::interactableFileSelection(int input) {
 void GodmodeInteractableController::interactableCreation(int input) {
 	switch (input) {
 	case 1:
-		GodmodeFighterView::newfighterView();
+		GodmodeActiveView::newActiveView(0);
 		break;
 	case 2:
-		GodmodeHostileNpcView::newHostileNpctView();
+		GodmodeActiveView::newActiveView(1);
 		break;
 	case 3:
 		GodmodeFriendlyNpcView::newFriendlyNpcView();

@@ -2,6 +2,28 @@
 
 void GodmodeFriendlyNpcController::newFriendlyNpc(string name, string description, string dialog) {
 	_friendlyNpc = new FriendlyNpc(name, description, dialog);
+	GodmodeFriendlyNpcView::postCreationView();
+}
+
+void GodmodeFriendlyNpcController::postCreation(int input) {
+	switch(input){
+		case 1:
+			GodmodeFriendlyNpcView::newFriendlyNpcView();
+			break;
+		case 2:
+			GodmodeFriendlyNpcView::saveAndQuitView(_friendlyNpc);
+			break;
+		default:
+			GodmodeFriendlyNpcView::postCreationView();
+			break;
+	}
+}
+
+void GodmodeFriendlyNpcController::saveAndQuit(){
+	//TODO serialize obj
+	delete(_friendlyNpc);
+	_friendlyNpc = NULL;
+	GodmodeInteractableView::interactableFileSelectionView();
 }
 
 GodmodeFriendlyNpcController* GodmodeFriendlyNpcController::instance() {

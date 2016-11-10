@@ -3,18 +3,20 @@
 #include "../../../view/interactable/godmode/GodmodeInteractableView.h"
 #include "../../../model/interactable/header/Fighter.h"
 
-class GodmodeFighterController {
-	static GodmodeFighterController *s_instance;
+class GodmodeActiveController {
+	static GodmodeActiveController *s_instance;
 
 private:
-	Fighter* _fighter;
+	Active* _active;
 
 public:
-	static GodmodeFighterController* instance();
+	static GodmodeActiveController* instance();
 	void newFighter(string name, string description, int level);
+	void newHostileNpc(string name, string description, int level);
 	void postCreation(bool input);
 	void postCreationYes(int input);
 	void modifyAbilityScore(int abilityScore[6]);
 	void equipItem(char item);
+	void saveAndQuit();
 
 }; 

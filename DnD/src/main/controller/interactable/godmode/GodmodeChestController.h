@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../../view/interactable/godmode/GodmodeInteractableView.h"
-#include "../../../view/interactable/godmode/GodmodeFighterView.h"
+#include "../../../view/interactable/godmode/GodmodeActiveView.h"
 #include  "../../../model/interactable/header/Chest.h"
 
 class GodmodeChestController {
@@ -12,4 +12,6 @@ private:
 public:
 	static GodmodeChestController* instance();
 	void newChest(string name, string description);
+	void postCreation(int input);
+	void saveAndQuit();
 };

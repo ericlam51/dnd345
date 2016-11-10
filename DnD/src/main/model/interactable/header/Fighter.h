@@ -12,5 +12,4 @@ public:
 	Fighter(string name, string description, int level);
 	void interact();
 	void move(int x, int y);
-
 };

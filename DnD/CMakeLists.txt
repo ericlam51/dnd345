@@ -6,8 +6,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(SOURCE_FILES
     src/main/controller/interactable/godmode/GodmodeChestController.cpp
     src/main/controller/interactable/godmode/GodmodeChestController.h
-    src/main/controller/interactable/godmode/GodmodeFighterController.cpp
-    src/main/controller/interactable/godmode/GodmodeFighterController.h
+        src/main/controller/interactable/godmode/GodmodeActiveController.cpp
+        src/main/controller/interactable/godmode/GodmodeActiveController.h
     src/main/controller/interactable/godmode/GodmodeFriendlyNpcController.cpp
     src/main/controller/interactable/godmode/GodmodeFriendlyNpcController.h
     src/main/controller/interactable/godmode/GodmodeHostileNpcController.cpp
@@ -37,8 +37,8 @@ set(SOURCE_FILES
     src/main/model/Location.h
     src/main/view/interactable/godmode/GodmodeChestView.cpp
     src/main/view/interactable/godmode/GodmodeChestView.h
-    src/main/view/interactable/godmode/GodmodeFighterView.cpp
-    src/main/view/interactable/godmode/GodmodeFighterView.h
+        src/main/view/interactable/godmode/GodmodeActiveView.cpp
+        src/main/view/interactable/godmode/GodmodeActiveView.h
     src/main/view/interactable/godmode/GodmodeFriendlyNpcView.cpp
     src/main/view/interactable/godmode/GodmodeFriendlyNpcView.h
     src/main/view/interactable/godmode/GodmodeHostileNpcView.cpp

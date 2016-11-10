@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../../view/interactable/godmode/GodmodeInteractableView.h"
-#include "../../../view/interactable/godmode/GodmodeFighterView.h"
+#include "../../../view/interactable/godmode/GodmodeActiveView.h"
 #include  "../../../model/interactable/header/HostileNpc.h"
 
 class GodmodeHostileNpcController {
