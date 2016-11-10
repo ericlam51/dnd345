@@ -103,41 +103,53 @@ void GodmodeActiveController::modifyAbilityScore(int abilityScore[6]) {
 void GodmodeActiveController::equipItem(char item) {
 	switch (item) {
 		case 'h':
-			Helmet* helmet;
+		{
+			Helmet* helmet = new Helmet("Helmet");
 			_active->equipItem(helmet);
 			cout << "successfully equipped" << endl;
-			break;
+		}
+		break;
 		case 'a':
-			Armor* armor;
+		{
+			Armor* armor = new Armor("Armor");
 			_active->equipItem(armor);
 			cout << "successfully equipped" << endl;
-			break;
+		}
+		break;
 		case 's':
-			Shield* shield;
+		{
+			Shield* shield = new Shield("Shield");
 			_active->equipItem(shield);
 			cout << "successfully equipped" << endl;
-			break;
+		}
+		break;
 		case 'r':
-			Ring* ring;
+		{
+			Ring* ring = new Ring("Ring");
 			_active->equipItem(ring);
 			cout << "successfully equipped" << endl;
-			break;
+		}
+		break;
 		//case 'b':
 		//	Helmet* helmet;
 		//	_active->equipItem(helmet);
 		//	break;
 		case 'j':
-			Boots* boots;
+		{
+			Boots* boots = new Boots("Boots");
 			_active->equipItem(boots);
 			cout << "successfully equipped" << endl;
-			break;
+		}
+		break;
 		case 'w':
-			Weapon* weapon;
+		{
+			Weapon* weapon = new Weapon("Weapon");
 			_active->equipItem(weapon);
 			cout << "successfully equipped" << endl;
-			break;
+		}
+		break;
 		default:
-			cout << item << "failed to equipped" << endl;
+			cout << "failed to equipped" << endl;
 	}
 }
 

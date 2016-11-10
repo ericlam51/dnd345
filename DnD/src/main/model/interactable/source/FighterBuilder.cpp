@@ -8,7 +8,7 @@
 using namespace std;
 
 FighterBuilder::FighterBuilder() {}
-FighterBuilder::FighterBuilder(string name, string description, Location location, int level) {
+FighterBuilder::FighterBuilder(string name, string description, int level) {
 	_fighter = new Fighter(name, description, level);
 }
 

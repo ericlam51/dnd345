@@ -17,13 +17,6 @@ string Interactable::getName() const{
 string Interactable::getDescription() const{
 	return description;
 }
-Location Interactable::getLocation() const{
-	return location;
-}
-
-void Interactable::setLocation(Location newlocation) {
-	location = newlocation;
-}
 
 void Interactable::interact() {
 

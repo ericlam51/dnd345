@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include "Interactable.h"
-#include "../../Location.h"
 #include "../../item/Item.h"
 #include "../../item/EquippedItems.h"
 
@@ -16,7 +15,7 @@ public:
 	bool validateNewPlayer();
 	void attack(Active &activeObj);
 	void hit(int damage);
-	bool equipItem(Item* item);
+	void equipItem(Item* item);
 
 	void print();
 	void printEquipments();

@@ -8,7 +8,7 @@ class FighterBuilder
 {
 public:
 	FighterBuilder::FighterBuilder();
-	FighterBuilder::FighterBuilder(string name, string description, Location location, int level);
+	FighterBuilder::FighterBuilder(string name, string description, int level);
 	FighterBuilder::~FighterBuilder();
 	Fighter* build();
 
