@@ -15,22 +15,20 @@ ItemContainer::ItemContainer()
 
 ItemContainer::~ItemContainer()
 {
-	//TODO: delete arraylist in map and then the map itself
 }
 
 
 void ItemContainer::addItem(Item* item)
 {
-	//TODO: check if valid item type
+
 	items[item->type].push_back(item);
 }
 
 void ItemContainer::removeItem(Item* item)
 {
-	//TODO: check if valid item type
 	for (vector<Item*>::iterator it = items[item->type].begin(); it != items[item->type].end(); ++it)
 	{
-		if (*it == item) 
+		if (*it == item)
 		{
 			items[item->type].erase(it);
 			return;
@@ -40,9 +38,9 @@ void ItemContainer::removeItem(Item* item)
 
 Item* ItemContainer::getItem(string type, int index)
 {
-	//TODO: check if valid item type
 	for (vector<Item*>::iterator it = items[type].begin(); it != items[type].end(); ++it)
 	{
+		//at function throws exception if nothing at index
 		if (*it == items[type].at(index))
 		{
 			return *it;
