@@ -49,3 +49,8 @@ Item* ItemContainer::getItem(Item* item)
 	}
 	return NULL;
 }
+
+vector<Item*> ItemContainer::getItemsOfType(string type)
+{
+	return items[type];
+}
