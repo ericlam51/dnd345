@@ -13,6 +13,9 @@ public:
 	static GodmodeChestController* instance();
 	void newChest(string name, string description);
 	void loadChest();
+	void loadChestWithoutView();
+	Chest* getChest();
+
 	void postCreation(int input);
 	void saveAndQuit();
 };

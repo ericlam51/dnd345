@@ -6,6 +6,13 @@ void GodmodeChestController::newChest(string name, string description) {
 }
 
 void GodmodeChestController::loadChest() {
+	loadChestWithoutView();
+
+	GodmodeChestView::warningMsgChestLoaded();
+	GodmodeChestView::postCreationView();
+}
+
+void GodmodeChestController::loadChestWithoutView() {
 	CFile theFile;
 	theFile.Open(_T("Chest"), CFile::modeCreate | CFile::modeWrite);
 	CArchive archive(&theFile, CArchive::store);
@@ -15,9 +22,10 @@ void GodmodeChestController::loadChest() {
 
 	archive.Close();
 	theFile.Close();
+}
 
-	GodmodeChestView::warningMsgChestLoaded();
-	GodmodeChestView::postCreationView();
+Chest* GodmodeChestController::getChest() {
+	return _chest;
 }
 
 void GodmodeChestController::postCreation(int input){

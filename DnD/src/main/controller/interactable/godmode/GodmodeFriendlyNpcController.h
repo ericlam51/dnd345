@@ -12,6 +12,8 @@ private:
 public:
 	void newFriendlyNpc(string name, string description, string dialog);
 	void loadFriendlyNpc();
+	void loadFriendlyNpcWithoutView();
+	FriendlyNpc* getFriendlyNpc();
 	void postCreation(int input);
 	void saveAndQuit();
 	static GodmodeFriendlyNpcController* instance();

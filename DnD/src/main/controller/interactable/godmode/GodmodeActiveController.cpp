@@ -13,6 +13,20 @@ void GodmodeActiveController::newHostileNpc(string name, string description, int
 }
 
 void GodmodeActiveController::loadFighter(){
+	loadFighterWithoutView();
+	_active->print();
+	GodmodeActiveView::warningMsgActiveLoaded();
+	GodmodeActiveView::postCreationView();
+}
+
+void GodmodeActiveController::loadHostileNpc(){
+	loadHostileNpcWithoutView();
+	_active->print();
+	GodmodeActiveView::warningMsgActiveLoaded();
+	GodmodeActiveView::postCreationView();
+}
+
+void GodmodeActiveController::loadFighterWithoutView() {
 	CFile theFile;
 	theFile.Open(_T("Fighter"), CFile::modeRead);
 	CArchive archive(&theFile, CArchive::load);
@@ -22,13 +36,8 @@ void GodmodeActiveController::loadFighter(){
 
 	archive.Close();
 	theFile.Close();
-
-	_active->print();
-	GodmodeActiveView::warningMsgActiveLoaded();
-	GodmodeActiveView::postCreationView();
 }
-
-void GodmodeActiveController::loadHostileNpc(){
+void GodmodeActiveController::loadHostileNpcWithoutView() {
 	CFile theFile;
 	theFile.Open(_T("HostileNpc"), CFile::modeRead);
 	CArchive archive(&theFile, CArchive::load);
@@ -38,10 +47,10 @@ void GodmodeActiveController::loadHostileNpc(){
 
 	archive.Close();
 	theFile.Close();
+}
 
-	_active->print();
-	GodmodeActiveView::warningMsgActiveLoaded();
-	GodmodeActiveView::postCreationView();
+Active* GodmodeActiveController::getActive() {
+	return _active;
 }
 
 void GodmodeActiveController::postCreation(bool input) {

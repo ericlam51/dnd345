@@ -15,6 +15,9 @@ public:
 	void newHostileNpc(string name, string description, int level);
 	void loadFighter();
 	void loadHostileNpc();
+	void loadFighterWithoutView();
+	void loadHostileNpcWithoutView();
+	Active* getActive();
 	void postCreation(bool input);
 	void postCreationYes(int input);
 	void modifyAbilityScore(int abilityScore[6]);
