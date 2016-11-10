@@ -1,6 +1,6 @@
 #include "Armor.h"
 
-Armor::Armor():Item(ItemTypes[ARMOR])
+Armor::Armor(string name):Item(ItemTypes[ARMOR], name)
 {
 }
 

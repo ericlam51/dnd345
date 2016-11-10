@@ -5,7 +5,7 @@
 class Armor : public Item
 {
 public:
-	Armor();
+	Armor(string);
 	~Armor();
 };
 

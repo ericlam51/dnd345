@@ -3,7 +3,7 @@
 class Helmet : public Item
 {
 public:
-	Helmet();
+	Helmet(string);
 	~Helmet();
 };
 

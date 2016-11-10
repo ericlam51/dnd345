@@ -12,9 +12,9 @@ class ItemContainer
 public:
 	ItemContainer();
 	~ItemContainer();
-	void addItem(string, Item*);
-	void removeItem(string, Item*);
-	Item* getItem(string, Item*);
+	void addItem(Item*);
+	void removeItem(Item*);
+	Item* getItem(Item*);
 private:
 	map<string, vector<Item*>> items;
 };

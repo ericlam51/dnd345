@@ -1,6 +1,6 @@
 #include "Ring.h"
 
-Ring::Ring():Item(ItemTypes[RING])
+Ring::Ring(string name):Item(ItemTypes[RING], name)
 {
 }
 
