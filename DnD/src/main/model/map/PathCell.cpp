@@ -33,3 +33,7 @@ void PathCell::Serialize(CArchive& archive) {
 		archive >> posX >> posY >> type;
 	}
 }
+
+void PathCell::interact() {
+
+}

@@ -34,4 +34,6 @@ bool Cell::walkable() {
 	return false;
 }
 
+void Cell::interact(){}
+
 void Cell::Serialize(CArchive& archive) {}

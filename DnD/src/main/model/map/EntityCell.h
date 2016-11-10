@@ -15,6 +15,7 @@ public:
 	bool interactable();
 	bool walkable();
 	void Serialize(CArchive& archive);
+	void interact();
 	DECLARE_SERIAL(EntityCell);
 };
 

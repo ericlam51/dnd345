@@ -33,3 +33,11 @@ void ChestCell::Serialize(CArchive& archive) {
 		archive >> posX >> posY >> type;
 	}
 }
+
+void ChestCell::interact() {
+	chest->interact();
+}
+
+void ChestCell::setChest(Interactable* interactable) {
+	chest = interactable;
+}

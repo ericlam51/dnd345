@@ -7,7 +7,6 @@ EntityCell::EntityCell()
 	type = CellHelper::ENTITY_TYPE;
 }
 
-
 EntityCell::~EntityCell()
 {
 }
@@ -40,4 +39,8 @@ void EntityCell::Serialize(CArchive& archive) {
 	else {
 		archive >> posX >> posY >> type;
 	}
+}
+
+void EntityCell::interact() {
+	entity->interact();
 }

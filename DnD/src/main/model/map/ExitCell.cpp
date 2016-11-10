@@ -7,7 +7,6 @@ ExitCell::ExitCell()
 	type = CellHelper::EXIT_TYPE;
 }
 
-
 ExitCell::~ExitCell()
 {
 }
@@ -32,4 +31,8 @@ void ExitCell::Serialize(CArchive& archive) {
 	else {
 		archive >> posX >> posY >> type;
 	}
+}
+
+void ExitCell::interact() {
+
 }
