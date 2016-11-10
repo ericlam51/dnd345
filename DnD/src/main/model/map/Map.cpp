@@ -389,6 +389,143 @@ void Map::Serialize(CArchive& archive) {
 				map[cell->getPosY()][cell->getPosX()] = cell;
 			}
 	}
+}
 
-	
+void Map::movePlayer(char side) {
+	int currentX = playerCell->getPosX();
+	int currentY = playerCell->getPosY();
+	int newX, newY;
+
+	switch (side) {
+	case 'U':
+		newX = currentX;
+		newY = currentY+1;
+		break;
+	case 'R': 
+		newX = currentX+1;
+		newY = currentY;
+		break;
+	case 'D': 
+		newX = currentX;
+		newY = currentY-1; 
+		break;
+	case 'L': 
+		newX = currentX-1;
+		newY = currentY;
+		break;
+	}
+
+	playerCell->setPosX(newX);
+	playerCell->setPosY(newY);
+
+	map[currentY][currentX] = cachedCell;
+	cachedCell = map[newY][newX];
+	map[newY][newX] = playerCell;
+}
+
+void Map::interact(char side) {
+	int currentX = playerCell->getPosX();
+	int currentY = playerCell->getPosY();
+	int newX, newY;
+
+	switch (side) {
+	case 'U':
+		newX = currentX;
+		newY = currentY + 1;
+		break;
+	case 'R':
+		newX = currentX + 1;
+		newY = currentY;
+		break;
+	case 'D':
+		newX = currentX;
+		newY = currentY - 1;
+		break;
+	case 'L':
+		newX = currentX - 1;
+		newY = currentY;
+		break;
+	}
+
+	//TODO I'M HERE
+}
+
+void Map::startMap() {
+	playerCell = new EntityCell();
+	//playerCell->setEntity(player);
+	playerCell->setType(CellHelper::PLAYER_TYPE);
+
+	int posX = startingCell->getPosX();
+	int posY = startingCell->getPosY();
+
+	playerCell->setPosX(posX);
+	playerCell->setPosY(posY);
+
+	cachedCell = map[posY][posX];
+	map[posY][posX] = playerCell;
+
+	print();
+
+	//cout << getNextCellInteractibility('R');
+	//cout << getNextCellWalkability('R');
+
+	//movePlayer('R');
+
+	//print();
+
+	//cin >> posX;
+}
+
+bool Map::getNextCellInteractibility(char side) {
+	int currentX = playerCell->getPosX();
+	int currentY = playerCell->getPosY();
+	int newX, newY;
+
+	switch (side) {
+	case 'U':
+		newX = currentX;
+		newY = currentY + 1;
+		break;
+	case 'R':
+		newX = currentX + 1;
+		newY = currentY;
+		break;
+	case 'D':
+		newX = currentX;
+		newY = currentY - 1;
+		break;
+	case 'L':
+		newX = currentX - 1;
+		newY = currentY;
+		break;
+	}
+
+	return map[newY][newX]->interactable();
+}
+
+bool Map::getNextCellWalkability(char side) {
+	int currentX = playerCell->getPosX();
+	int currentY = playerCell->getPosY();
+	int newX, newY;
+
+	switch (side) {
+	case 'U':
+		newX = currentX;
+		newY = currentY + 1;
+		break;
+	case 'R':
+		newX = currentX + 1;
+		newY = currentY;
+		break;
+	case 'D':
+		newX = currentX;
+		newY = currentY - 1;
+		break;
+	case 'L':
+		newX = currentX - 1;
+		newY = currentY;
+		break;
+	}
+
+	return map[newY][newX]->walkable();
 }

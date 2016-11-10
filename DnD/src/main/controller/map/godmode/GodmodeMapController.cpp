@@ -1,4 +1,5 @@
 #include "GodmodeMapController.h"
+#include "../../../model/interactable/Fighter.h";
 
 void GodmodeMapController::mapFileSelection(int input) {
 	switch (input) {
@@ -73,8 +74,16 @@ void GodmodeMapController::mapOptions(int input) {
 }
 
 void GodmodeMapController::saveMap() {
+	bool valid = map->validateMap();
+
+	if (!valid) {
+		GodmodeMapView::warningMsgInvalidMap();
+		GodmodeMapView::mapOptionsMenuView();
+		return;
+	}
+
 	CFile theFile;
-	theFile.Open(_T("CArchiveTest.txt"), CFile::modeCreate | CFile::modeWrite);
+	theFile.Open(_T("Map.txt"), CFile::modeCreate | CFile::modeWrite);
 	CArchive archive(&theFile, CArchive::store);
 
 	map->Serialize(archive);
@@ -110,7 +119,7 @@ void GodmodeMapController::print() {
 
 void GodmodeMapController::loadMap() {
 	CFile theFile;
-	theFile.Open(_T("CArchiveTest.txt"), CFile::modeRead);
+	theFile.Open(_T("Map.txt"), CFile::modeRead);
 	CArchive archive(&theFile, CArchive::load);
 
 	map = new Map();
@@ -119,9 +128,11 @@ void GodmodeMapController::loadMap() {
 	archive.Close();
 	theFile.Close();
 
-	s_instance->print();
+	map->startMap();
+
+	/*s_instance->print();
 	GodmodeMapView::warningMsgMapLoaded();
-	GodmodeMapView::mapOptionsMenuView();
+	GodmodeMapView::mapOptionsMenuView();*/
 }
 
 GodmodeMapController* GodmodeMapController::instance() {

@@ -21,9 +21,6 @@ public:
 	static void mapCreationInputView();
 	static void mapFillOptionsMenuView();
 	static void mapOptionsMenuView();
-	
-	static void mapElementSelectionView();
-	static void mapDetailsView();
 
 	/* Warning messages */
 	static void warningMsgChangingEntranceCell();
