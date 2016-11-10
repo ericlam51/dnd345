@@ -44,6 +44,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -85,6 +86,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <ShowIncludes>false</ShowIncludes>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -143,9 +146,31 @@
     <ClCompile Include="src\main\controller\interactable\godmode\GodmodeHostileNpcController.cpp" />
     <ClCompile Include="src\main\controller\interactable\godmode\GodmodeInteractableController.cpp" />
     <ClCompile Include="src\main\helper\ViewHelper.cpp" />
+    <ClInclude Include="src\main\model\map\ChestCell.h" />
+    <ClInclude Include="src\main\model\map\EntityCell.h" />
+    <ClInclude Include="src\main\model\map\EntranceCell.h" />
+    <ClInclude Include="src\main\model\map\ExitCell.h" />
+    <ClInclude Include="src\main\model\map\PathCell.h" />
+    <ClInclude Include="src\main\model\map\Cell.h" />
+    <ClInclude Include="src\main\view\map\godmode\GodmodeMapView.h" />
+    <ClInclude Include="src\main\controller\map\godmode\GodmodeMapController.h" />
+    <ClInclude Include="src\main\model\interactable\NonPlayerCharacter.h" />
+    <ClInclude Include="src\main\model\map\Map.h" />
+    <ClInclude Include="src\main\model\map\WallCell.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\main\model\map\ChestCell.cpp" />
+    <ClCompile Include="src\main\model\map\EntityCell.cpp" />
+    <ClCompile Include="src\main\model\map\EntranceCell.cpp" />
+    <ClCompile Include="src\main\model\map\ExitCell.cpp" />
+    <ClCompile Include="src\main\model\map\Map.cpp" />
+    <ClCompile Include="src\main\model\map\PathCell.cpp" />
+    <ClCompile Include="src\main\helper\CellHelper.cpp" />
+    <ClCompile Include="src\main\model\map\Cell.cpp" />
+    <ClCompile Include="src\main\controller\map\godmode\GodmodeMapController.cpp" />
+    <ClCompile Include="src\main\view\map\godmode\GodmodeMapView.cpp" />
     <ClCompile Include="src\main\Main.cpp" />
+
     <ClCompile Include="src\main\model\interactable\source\Chest.cpp" />
     <ClCompile Include="src\main\model\interactable\source\FriendlyNpc.cpp" />
     <ClCompile Include="src\main\model\interactable\source\HostileNpc.cpp" />
@@ -160,6 +185,7 @@
     <ClCompile Include="src\main\view\interactable\godmode\GodmodeFriendlyNpcView.cpp" />
     <ClCompile Include="src\main\view\interactable\godmode\GodmodeHostileNpcView.cpp" />
     <ClCompile Include="src\main\view\interactable\godmode\GodmodeInteractableView.cpp" />
+
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
