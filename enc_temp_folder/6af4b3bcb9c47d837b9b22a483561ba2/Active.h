@@ -2,10 +2,18 @@
 #include <iostream>
 #include "Interactable.h"
 #include "../../Location.h"
-#include "../../item/Item.h"
-#include "../../item/EquippedItems.h"
 
 using namespace std;
+
+struct Inventory {
+	char helmet;
+	char armor;
+	char shield;
+	char ring;
+	char belt;
+	char boots;
+	char weapon;
+};
 
 class Active : public Interactable
 {
@@ -16,7 +24,7 @@ public:
 	bool validateNewPlayer();
 	void attack(Active &activeObj);
 	void hit(int damage);
-	bool equipItem(Item* item);
+	bool equipItem(const char item);
 
 	void print();
 	void printEquipments();
@@ -39,6 +47,13 @@ public:
 	int getWisdom() const;
 	int getCharisma() const;
 	int getAbilityModifier(int);
+	char getHelmet() const;
+	char getArmor() const;
+	char getShield() const;
+	char getRing() const;
+	char getBelt() const;
+	char getBoots() const;
+	char getWeapon() const;
 
 	void interact();
 
@@ -59,5 +74,5 @@ protected:
 	int attackBonus;
 	int damageBonus;
 	int currentHitPoints;
-	EquippedItems* _equippedItems;
+	Inventory inventory;
 };
