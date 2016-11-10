@@ -19,7 +19,5 @@ public:
 	vector<Item*> getItemsOfType(string);
 private:
 	map<string, vector<Item*>> items;
-	bool validItem(Item*);
-	bool validType(string);
 };
 

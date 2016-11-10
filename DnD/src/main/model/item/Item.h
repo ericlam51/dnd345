@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -18,5 +19,6 @@ public:
 	void setItemName(string);
 private:
 	string itemName;
+	bool validItem(string);
 };
 
