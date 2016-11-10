@@ -1,3 +1,6 @@
+/*! GodmodeFriendlyNpcController class
+* NPC controller used to load, create and edit friendly npc
+*/
 #pragma once
 
 #include "../../../view/interactable/godmode/GodmodeFriendlyNpcView.h"

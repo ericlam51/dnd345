@@ -1,3 +1,7 @@
+/*! GodmodeHostileNpcView class
+* The V in MVC to show options to load/create hostile npc
+*/
+
 #pragma once
 #include "../../../controller/interactable/godmode/GodmodeHostileNpcController.h"
 #include <stdio.h>

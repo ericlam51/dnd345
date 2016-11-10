@@ -1,3 +1,7 @@
+/*! GodmodeFriendlyNpcView class
+* The V in MVC to show options to load/create friendly npc
+*/
+
 #pragma once
 
 #include "../../../controller/interactable/godmode/GodmodeFriendlyNpcController.h"

@@ -1,3 +1,6 @@
+/*! GodmodeChestController class
+* Chest controller used to load, create and edit chest
+*/
 #pragma once
 
 #include "../../../view/interactable/godmode/GodmodeInteractableView.h"

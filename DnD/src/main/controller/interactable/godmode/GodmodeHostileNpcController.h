@@ -1,3 +1,7 @@
+/*! GodmodeHostileNpcController class
+* Hostile NPC controller used to load, create and edit interactables
+* (Fighter, Monster, Npc, Chest)
+*/
 #pragma once
 
 #include "../../../view/interactable/godmode/GodmodeInteractableView.h"

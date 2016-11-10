@@ -1,3 +1,6 @@
+/*! GodmodeChestView class
+* The V in MVC to show options to load/create chest
+*/
 #pragma once
 
 #include "../../../controller/interactable/godmode/GodmodeChestController.h"

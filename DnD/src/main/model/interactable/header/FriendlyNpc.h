@@ -1,3 +1,7 @@
+/*! HostileNpc class
+* NPC class, sub class of Passive send dialog to player
+*/
+
 #pragma once
 #include <iostream>
 #include "Passive.h"

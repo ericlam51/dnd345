@@ -100,6 +100,7 @@ void GodmodeActiveController::modifyAbilityScore(int abilityScore[6]) {
 	GodmodeActiveView::validateFighterView(_active->validateNewPlayer());
 }
 
+//TODO: CHANGE TO LOAD FROM ITEM @CARSON
 void GodmodeActiveController::equipItem(char item) {
 	switch (item) {
 		case 'h':

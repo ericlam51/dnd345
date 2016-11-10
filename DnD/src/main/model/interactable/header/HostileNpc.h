@@ -1,3 +1,7 @@
+/*! HostileNpc class
+* Monster class, sub class of Active
+*/
+
 #pragma once
 
 #include <iostream>

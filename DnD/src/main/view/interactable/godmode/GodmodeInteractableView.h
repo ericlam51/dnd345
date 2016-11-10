@@ -1,3 +1,7 @@
+/*! GodmodeInteractableView class
+* The V in MVC to show options to load/create interactable
+*/
+
 #pragma once
 
 #include "../../../controller/interactable/godmode/GodmodeInteractableController.h"
