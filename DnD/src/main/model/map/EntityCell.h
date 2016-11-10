@@ -1,6 +1,6 @@
 #pragma once
 #include "Cell.h"
-#include "../interactable/Interactable.h"
+#include "../interactable/header/Interactable.h"
 
 class EntityCell : public Cell
 {

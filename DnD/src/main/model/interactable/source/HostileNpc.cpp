@@ -1,29 +1,21 @@
 #include <iostream>
-#include <ctime>
-#include <math.h>
-#include "../header/Fighter.h"
-#include <string>
+#include "../header/HostileNpc.h"
 
-using namespace std;
+IMPLEMENT_SERIAL(HostileNpc, CObject, 1)
 
-IMPLEMENT_SERIAL(Fighter, CObject, 1)
+HostileNpc::HostileNpc(){}
 
-Fighter::Fighter() {}
+HostileNpc::HostileNpc(string name, string description, int level) : Active(name, description, level), size(size){
 
-Fighter::Fighter(string name, string description, int level) : Active(name, description, level) {
 }
 
-Fighter::~Fighter() {}
+HostileNpc::~HostileNpc() {}
 
-void Fighter::move(int x, int y) {
-	Interactable::location.setXCoordinate(x);
-	Interactable::location.setYCoordinate(y);
-}
-void Fighter::interact() {
-	cout << "interact with fighter" << endl;
+void HostileNpc::interact(){
+	cout << "interact with hostile npc" << endl;
 }
 
-void Fighter::Serialize(CArchive& archive) {
+void HostileNpc::Serialize(CArchive& archive) {
 	CObject::Serialize(archive);
 	CString cName(getName().c_str());
 	CString cDescription(getDescription().c_str());

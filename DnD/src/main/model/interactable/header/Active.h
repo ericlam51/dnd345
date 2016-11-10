@@ -1,0 +1,78 @@
+#pragma once
+#include <iostream>
+#include "Interactable.h"
+#include "../../Location.h"
+
+using namespace std;
+
+struct Inventory {
+	char helmet;
+	char armor;
+	char shield;
+	char ring;
+	char belt;
+	char boots;
+	char weapon;
+};
+
+class Active : public Interactable
+{
+public:
+	Active();
+	Active(string name, string description, int level);
+	~Active();
+	bool validateNewPlayer();
+	void attack(Active &activeObj);
+	void hit(int damage);
+	bool equipItem(const char item);
+
+	void print();
+	void printEquipments();
+
+	int getLevel() const;
+	int getArmorClass() const;
+	int getAttackBonus() const;
+	int getDamageBonus() const;
+	int getCurrentHitPoints();
+	void setStrength(int str);
+	void setDexterity(int dex);
+	void setConstitution(int con);
+	void setIntelligence(int intel);
+	void setWisdom(int wis);
+	void setCharisma(int cha);
+	int getStrength() const;
+	int getDexterity() const;
+	int getConstitution() const;
+	int getIntelligence() const;
+	int getWisdom() const;
+	int getCharisma() const;
+	int getAbilityModifier(int);
+	char getHelmet() const;
+	char getArmor() const;
+	char getShield() const;
+	char getRing() const;
+	char getBelt() const;
+	char getBoots() const;
+	char getWeapon() const;
+
+	void interact();
+
+	void Serialize(CArchive& archive);
+	DECLARE_SERIAL(Active);
+
+private:
+	int generateRandomNumber(int, int);
+	int calculateHitPoints();
+	int calculateAttackBonus();
+	int calculateArmorClass();
+	int calculateBonusAbilityScore();
+
+protected: 
+	int level;
+	int abilityScores[6];
+	int armorClass;
+	int attackBonus;
+	int damageBonus;
+	int currentHitPoints;
+	Inventory inventory;
+};

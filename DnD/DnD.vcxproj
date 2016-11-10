@@ -29,6 +29,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -36,6 +37,7 @@
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -75,6 +77,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <ShowIncludes>true</ShowIncludes>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -113,6 +117,63 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\main\controller\interactable\godmode\GodmodeActiveController.h" />
+    <ClInclude Include="src\main\controller\interactable\godmode\GodmodeChestController.h" />
+    <ClInclude Include="src\main\controller\interactable\godmode\GodmodeFriendlyNpcController.h" />
+    <ClInclude Include="src\main\controller\interactable\godmode\GodmodeHostileNpcController.h" />
+    <ClInclude Include="src\main\controller\interactable\godmode\GodmodeInteractableController.h" />
+    <ClInclude Include="src\main\model\interactable\header\FighterBuilder.h" />
+    <ClInclude Include="src\main\model\item\Armor.h" />
+    <ClInclude Include="src\main\model\item\Boots.h" />
+    <ClInclude Include="src\main\model\item\EquippedItems.h" />
+    <ClInclude Include="src\main\model\item\Helmet.h" />
+    <ClInclude Include="src\main\model\item\Item.h" />
+    <ClInclude Include="src\main\model\item\ItemContainer.h" />
+    <ClInclude Include="src\main\model\item\Ring.h" />
+    <ClInclude Include="src\main\model\item\Shield.h" />
+    <ClInclude Include="src\main\model\item\Weapon.h" />
+    <ClInclude Include="src\main\model\Location.h" />
+    <ClInclude Include="src\main\model\interactable\header\Active.h" />
+    <ClInclude Include="src\main\model\interactable\header\Chest.h" />
+    <ClInclude Include="src\main\model\interactable\header\Fighter.h" />
+    <ClInclude Include="src\main\model\interactable\header\ActiveBuilder.h" />
+    <ClInclude Include="src\main\model\interactable\header\FriendlyNpc.h" />
+    <ClInclude Include="src\main\model\interactable\header\HostileNpc.h" />
+    <ClInclude Include="src\main\model\interactable\header\Interactable.h" />
+    <ClInclude Include="src\main\model\interactable\header\Passive.h" />
+    <ClInclude Include="src\main\model\map\Cell.h" />
+    <ClInclude Include="src\main\model\map\ChestCell.h" />
+    <ClInclude Include="src\main\model\map\EntityCell.h" />
+    <ClInclude Include="src\main\model\map\EntranceCell.h" />
+    <ClInclude Include="src\main\model\map\ExitCell.h" />
+    <ClInclude Include="src\main\model\map\Map.h" />
+    <ClInclude Include="src\main\model\map\PathCell.h" />
+    <ClInclude Include="src\main\model\map\WallCell.h" />
+    <ClInclude Include="src\main\view\interactable\godmode\GodmodeActiveView.h" />
+    <ClInclude Include="src\main\view\interactable\godmode\GodmodeChestView.h" />
+    <ClInclude Include="src\main\view\interactable\godmode\GodmodeFriendlyNpcView.h" />
+    <ClInclude Include="src\main\view\interactable\godmode\GodmodeHostileNpcView.h" />
+    <ClInclude Include="src\main\view\interactable\godmode\GodmodeInteractableView.h" />
+    <ClInclude Include="src\main\view\map\godmode\GodmodeMapMainView.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main\controller\interactable\godmode\GodmodeActiveController.cpp" />
+    <ClCompile Include="src\main\controller\interactable\godmode\GodmodeChestController.cpp" />
+    <ClCompile Include="src\main\controller\interactable\godmode\GodmodeFriendlyNpcController.cpp" />
+    <ClCompile Include="src\main\controller\interactable\godmode\GodmodeHostileNpcController.cpp" />
+    <ClCompile Include="src\main\controller\interactable\godmode\GodmodeInteractableController.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main\model\interactable\source\FighterBuilder.cpp" />
+    <ClCompile Include="src\main\model\item\Armor.cpp" />
+    <ClCompile Include="src\main\model\item\Boots.cpp" />
+    <ClCompile Include="src\main\model\item\EquippedItems.cpp" />
+    <ClCompile Include="src\main\model\item\Helmet.cpp" />
+    <ClCompile Include="src\main\model\item\Item.cpp" />
+    <ClCompile Include="src\main\model\item\ItemContainer.cpp" />
+    <ClCompile Include="src\main\model\item\Ring.cpp" />
+    <ClCompile Include="src\main\model\item\Shield.cpp" />
+    <ClCompile Include="src\main\model\item\Weapon.cpp" />
     <ClCompile Include="src\main\model\map\ChestCell.cpp" />
     <ClCompile Include="src\main\model\map\EntityCell.cpp" />
     <ClCompile Include="src\main\model\map\EntranceCell.cpp" />
@@ -122,25 +183,23 @@
     <ClCompile Include="src\main\helper\CellHelper.cpp" />
     <ClCompile Include="src\main\model\map\Cell.cpp" />
     <ClCompile Include="src\main\controller\map\godmode\GodmodeMapController.cpp" />
-    <ClCompile Include="src\main\helper\ViewHelper.cpp" />
+    <ClCompile Include="src\main\model\map\WallCell.cpp" />
     <ClCompile Include="src\main\view\map\godmode\GodmodeMapView.cpp" />
     <ClCompile Include="src\main\Main.cpp" />
-    <ClCompile Include="src\main\model\map\WallCell.cpp" />
-    <ClInclude Include="src\main\helper\Location.h" />
-    <ClInclude Include="src\main\model\interactable\header\Character.h" />
-    <ClInclude Include="src\main\model\interactable\header\Chest.h" />
-    <ClInclude Include="src\main\model\interactable\header\Fighter.h" />
-    <ClInclude Include="src\main\model\interactable\header\FighterBuilder.h" />
-    <ClInclude Include="src\main\model\interactable\header\FriendlyNpc.h" />
-    <ClInclude Include="src\main\model\interactable\header\HostileNpc.h" />
-    <ClInclude Include="src\main\model\interactable\header\Interactable.h" />
-    <ClInclude Include="src\main\model\interactable\header\NonPlayerCharacter.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\main\helper\Location.cpp" />
-    <ClCompile Include="src\main\model\interactable\Source.cpp" />
+    <ClCompile Include="src\main\model\interactable\source\Chest.cpp" />
+    <ClCompile Include="src\main\model\interactable\source\FriendlyNpc.cpp" />
+    <ClCompile Include="src\main\model\interactable\source\HostileNpc.cpp" />
+    <ClCompile Include="src\main\model\interactable\source\Interactable.cpp" />
+    <ClCompile Include="src\main\model\interactable\source\Passive.cpp" />
+    <ClCompile Include="src\main\model\Location.cpp" />
+    <ClCompile Include="src\main\model\interactable\source\Active.cpp" />
     <ClCompile Include="src\main\model\interactable\source\Fighter.cpp" />
-    <ClCompile Include="src\main\model\interactable\source\FighterBuilder.cpp" />
+    <ClCompile Include="src\main\model\interactable\source\ActiveBuilder.cpp" />
+    <ClCompile Include="src\main\view\interactable\godmode\GodmodeActiveView.cpp" />
+    <ClCompile Include="src\main\view\interactable\godmode\GodmodeChestView.cpp" />
+    <ClCompile Include="src\main\view\interactable\godmode\GodmodeFriendlyNpcView.cpp" />
+    <ClCompile Include="src\main\view\interactable\godmode\GodmodeHostileNpcView.cpp" />
+    <ClCompile Include="src\main\view\interactable\godmode\GodmodeInteractableView.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

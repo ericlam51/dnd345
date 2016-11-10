@@ -1,17 +1,27 @@
 #pragma once
+
+#define NO_WARN_MBCS_MFC_DEPRECATION
 #include <iostream>
-#include "../../../helper/Location.h"
+#include "../../Location.h"
+#include <afx.h>
 
 using namespace std;
 
-class Interactable
+class Interactable : public CObject
 {
 public:
 	Interactable();
-	Interactable(string name, string description, Location location);
-	int getXCoordinate();
-	int getYCoordinate();
-	virtual void interact() = 0;
+	Interactable(string name, string description);
+	~Interactable();
+	void setLocation(Location location);
+	string getName() const;
+	string getDescription() const;
+	Location getLocation() const;
+
+	virtual void interact();
+
+	virtual void Serialize(CArchive& archive);
+	DECLARE_SERIAL(Interactable);
 
 protected:
 	string name;

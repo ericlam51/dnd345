@@ -9,7 +9,7 @@ using namespace std;
 
 FighterBuilder::FighterBuilder() {}
 FighterBuilder::FighterBuilder(string name, string description, Location location, int level) {
-	_fighter = new Fighter(name, description, location, level);
+	_fighter = new Fighter(name, description, level);
 }
 
 FighterBuilder::~FighterBuilder() {

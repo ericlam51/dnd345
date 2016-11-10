@@ -1,16 +1,21 @@
 #pragma once
-#include <iostream>;
-#include "NonPlayerCharacter.h";
+#include <iostream>
+#include "Passive.h"
+#include <string>
 
 using namespace std;
 
-class FriendlyNpc : public NonPlayerCharacter
+class FriendlyNpc : public Passive
 {
 public:
 	FriendlyNpc();
-	FriendlyNpc(string name, string description, Location location, int level, int range);
-	void interact() = 0;
+	FriendlyNpc(string name, string description, string dialog);
+	~FriendlyNpc();
+	void print();
+	void interact();
 
+	void Serialize(CArchive& archive);
+	DECLARE_SERIAL(FriendlyNpc);
 private:
-	int range;
+	string dialog;
 };

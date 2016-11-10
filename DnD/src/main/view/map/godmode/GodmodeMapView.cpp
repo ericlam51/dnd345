@@ -1,4 +1,4 @@
-#include "GodmodeMapView.h";
+#include "GodmodeMapView.h"
 
 /* https://stackoverflow.com/questions/1904635/warning-c4003-and-errors-c2589-and-c2059-on-x-stdnumeric-limitsintmax/28102459#28102459 */
 #undef max
