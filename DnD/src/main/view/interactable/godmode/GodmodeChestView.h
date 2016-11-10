@@ -12,6 +12,8 @@ using namespace std;
 class GodmodeChestView {
 public:
 	static void newChestView();
+	static void loadChestView();
 	static void postCreationView();
+	static void warningMsgChestLoaded();
 	static void saveAndQuitView(Chest* chest);
 };

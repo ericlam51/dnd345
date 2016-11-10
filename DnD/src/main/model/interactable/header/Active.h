@@ -61,6 +61,13 @@ public:
 	DECLARE_SERIAL(Active);
 
 private:
+	int generateRandomNumber(int, int);
+	int calculateHitPoints();
+	int calculateAttackBonus();
+	int calculateArmorClass();
+	int calculateBonusAbilityScore();
+
+protected: 
 	int level;
 	int abilityScores[6];
 	int armorClass;
@@ -68,11 +75,4 @@ private:
 	int damageBonus;
 	int currentHitPoints;
 	Inventory inventory;
-
-	int generateRandomNumber(int, int);
-	int calculateHitPoints();
-	int calculateAttackBonus();
-	int calculateArmorClass();
-	int calculateBonusAbilityScore();
-
 };

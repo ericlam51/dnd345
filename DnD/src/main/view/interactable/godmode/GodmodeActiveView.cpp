@@ -29,6 +29,22 @@ void GodmodeActiveView::newActiveView(int type) {
 		GodmodeActiveController::instance()->newHostileNpc(name, description, level);
 }
 
+void GodmodeActiveView::loadActiveView(int type) {
+	ViewHelper::printDelimiter();
+
+	if (type == 0)
+		typeStr = "Fighter";
+	else if (type == 1)
+		typeStr = "Monster";
+	
+	cout << "Loading " << typeStr << "..." << endl;
+
+	if (type == 0)
+		GodmodeActiveController::instance()->loadFighter();
+	else if (type == 1)
+		GodmodeActiveController::instance()->loadHostileNpc();
+}
+
 void GodmodeActiveView::postCreationView() {
 	char input;
 
@@ -103,9 +119,12 @@ void GodmodeActiveView::validateFighterView(bool isValidFighter) {
 	}
 }
 
+void GodmodeActiveView::warningMsgActiveLoaded() {
+	cout << typeStr <<" loaded" << endl;
+}
+
 void GodmodeActiveView::saveAndQuitView(Active* fighter) {
 	cout << typeStr << " successfully created" << endl;
 	fighter->print();
-	fighter->printEquipments();
 	GodmodeActiveController::instance()->saveAndQuit();
 }

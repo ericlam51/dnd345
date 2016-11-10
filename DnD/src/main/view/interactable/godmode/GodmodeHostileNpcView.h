@@ -11,5 +11,6 @@ using namespace std;
 class GodmodeHostileNpcView {
 public:
 	static void newHostileNpctView();
+	static void loadHostileNpctView();
 
 };

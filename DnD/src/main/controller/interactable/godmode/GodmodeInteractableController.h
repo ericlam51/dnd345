@@ -14,5 +14,6 @@ private:
 public:
 	static GodmodeInteractableController* instance();
 	void interactableFileSelection(int input);
+	void interactableLoad(int input);
 	void interactableCreation(int input);
 };

@@ -29,12 +29,4 @@ void Interactable::interact() {
 
 }
 
-void Interactable::Serialize(CArchive& archive) {
-	CObject::Serialize(archive);
-
-	if (archive.IsStoring()) {
-		CString cName(name.c_str());
-		CString cDescription(description.c_str());
-		archive << cName << cDescription;
-	}
-}
+void Interactable::Serialize(CArchive& archive) {}

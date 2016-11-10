@@ -8,7 +8,7 @@ using namespace std;
 
 IMPLEMENT_SERIAL(Fighter, CObject, 1)
 
-Fighter::Fighter() {}
+Fighter::Fighter(){}
 
 Fighter::Fighter(string name, string description, int level) : Active(name, description, level){
 }
@@ -25,12 +25,22 @@ void Fighter::interact() {
 
 void Fighter::Serialize(CArchive& archive) {
 	CObject::Serialize(archive);
+	CString cName(getName().c_str());
+	CString cDescription(getDescription().c_str());
 
 	if (archive.IsStoring()) {
-		CString cName(getName().c_str());
-		CString cDescription(getDescription().c_str());
-		archive << cName << cDescription << getLevel()
-			<< getStrength() << getDexterity() << getConstitution()
-			<< getIntelligence() << getWisdom() << getCharisma(); //TODO serialize item
+		archive << cName << cDescription << level << currentHitPoints
+			<< armorClass << attackBonus << damageBonus
+			<< abilityScores[0] << abilityScores[1] << abilityScores[2]
+			<< abilityScores[3] << abilityScores[4] << abilityScores[5]; //TODO serialize item
+	} 
+	else {
+		archive >> cName >> cDescription >> level >> currentHitPoints
+			>> armorClass >> attackBonus >> damageBonus
+			>> abilityScores[0] >> abilityScores[1] >> abilityScores[2]
+			>> abilityScores[3] >> abilityScores[4] >> abilityScores[5];
+
+		name = ((LPCTSTR)cName);
+		description = ((LPCTSTR)cDescription);
 	}
 }

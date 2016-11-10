@@ -13,6 +13,8 @@ public:
 	static GodmodeActiveController* instance();
 	void newFighter(string name, string description, int level);
 	void newHostileNpc(string name, string description, int level);
+	void loadFighter();
+	void loadHostileNpc();
 	void postCreation(bool input);
 	void postCreationYes(int input);
 	void modifyAbilityScore(int abilityScore[6]);

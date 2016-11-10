@@ -1,9 +1,7 @@
-#include <iostream>
 #include <ctime>
 #include <math.h>
 #include "../header/Active.h"
 #include <string>
-#include <cstdlib>
 
 using namespace std;
 
@@ -56,7 +54,7 @@ int Active::calculateAttackBonus() {
 }
 
 int Active::calculateArmorClass() {
-	return 10 + getAbilityModifier(getDexterity());
+	return 10 + getAbilityModifier(abilityScores[1]);
 }
 
 int Active::calculateBonusAbilityScore() {
@@ -221,14 +219,4 @@ char Active::getWeapon() const {
 	return inventory.weapon;
 }
 
-void Active::Serialize(CArchive& archive) {
-	CObject::Serialize(archive);
-
-	if (archive.IsStoring()) {
-		CString cName(getName().c_str());
-		CString cDescription(getDescription().c_str());
-		archive << cName << cDescription << getLevel()
-			<< getStrength() << getDexterity() << getConstitution()
-			<< getIntelligence() << getWisdom() << getCharisma(); //TODO serialize item
-	}
-}
+void Active::Serialize(CArchive& archive) {}

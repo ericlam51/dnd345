@@ -5,6 +5,21 @@ void GodmodeChestController::newChest(string name, string description) {
 	GodmodeChestView::postCreationView();
 }
 
+void GodmodeChestController::loadChest() {
+	CFile theFile;
+	theFile.Open(_T("Chest"), CFile::modeCreate | CFile::modeWrite);
+	CArchive archive(&theFile, CArchive::store);
+
+	_chest = new Chest();
+	_chest->Serialize(archive);
+
+	archive.Close();
+	theFile.Close();
+
+	GodmodeChestView::warningMsgChestLoaded();
+	GodmodeChestView::postCreationView();
+}
+
 void GodmodeChestController::postCreation(int input){
 	switch(input){
 		case 1:
@@ -29,6 +44,8 @@ void GodmodeChestController::saveAndQuit(){
 
 	delete _chest;
 	_chest = NULL;
+
+	GodmodeInteractableView::interactableFileSelectionView();
 }
 
 GodmodeChestController* GodmodeChestController::instance() {

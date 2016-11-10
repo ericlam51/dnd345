@@ -12,6 +12,8 @@ using namespace std;
 class GodmodeFriendlyNpcView {
 public:
 	static void newFriendlyNpcView();
+	static void loadFriendlyNpcView();
 	static void postCreationView();
+	static void warningMsgFriendlyNpcLoaded();
 	static void saveAndQuitView(FriendlyNpc* friendlyNpc);
 };

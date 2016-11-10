@@ -35,3 +35,20 @@ void GodmodeInteractableView::interactableElementSelectionView() {
 	if (ViewHelper::isInputInValidRange(input, 1, 4))
 		GodmodeInteractableController::instance()->interactableCreation(input);
 }
+
+void GodmodeInteractableView::interactableLoadView() {
+	int input = 0;
+
+	ViewHelper::printDelimiter();
+
+	cout << "Which of the following do you want to load?" << endl;
+	cout << "1. Fighter" << endl
+		<< "2. Monster" << endl
+		<< "3. NPC" << endl
+		<< "4. Chest" << endl
+		<< "Selection: ";
+
+	cin >> input;
+	if (ViewHelper::isInputInValidRange(input, 1, 4))
+		GodmodeInteractableController::instance()->interactableLoad(input);
+}

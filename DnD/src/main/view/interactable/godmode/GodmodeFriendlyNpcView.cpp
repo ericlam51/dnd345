@@ -18,6 +18,11 @@ void GodmodeFriendlyNpcView::newFriendlyNpcView() {
 	GodmodeFriendlyNpcController::instance()->newFriendlyNpc(name, description, dialog);
 }
 
+void GodmodeFriendlyNpcView::loadFriendlyNpcView() {
+	cout << "Loading NPC..." << endl;
+	GodmodeFriendlyNpcController::instance()->loadFriendlyNpc();
+}
+
 void GodmodeFriendlyNpcView::postCreationView(){
 	int input;
 
@@ -30,6 +35,10 @@ void GodmodeFriendlyNpcView::postCreationView(){
 
 	cin >> input;
 	GodmodeFriendlyNpcController::instance()->postCreation(input);
+}
+
+void GodmodeFriendlyNpcView::warningMsgFriendlyNpcLoaded() {
+	cout << "NPC loaded" << endl;
 }
 
 void GodmodeFriendlyNpcView::saveAndQuitView(FriendlyNpc* friendlyNpc){

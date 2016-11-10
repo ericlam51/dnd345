@@ -12,6 +12,38 @@ void GodmodeActiveController::newHostileNpc(string name, string description, int
 	GodmodeActiveView::postCreationView();
 }
 
+void GodmodeActiveController::loadFighter(){
+	CFile theFile;
+	theFile.Open(_T("Fighter"), CFile::modeRead);
+	CArchive archive(&theFile, CArchive::load);
+
+	_active = new Fighter();
+	_active->Serialize(archive);
+
+	archive.Close();
+	theFile.Close();
+
+	_active->print();
+	GodmodeActiveView::warningMsgActiveLoaded();
+	GodmodeActiveView::postCreationView();
+}
+
+void GodmodeActiveController::loadHostileNpc(){
+	CFile theFile;
+	theFile.Open(_T("HostileNpc"), CFile::modeRead);
+	CArchive archive(&theFile, CArchive::load);
+
+	_active = new HostileNpc();
+	_active->Serialize(archive);
+
+	archive.Close();
+	theFile.Close();
+
+	_active->print();
+	GodmodeActiveView::warningMsgActiveLoaded();
+	GodmodeActiveView::postCreationView();
+}
+
 void GodmodeActiveController::postCreation(bool input) {
 	if (input)
 		GodmodeActiveView::postCreationYesView();
@@ -68,18 +100,19 @@ void GodmodeActiveController::equipItem(char item) {
 void GodmodeActiveController::saveAndQuit(){
 	CFile theFile;
 
-	if(strcmp(_active->GetRuntimeClass()->m_lpszClassName, "Fighter"))
+	if(strcmp(_active->GetRuntimeClass()->m_lpszClassName, "Fighter") == 0)
 		theFile.Open(_T("Fighter"), CFile::modeCreate | CFile::modeWrite);
-	else if (strcmp(_active->GetRuntimeClass()->m_lpszClassName, "HostileNpc"))
+	else if (strcmp(_active->GetRuntimeClass()->m_lpszClassName, "HostileNpc") == 0)
 		theFile.Open(_T("HostileNpc"), CFile::modeCreate | CFile::modeWrite);
 
 	CArchive archive(&theFile, CArchive::store);
 	_active->Serialize(archive);
+
 	archive.Close();
 	theFile.Close();
 
-	delete _active;
-	_active = NULL;
+	//delete _active;
+	//_active = NULL;
 	GodmodeInteractableView::interactableFileSelectionView();
 }
 

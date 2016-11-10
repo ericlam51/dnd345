@@ -6,7 +6,7 @@ void GodmodeInteractableController::interactableFileSelection(int input) {
 		GodmodeInteractableView::interactableElementSelectionView();
 		break;
 	case 2:
-		GodmodeInteractableView::interactableFileSelectionView();
+		GodmodeInteractableView::interactableLoadView();
 		break;
 	default:
 		GodmodeInteractableView::interactableFileSelectionView();
@@ -27,6 +27,26 @@ void GodmodeInteractableController::interactableCreation(int input) {
 		break;
 	case 4:
 		GodmodeChestView::newChestView();
+		break;
+	default:
+		GodmodeInteractableView::interactableElementSelectionView();
+		break;
+	}
+}
+
+void GodmodeInteractableController::interactableLoad(int input) {
+	switch (input) {
+	case 1:
+		GodmodeActiveView::loadActiveView(0);
+		break;
+	case 2:
+		GodmodeActiveView::loadActiveView(1);
+		break;
+	case 3:
+		GodmodeFriendlyNpcView::loadFriendlyNpcView();
+		break;
+	case 4:
+		GodmodeChestView::loadChestView();
 		break;
 	default:
 		GodmodeInteractableView::interactableElementSelectionView();

@@ -20,10 +20,16 @@ void Chest::open() {
 
 void Chest::Serialize(CArchive& archive) {
 	CObject::Serialize(archive);
+	CString cName(getName().c_str());
+	CString cDescription(getDescription().c_str());
 
 	if (archive.IsStoring()) {
-		CString cName(getName().c_str());
-		CString cDescription(getDescription().c_str());
 		archive << cName << cDescription;
+	}
+	else {
+		archive >> cName >> cDescription;
+
+		name = ((LPCTSTR)cName);
+		description = ((LPCTSTR)cDescription);
 	}
 }

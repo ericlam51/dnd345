@@ -5,6 +5,21 @@ void GodmodeFriendlyNpcController::newFriendlyNpc(string name, string descriptio
 	GodmodeFriendlyNpcView::postCreationView();
 }
 
+void GodmodeFriendlyNpcController::loadFriendlyNpc() {
+	CFile theFile;
+	theFile.Open(_T("FriendlyNpc"), CFile::modeCreate | CFile::modeWrite);
+	CArchive archive(&theFile, CArchive::store);
+
+	_friendlyNpc = new FriendlyNpc();
+	_friendlyNpc->Serialize(archive);
+
+	archive.Close();
+	theFile.Close();
+
+	GodmodeFriendlyNpcView::warningMsgFriendlyNpcLoaded();
+	GodmodeFriendlyNpcView::postCreationView();
+}
+
 void GodmodeFriendlyNpcController::postCreation(int input) {
 	switch(input){
 		case 1:

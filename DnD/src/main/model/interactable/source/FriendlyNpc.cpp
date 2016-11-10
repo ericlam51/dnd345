@@ -27,11 +27,19 @@ void FriendlyNpc::interact() {
 void FriendlyNpc::Serialize(CArchive& archive) {
 	CObject::Serialize(archive);
 
+	CString cName(getName().c_str());
+	CString cDescription(getDescription().c_str());
+	CString cDialog(dialog.c_str());
+
 	if (archive.IsStoring()) {
-		CString cName(getName().c_str());
-		CString cDescription(getDescription().c_str());
-		CString cDialog(dialog.c_str());
 		archive << cName << cDescription << cDialog;
+	}
+	else {
+		archive >> cName >> cDescription >> cDialog;
+
+		name = ((LPCTSTR)cName);
+		description = ((LPCTSTR)cDescription);
+		dialog = ((LPCTSTR)cDialog);
 	}
 }
 

@@ -15,6 +15,11 @@ void GodmodeChestView::newChestView() {
 	GodmodeChestController::instance()->newChest(name, description);
 }
 
+void GodmodeChestView::loadChestView() {
+	cout << "Loading chest..." << endl;
+	GodmodeChestController::instance()->loadChest();
+}
+
 void GodmodeChestView::postCreationView(){
 	int input;
 
@@ -29,6 +34,9 @@ void GodmodeChestView::postCreationView(){
 	GodmodeChestController::instance()->postCreation(input);
 }
 
+void GodmodeChestView::warningMsgChestLoaded() {
+	cout << "Chest loaded" << endl;
+}
 void GodmodeChestView::saveAndQuitView(Chest* chest){
 	cout << "Chest successfully created!" << endl;
 	GodmodeChestController::instance()->saveAndQuit();
