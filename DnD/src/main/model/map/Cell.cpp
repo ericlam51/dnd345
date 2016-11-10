@@ -1,13 +1,10 @@
 #include "Cell.h"
 
-Cell::Cell()
-{
-}
+IMPLEMENT_SERIAL(Cell, CObject, 1)
 
+Cell::Cell(){}
 
-Cell::~Cell()
-{
-}
+Cell::~Cell(){}
 
 int Cell::getPosX() {
 	return posX;
@@ -28,3 +25,13 @@ void Cell::setPosX(int x) {
 char Cell::getType() {
 	return type;
 }
+
+bool Cell::interactable() {
+	return false;
+}
+
+bool Cell::walkable() {
+	return false;
+}
+
+void Cell::Serialize(CArchive& archive) {}

@@ -3,29 +3,31 @@
 void GodmodeMapController::mapFileSelection(int input) {
 	switch (input) {
 	case 1:
-		GodmodeMapView::mapCreationParamSelectionView();
+		GodmodeMapView::mapCreationInputView();
 		break;
 	case 2:
-		break; //TODO
+		s_instance->loadMap();
+		break;
 	default: 
-		GodmodeMapView::invalidInputView();
-		GodmodeMapView::mapFileSelectionView();
+		GodmodeMapView::warningMsgInvalidInput();
+		GodmodeMapView::fileOptionsMenuView();
 		break;
 	}
 }
 
 void GodmodeMapController::newMap(int width, int height) {
 	if (width == 0 || height == 0) {
-		GodmodeMapView::invalidInputView();
-		GodmodeMapView::mapCreationParamSelectionView();
+		GodmodeMapView::warningMsgInvalidInput();
+		GodmodeMapView::mapCreationInputView();
 	}
 	else {
 		map = new Map(width, height);
 		map->print();
+		GodmodeMapView::mapOptionsMenuView();
 	}
 }
 
-void GodmodeMapController::mapOptionsView(int x, int y, char charType) {
+void GodmodeMapController::fillCell(int x, int y, char charType) {
 	switch (charType) {
 	case CellHelper::WALL_TYPE:
 		s_instance->setCell(x, y, new WallCell());
@@ -46,18 +48,80 @@ void GodmodeMapController::mapOptionsView(int x, int y, char charType) {
 		s_instance->setCell(x, y, new PathCell());
 		break;
 	default:
-		GodmodeMapView::invalidInputView();
-		GodmodeMapView::mapOptionsView();
+		GodmodeMapView::warningMsgInvalidInput();
+		GodmodeMapView::mapFillOptionsMenuView();
 		break;
 	}
 }
 
+void GodmodeMapController::mapOptions(int input) {
+	switch (input) {
+	case 1:
+		GodmodeMapView::mapFillOptionsMenuView();
+		break;
+	case 2:
+		GodmodeMapController::instance()->validateMap();
+		break; 
+	case 3:
+		GodmodeMapController::instance()->saveMap();
+		break;
+	default:
+		GodmodeMapView::warningMsgInvalidInput();
+		GodmodeMapView::mapOptionsMenuView();
+		break;
+	}
+}
+
+void GodmodeMapController::saveMap() {
+	CFile theFile;
+	theFile.Open(_T("CArchiveTest.txt"), CFile::modeCreate | CFile::modeWrite);
+	CArchive archive(&theFile, CArchive::store);
+
+	map->Serialize(archive);
+
+	archive.Close();
+	theFile.Close();
+
+	GodmodeMapView::warningMsgMapSaved();
+	GodmodeMapView::mapOptionsMenuView();
+}
+
+void GodmodeMapController::validateMap() {
+	bool valid = map->validateMap();
+
+	if (valid)
+		GodmodeMapView::warningMsgValidMap();
+	else
+		GodmodeMapView::warningMsgInvalidMap();
+
+	GodmodeMapView::mapOptionsMenuView();
+}
+
 void GodmodeMapController::setCell(int x, int y, Cell* cell) {
 	map->fillCell(x, y, cell);
+	map->print();
+
+	GodmodeMapView::mapOptionsMenuView();
 }
 
 void GodmodeMapController::print() {
 	map->print();
+}
+
+void GodmodeMapController::loadMap() {
+	CFile theFile;
+	theFile.Open(_T("CArchiveTest.txt"), CFile::modeRead);
+	CArchive archive(&theFile, CArchive::load);
+
+	map = new Map();
+	map->Serialize(archive);
+
+	archive.Close();
+	theFile.Close();
+
+	s_instance->print();
+	GodmodeMapView::warningMsgMapLoaded();
+	GodmodeMapView::mapOptionsMenuView();
 }
 
 GodmodeMapController* GodmodeMapController::instance() {

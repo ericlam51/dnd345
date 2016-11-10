@@ -8,5 +8,7 @@ public:
 	~EntityCell();
 	bool interactable();
 	bool walkable();
+	void Serialize(CArchive& archive);
+	DECLARE_SERIAL(EntityCell);
 };
 
