@@ -16,8 +16,7 @@ Fighter::Fighter(string name, string description, int level) : Active(name, desc
 Fighter::~Fighter() {}
 
 void Fighter::move(int x, int y) {
-	Interactable::location.setXCoordinate(x);
-	Interactable::location.setYCoordinate(y);
+
 }
 void Fighter::interact() {
 	cout << "interact with fighter" << endl;

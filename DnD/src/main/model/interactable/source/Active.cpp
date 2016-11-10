@@ -13,13 +13,18 @@ Active::Active(string name, string description, int level) : Interactable(name, 
 	for (int i = 0; i < sizeof(abilityScores); i++)
 		abilityScores[i] = generateRandomNumber(3, 18);
 
+	_equippedItems = new EquippedItems();
+
 	armorClass = calculateArmorClass();
 	currentHitPoints = calculateHitPoints();
 	attackBonus = calculateAttackBonus();
 	damageBonus = getStrength();
 }
 
-Active::~Active() {}
+Active::~Active() {
+	delete _equippedItems;
+	_equippedItems = NULL;
+}
 
 bool Active::validateNewPlayer() {
 	for (int i = 0; i <= 5; i++)
@@ -66,45 +71,21 @@ int Active::generateRandomNumber(int min, int max) {
 	return rand() % (max - min + 1) + min;
 }
 
-bool Active::equipItem(char item) {
+void Active::equipItem(Item* item) {
 	cout << "Equipping item ...." << endl;
-	switch (item) {
-	case 'h':
-		inventory.helmet = item;
-		return true;
-	case 'a':
-		inventory.armor = item;
-		return true;
-	case 's':
-		inventory.shield = item;
-		return true;
-	case 'r':
-		inventory.ring = item;
-		return true;
-	case 'b':
-		inventory.belt = item;
-		return true;
-	case 'j':
-		inventory.boots = item;
-		return true;
-	case 'w':
-		return true;
-		break;
-	default:
-		cout << "Failed to equip item " << item << endl;
-		return false;
-	}
+	_equippedItems->equipItem(item);
+	
 }
+
 void Active::printEquipments() {
 	cout << "-+-+-+-+-+-+-+-+ EQUIPMENTS +-+-+-+-+-+-+-+-+-+-" << endl;
-	cout << "Helmet: " << inventory.helmet << endl;
-	cout << "Armor: " << inventory.armor << endl;
-	cout << "Shield: " << inventory.shield << endl;
-	cout << "Ring: " << inventory.ring << endl;
-	cout << "Belt: " << inventory.belt << endl;
-	cout << "Boots: " << inventory.boots << endl;
-	cout << "Weapon: " << inventory.weapon << endl;
-	cout << "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << endl;
+	cout << "Helmet: " << (_equippedItems->getItem("HELMET") ? _equippedItems->getItem("HELMET")->getItemName() : "<Empty>") << endl;
+	cout << "Armor: " << (_equippedItems->getItem("ARMOR") ? _equippedItems->getItem("ARMOR")->getItemName() : "<Empty>") << endl;
+	cout << "Shield: " << (_equippedItems->getItem("SHIELD") ? _equippedItems->getItem("SHIELD")->getItemName() : "<Empty>") << endl;
+	cout << "Ring: " << (_equippedItems->getItem("RING") ? _equippedItems->getItem("RING")->getItemName() : "<Empty>") << endl;
+	/*cout << "Belt: " << (_equippedItems->getItem("BELT") ? _equippedItems->getItem("BELT")->getItemName() : "<Empty>") << endl;*/
+	cout << "Boots: " << (_equippedItems->getItem("BOOTS") ? _equippedItems->getItem("BOOTS")->getItemName() : "<Empty>") << endl;
+	cout << "Weapon: " << (_equippedItems->getItem("WEAPON") ? _equippedItems->getItem("WEAPON")->getItemName() : "<Empty>") << endl;
 }
 
 void Active::print() {
@@ -191,32 +172,5 @@ int Active::getCurrentHitPoints() {
 	return currentHitPoints;
 }
 
-char Active::getHelmet() const {
-	return inventory.helmet;
-}
-
-char Active::getArmor() const {
-	return inventory.armor;
-}
-
-char Active::getShield() const {
-	return inventory.shield;
-}
-
-char Active::getRing() const {
-	return inventory.ring;
-}
-
-char Active::getBelt() const {
-	return inventory.belt;
-}
-
-char Active::getBoots() const {
-	return inventory.boots;
-}
-
-char Active::getWeapon() const {
-	return inventory.weapon;
-}
 
 void Active::Serialize(CArchive& archive) {}

@@ -1,3 +1,8 @@
+/*! Passive class
+* Super class of FriednlyNpc and Chest
+* Contains common attributes to all FriednlyNpc and Monster of this Chest
+*/
+
 #pragma once
 #include <iostream>
 #include "Interactable.h"

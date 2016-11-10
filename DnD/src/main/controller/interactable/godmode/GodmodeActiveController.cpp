@@ -37,6 +37,7 @@ void GodmodeActiveController::loadFighterWithoutView() {
 	archive.Close();
 	theFile.Close();
 }
+
 void GodmodeActiveController::loadHostileNpcWithoutView() {
 	CFile theFile;
 	theFile.Open(_T("HostileNpc"), CFile::modeRead);
@@ -99,11 +100,58 @@ void GodmodeActiveController::modifyAbilityScore(int abilityScore[6]) {
 	GodmodeActiveView::validateFighterView(_active->validateNewPlayer());
 }
 
+//TODO: CHANGE TO LOAD FROM ITEM @CARSON
 void GodmodeActiveController::equipItem(char item) {
-	if (_active->equipItem(item))
-		cout << item << " successfully equipped" << endl;
-	else
-		cout << item << "failed to equipped" << endl;
+	switch (item) {
+		case 'h':
+		{
+			Helmet* helmet = new Helmet("Helmet");
+			_active->equipItem(helmet);
+			cout << "successfully equipped" << endl;
+		}
+		break;
+		case 'a':
+		{
+			Armor* armor = new Armor("Armor");
+			_active->equipItem(armor);
+			cout << "successfully equipped" << endl;
+		}
+		break;
+		case 's':
+		{
+			Shield* shield = new Shield("Shield");
+			_active->equipItem(shield);
+			cout << "successfully equipped" << endl;
+		}
+		break;
+		case 'r':
+		{
+			Ring* ring = new Ring("Ring");
+			_active->equipItem(ring);
+			cout << "successfully equipped" << endl;
+		}
+		break;
+		//case 'b':
+		//	Helmet* helmet;
+		//	_active->equipItem(helmet);
+		//	break;
+		case 'j':
+		{
+			Boots* boots = new Boots("Boots");
+			_active->equipItem(boots);
+			cout << "successfully equipped" << endl;
+		}
+		break;
+		case 'w':
+		{
+			Weapon* weapon = new Weapon("Weapon");
+			_active->equipItem(weapon);
+			cout << "successfully equipped" << endl;
+		}
+		break;
+		default:
+			cout << "failed to equipped" << endl;
+	}
 }
 
 void GodmodeActiveController::saveAndQuit(){

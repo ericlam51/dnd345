@@ -1,8 +1,17 @@
+/*! GodmodeActiveController class
+* Active controller used to load, create and edit hostile npc and fighter
+*/
 #pragma once
 
 #include "../../../view/interactable/godmode/GodmodeInteractableView.h"
 #include "../../../model/interactable/header/Fighter.h"
-
+#include "../../../model/item/Armor.h"
+#include "../../../model/item/Boots.h"
+#include "../../../model/item/Helmet.h"
+#include "../../../model/item/Ring.h"
+#include "../../../model/item/Weapon.h"
+#include "../../../model/item/Shield.h"
+//#include "../../../model/item/Belt.h" //TODO
 class GodmodeActiveController {
 	static GodmodeActiveController *s_instance;
 
