@@ -3,7 +3,7 @@
 class Boots : public Item
 {
 public:
-	Boots();
+	Boots(string);
 	~Boots();
 };
 

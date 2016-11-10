@@ -19,28 +19,28 @@ ItemContainer::~ItemContainer()
 }
 
 
-void ItemContainer::addItem(string itemType, Item* item)
+void ItemContainer::addItem(Item* item)
 {
 	//TODO: check if valid item type
-	items[itemType].push_back(item);
+	items[item->type].push_back(item);
 }
 
-void ItemContainer::removeItem(string itemType, Item* item)
+void ItemContainer::removeItem(Item* item)
 {
 	//TODO: check if valid item type
-	for (vector<Item*>::iterator it = items[itemType].begin(); it != items[itemType].end(); ++it) 
+	for (vector<Item*>::iterator it = items[item->type].begin(); it != items[item->type].end(); ++it)
 	{
 		if (*it == item) 
 		{
-			items[itemType].erase(it);
+			items[item->type].erase(it);
 		}
 	}
 }
 
-Item* ItemContainer::getItem(string itemType, Item* item)
+Item* ItemContainer::getItem(Item* item)
 {
 	//TODO: check if valid item type
-	for (vector<Item*>::iterator it = items[itemType].begin(); it != items[itemType].end(); ++it)
+	for (vector<Item*>::iterator it = items[item->type].begin(); it != items[item->type].end(); ++it)
 	{
 		if (*it == item)
 		{

@@ -1,6 +1,6 @@
 #include "Weapon.h"
 
-Weapon::Weapon():Item(ItemTypes[WEAPON])
+Weapon::Weapon(string name):Item(ItemTypes[WEAPON], name)
 {
 }
 

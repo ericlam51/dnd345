@@ -1,6 +1,6 @@
 #include "Boots.h"
 
-Boots::Boots():Item(ItemTypes[BOOTS])
+Boots::Boots(string name):Item(ItemTypes[BOOTS], name)
 {
 }
 

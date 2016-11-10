@@ -3,7 +3,7 @@
 class Shield : public Item
 {
 public:
-	Shield();
+	Shield(string);
 	~Shield();
 };
 
