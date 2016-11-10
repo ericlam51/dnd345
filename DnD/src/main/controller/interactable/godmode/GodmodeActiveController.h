@@ -1,3 +1,6 @@
+/*! GodmodeActiveController class
+* Active controller used to load, create and edit hostile npc and fighter
+*/
 #pragma once
 
 #include "../../../view/interactable/godmode/GodmodeInteractableView.h"

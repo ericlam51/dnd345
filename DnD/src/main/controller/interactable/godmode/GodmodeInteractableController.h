@@ -1,3 +1,7 @@
+/*! GodmodeInteractableController class
+* Main controller used to load and create interactables
+* (Fighter, Monster, Npc, Chest)
+*/
 #pragma once
 
 #include "../../../view/interactable/godmode/GodmodeInteractableView.h"

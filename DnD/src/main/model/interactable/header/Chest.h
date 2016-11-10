@@ -1,3 +1,6 @@
+/*! Chest class
+* Placed in map and allow player to interact
+*/
 #pragma once
 #include <iostream>
 #include "Passive.h"

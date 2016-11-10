@@ -1,3 +1,8 @@
+/*! Active class
+* Super class of HostileNpc and Fighter
+* Contains common attributes to all Fighter and Monster of this game
+*/
+
 #pragma once
 #include <iostream>
 #include "Interactable.h"

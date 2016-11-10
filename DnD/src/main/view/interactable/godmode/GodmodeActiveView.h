@@ -1,3 +1,6 @@
+/*! GodmodeActiveView class
+* The V in MVC to show options to load/create hostile and fighter
+*/
 #pragma once
 
 #include "../../../controller/interactable/godmode/GodmodeActiveController.h"

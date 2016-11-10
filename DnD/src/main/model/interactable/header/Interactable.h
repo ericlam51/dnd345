@@ -1,3 +1,7 @@
+/*! Interactable class
+* Super class of Active and Passive
+* Contains common attributes to all Active and Passive which is any interactable in game
+*/
 #pragma once
 
 #define NO_WARN_MBCS_MFC_DEPRECATION

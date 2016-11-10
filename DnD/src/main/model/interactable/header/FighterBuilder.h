@@ -1,3 +1,7 @@
+/*! BuilderCLass class
+* Use to create HostileNPc and Fighter
+*/
+
 #pragma once
 #include <iostream>
 #include "Fighter.h"
