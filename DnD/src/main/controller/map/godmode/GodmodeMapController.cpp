@@ -6,7 +6,8 @@ void GodmodeMapController::mapFileSelection(int input) {
 		GodmodeMapView::mapCreationInputView();
 		break;
 	case 2:
-		break; //TODO
+		s_instance->loadMap();
+		break;
 	default: 
 		GodmodeMapView::warningMsgInvalidInput();
 		GodmodeMapView::fileOptionsMenuView();
@@ -80,6 +81,9 @@ void GodmodeMapController::saveMap() {
 
 	archive.Close();
 	theFile.Close();
+
+	GodmodeMapView::warningMsgMapSaved();
+	GodmodeMapView::mapOptionsMenuView();
 }
 
 void GodmodeMapController::validateMap() {
@@ -102,6 +106,22 @@ void GodmodeMapController::setCell(int x, int y, Cell* cell) {
 
 void GodmodeMapController::print() {
 	map->print();
+}
+
+void GodmodeMapController::loadMap() {
+	CFile theFile;
+	theFile.Open(_T("CArchiveTest.txt"), CFile::modeRead);
+	CArchive archive(&theFile, CArchive::load);
+
+	map = new Map();
+	map->Serialize(archive);
+
+	archive.Close();
+	theFile.Close();
+
+	s_instance->print();
+	GodmodeMapView::warningMsgMapLoaded();
+	GodmodeMapView::mapOptionsMenuView();
 }
 
 GodmodeMapController* GodmodeMapController::instance() {

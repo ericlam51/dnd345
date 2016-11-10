@@ -125,3 +125,11 @@ void GodmodeMapView::mapFillOptionsMenuView() {
 	default: cout << "Invalid input"; break;
 	}
 }
+
+void GodmodeMapView::warningMsgMapSaved() {
+	cout << "Map saved" << endl;
+}
+
+void GodmodeMapView::warningMsgMapLoaded() {
+	cout << "Map loaded" << endl;
+}

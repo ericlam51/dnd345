@@ -11,12 +11,10 @@ Map::Map(int width, int height) {
 }
 
 Map::~Map() {
-
+	//TODO
 }
 
-Map::Map() {
-
-}
+Map::Map() {}
 
 void Map::initMap() {
 	//Init 2D array
@@ -29,6 +27,7 @@ void Map::initMap() {
 			map[y][x] = new PathCell();
 			map[y][x]->setPosX(x);
 			map[y][x]->setPosY(y);
+			pathCells.push_back(dynamic_cast<PathCell*>(map[y][x]));
 		}
 	}
 
@@ -37,8 +36,6 @@ void Map::initMap() {
 }
 
 void Map::print() {
-	cout << "========================================" << endl;
-	
 	cout << "=";
 	for (int i = 0; i < width; i++) {
 		cout << "=";
@@ -61,10 +58,49 @@ void Map::print() {
 	}
 	cout << "=";
 	cout << endl;
-	cout << "========================================" << endl;
 }
 
 void Map::fillCell(int x, int y, Cell* cell) {
+
+	char oldType = map[y][x]->getType();
+	char newType = cell->getType();
+
+	switch (oldType) {
+	case CellHelper::CHEST_TYPE:
+		chestCells.erase(std::remove(chestCells.begin(), chestCells.end(), map[y][x]), chestCells.end());
+		break;
+	case CellHelper::ENTITY_TYPE:
+		entityCells.erase(std::remove(entityCells.begin(), entityCells.end(), map[y][x]), entityCells.end());
+		break;
+	case CellHelper::PATH_TYPE:
+		pathCells.erase(std::remove(pathCells.begin(), pathCells.end(), map[y][x]), pathCells.end());
+		break;
+	case CellHelper::WALL_TYPE:
+		wallCells.erase(std::remove(wallCells.begin(), wallCells.end(), map[y][x]), wallCells.end());
+		break;
+	case CellHelper::ENTRANCE_TYPE:
+		startingCell = NULL;
+		break;
+	case CellHelper::EXIT_TYPE:
+		exitCell = NULL;
+		break;
+	}
+
+	switch (newType) {
+	case CellHelper::CHEST_TYPE:
+		chestCells.push_back(dynamic_cast<ChestCell*>(cell));
+		break;
+	case CellHelper::ENTITY_TYPE:
+		entityCells.push_back(dynamic_cast<EntityCell*>(cell));
+		break;
+	case CellHelper::PATH_TYPE:
+		pathCells.push_back(dynamic_cast<PathCell*>(cell));
+		break;
+	case CellHelper::WALL_TYPE:
+		wallCells.push_back(dynamic_cast<WallCell*>(cell));
+		break;
+	}
+
 	if (cell->getType() == CellHelper::ENTRANCE_TYPE) {
 		if (startingCell != NULL) {
 			GodmodeMapView::warningMsgChangingEntranceCell();
@@ -73,13 +109,11 @@ void Map::fillCell(int x, int y, Cell* cell) {
 			map[previousStartingY][previousStartingX] = new PathCell();
 
 			delete startingCell;
-			startingCell = cell;
+			
 		}
 
-		startingCell = cell;
-	}
-
-	if (cell->getType() == CellHelper::EXIT_TYPE) {
+		startingCell = dynamic_cast<EntranceCell*>(cell);
+	}else if (cell->getType() == CellHelper::EXIT_TYPE) {
 		if (exitCell != NULL) {
 			GodmodeMapView::warningMsgChangingExitCell();
 			int previousExitX = startingCell->getPosX();
@@ -87,25 +121,10 @@ void Map::fillCell(int x, int y, Cell* cell) {
 			map[previousExitY][previousExitX] = new PathCell();
 
 			delete exitCell;
-			exitCell = cell;
 		}
 
-		exitCell = cell;
+		exitCell = dynamic_cast<ExitCell*>(cell);
 	}
-
-	if (startingCell != NULL) {
-		if ((startingCell->getPosX() == x && startingCell->getPosY() == y)) {
-			startingCell = NULL;
-		}
-	}
-
-	if (exitCell != NULL) {
-		if ((exitCell->getPosX() == x && exitCell->getPosY() == y)) {
-			exitCell = NULL;
-		}
-	}
-
-	
 
 	Cell* currentCell = map[y][x];
 	map[y][x] = NULL;
@@ -115,6 +134,8 @@ void Map::fillCell(int x, int y, Cell* cell) {
 	cell->setPosY(y);
 	map[y][x] = cell;
 }
+
+
 
 bool Map::validateMap() {
 	if (startingCell == NULL || exitCell == NULL) {
@@ -289,13 +310,85 @@ void Map::Serialize(CArchive& archive) {
 	// now do the stuff for our specific class
 	if (archive.IsStoring()) {
 		archive << height << width;
+
+		startingCell->Serialize(archive);
+		exitCell->Serialize(archive);
+		
+		chestSize = chestCells.size(); 
+		entitySize = entityCells.size(); 
+		wallSize = wallCells.size(); 
+		pathSize = pathCells.size();
+
+		archive << chestSize << entitySize << wallSize << pathSize;
+
+		if(!chestCells.empty())
+			for (int a = 0; a < chestCells.size(); a++) {
+				chestCells[a]->Serialize(archive);
+			}
+
+		if (!entityCells.empty())
+			for (int b = 0; b < entityCells.size(); b++) {
+				entityCells[b]->Serialize(archive);
+			}
+
+		if (!wallCells.empty())
+			for (int c = 0; c < wallCells.size(); c++) {
+				wallCells[c]->Serialize(archive);
+			}
+
+		if (!pathCells.empty())
+			for (int d = 0; d < pathCells.size(); d++) {
+				pathCells[d]->Serialize(archive);
+			}
+	}
+	else {
+		archive >> height >> width;
+
+		map.resize(height, vector<Cell*>(width));
+
+		startingCell = new EntranceCell();
+		startingCell->Serialize(archive);
+		exitCell = new ExitCell();
+		exitCell->Serialize(archive);
+
+		map[startingCell->getPosY()][startingCell->getPosX()] = static_cast<Cell*>(startingCell);
+		map[exitCell->getPosY()][exitCell->getPosX()] = static_cast<Cell*>(exitCell);
+
+
+		archive >> chestSize >> entitySize >> wallSize >> pathSize;
+
+		if (chestSize != 0)
+			for (int a = 0; a < chestSize; a++) {
+				Cell* cell = new ChestCell();
+				cell->Serialize(archive);
+				chestCells.push_back(dynamic_cast<ChestCell*>(cell));
+				map[cell->getPosY()][cell->getPosX()] = cell;
+			}
+
+		if (entitySize != 0)
+			for (int b = 0; b < entitySize; b++) {
+				Cell* cell = new EntityCell();
+				cell->Serialize(archive);
+				entityCells.push_back(dynamic_cast<EntityCell*>(cell));
+				map[cell->getPosY()][cell->getPosX()] = cell;
+			}
+
+		if (wallSize != 0)
+			for (int c = 0; c < wallSize; c++) {
+				Cell* cell = new WallCell();
+				cell->Serialize(archive);
+				wallCells.push_back(dynamic_cast<WallCell*>(cell));
+				map[cell->getPosY()][cell->getPosX()] = cell;
+			}
+
+		if (pathSize != 0)
+			for (int d = 0; d < pathSize; d++) {
+				Cell* cell = new PathCell();
+				cell->Serialize(archive);
+				pathCells.push_back(dynamic_cast<PathCell*>(cell));
+				map[cell->getPosY()][cell->getPosX()] = cell;
+			}
 	}
 
-	for (int y = 0; y < height; y++) {
-		for (int x = 0; x < width; x++) {
-			archive << map[y][x];
-		}
-	}
-	/*else
-		archive >> m_name >> m_number;*/
+	
 }

@@ -28,12 +28,7 @@ void WallCell::Serialize(CArchive& archive) {
 	if (archive.IsStoring()) {
 		archive << posX << posY << type;
 	}
-
-	/*for (int y = 0; y < height; y++) {
-	for (int x = 0; x < width; x++) {
-	archive << map[y][x];
+	else {
+		archive >> posX >> posY >> type;
 	}
-	}*/
-	/*else
-	archive >> m_name >> m_number;*/
 }

@@ -31,4 +31,6 @@ public:
 	static void warningMsgInvalidInput();
 	static void warningMsgInvalidMap();
 	static void warningMsgValidMap();
+	static void warningMsgMapSaved();
+	static void warningMsgMapLoaded();
 };

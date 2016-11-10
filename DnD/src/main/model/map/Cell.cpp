@@ -2,13 +2,9 @@
 
 IMPLEMENT_SERIAL(Cell, CObject, 1)
 
-Cell::Cell()
-{
-}
+Cell::Cell(){}
 
-Cell::~Cell()
-{
-}
+Cell::~Cell(){}
 
 int Cell::getPosX() {
 	return posX;
@@ -38,6 +34,4 @@ bool Cell::walkable() {
 	return false;
 }
 
-void Cell::Serialize(CArchive& archive) {
-
-}
+void Cell::Serialize(CArchive& archive) {}

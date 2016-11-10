@@ -19,6 +19,7 @@ public:
 	void validateMap();
 
 	void saveMap();
+	void loadMap();
 
 	void print();
 };
