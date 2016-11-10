@@ -104,7 +104,7 @@ void GodmodeItemView::displayItemHelper(int selection)
 
 	if (itemsSelected.size() == 0)
 	{
-		cout << endl << "No items of type:" << ItemTypes[selection - 1] <<  endl;
+		cout << endl << "No items of type: " << ItemTypes[selection - 1] <<  endl;
 	}
 	else
 	{
