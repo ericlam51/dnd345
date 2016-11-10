@@ -57,7 +57,45 @@ void GodmodeItemView::viewAllItems()
 	{
 		GodmodeItemView::displayItemHelper(i);
 	}
+}
 
+void GodmodeItemView::removeItem()
+{
+	int selection, itemToDelete; 
+
+	GodmodeItemView::viewAllItems();
+	vector<Item*> itemsSelected;
+
+	cout << "Select the item type of the item you would like to destroy." << endl;
+	cout << "1. " << ItemTypes[ARMOR] << endl;
+	cout << "2. " << ItemTypes[SHIELD] << endl;
+	cout << "3. " << ItemTypes[WEAPON] << endl;
+	cout << "4. " << ItemTypes[BOOTS] << endl;
+	cout << "5. " << ItemTypes[RING] << endl;
+	cout << "6. " << ItemTypes[HELMET] << endl;
+
+	do
+	{
+		cin.clear();
+		cin >> selection;
+	} while (selection < 1 || selection > 6);
+
+	if (GodmodeItemController::instance()->getItemsOfType(selection).size() == 0)
+	{
+		cout << "There are no items of this type to remove." << endl;
+	}
+	else
+	{
+		GodmodeItemView::displayItemHelper(selection);
+		itemsSelected = GodmodeItemController::instance()->getItemsOfType(selection);
+		cout << "Input the number of the item you would like to delete: " << endl;
+		do
+		{
+			cin.clear();
+			cin >> itemToDelete;
+		} while (itemToDelete < 1 || itemToDelete > itemsSelected.size());
+		GodmodeItemController::instance()->removeItem(ItemTypes[selection -1], itemToDelete);
+	}
 }
 
 void GodmodeItemView::displayItemHelper(int selection) 

@@ -14,7 +14,7 @@ public:
 	~ItemContainer();
 	void addItem(Item*);
 	void removeItem(Item*);
-	Item* getItem(Item*);
+	Item* getItem(string, int);
 	vector<Item*> getItemsOfType(string);
 private:
 	map<string, vector<Item*>> items;

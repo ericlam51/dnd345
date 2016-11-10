@@ -12,11 +12,13 @@
 class GodmodeItemController
 {
 	static GodmodeItemController *s_instance;
-	static ItemContainer *contInstance;
 public:
 	static GodmodeItemController* instance();
-	static ItemContainer* containerInstance();
 	void addItem(int, string);
+	void removeItem(string, int);
 	vector<Item*> getItemsOfType(int);
+private:
+	ItemContainer* container;
+	GodmodeItemController();
 };
 
