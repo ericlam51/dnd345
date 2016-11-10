@@ -1,6 +1,7 @@
 #pragma once
 #include "Cell.h"
 #include "../interactable/header/Interactable.h"
+#include "../interactable/header/HostileNpc.h"
 
 class EntityCell : public Cell
 {
@@ -15,6 +16,7 @@ public:
 	bool interactable();
 	bool walkable();
 	void Serialize(CArchive& archive);
+	void interact();
 	DECLARE_SERIAL(EntityCell);
 };
 

@@ -32,3 +32,7 @@ void WallCell::Serialize(CArchive& archive) {
 		archive >> posX >> posY >> type;
 	}
 }
+
+void WallCell::interact() {
+
+}

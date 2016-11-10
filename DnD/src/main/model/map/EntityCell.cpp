@@ -7,7 +7,6 @@ EntityCell::EntityCell()
 	type = CellHelper::ENTITY_TYPE;
 }
 
-
 EntityCell::~EntityCell()
 {
 }
@@ -36,8 +35,15 @@ void EntityCell::Serialize(CArchive& archive) {
 	// now do the stuff for our specific class
 	if (archive.IsStoring()) {
 		archive << posX << posY << type;
+		entity->Serialize(archive);
 	}
 	else {
 		archive >> posX >> posY >> type;
+		entity = new HostileNpc();
+		entity->Serialize(archive);
 	}
+}
+
+void EntityCell::interact() {
+	entity->interact();
 }

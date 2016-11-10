@@ -7,7 +7,6 @@ EntranceCell::EntranceCell()
 	type = CellHelper::ENTRANCE_TYPE;
 }
 
-
 EntranceCell::~EntranceCell()
 {
 }
@@ -32,4 +31,8 @@ void EntranceCell::Serialize(CArchive& archive) {
 	else {
 		archive >> posX >> posY >> type;
 	}
+}
+
+void EntranceCell::interact() {
+
 }

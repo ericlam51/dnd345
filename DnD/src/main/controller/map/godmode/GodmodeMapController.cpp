@@ -1,4 +1,6 @@
 #include "GodmodeMapController.h"
+#include "../../interactable/godmode/GodmodeChestController.h"
+#include "../../interactable/godmode/GodmodeActiveController.h"
 #include "../../../model/interactable/header/Fighter.h"
 
 void GodmodeMapController::mapFileSelection(int input) {
@@ -109,6 +111,36 @@ void GodmodeMapController::validateMap() {
 void GodmodeMapController::setCell(int x, int y, Cell* cell) {
 	map->fillCell(x, y, cell);
 	map->print();
+	
+	switch (cell->getType()) {
+		//case CellHelper::WALL_TYPE:
+		//	//dynamic_cast<WallCell*>(cell)->set
+		//	break;
+		//case  CellHelper::ENTRANCE_TYPE:
+		//	s_instance->setCell(x, y, new EntranceCell());
+		//	break;
+		//case  CellHelper::EXIT_TYPE:
+		//	s_instance->setCell(x, y, new ExitCell());
+		//	break;
+	case  CellHelper::CHEST_TYPE:
+	{
+		GodmodeChestController::instance()->loadChestWithoutView();
+		Interactable* chest = GodmodeChestController::instance()->getChest();
+		dynamic_cast<ChestCell*>(cell)->setChest(chest);
+		break;
+	}
+	case  CellHelper::ENTITY_TYPE:
+	{
+		GodmodeActiveController::instance()->loadHostileNpcWithoutView();
+		Interactable* entity = GodmodeActiveController::instance()->getActive();
+		dynamic_cast<EntityCell*>(cell)->setEntity(entity);
+		break;
+	}
+	}
+	//case  CellHelper::PATH_TYPE:
+	//	s_instance->setCell(x, y, new PathCell());
+	//	break;
+	//}
 
 	GodmodeMapView::mapOptionsMenuView();
 }
@@ -128,11 +160,9 @@ void GodmodeMapController::loadMap() {
 	archive.Close();
 	theFile.Close();
 
-	map->startMap();
-
-	/*s_instance->print();
+	print();
 	GodmodeMapView::warningMsgMapLoaded();
-	GodmodeMapView::mapOptionsMenuView();*/
+	GodmodeMapView::mapOptionsMenuView();
 }
 
 GodmodeMapController* GodmodeMapController::instance() {

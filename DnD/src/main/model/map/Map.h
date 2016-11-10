@@ -53,7 +53,7 @@ public:
 	/* PLAYERMODE SPECIFIC */
 	void movePlayer(char side);
 	void interact(char side);
-	void startMap();
+	void startMap(Interactable* fighter);
 	bool getNextCellInteractibility(char side);
 	bool getNextCellWalkability(char side);
 
