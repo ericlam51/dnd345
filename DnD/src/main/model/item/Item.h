@@ -11,8 +11,8 @@ const char* const ItemTypes[] = { "ARMOR", "SHIELD", "WEAPON", "BOOTS", "RING", 
 class Item
 {
 public:
-	Item();
+	Item(string);
 	~Item();
-	const static string type;
+	const string type;
 };
 

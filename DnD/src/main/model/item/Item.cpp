@@ -2,7 +2,7 @@
 
 
 
-Item::Item()
+Item::Item(string itemType):type(itemType)
 {
 }
 
