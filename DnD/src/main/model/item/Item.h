@@ -11,8 +11,12 @@ const char* const ItemTypes[] = { "ARMOR", "SHIELD", "WEAPON", "BOOTS", "RING", 
 class Item
 {
 public:
-	Item(string);
+	Item(string, string);
 	~Item();
 	const string type;
+	string getItemName();
+	void setItemName(string);
+private:
+	string itemName;
 };
 

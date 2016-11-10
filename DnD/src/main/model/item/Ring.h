@@ -3,7 +3,7 @@
 class Ring : public Item
 {
 public:
-	Ring();
+	Ring(string);
 	~Ring();
 };
 
