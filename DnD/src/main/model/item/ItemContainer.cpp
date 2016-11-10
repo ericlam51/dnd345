@@ -33,19 +33,25 @@ void ItemContainer::removeItem(Item* item)
 		if (*it == item) 
 		{
 			items[item->type].erase(it);
+			return;
 		}
 	}
 }
 
-Item* ItemContainer::getItem(Item* item)
+Item* ItemContainer::getItem(string type, int index)
 {
 	//TODO: check if valid item type
-	for (vector<Item*>::iterator it = items[item->type].begin(); it != items[item->type].end(); ++it)
+	for (vector<Item*>::iterator it = items[type].begin(); it != items[type].end(); ++it)
 	{
-		if (*it == item)
+		if (*it == items[type].at(index))
 		{
 			return *it;
 		}
 	}
 	return NULL;
+}
+
+vector<Item*> ItemContainer::getItemsOfType(string type)
+{
+	return items[type];
 }
