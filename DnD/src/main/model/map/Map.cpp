@@ -466,6 +466,8 @@ void Map::startMap() {
 
 	print();
 
+	map[1][1]->interact();
+
 	//cout << getNextCellInteractibility('R');
 	//cout << getNextCellWalkability('R');
 
@@ -473,7 +475,7 @@ void Map::startMap() {
 
 	//print();
 
-	//cin >> posX;
+	cin >> posX;
 }
 
 bool Map::getNextCellInteractibility(char side) {

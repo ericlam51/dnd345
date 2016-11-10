@@ -25,12 +25,17 @@ void ChestCell::Serialize(CArchive& archive) {
 	// base class is CObject in this case
 	CObject::Serialize(archive);
 
+	
+
 	// now do the stuff for our specific class
 	if (archive.IsStoring()) {
 		archive << posX << posY << type;
+		chest->Serialize(archive);
 	}
 	else {
 		archive >> posX >> posY >> type;
+		chest = new Chest();
+		chest->Serialize(archive);
 	}
 }
 

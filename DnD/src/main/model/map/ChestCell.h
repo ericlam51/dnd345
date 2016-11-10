@@ -1,6 +1,7 @@
 #pragma once
 #include "Cell.h"
 #include "../interactable/header/Interactable.h"
+#include "../interactable//header/Chest.h"
 
 class ChestCell : public Cell
 {
