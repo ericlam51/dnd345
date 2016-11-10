@@ -22,6 +22,7 @@ public:
 	void setPosY(int y);
 
 	virtual void Serialize(CArchive& archive);
+	virtual void interact();
 	DECLARE_SERIAL(Cell);
 };
 
