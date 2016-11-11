@@ -105,7 +105,7 @@ void GodmodeItemView::saveItemInventory()
 
 void GodmodeItemView::loadItemInventory()
 {
-	GodmodeItemController::instance()->loadItemInventory();
+	//GodmodeItemController::instance()->loadItemInventory();
 }
 
 void GodmodeItemView::displayItemHelper(int selection) 
