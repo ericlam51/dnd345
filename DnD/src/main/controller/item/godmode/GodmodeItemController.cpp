@@ -88,6 +88,8 @@ void GodmodeItemController::loadItemInventory()
 	ItemContainer* cont = new ItemContainer();
 	cont->Serialize(archive);
 
+	container = cont;
+
 	archive.Close();
 	theFile.Close();
 }
