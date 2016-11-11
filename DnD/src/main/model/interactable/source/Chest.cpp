@@ -19,6 +19,11 @@ void Chest::open() {
 	Sleep(1000);
 }
 
+void  Chest::print() {
+	cout << "Name: " << name << endl;
+	cout << "Description: " << description << endl;
+}
+
 void Chest::Serialize(CArchive& archive) {
 	CObject::Serialize(archive);
 	CString cName(getName().c_str());

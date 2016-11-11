@@ -15,6 +15,7 @@ FriendlyNpc::FriendlyNpc(string name, string description, string dialog) : Passi
 
 FriendlyNpc::~FriendlyNpc() {}
 
+
 void FriendlyNpc::print() {
 	cout << "Name: " << name << endl
 		<< "Description: " << description << endl

@@ -46,5 +46,6 @@ void GodmodeChestView::warningMsgChestLoaded() {
 //! method to s save and quit
 void GodmodeChestView::saveAndQuitView(Chest* chest){
 	cout << "Chest successfully created!" << endl;
+	chest->print();
 	GodmodeChestController::instance()->saveAndQuit();
 }
