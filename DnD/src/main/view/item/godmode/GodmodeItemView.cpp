@@ -117,3 +117,27 @@ void GodmodeItemView::displayItemHelper(int selection)
 		}
 	}
 }
+
+void GodmodeItemView::itemOptionSelection() {
+	int input = 0;
+	while (input < 1 || input > 3) {
+		cout << "------------------------------" << endl
+			<< "1. New item" << endl
+			<< "2. View item" << endl
+			<< "3. Destroy item" << endl
+			<< "------------------------------" << endl;
+		cin >> input;
+		system("cls");
+	}
+	switch (input) {
+	case 1:
+		createItem();
+		break;
+	case 2:
+		viewItemByType();
+		break;
+	case 3:
+		removeItem();
+		break;
+	}
+}
