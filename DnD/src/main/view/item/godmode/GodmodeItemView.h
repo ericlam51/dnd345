@@ -14,6 +14,8 @@ public:
 	static void viewItemByType();
 	static void viewAllItems();
 	static void removeItem();
+	static void saveItemInventory();
+	static void loadItemInventory();
 private:
 	static void displayItemHelper(int);
 };

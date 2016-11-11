@@ -98,6 +98,16 @@ void GodmodeItemView::removeItem()
 	}
 }
 
+void GodmodeItemView::saveItemInventory()
+{
+	GodmodeItemController::instance()->saveItemInventory();
+}
+
+void GodmodeItemView::loadItemInventory()
+{
+	GodmodeItemController::instance()->loadItemInventory();
+}
+
 void GodmodeItemView::displayItemHelper(int selection) 
 {
 	vector<Item*> itemsSelected = GodmodeItemController::instance()->getItemsOfType(selection);

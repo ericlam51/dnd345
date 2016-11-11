@@ -56,8 +56,8 @@ void Item::Serialize(CArchive & archive)
 	else
 	{
 		archive >> cType >> cName;
-		cName = ((LPCTSTR)cName);
-		cType = ((LPCTSTR)cType);
+		itemName = ((LPCTSTR)cName);
+		type = ((LPCTSTR)cType);
 	}
 }
 

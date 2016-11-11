@@ -17,11 +17,11 @@ public:
 	Item(string, string);
 	Item();
 	~Item();
-	const string type;
 	string getItemName();
 	void setItemName(string);
 	DECLARE_SERIAL(Item)
 	void Serialize(CArchive& archive);
+	string type;
 private:
 	string itemName;
 	bool validItem(string);
