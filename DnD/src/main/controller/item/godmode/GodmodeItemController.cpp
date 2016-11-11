@@ -48,6 +48,8 @@ void GodmodeItemController::addItem(int selection, string name)
 			GodmodeItemController::instance()->container->addItem(item);
 			break;
 	}
+
+	GodmodeItemView::itemOptionSelection();
 }
 
 //! method that handles user input to remove an item from the item container
@@ -70,28 +72,32 @@ vector<Item*> GodmodeItemController::getItemsOfType(int selection)
 void GodmodeItemController::saveItemInventory()
 {
 	CFile theFile;
-	theFile.Open(_T("ItemInventory.txt"), CFile::modeCreate | CFile::modeWrite);
+	theFile.Open(_T("ItemInventory"), CFile::modeCreate | CFile::modeWrite);
 	CArchive archive(&theFile, CArchive::store);
 
 	container->Serialize(archive);
 
 	archive.Close();
 	theFile.Close();
+
+	GodmodeItemView::itemOptionSelection();
 }
 
-//void GodmodeItemController::loadItemInventory()
-//{
-//	CFile theFile;
-//	theFile.Open(_T("ItemContainer.txt"), CFile::modeRead);
-//	CArchive archive(&theFile, CArchive::load);
-//
-//	ItemContainer* cont = new ItemContainer();
-//	cont->Serialize(archive);
-//
-//	container = cont;
-//
-//	archive.Close();
-//	theFile.Close();
-//}
+void GodmodeItemController::loadItemInventory()
+{
+	CFile theFile;
+	theFile.Open(_T("ItemInventory"), CFile::modeRead);
+	CArchive archive(&theFile, CArchive::load);
+
+	ItemContainer* cont = new ItemContainer();
+	cont->Serialize(archive);
+
+	container = cont;
+
+	archive.Close();
+	theFile.Close();
+
+	GodmodeItemView::itemOptionSelection();
+}
 
 GodmodeItemController* GodmodeItemController::s_instance = GodmodeItemController::instance();

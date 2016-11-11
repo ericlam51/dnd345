@@ -105,7 +105,7 @@ void GodmodeItemView::saveItemInventory()
 
 void GodmodeItemView::loadItemInventory()
 {
-	//GodmodeItemController::instance()->loadItemInventory();
+	GodmodeItemController::instance()->loadItemInventory();
 }
 
 void GodmodeItemView::displayItemHelper(int selection) 
@@ -126,15 +126,21 @@ void GodmodeItemView::displayItemHelper(int selection)
 			cout << "Item name: " << (*it)->getItemName() << endl;
 		}
 	}
+
+	//TODO: Robby change
+	int in;
+	cin >> in;
 }
 
 void GodmodeItemView::itemOptionSelection() {
 	int input = 0;
-	while (input < 1 || input > 3) {
+	while (input < 1 || input > 5) {
 		cout << "------------------------------" << endl
 			<< "1. New item" << endl
 			<< "2. View item" << endl
 			<< "3. Destroy item" << endl
+			<< "4. Save item container" << endl
+			<< "5. Load item container" << endl
 			<< "------------------------------" << endl;
 		cin >> input;
 		system("cls");
@@ -148,6 +154,12 @@ void GodmodeItemView::itemOptionSelection() {
 		break;
 	case 3:
 		removeItem();
+		break;
+	case 4:
+		saveItemInventory();
+		break;
+	case 5:
+		loadItemInventory();
 		break;
 	}
 }

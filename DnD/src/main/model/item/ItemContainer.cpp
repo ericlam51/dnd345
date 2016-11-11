@@ -105,6 +105,7 @@ void ItemContainer::Serialize(CArchive & archive)
 				archive << helmetSize;
 				break;
 			}
+
 			for (int j = 0; j < itemsSelected.size(); j++) 
 			{
 				itemsSelected[j]->Serialize(archive);
@@ -152,28 +153,36 @@ void ItemContainer::Serialize(CArchive & archive)
 				case 0:
 					item = new Armor();
 					item->Serialize(archive);
+					addItem(item);
 					break;
 				case 1:
 					item = new Shield();
 					item->Serialize(archive);
+					addItem(item);
 					break;
 				case 2:
 					item = new Weapon();
 					item->Serialize(archive);
+					addItem(item);
 					break;
 				case 3:
 					item = new Boots();
 					item->Serialize(archive);
+					addItem(item);
 					break;
 				case 4:
 					item = new Ring();
 					item->Serialize(archive);
+					addItem(item);
 					break;
 				case 5:
 					item = new Helmet();
 					item->Serialize(archive);
+					addItem(item);
 					break;
 				}
+
+					
 			}
 		}
 	}
