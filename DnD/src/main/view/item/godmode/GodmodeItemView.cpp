@@ -24,6 +24,7 @@ void GodmodeItemView::createItem()
 	cin >> name;
 
 	GodmodeItemController::instance()->addItem(selection, name);
+	GodmodeItemView::itemOptionSelection();
 }
 
 void GodmodeItemView::viewItemByType()
@@ -47,6 +48,8 @@ void GodmodeItemView::viewItemByType()
 	} while (selection < 1 || selection > 6);
 
 	GodmodeItemView::displayItemHelper(selection);
+	GodmodeItemView::itemOptionSelection();
+
 }
 
 void GodmodeItemView::viewAllItems()
@@ -96,6 +99,7 @@ void GodmodeItemView::removeItem()
 		} while (itemToDelete < 1 || itemToDelete > itemsSelected.size());
 		GodmodeItemController::instance()->removeItem(ItemTypes[selection -1], itemToDelete);
 	}
+	GodmodeItemView::itemOptionSelection();
 }
 
 void GodmodeItemView::saveItemInventory()
@@ -126,10 +130,6 @@ void GodmodeItemView::displayItemHelper(int selection)
 			cout << "Item name: " << (*it)->getItemName() << endl;
 		}
 	}
-
-	//TODO: Robby change
-	int in;
-	cin >> in;
 }
 
 void GodmodeItemView::itemOptionSelection() {

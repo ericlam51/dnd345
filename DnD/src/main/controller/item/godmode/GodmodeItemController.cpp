@@ -48,8 +48,6 @@ void GodmodeItemController::addItem(int selection, string name)
 			GodmodeItemController::instance()->container->addItem(item);
 			break;
 	}
-
-	GodmodeItemView::itemOptionSelection();
 }
 
 //! method that handles user input to remove an item from the item container
