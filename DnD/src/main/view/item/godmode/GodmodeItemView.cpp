@@ -24,7 +24,6 @@ void GodmodeItemView::createItem()
 	cin >> name;
 
 	GodmodeItemController::instance()->addItem(selection, name);
-	GodmodeItemView::itemOptionSelection();
 }
 
 void GodmodeItemView::viewItemByType()
@@ -49,7 +48,6 @@ void GodmodeItemView::viewItemByType()
 
 	GodmodeItemView::displayItemHelper(selection);
 	GodmodeItemView::itemOptionSelection();
-
 }
 
 void GodmodeItemView::viewAllItems()
@@ -99,7 +97,6 @@ void GodmodeItemView::removeItem()
 		} while (itemToDelete < 1 || itemToDelete > itemsSelected.size());
 		GodmodeItemController::instance()->removeItem(ItemTypes[selection -1], itemToDelete);
 	}
-	GodmodeItemView::itemOptionSelection();
 }
 
 void GodmodeItemView::saveItemInventory()
@@ -134,32 +131,17 @@ void GodmodeItemView::displayItemHelper(int selection)
 
 void GodmodeItemView::itemOptionSelection() {
 	int input = 0;
-	while (input < 1 || input > 5) {
+	while (input < 1 || input > 6) {
 		cout << "------------------------------" << endl
 			<< "1. New item" << endl
 			<< "2. View item" << endl
 			<< "3. Destroy item" << endl
 			<< "4. Save item container" << endl
 			<< "5. Load item container" << endl
+			<< "6. Return to Selection menu" << endl
 			<< "------------------------------" << endl;
 		cin >> input;
 		system("cls");
 	}
-	switch (input) {
-	case 1:
-		createItem();
-		break;
-	case 2:
-		viewItemByType();
-		break;
-	case 3:
-		removeItem();
-		break;
-	case 4:
-		saveItemInventory();
-		break;
-	case 5:
-		loadItemInventory();
-		break;
-	}
+	GodmodeItemController::instance()->menuHelper(input);
 }
