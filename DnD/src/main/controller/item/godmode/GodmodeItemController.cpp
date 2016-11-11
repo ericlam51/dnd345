@@ -79,19 +79,19 @@ void GodmodeItemController::saveItemInventory()
 	theFile.Close();
 }
 
-void GodmodeItemController::loadItemInventory()
-{
-	CFile theFile;
-	theFile.Open(_T("ItemContainer.txt"), CFile::modeRead);
-	CArchive archive(&theFile, CArchive::load);
-
-	ItemContainer* cont = new ItemContainer();
-	cont->Serialize(archive);
-
-	container = cont;
-
-	archive.Close();
-	theFile.Close();
-}
+//void GodmodeItemController::loadItemInventory()
+//{
+//	CFile theFile;
+//	theFile.Open(_T("ItemContainer.txt"), CFile::modeRead);
+//	CArchive archive(&theFile, CArchive::load);
+//
+//	ItemContainer* cont = new ItemContainer();
+//	cont->Serialize(archive);
+//
+//	container = cont;
+//
+//	archive.Close();
+//	theFile.Close();
+//}
 
 GodmodeItemController* GodmodeItemController::s_instance = GodmodeItemController::instance();
