@@ -11,6 +11,7 @@
 #include "../../../model/item/Ring.h"
 #include "../../../model/item/Weapon.h"
 #include "../../../model/item/Shield.h"
+#include "../../../controller/item/godmode/GodmodeItemController.h"
 //#include "../../../model/item/Belt.h" //TODO
 
 //! class for the implementation of load/edit active controller

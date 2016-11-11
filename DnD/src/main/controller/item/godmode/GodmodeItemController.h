@@ -20,6 +20,7 @@ public:
 	vector<Item*> getItemsOfType(int);
 	void saveItemInventory();
 	void loadItemInventory();
+	ItemContainer* getContainer();
 private:
 	ItemContainer* container;
 	GodmodeItemController();

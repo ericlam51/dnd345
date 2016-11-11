@@ -100,4 +100,8 @@ void GodmodeItemController::loadItemInventory()
 	GodmodeItemView::itemOptionSelection();
 }
 
+ItemContainer* GodmodeItemController::getContainer() {
+	return container;
+}
+
 GodmodeItemController* GodmodeItemController::s_instance = GodmodeItemController::instance();
