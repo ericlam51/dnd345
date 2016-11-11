@@ -21,9 +21,4 @@ void Boots::Serialize(CArchive & archive)
 	// base class is CObject in this case
 	Item::Serialize(archive);
 
-	// now do the stuff for our specific class
-	//if (archive.IsStoring())
-	//	archive << m_name << m_number;
-	//else
-	//	archive >> m_name >> m_number;
 }

@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class ItemContainer
+class ItemContainer : public CObject
 {
 public:
 	ItemContainer();
@@ -17,6 +17,8 @@ public:
 	void removeItem(Item*);
 	Item* getItem(string, int);
 	vector<Item*> getItemsOfType(string);
+	DECLARE_SERIAL(ItemContainer)
+	void Serialize(CArchive& archive);
 private:
 	map<string, vector<Item*>> items;
 };

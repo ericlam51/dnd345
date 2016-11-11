@@ -1,6 +1,6 @@
 #include "EquippedItems.h"
 
-
+IMPLEMENT_SERIAL(EquippedItems, CObject, 1)
 
 EquippedItems::EquippedItems()
 {
@@ -35,4 +35,21 @@ Item * EquippedItems::getItem(string itemType)
 {
 	//TODO: check proper item type
 	return equipped[itemType];
+}
+
+void EquippedItems::Serialize(CArchive & archive)
+{
+	// call base class function first
+	// base class is CObject in this case
+	CObject::Serialize(archive);
+
+	 //now do the stuff for our specific class
+	if (archive.IsStoring()) 
+	{
+		inventory->Serialize(archive);
+	}
+	else
+	{
+		inventory->Serialize(archive);
+	}
 }

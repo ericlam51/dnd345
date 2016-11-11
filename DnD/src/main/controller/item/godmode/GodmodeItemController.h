@@ -17,6 +17,8 @@ public:
 	void addItem(int, string);
 	void removeItem(string, int);
 	vector<Item*> getItemsOfType(int);
+	void saveItemInventory();
+	void loadItemInventory();
 private:
 	ItemContainer* container;
 	GodmodeItemController();

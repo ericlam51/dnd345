@@ -45,11 +45,20 @@ void Item::Serialize(CArchive & archive)
 	// base class is CObject in this case
 	CObject::Serialize(archive);
 
+	CString cType(type.c_str());
+	CString cName(getItemName().c_str());
+
 	// now do the stuff for our specific class
-	//if (archive.IsStoring())
-	//	archive << m_name << m_number;
-	//else
-	//	archive >> m_name >> m_number;
+	if (archive.IsStoring())
+	{
+		archive << cType << cName;
+	}
+	else
+	{
+		archive >> cType >> cName;
+		cName = ((LPCTSTR)cName);
+		cType = ((LPCTSTR)cType);
+	}
 }
 
 //! check if an item has a valid type

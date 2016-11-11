@@ -1,5 +1,6 @@
 #include "ItemContainer.h"
 
+IMPLEMENT_SERIAL(ItemContainer, CObject, 1)
 
 //! default constructor that initializes the item container with a map<string, vector> preset with 
 //! an empty vector for each item type
@@ -63,4 +64,35 @@ Item* ItemContainer::getItem(string type, int index)
 vector<Item*> ItemContainer::getItemsOfType(string type)
 {
 	return items[type];
+}
+
+void ItemContainer::Serialize(CArchive & archive)
+{
+	// call base class function first
+	// base class is CObject in this case
+	CObject::Serialize(archive);
+
+	// now do the stuff for our specific class
+	if (archive.IsStoring())
+	{
+		for (int i = 0; i < HELMET; i++) 
+		{
+			vector<Item*> itemsSelected = getItemsOfType(ItemTypes[i]);
+			for (int j = 0; j < itemsSelected.size(); j++) 
+			{
+				itemsSelected[j]->Serialize(archive);
+			}
+		}
+	}
+	else
+	{
+		for (int i = 0; i < HELMET; i++)
+		{
+			vector<Item*> itemsSelected = getItemsOfType(ItemTypes[i]);
+			for (int j = 0; j < itemsSelected.size(); j++)
+			{
+				itemsSelected[j]->Serialize(archive);
+			}
+		}
+	}
 }

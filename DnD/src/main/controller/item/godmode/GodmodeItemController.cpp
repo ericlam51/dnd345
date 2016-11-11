@@ -67,4 +67,29 @@ vector<Item*> GodmodeItemController::getItemsOfType(int selection)
 	return GodmodeItemController::instance()->container->getItemsOfType(ItemTypes[selection - 1]);
 }
 
+void GodmodeItemController::saveItemInventory()
+{
+	CFile theFile;
+	theFile.Open(_T("ItemInventory.txt"), CFile::modeCreate | CFile::modeWrite);
+	CArchive archive(&theFile, CArchive::store);
+
+	container->Serialize(archive);
+
+	archive.Close();
+	theFile.Close();
+}
+
+void GodmodeItemController::loadItemInventory()
+{
+	CFile theFile;
+	theFile.Open(_T("ItemContainer.txt"), CFile::modeRead);
+	CArchive archive(&theFile, CArchive::load);
+
+	ItemContainer* cont = new ItemContainer();
+	cont->Serialize(archive);
+
+	archive.Close();
+	theFile.Close();
+}
+
 GodmodeItemController* GodmodeItemController::s_instance = GodmodeItemController::instance();
