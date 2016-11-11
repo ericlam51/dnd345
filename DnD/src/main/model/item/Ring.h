@@ -5,5 +5,8 @@ class Ring : public Item
 public:
 	Ring(string);
 	~Ring();
+	Ring();
+	DECLARE_SERIAL(Ring)
+	void Serialize(CArchive& archive);
 };
 

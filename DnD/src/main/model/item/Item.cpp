@@ -17,6 +17,10 @@ Item::Item(string itemType, string name):type(itemType)
 	}
 }
 
+Item::Item()
+{
+}
+
 Item::~Item()
 {
 }
@@ -32,6 +36,19 @@ string Item::getItemName()
 void Item::setItemName(string name)
 {
 	itemName = name;
+}
+
+void Item::Serialize(CArchive & archive)
+{
+	// call base class function first
+	// base class is CObject in this case
+	CObject::Serialize(archive);
+
+	// now do the stuff for our specific class
+	//if (archive.IsStoring())
+	//	archive << m_name << m_number;
+	//else
+	//	archive >> m_name >> m_number;
 }
 
 //! check if an item has a valid type
