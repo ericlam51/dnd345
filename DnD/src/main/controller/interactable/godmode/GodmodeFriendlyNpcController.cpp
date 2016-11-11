@@ -1,10 +1,12 @@
 #include "GodmodeFriendlyNpcController.h"
 
+//! method to create NPC
 void GodmodeFriendlyNpcController::newFriendlyNpc(string name, string description, string dialog) {
 	_friendlyNpc = new FriendlyNpc(name, description, dialog);
 	GodmodeFriendlyNpcView::postCreationView();
 }
 
+//! method to load NPC
 void GodmodeFriendlyNpcController::loadFriendlyNpc() {
 	loadFriendlyNpcWithoutView();
 
@@ -12,6 +14,7 @@ void GodmodeFriendlyNpcController::loadFriendlyNpc() {
 	GodmodeFriendlyNpcView::postCreationView();
 }
 
+//! method to load NPC with post creation view
 void GodmodeFriendlyNpcController::loadFriendlyNpcWithoutView() {
 	CFile theFile;
 	theFile.Open(_T("FriendlyNpc"), CFile::modeCreate | CFile::modeWrite);
@@ -24,10 +27,12 @@ void GodmodeFriendlyNpcController::loadFriendlyNpcWithoutView() {
 	theFile.Close();
 }
 
+//! method to return NPC
 FriendlyNpc* GodmodeFriendlyNpcController::getFriendlyNpc() {
 	return _friendlyNpc;
 }
 
+//! method to create new npc or save and quit
 void GodmodeFriendlyNpcController::postCreation(int input) {
 	switch(input){
 		case 1:
@@ -42,6 +47,7 @@ void GodmodeFriendlyNpcController::postCreation(int input) {
 	}
 }
 
+//! method to save and quit
 void GodmodeFriendlyNpcController::saveAndQuit(){
 	CFile theFile;
 	theFile.Open(_T("FriendlyNpc"), CFile::modeCreate | CFile::modeWrite);

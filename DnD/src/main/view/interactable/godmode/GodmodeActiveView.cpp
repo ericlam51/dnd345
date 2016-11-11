@@ -12,6 +12,8 @@ bool readBooleanInput(char input) {
 	return false;
 
 }
+
+//! method to create new monster or fighter
 void GodmodeActiveView::newActiveView(int type) {
 
 	string name, description;
@@ -39,6 +41,7 @@ void GodmodeActiveView::newActiveView(int type) {
 		GodmodeActiveController::instance()->newHostileNpc(name, description, level);
 }
 
+//! method to load new monster or fighter
 void GodmodeActiveView::loadActiveView(int type) {
 	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
@@ -55,6 +58,7 @@ void GodmodeActiveView::loadActiveView(int type) {
 		GodmodeActiveController::instance()->loadHostileNpc();
 }
 
+//! method to prompt edit monster or fighter
 void GodmodeActiveView::postCreationView() {
 	char input;
 
@@ -67,6 +71,7 @@ void GodmodeActiveView::postCreationView() {
 
 }
 
+//! method to edit monster or fighter if the user wants to edit
 void GodmodeActiveView::postCreationYesView() {
 	int input;
 
@@ -82,6 +87,7 @@ void GodmodeActiveView::postCreationYesView() {
 	GodmodeActiveController::instance()->postCreationYes(input);
 }
 
+//! method to edit monster or fighter ability score
 void GodmodeActiveView::changeAbilityScoreView() {
 	int abilityScore[6];
 
@@ -96,6 +102,7 @@ void GodmodeActiveView::changeAbilityScoreView() {
 	GodmodeActiveController::instance()->modifyAbilityScore(abilityScore);
 }
 
+//! method to equip item on monster or fighter
 void GodmodeActiveView::equipItemView() {
 	char input;
 	bool cont = true;
@@ -115,6 +122,7 @@ void GodmodeActiveView::equipItemView() {
 	postCreationYesView();
 }
 
+//! method to validate monster or fighter
 void GodmodeActiveView::validateFighterView(bool isValidFighter) {
 
 	if (isValidFighter) {

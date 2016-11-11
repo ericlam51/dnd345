@@ -1,5 +1,6 @@
 #include "GodmodeInteractableController.h"
 
+//! method to parse selection of GodmodeInteractableView::interactableFileSelectionView()
 void GodmodeInteractableController::interactableFileSelection(int input) {
 	switch (input) {
 	case 1:
@@ -14,6 +15,7 @@ void GodmodeInteractableController::interactableFileSelection(int input) {
 	}
 }
 
+//! method to parse selection of GodmodeInteractableView::interactableCreationView()
 void GodmodeInteractableController::interactableCreation(int input) {
 	switch (input) {
 	case 1:
@@ -34,6 +36,7 @@ void GodmodeInteractableController::interactableCreation(int input) {
 	}
 }
 
+//! method to parse selection of GodmodeInteractableView::interactableLoadView()
 void GodmodeInteractableController::interactableLoad(int input) {
 	switch (input) {
 	case 1:

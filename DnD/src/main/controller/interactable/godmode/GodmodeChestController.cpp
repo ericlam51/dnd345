@@ -1,10 +1,12 @@
 #include "GodmodeChestController.h"
 
+//! method Create new chest
 void GodmodeChestController::newChest(string name, string description) {
 	_chest = new Chest(name, description);
 	GodmodeChestView::postCreationView();
 }
 
+//! method to load chest
 void GodmodeChestController::loadChest() {
 	loadChestWithoutView();
 
@@ -12,6 +14,7 @@ void GodmodeChestController::loadChest() {
 	GodmodeChestView::postCreationView();
 }
 
+//! method to load chest without edit view
 void GodmodeChestController::loadChestWithoutView() {
 	CFile theFile;
 	theFile.Open(_T("Chest"), CFile::modeCreate | CFile::modeWrite);
@@ -24,10 +27,12 @@ void GodmodeChestController::loadChestWithoutView() {
 	theFile.Close();
 }
 
+//! method to return chest object
 Chest* GodmodeChestController::getChest() {
 	return _chest;
 }
 
+//! method add another chest or save and quit
 void GodmodeChestController::postCreation(int input){
 	switch(input){
 		case 1:
@@ -42,6 +47,7 @@ void GodmodeChestController::postCreation(int input){
 	}
 }
 
+//! method to save and quit
 void GodmodeChestController::saveAndQuit(){
 	CFile theFile;
 	theFile.Open(_T("Chest"), CFile::modeCreate | CFile::modeWrite);

@@ -1,31 +1,41 @@
 #include "GodmodeActiveController.h"
 
+//! method to create a fighter
+//!@param name: Name of fighter
+//!@param description: Description of fighter
+//!@param level: Level of fighter
 void GodmodeActiveController::newFighter(string name, string description, int level) {
 	_active = new Fighter(name, description, level);
 	_active->print();
 	GodmodeActiveView::postCreationView();
 }
 
+//! method to create a monster
+//! method to create a monster
+//!@param name: Name of monster
+//!@param description: Description of monster
+//!@param level: Level of monster
 void GodmodeActiveController::newHostileNpc(string name, string description, int level){
 	_active = new HostileNpc(name, description, level);
 	_active->print();
 	GodmodeActiveView::postCreationView();
 }
 
+//!method to load a fighter with the view to edit
 void GodmodeActiveController::loadFighter(){
 	loadFighterWithoutView();
 	_active->print();
 	GodmodeActiveView::warningMsgActiveLoaded();
 	GodmodeActiveView::postCreationView();
 }
-
+//! method to load a fighter with the view to edit
 void GodmodeActiveController::loadHostileNpc(){
 	loadHostileNpcWithoutView();
 	_active->print();
 	GodmodeActiveView::warningMsgActiveLoaded();
 	GodmodeActiveView::postCreationView();
 }
-
+//! method to load a fighter without the view to edit
 void GodmodeActiveController::loadFighterWithoutView() {
 	CFile theFile;
 	theFile.Open(_T("Fighter"), CFile::modeRead);
@@ -38,6 +48,7 @@ void GodmodeActiveController::loadFighterWithoutView() {
 	theFile.Close();
 }
 
+//! method to load a monster without the view to edit
 void GodmodeActiveController::loadHostileNpcWithoutView() {
 	CFile theFile;
 	theFile.Open(_T("HostileNpc"), CFile::modeRead);
@@ -50,10 +61,13 @@ void GodmodeActiveController::loadHostileNpcWithoutView() {
 	theFile.Close();
 }
 
+//! method to return a fighter  or monster created/loaded
 Active* GodmodeActiveController::getActive() {
 	return _active;
 }
 
+//! method to show view to edit fighter/monsters
+//!@param input: Either yes or No to edit fighter/monster
 void GodmodeActiveController::postCreation(bool input) {
 	if (input)
 		GodmodeActiveView::postCreationYesView();
@@ -61,6 +75,8 @@ void GodmodeActiveController::postCreation(bool input) {
 		GodmodeActiveView::saveAndQuitView(_active);  //TODO postCReationNo
 }
 
+//! method to show view to decide what to edit fighter/monsters
+//!@param input: Yes view to edit fighter/monster
 void GodmodeActiveController::postCreationYes(int input) {
 	switch (input) {
 	case 1:
@@ -78,6 +94,7 @@ void GodmodeActiveController::postCreationYes(int input) {
 	}
 }
 
+//! method to show view to edit fighter/monsters ability score
 void GodmodeActiveController::modifyAbilityScore(int abilityScore[6]) {
 	if(abilityScore[0] != -1)
 		_active->setStrength(abilityScore[0]);
@@ -100,7 +117,8 @@ void GodmodeActiveController::modifyAbilityScore(int abilityScore[6]) {
 	GodmodeActiveView::validateFighterView(_active->validateNewPlayer());
 }
 
-//TODO: CHANGE TO LOAD FROM ITEM @CARSON
+//! method to show to equip item on fighter/monsters
+//! @param item: item to equip
 void GodmodeActiveController::equipItem(char item) {
 	switch (item) {
 		case 'h':
@@ -154,6 +172,7 @@ void GodmodeActiveController::equipItem(char item) {
 	}
 }
 
+//! method to show to save and quit fighter/monsters edit
 void GodmodeActiveController::saveAndQuit(){
 	CFile theFile;
 
@@ -173,6 +192,7 @@ void GodmodeActiveController::saveAndQuit(){
 	GodmodeInteractableView::interactableFileSelectionView();
 }
 
+//! method to create or get the singleton class
 GodmodeActiveController* GodmodeActiveController::instance() {
 	if (!s_instance)
 		s_instance = new GodmodeActiveController();

@@ -1,5 +1,6 @@
 #include "GodmodeFriendlyNpcView.h"
 
+//! method to create NPC
 void GodmodeFriendlyNpcView::newFriendlyNpcView() {
 
 	string name, description, dialog;
@@ -18,11 +19,13 @@ void GodmodeFriendlyNpcView::newFriendlyNpcView() {
 	GodmodeFriendlyNpcController::instance()->newFriendlyNpc(name, description, dialog);
 }
 
+//! method to load NPC
 void GodmodeFriendlyNpcView::loadFriendlyNpcView() {
 	cout << "Loading NPC..." << endl;
 	GodmodeFriendlyNpcController::instance()->loadFriendlyNpc();
 }
 
+//! method to create another NPC or save and quit
 void GodmodeFriendlyNpcView::postCreationView(){
 	int input;
 
@@ -37,10 +40,12 @@ void GodmodeFriendlyNpcView::postCreationView(){
 	GodmodeFriendlyNpcController::instance()->postCreation(input);
 }
 
+//! method to show NPC successfully loaded
 void GodmodeFriendlyNpcView::warningMsgFriendlyNpcLoaded() {
 	cout << "NPC loaded" << endl;
 }
 
+//! method to save Npc and quit
 void GodmodeFriendlyNpcView::saveAndQuitView(FriendlyNpc* friendlyNpc){
 	friendlyNpc->print();
 	cout << "NPC successfully created!" << endl;

@@ -1,6 +1,7 @@
 #include "GodmodeInteractableView.h"
 #include <string>
 
+//! method to prompt user to load or create Interactable Fighter, Monster, NPC, Chest)
 void GodmodeInteractableView::interactableFileSelectionView() {
 	int input = 0;
 
@@ -16,7 +17,7 @@ void GodmodeInteractableView::interactableFileSelectionView() {
 	GodmodeInteractableController::instance()->interactableFileSelection(input);
 }
 
-
+//! method to prompt user to show the interactable that can be created
 void GodmodeInteractableView::interactableElementSelectionView() {
 
 	int input = 0;
@@ -34,6 +35,7 @@ void GodmodeInteractableView::interactableElementSelectionView() {
 	GodmodeInteractableController::instance()->interactableCreation(input);
 }
 
+//! method to prompt user to show the interactable that can be loaded 
 void GodmodeInteractableView::interactableLoadView() {
 	int input = 0;
 
