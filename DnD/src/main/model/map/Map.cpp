@@ -360,6 +360,7 @@ void Map::Serialize(CArchive& archive) {
 		archive >> height >> width;
 
 		map.resize(height, vector<Cell*>(width));
+		passed.resize(height, vector<bool>(width, false));
 
 		startingCell = new EntranceCell();
 		startingCell->Serialize(archive);
