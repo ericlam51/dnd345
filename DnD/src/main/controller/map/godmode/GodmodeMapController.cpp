@@ -1,8 +1,14 @@
+//! @file 
+//! @brief Implementation file for the PlayModeController
+//!
+
 #include "GodmodeMapController.h"
 #include "../../interactable/godmode/GodmodeChestController.h"
 #include "../../interactable/godmode/GodmodeActiveController.h"
 #include "../../../model/interactable/header/Fighter.h"
 
+//! Controller to receive request from GodmodeMapView::fileOptionsMenuView()
+//! @param input: user input
 void GodmodeMapController::mapFileSelection(int input) {
 	switch (input) {
 	case 1:
@@ -18,6 +24,9 @@ void GodmodeMapController::mapFileSelection(int input) {
 	}
 }
 
+//! Controller to receive request to create a new map
+//! @param height: height of map
+//! @param width: width of map
 void GodmodeMapController::newMap(int width, int height) {
 	if (width == 0 || height == 0) {
 		GodmodeMapView::warningMsgInvalidInput();
@@ -30,6 +39,10 @@ void GodmodeMapController::newMap(int width, int height) {
 	}
 }
 
+//! Controller to receive request to change a cell from the map
+//! @param y: y position of the cell
+//! @param x: x position of the Cell
+//! param charType: type of Cell. For all possible types, see CellHelper object.
 void GodmodeMapController::fillCell(int x, int y, char charType) {
 	switch (charType) {
 	case CellHelper::WALL_TYPE:
@@ -57,6 +70,8 @@ void GodmodeMapController::fillCell(int x, int y, char charType) {
 	}
 }
 
+//! Controller to receive request to edit the map in some ways
+//! @param input: user input
 void GodmodeMapController::mapOptions(int input) {
 	switch (input) {
 	case 1:
@@ -75,6 +90,7 @@ void GodmodeMapController::mapOptions(int input) {
 	}
 }
 
+//! Controller to receive request to save the map
 void GodmodeMapController::saveMap() {
 	bool valid = map->validateMap();
 
@@ -97,6 +113,7 @@ void GodmodeMapController::saveMap() {
 	GodmodeMapView::mapOptionsMenuView();
 }
 
+//! Controller to receive request to validate the map
 void GodmodeMapController::validateMap() {
 	bool valid = map->validateMap();
 
@@ -108,6 +125,7 @@ void GodmodeMapController::validateMap() {
 	GodmodeMapView::mapOptionsMenuView();
 }
 
+//! Method called by fillCell, which is turn called by the view. 
 void GodmodeMapController::setCell(int x, int y, Cell* cell) {
 	map->fillCell(x, y, cell);
 	map->print();
@@ -145,10 +163,12 @@ void GodmodeMapController::setCell(int x, int y, Cell* cell) {
 	GodmodeMapView::mapOptionsMenuView();
 }
 
+//! Controller to receive request to print the map
 void GodmodeMapController::print() {
 	map->print();
 }
 
+//! Controller to receive request to load map
 void GodmodeMapController::loadMap() {
 	CFile theFile;
 	theFile.Open(_T("Map.txt"), CFile::modeRead);

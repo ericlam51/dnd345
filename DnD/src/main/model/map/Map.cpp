@@ -1,3 +1,7 @@
+//! @file 
+//! @brief Implementation file for the Map
+//!
+
 #include "Map.h"
 #include "../../view/map/godmode/GodmodeMapView.h"
 
@@ -16,6 +20,7 @@ Map::~Map() {
 
 Map::Map() {}
 
+//! initiate the map vector
 void Map::initMap() {
 	//Init 2D array
 
@@ -35,6 +40,7 @@ void Map::initMap() {
 	passed.resize(height, vector<bool>(width, false));
 }
 
+//! Print the map
 void Map::print() {
 	cout << "=";
 	for (int i = 0; i < width; i++) {
@@ -60,6 +66,10 @@ void Map::print() {
 	cout << endl;
 }
 
+//! Change the cell on the map
+//@Param x: x position of the cell
+//@param y: y position of the cell
+//@param cell: new cell object 
 void Map::fillCell(int x, int y, Cell* cell) {
 
 	char oldType = map[y][x]->getType();
@@ -135,8 +145,11 @@ void Map::fillCell(int x, int y, Cell* cell) {
 	map[y][x] = cell;
 }
 
-
-
+//! Validates the map
+//! There is three validations happening
+//! 1. There must be an entrance and an exit cell
+//! 2. There must be a valid path between the entrance and exit cell
+//! 3. All walkable cell must be accessible from the entrance cell
 bool Map::validateMap() {
 	if (startingCell == NULL || exitCell == NULL) {
 		return false;
@@ -182,6 +195,7 @@ bool Map::isAllWalkableCellsAccessible() {
 	return valid;
 }
 
+//! Walk through every cell that is not walkable.
 bool Map::walkThroughMap(int x, int y, int prevX, int prevY) {
 	if (!passed[y][x]) {
 		passed[y][x] = true;
@@ -236,6 +250,7 @@ bool Map::walkThroughMap(int x, int y, int prevX, int prevY) {
 	return false;
 }
 
+//! Recursive method to walk through the map. If it reaches an exit cell, it will return true. If not, return false.
 bool Map::isPathValid(int x, int y, int prevX, int prevY) {
 	if (!passed[y][x]) {
 		passed[y][x] = true;
@@ -522,6 +537,7 @@ bool Map::getNextCellWalkability(char side) {
 	}
 	return map[newY][newX]->walkable();
 }
+
 //! method to validate rather the destination cell is out of bound of the map
 //!@param newX: X coordinate for the destination cell
 //!@param newY: Y coordinate for the destination cell
