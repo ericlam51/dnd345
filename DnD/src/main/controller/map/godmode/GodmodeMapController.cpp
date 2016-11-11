@@ -104,7 +104,7 @@ void GodmodeMapController::saveMap() {
 	}
 
 	CFile theFile;
-	theFile.Open(_T("Map.txt"), CFile::modeCreate | CFile::modeWrite);
+	theFile.Open(_T("Map"), CFile::modeCreate | CFile::modeWrite);
 	CArchive archive(&theFile, CArchive::store);
 
 	map->Serialize(archive);
@@ -174,7 +174,7 @@ void GodmodeMapController::print() {
 //! Controller to receive request to load map
 void GodmodeMapController::loadMap() {
 	CFile theFile;
-	theFile.Open(_T("Map.txt"), CFile::modeRead);
+	theFile.Open(_T("Map"), CFile::modeRead);
 	CArchive archive(&theFile, CArchive::load);
 
 	map = new Map();
