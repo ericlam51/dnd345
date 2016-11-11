@@ -8,6 +8,7 @@
 #include "../../../model/item/Ring.h"
 #include "../../../model/item/Shield.h"
 #include "../../../model/item/Weapon.h"
+#include "../../../view/GameModeView.h"
 
 
 class GodmodeItemController
@@ -22,6 +23,7 @@ public:
 	void loadItemInventory();
 	void loadSaveFile();
 	ItemContainer* getContainer();
+	void menuHelper(int selection);
 private:
 	ItemContainer* container;
 	GodmodeItemController();
