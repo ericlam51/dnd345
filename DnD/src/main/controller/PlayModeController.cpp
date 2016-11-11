@@ -64,9 +64,12 @@ void PlayModeController::movePlayer(char direction) {
 
 }
 
-//! method to print equipment
 void PlayModeController::printEquipment() {
-	_active->printEquipments();
+	string input;
+	//_active->printEquipments();
+	_active->print();
+	cout << "Type anything to exit" << endl;
+	cin >> input;
 }
 
 //!method to load fighter
