@@ -120,6 +120,8 @@ void GodmodeActiveController::modifyAbilityScore(int abilityScore[6]) {
 //! method to show to equip item on fighter/monsters
 //! @param item: item to equip
 void GodmodeActiveController::equipItem(char item) {
+	GodmodeItemController::instance()->loadSaveFile();
+
 	switch (item) {
 		case 'h':
 		{

@@ -85,6 +85,12 @@ void GodmodeItemController::saveItemInventory()
 
 void GodmodeItemController::loadItemInventory()
 {
+	loadSaveFile();
+
+	GodmodeItemView::itemOptionSelection();
+}
+
+void GodmodeItemController::loadSaveFile() {
 	CFile theFile;
 	theFile.Open(_T("ItemInventory"), CFile::modeRead);
 	CArchive archive(&theFile, CArchive::load);
@@ -96,8 +102,6 @@ void GodmodeItemController::loadItemInventory()
 
 	archive.Close();
 	theFile.Close();
-
-	GodmodeItemView::itemOptionSelection();
 }
 
 ItemContainer* GodmodeItemController::getContainer() {

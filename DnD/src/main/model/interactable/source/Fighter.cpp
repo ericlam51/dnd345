@@ -8,7 +8,7 @@ using namespace std;
 
 IMPLEMENT_SERIAL(Fighter, CObject, 1)
 
-Fighter::Fighter() {}
+Fighter::Fighter() : Active() {}
 
 Fighter::Fighter(string name, string description, int level) : Active(name, description, level) {
 }
@@ -31,13 +31,18 @@ void Fighter::Serialize(CArchive& archive) {
 		archive << cName << cDescription << level << currentHitPoints
 			<< armorClass << attackBonus << damageBonus
 			<< abilityScores[0] << abilityScores[1] << abilityScores[2]
-			<< abilityScores[3] << abilityScores[4] << abilityScores[5]; //TODO serialize item
+			<< abilityScores[3] << abilityScores[4] << abilityScores[5];
+		
+		_equippedItems->Serialize(archive);
+
 	}
 	else {
 		archive >> cName >> cDescription >> level >> currentHitPoints
 			>> armorClass >> attackBonus >> damageBonus
 			>> abilityScores[0] >> abilityScores[1] >> abilityScores[2]
 			>> abilityScores[3] >> abilityScores[4] >> abilityScores[5];
+
+		_equippedItems->Serialize(archive);
 
 		name = ((LPCTSTR)cName);
 		description = ((LPCTSTR)cDescription);
