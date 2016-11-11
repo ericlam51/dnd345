@@ -21,6 +21,8 @@ public:
 	vector<Item*> getItemsOfType(int);
 	void saveItemInventory();
 	void loadItemInventory();
+	void loadSaveFile();
+	ItemContainer* getContainer();
 	void menuHelper(int selection);
 private:
 	ItemContainer* container;

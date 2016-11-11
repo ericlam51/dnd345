@@ -11,13 +11,14 @@ public:
 	//fix implementation so can only add items that are part of item container
 	EquippedItems();
 	~EquippedItems();
-	map<string, Item*> equipped;
+	//map<string, Item*> equipped;
 	void equipItem(Item*);
 	void removeItem(string);
+	ItemContainer* getEquipped();
 	Item* getItem(string);
 	DECLARE_SERIAL(EquippedItems)
 	void Serialize(CArchive& archive);
 private:
-	ItemContainer* inventory;
+	ItemContainer* equipped;
 };
 
