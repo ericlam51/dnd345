@@ -46,7 +46,7 @@ void PlayModeController::movePlayer(char direction) {
 	bool validateInteractable = map->getNextCellInteractibility(direction);
 	if (validateInteractable) {
 		int input = 0;
-		while (input < 0 || input >2) {
+		while (input < 1 || input >2) {
 			cout << "Do you want to interact with the cell?" << endl
 				<< "1. Yes" << endl
 				<< "2. No" << endl;
