@@ -9,6 +9,9 @@ void GodmodeInteractableController::interactableFileSelection(int input) {
 	case 2:
 		GodmodeInteractableView::interactableLoadView();
 		break;
+	case 3:
+		GameModeView::displayView(3);
+		break;
 	default:
 		GodmodeInteractableView::interactableFileSelectionView();
 		break;

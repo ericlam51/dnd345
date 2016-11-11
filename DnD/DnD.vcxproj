@@ -210,6 +210,9 @@
     <ClInclude Include="src\main\controller\item\godmode\GodmodeItemController.h" />
     <ClInclude Include="src\main\controller\PlayModeController.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

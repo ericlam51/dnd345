@@ -14,6 +14,7 @@ void GodmodeMapView::fileOptionsMenuView() {
 	cout << "------------------------------" << endl
 		<< "1. New map" << endl
 		<< "2. Load map" << endl
+		<< "3. Return to Selection menu" << endl
 		<< "Selection: ";
 	
 	cin >> input;

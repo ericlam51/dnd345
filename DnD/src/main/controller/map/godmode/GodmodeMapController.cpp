@@ -17,6 +17,9 @@ void GodmodeMapController::mapFileSelection(int input) {
 	case 2:
 		s_instance->loadMap();
 		break;
+	case 3:
+		GameModeView::displayView(3);
+		break;
 	default: 
 		GodmodeMapView::warningMsgInvalidInput();
 		GodmodeMapView::fileOptionsMenuView();
