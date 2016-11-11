@@ -1,19 +1,25 @@
-#include "PlayModeController.h"
+//! @file 
+//! @brief Implementation file for the PlayModeController
+//!
 
+#include "PlayModeController.h"
+//! Constructor for the singleton PlayModeController 
 PlayModeController* PlayModeController::instance() {
 	if (!s_instance)
 		s_instance = new PlayModeController();
 
 	return s_instance;
 }
-
+// Initialize the singleton instance
 PlayModeController* PlayModeController::s_instance = PlayModeController::instance();
 
+//! method to load the game
 void PlayModeController :: loadGame() {
 	PlayModeController::loadMap();
 	PlayModeController::loadFighter();
 }
 
+//! method to load the map
 void PlayModeController::loadMap() {
 	CFile theFile;
 	theFile.Open(_T("Map.txt"), CFile::modeRead);
@@ -28,14 +34,19 @@ void PlayModeController::loadMap() {
 	map->startMap(_active);
 
 }
+
+//! method to print the map
 void PlayModeController::printMap() {
 	map->print();
 }
+
+//! method to move the player
+//!@param direction: a character that represents the direction the player is moving toward, U for Up, L for Left, R for Right, and D for Down
 void PlayModeController::movePlayer(char direction) {
 	bool validateInteractable = map->getNextCellInteractibility(direction);
 	if (validateInteractable) {
 		int input = 0;
-		while (input < 0 || input >2) {
+		while (input < 1 || input >2) {
 			cout << "Do you want to interact with the cell?" << endl
 				<< "1. Yes" << endl
 				<< "2. No" << endl;
@@ -53,11 +64,12 @@ void PlayModeController::movePlayer(char direction) {
 
 }
 
-
+//! method to print equipment
 void PlayModeController::printEquipment() {
 	_active->printEquipments();
 }
 
+//!method to load fighter
 void PlayModeController::loadFighter() {
 	CFile theFile;
 	theFile.Open(_T("Fighter"), CFile::modeRead);

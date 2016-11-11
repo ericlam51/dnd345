@@ -522,7 +522,10 @@ bool Map::getNextCellWalkability(char side) {
 	}
 	return map[newY][newX]->walkable();
 }
-
+//! method to validate rather the destination cell is out of bound of the map
+//!@param newX: X coordinate for the destination cell
+//!@param newY: Y coordinate for the destination cell
+//!@return: a boolean representing rather if the destination cell is out of bound (true) or not (false)
 bool Map::validateOutofBound(int newX, int newY) {
 	if (newX < 0 || newY < 0 || newX > this->width - 1 || newY > this->width - 1) {
 		return false;
