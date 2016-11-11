@@ -86,6 +86,9 @@ void GodmodeMapController::mapOptions(int input) {
 	case 3:
 		GodmodeMapController::instance()->saveMap();
 		break;
+	case 4:
+		GameModeView::displayView(3);
+		break;
 	default:
 		GodmodeMapView::warningMsgInvalidInput();
 		GodmodeMapView::mapOptionsMenuView();
