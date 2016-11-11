@@ -399,7 +399,7 @@ void Map::movePlayer(char side) {
 	switch (side) {
 	case 'U':
 		newX = currentX;
-		newY = currentY+1;
+		newY = currentY-1;
 		break;
 	case 'R': 
 		newX = currentX+1;
@@ -407,7 +407,7 @@ void Map::movePlayer(char side) {
 		break;
 	case 'D': 
 		newX = currentX;
-		newY = currentY-1; 
+		newY = currentY+1; 
 		break;
 	case 'L': 
 		newX = currentX-1;
@@ -431,7 +431,7 @@ void Map::interact(char side) {
 	switch (side) {
 	case 'U':
 		newX = currentX;
-		newY = currentY + 1;
+		newY = currentY - 1;
 		break;
 	case 'R':
 		newX = currentX + 1;
@@ -439,7 +439,7 @@ void Map::interact(char side) {
 		break;
 	case 'D':
 		newX = currentX;
-		newY = currentY - 1;
+		newY = currentY + 1;
 		break;
 	case 'L':
 		newX = currentX - 1;
@@ -473,7 +473,7 @@ bool Map::getNextCellInteractibility(char side) {
 	switch (side) {
 	case 'U':
 		newX = currentX;
-		newY = currentY + 1;
+		newY = currentY - 1;
 		break;
 	case 'R':
 		newX = currentX + 1;
@@ -481,14 +481,16 @@ bool Map::getNextCellInteractibility(char side) {
 		break;
 	case 'D':
 		newX = currentX;
-		newY = currentY - 1;
+		newY = currentY + 1;
 		break;
 	case 'L':
 		newX = currentX - 1;
 		newY = currentY;
 		break;
 	}
-
+	if (!Map::validateOutofBound(newX, newY)) {
+		return false;
+	}
 	return map[newY][newX]->interactable();
 }
 
@@ -500,7 +502,7 @@ bool Map::getNextCellWalkability(char side) {
 	switch (side) {
 	case 'U':
 		newX = currentX;
-		newY = currentY + 1;
+		newY = currentY - 1;
 		break;
 	case 'R':
 		newX = currentX + 1;
@@ -508,13 +510,21 @@ bool Map::getNextCellWalkability(char side) {
 		break;
 	case 'D':
 		newX = currentX;
-		newY = currentY - 1;
+		newY = currentY + 1;
 		break;
 	case 'L':
 		newX = currentX - 1;
 		newY = currentY;
 		break;
 	}
-
+	if (!Map::validateOutofBound(newX, newY)) {
+		return false;
+	}
 	return map[newY][newX]->walkable();
+}
+
+bool Map::validateOutofBound(int newX, int newY) {
+	if (newX < 0 || newY < 0 || newX > this->width - 1 || newY > this->width - 1) {
+		return false;
+	}
 }

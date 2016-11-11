@@ -14,6 +14,7 @@ public:
 	static void viewItemByType();
 	static void viewAllItems();
 	static void removeItem();
+	static void itemOptionSelection();
 private:
 	static void displayItemHelper(int);
 };

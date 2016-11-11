@@ -33,7 +33,7 @@ private:
 	EntranceCell* startingCell = NULL;
 	ExitCell* exitCell = NULL;
 	vector<vector<bool>> passed;
-	
+	bool validateOutofBound(int x, int y);
 	void initMap();
 	void resetPassed();
 	bool isPathValid(int x, int y, int prevX, int prevY);

@@ -114,6 +114,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\main\controller\item\godmode\GodmodeItemController.h" />
+    <ClInclude Include="src\main\controller\PlayModeController.h" />
     <ClInclude Include="src\main\controller\interactable\godmode\GodmodeActiveController.h" />
     <ClInclude Include="src\main\controller\interactable\godmode\GodmodeChestController.h" />
     <ClInclude Include="src\main\controller\interactable\godmode\GodmodeFriendlyNpcController.h" />
@@ -144,6 +146,7 @@
     <ClInclude Include="src\main\view\interactable\godmode\GodmodeFriendlyNpcView.h" />
     <ClInclude Include="src\main\view\interactable\godmode\GodmodeHostileNpcView.h" />
     <ClInclude Include="src\main\view\interactable\godmode\GodmodeInteractableView.h" />
+    <ClInclude Include="src\main\view\item\godmode\GodmodeItemView.h" />
     <ClInclude Include="src\main\view\map\godmode\GodmodeMapView.h" />
     <ClInclude Include="src\main\controller\map\godmode\GodmodeMapController.h" />
     <ClInclude Include="src\main\model\interactable\Character.h" />
@@ -157,6 +160,8 @@
     <ClInclude Include="src\main\model\map\WallCell.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\main\controller\item\godmode\GodmodeItemController.cpp" />
+    <ClCompile Include="src\main\controller\PlayModeController.cpp" />
     <ClCompile Include="src\main\controller\interactable\godmode\GodmodeActiveController.cpp" />
     <ClCompile Include="src\main\controller\interactable\godmode\GodmodeChestController.cpp" />
     <ClCompile Include="src\main\controller\interactable\godmode\GodmodeFriendlyNpcController.cpp" />
@@ -194,6 +199,7 @@
     <ClCompile Include="src\main\view\interactable\godmode\GodmodeFriendlyNpcView.cpp" />
     <ClCompile Include="src\main\view\interactable\godmode\GodmodeHostileNpcView.cpp" />
     <ClCompile Include="src\main\view\interactable\godmode\GodmodeInteractableView.cpp" />
+    <ClCompile Include="src\main\view\item\godmode\GodmodeItemView.cpp" />
     <ClCompile Include="src\main\view\map\godmode\GodmodeMapView.cpp" />
     <ClCompile Include="src\main\Main.cpp" />
     <ClCompile Include="src\main\model\map\WallCell.cpp" />
