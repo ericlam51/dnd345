@@ -48,8 +48,32 @@ void GodmodeItemController::addItem(int selection, string name)
 			GodmodeItemController::instance()->container->addItem(item);
 			break;
 	}
-
 	GodmodeItemView::itemOptionSelection();
+
+}
+
+void GodmodeItemController::menuHelper(int input)
+{
+	switch (input) {
+	case 1:
+		GodmodeItemView::createItem();
+		break;
+	case 2:
+		GodmodeItemView::viewItemByType();
+		break;
+	case 3:
+		GodmodeItemView::removeItem();
+		break;
+	case 4:
+		GodmodeItemView::saveItemInventory();
+		break;
+	case 5:
+		GodmodeItemView::loadItemInventory();
+		break;
+	case 6:
+		GameModeView::displayView(3);
+		break;
+	}
 }
 
 //! method that handles user input to remove an item from the item container
@@ -59,6 +83,8 @@ void GodmodeItemController::removeItem(string type, int index)
 {
 	Item* item = container->getItem(type, index - 1);
 	container->removeItem(item);
+	GodmodeItemView::itemOptionSelection();
+
 }
 
 //! method that returns a vector of the specific item type

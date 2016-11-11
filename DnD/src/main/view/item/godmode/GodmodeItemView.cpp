@@ -47,6 +47,7 @@ void GodmodeItemView::viewItemByType()
 	} while (selection < 1 || selection > 6);
 
 	GodmodeItemView::displayItemHelper(selection);
+	GodmodeItemView::itemOptionSelection();
 }
 
 void GodmodeItemView::viewAllItems()
@@ -126,40 +127,21 @@ void GodmodeItemView::displayItemHelper(int selection)
 			cout << "Item name: " << (*it)->getItemName() << endl;
 		}
 	}
-
-	//TODO: Robby change
-	int in;
-	cin >> in;
 }
 
 void GodmodeItemView::itemOptionSelection() {
 	int input = 0;
-	while (input < 1 || input > 5) {
+	while (input < 1 || input > 6) {
 		cout << "------------------------------" << endl
 			<< "1. New item" << endl
 			<< "2. View item" << endl
 			<< "3. Destroy item" << endl
 			<< "4. Save item container" << endl
 			<< "5. Load item container" << endl
+			<< "6. Return to Selection menu" << endl
 			<< "------------------------------" << endl;
 		cin >> input;
 		system("cls");
 	}
-	switch (input) {
-	case 1:
-		createItem();
-		break;
-	case 2:
-		viewItemByType();
-		break;
-	case 3:
-		removeItem();
-		break;
-	case 4:
-		saveItemInventory();
-		break;
-	case 5:
-		loadItemInventory();
-		break;
-	}
+	GodmodeItemController::instance()->menuHelper(input);
 }
