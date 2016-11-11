@@ -1,5 +1,6 @@
 #include "Item.h"
 
+IMPLEMENT_SERIAL(Item, CObject, 1)
 
 //! constructor that initializes the item type and the name of the item if the item type is valid
 //! @param itemType: the type of item to be created
