@@ -95,6 +95,7 @@ vector<Item*> GodmodeItemController::getItemsOfType(int selection)
 	return GodmodeItemController::instance()->container->getItemsOfType(ItemTypes[selection - 1]);
 }
 
+//! method that serializes the item inventory
 void GodmodeItemController::saveItemInventory()
 {
 	CFile theFile;
@@ -109,6 +110,7 @@ void GodmodeItemController::saveItemInventory()
 	GodmodeItemView::itemOptionSelection();
 }
 
+//! method that loads a serialized item inventory
 void GodmodeItemController::loadItemInventory()
 {
 	CFile theFile;

@@ -2,6 +2,7 @@
 
 IMPLEMENT_SERIAL(EquippedItems, CObject, 1)
 
+//! default constructor that initializes a map with the item types as keys with an empty value
 EquippedItems::EquippedItems()
 {
 	for (int i = 0; i <= HELMET; i++) 
@@ -15,6 +16,8 @@ EquippedItems::~EquippedItems()
 {
 }
 
+//! Add an item to the equipped items if nothing of that item type is equipped
+//! @param item: item to be equipped
 void EquippedItems::equipItem(Item * item)
 {
 	if(equipped.at(item->type) == NULL)
@@ -23,6 +26,8 @@ void EquippedItems::equipItem(Item * item)
 	}
 }
 
+//! Remove an item from the equipped items map
+//! @param itemType: the type of item that will be removed
 void EquippedItems::removeItem(string itemType)
 {
 	if (equipped.at(itemType) != NULL)
@@ -31,12 +36,15 @@ void EquippedItems::removeItem(string itemType)
 	}
 }
 
+//! Get an equipped item by item type
+//! @param itemType: the type of item to be retrieved
+//! @return an item with the specified item
 Item * EquippedItems::getItem(string itemType)
 {
-	//TODO: check proper item type
 	return equipped[itemType];
 }
 
+//! Serialize an equipped item container
 void EquippedItems::Serialize(CArchive & archive)
 {
 	// call base class function first

@@ -66,6 +66,7 @@ vector<Item*> ItemContainer::getItemsOfType(string type)
 	return items[type];
 }
 
+//! serialize an item container
 void ItemContainer::Serialize(CArchive & archive)
 {
 	// call base class function first

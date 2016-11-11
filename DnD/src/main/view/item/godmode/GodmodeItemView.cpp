@@ -1,5 +1,6 @@
 #include "GodmodeItemView.h"
 
+//! Displays the options of which item to create
 void GodmodeItemView::createItem()
 {
 	int selection = 0;
@@ -26,6 +27,7 @@ void GodmodeItemView::createItem()
 	GodmodeItemController::instance()->addItem(selection, name);
 }
 
+//! Displays to user which items of type to view
 void GodmodeItemView::viewItemByType()
 {
 	int selection = 0;
@@ -50,6 +52,7 @@ void GodmodeItemView::viewItemByType()
 	GodmodeItemView::itemOptionSelection();
 }
 
+//! Displays all items in container
 void GodmodeItemView::viewAllItems()
 {
 	cout << "All items: " << endl;
@@ -60,6 +63,7 @@ void GodmodeItemView::viewAllItems()
 	}
 }
 
+//! Displays to user which item to remove
 void GodmodeItemView::removeItem()
 {
 	int selection, itemToDelete; 
@@ -99,16 +103,19 @@ void GodmodeItemView::removeItem()
 	}
 }
 
+//! View option to save an item inventory
 void GodmodeItemView::saveItemInventory()
 {
 	GodmodeItemController::instance()->saveItemInventory();
 }
 
+//! View option to load an item inventory
 void GodmodeItemView::loadItemInventory()
 {
 	GodmodeItemController::instance()->loadItemInventory();
 }
 
+//! Displays all item of a specific type
 void GodmodeItemView::displayItemHelper(int selection) 
 {
 	vector<Item*> itemsSelected = GodmodeItemController::instance()->getItemsOfType(selection);
@@ -129,6 +136,7 @@ void GodmodeItemView::displayItemHelper(int selection)
 	}
 }
 
+//! Item menu interface
 void GodmodeItemView::itemOptionSelection() {
 	int input = 0;
 	while (input < 1 || input > 6) {
