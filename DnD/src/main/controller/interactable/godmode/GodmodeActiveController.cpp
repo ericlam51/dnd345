@@ -123,28 +123,28 @@ void GodmodeActiveController::equipItem(char item) {
 	switch (item) {
 		case 'h':
 		{
-			Helmet* helmet = new Helmet("Helmet");
+			Item* helmet = GodmodeItemController::instance()->getContainer()->getItem("HELMET", 0);
 			_active->equipItem(helmet);
 			cout << "successfully equipped" << endl;
 		}
 		break;
 		case 'a':
 		{
-			Armor* armor = new Armor("Armor");
+			Item* armor = GodmodeItemController::instance()->getContainer()->getItem("ARMOR", 0);
 			_active->equipItem(armor);
 			cout << "successfully equipped" << endl;
 		}
 		break;
 		case 's':
 		{
-			Shield* shield = new Shield("Shield");
+			Item* shield = GodmodeItemController::instance()->getContainer()->getItem("SHIELD", 0);
 			_active->equipItem(shield);
 			cout << "successfully equipped" << endl;
 		}
 		break;
 		case 'r':
 		{
-			Ring* ring = new Ring("Ring");
+			Item* ring = GodmodeItemController::instance()->getContainer()->getItem("RING", 0);
 			_active->equipItem(ring);
 			cout << "successfully equipped" << endl;
 		}
@@ -155,14 +155,14 @@ void GodmodeActiveController::equipItem(char item) {
 		//	break;
 		case 'j':
 		{
-			Boots* boots = new Boots("Boots");
+			Item* boots = GodmodeItemController::instance()->getContainer()->getItem("BOOTS", 0);
 			_active->equipItem(boots);
 			cout << "successfully equipped" << endl;
 		}
 		break;
 		case 'w':
 		{
-			Weapon* weapon = new Weapon("Weapon");
+			Item* weapon = GodmodeItemController::instance()->getContainer()->getItem("WEAPON", 0);
 			_active->equipItem(weapon);
 			cout << "successfully equipped" << endl;
 		}
