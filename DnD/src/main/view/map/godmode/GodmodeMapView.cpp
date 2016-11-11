@@ -1,8 +1,13 @@
+//! @file 
+//! @brief Implementation file for GodmodeMapView
+//!
+
 #include "GodmodeMapView.h"
 
 /* https://stackoverflow.com/questions/1904635/warning-c4003-and-errors-c2589-and-c2059-on-x-stdnumeric-limitsintmax/28102459#28102459 */
 #undef max
 
+//! Show options to load or create map
 void GodmodeMapView::fileOptionsMenuView() {
 	int input = 0;
 
@@ -21,6 +26,7 @@ void GodmodeMapView::fileOptionsMenuView() {
 	GodmodeMapController::instance()->mapFileSelection(input);
 }
 
+//! Ask user for map parameters creation
 void GodmodeMapView::mapCreationInputView() {
 	int width = 0, height = 0;
 
@@ -43,18 +49,7 @@ void GodmodeMapView::mapCreationInputView() {
 	GodmodeMapController::instance()->newMap(width, height);
 }
 
-void GodmodeMapView::warningMsgInvalidInput() {
-	cout << "Invalid input!" << endl;
-}
-
-void GodmodeMapView::warningMsgChangingEntranceCell() {
-	cout << "The previous entrance cell has been removed." << endl;
-}
-
-void GodmodeMapView::warningMsgChangingExitCell() {
-	cout << "The previous exit cell has been removed." << endl;
-}
-
+//! Show options to edit the map
 void GodmodeMapView::mapOptionsMenuView() {
 	int input;
 
@@ -74,17 +69,7 @@ void GodmodeMapView::mapOptionsMenuView() {
 	GodmodeMapController::instance()->mapOptions(input);
 }
 
-void GodmodeMapView::warningMsgInvalidMap() {
-	cout << "The map is invalid. To be a valid map, it must"
-		<< "have an entrance and an exit cell, have a valid path between those two points"
-		<< "and have all walkable cells be reachable (that is, all non-wall type)"
-		<< endl;
-}
-
-void GodmodeMapView::warningMsgValidMap() {
-	cout << "This is a valid map." << endl;
-}
-
+//! Show options to fill a cell on the map
 void GodmodeMapView::mapFillOptionsMenuView() {
 	int x, y;
 	int option;
@@ -125,6 +110,32 @@ void GodmodeMapView::mapFillOptionsMenuView() {
 	default: cout << "Invalid input"; break;
 	}
 }
+
+/* WARNING MESSAGES */
+
+void GodmodeMapView::warningMsgInvalidInput() {
+	cout << "Invalid input!" << endl;
+}
+
+void GodmodeMapView::warningMsgChangingEntranceCell() {
+	cout << "The previous entrance cell has been removed." << endl;
+}
+
+void GodmodeMapView::warningMsgChangingExitCell() {
+	cout << "The previous exit cell has been removed." << endl;
+}
+
+void GodmodeMapView::warningMsgInvalidMap() {
+	cout << "The map is invalid. To be a valid map, it must"
+		<< "have an entrance and an exit cell, have a valid path between those two points"
+		<< "and have all walkable cells be reachable (that is, all non-wall type)"
+		<< endl;
+}
+
+void GodmodeMapView::warningMsgValidMap() {
+	cout << "This is a valid map." << endl;
+}
+
 
 void GodmodeMapView::warningMsgMapSaved() {
 	cout << "Map saved" << endl;
