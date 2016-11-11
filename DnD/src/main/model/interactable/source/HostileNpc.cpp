@@ -13,6 +13,7 @@ HostileNpc::~HostileNpc() {}
 
 void HostileNpc::interact(){
 	cout << "interact with hostile npc" << endl;
+	Sleep(1000);
 }
 
 void HostileNpc::Serialize(CArchive& archive) {

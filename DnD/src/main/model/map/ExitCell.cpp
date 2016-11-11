@@ -1,4 +1,7 @@
 #include "ExitCell.h"
+#include <iostream>
+
+using namespace std;
 
 IMPLEMENT_SERIAL(ExitCell, CObject, 1)
 
@@ -34,5 +37,7 @@ void ExitCell::Serialize(CArchive& archive) {
 }
 
 void ExitCell::interact() {
-
+	cout << "You have reached the exit!";
+	Sleep(1000);
+	exit(1);
 }
