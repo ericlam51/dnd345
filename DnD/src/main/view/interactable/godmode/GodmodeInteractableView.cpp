@@ -10,6 +10,7 @@ void GodmodeInteractableView::interactableFileSelectionView() {
 	cout << "Interactable (Fighter, Monster, NPC, Chest)" << endl;
 	cout << "1. New Interactable" << endl
 		<< "2. Load Interactable" << endl
+		<< "3. Return to Selection menu" << endl
 		<< "Selection: ";
 
 	cin >> input;

@@ -7,7 +7,7 @@
 using namespace std;
 //! method to display the main menu option
 void GameModeView::printMainMenu() {
-	cout << "HEllo, welcome to Dungeon and Dragon!" << endl;
+	cout << "Hello, welcome to Dungeon and Dragon!" << endl;
 	cout << "Select the mode:" << endl;
 	cout << "1. Play mode" << endl;
 	cout << "2. God mode" << endl;
