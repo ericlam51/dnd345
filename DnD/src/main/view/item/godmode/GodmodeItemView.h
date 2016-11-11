@@ -15,6 +15,8 @@ public:
 	static void viewAllItems();
 	static void removeItem();
 	static void itemOptionSelection();
+	static void saveItemInventory();
+	static void loadItemInventory();
 private:
 	static void displayItemHelper(int);
 };
