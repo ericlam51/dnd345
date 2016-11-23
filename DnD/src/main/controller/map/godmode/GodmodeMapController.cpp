@@ -36,6 +36,9 @@ void GodmodeMapController::newMap(int width, int height) {
 		GodmodeMapView::mapCreationInputView();
 	}
 	else {
+		if (map != NULL)
+			delete map;
+
 		map = new Map(width, height);
 		map->print();
 		GodmodeMapView::mapOptionsMenuView();

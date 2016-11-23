@@ -15,7 +15,11 @@ Map::Map(int width, int height) {
 }
 
 Map::~Map() {
-	//TODO
+	for (int y = 0; y < height; y++) {
+		for (int x = 0; x < width; x++) {
+			delete map[y][x];
+		}
+	}
 }
 
 Map::Map() {}
