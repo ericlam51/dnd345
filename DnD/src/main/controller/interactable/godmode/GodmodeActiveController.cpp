@@ -72,7 +72,7 @@ void GodmodeActiveController::postCreation(bool input) {
 	if (input)
 		GodmodeActiveView::postCreationYesView();
 	else
-		GodmodeActiveView::saveAndQuitView(_active);  //TODO postCReationNo
+		GodmodeActiveController::saveAndQuit();  //TODO postCReationNo
 }
 
 //! method to show view to decide what to edit fighter/monsters
@@ -86,7 +86,7 @@ void GodmodeActiveController::postCreationYes(int input) {
 		GodmodeActiveView::equipItemView();
 		break;
 	case 3:
-		GodmodeActiveView::saveAndQuitView(_active);
+		GodmodeActiveController::saveAndQuit();
 			break;
 	default:
 		GodmodeInteractableView::interactableElementSelectionView();
@@ -188,12 +188,17 @@ void GodmodeActiveController::saveAndQuit(){
 
 	archive.Close();
 	theFile.Close();
-
-	//delete _active;
-	//_active = NULL;
+	cout << " successfully created" << endl;
+	_active->print();
+	_active->printEquipments();
+	resetGodmodeActiveController();
 	GodmodeInteractableView::interactableFileSelectionView();
 }
 
+void GodmodeActiveController::resetGodmodeActiveController() {
+	delete _active;
+	_active = NULL;
+}
 //! method to create or get the singleton class
 GodmodeActiveController* GodmodeActiveController::instance() {
 	if (!s_instance)

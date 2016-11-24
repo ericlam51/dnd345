@@ -11,7 +11,7 @@ class GodmodeChestController {
 	static GodmodeChestController *s_instance;
 
 private:
-	Chest* _chest;
+	Chest* _chest = NULL;
 public:
 	static GodmodeChestController* instance();
 	void newChest(string name, string description);
@@ -21,4 +21,5 @@ public:
 
 	void postCreation(int input);
 	void saveAndQuit();
+	void resetGodmodeChestController();
 };

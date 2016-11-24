@@ -19,5 +19,6 @@ public:
 	FriendlyNpc* getFriendlyNpc();
 	void postCreation(int input);
 	void saveAndQuit();
+	void resetGodmodeFriendlyNpcController();
 	static GodmodeFriendlyNpcController* instance();
 };
