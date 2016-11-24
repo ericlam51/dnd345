@@ -14,6 +14,7 @@ EquippedItems::EquippedItems()
 
 EquippedItems::~EquippedItems()
 {
+	delete equipped;
 }
 
 void EquippedItems::equipItem(Item * item)
