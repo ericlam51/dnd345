@@ -9,11 +9,13 @@ IMPLEMENT_SERIAL(Active, CObject, 1)
 
 Active::Active(){
 	_equippedItems = new EquippedItems();
+	_diceLogger = new DiceLogger();
 }
 
 Active::Active(string name, string description, int level) : Interactable(name, description), level(level){
-	for (int i = 0; i < 5; i++)
-		abilityScores[i] = generateRandomNumber(3, 18);
+	_diceLogger = new DiceLogger();
+	for (int i = 0; i <= 5; i++)
+		abilityScores[i] = Dice::instance()->roll(3, 6, 0);
 
 	_equippedItems = new EquippedItems();
 	_itemContainer = new ItemContainer();
@@ -54,7 +56,7 @@ int Active::getAbilityModifier(int abilityScore) {
 }
 
 int Active::calculateHitPoints() {
-	return generateRandomNumber(level, 10 * level) + getAbilityModifier(abilityScores[2]);
+	return Dice::instance()->roll(level, 10, 0) + getAbilityModifier(abilityScores[2]);
 }
 
 int Active::calculateAttackBonus() {
@@ -67,11 +69,6 @@ int Active::calculateArmorClass() {
 
 int Active::calculateBonusAbilityScore() {
 	return (level % 4); //Players receive +1 ability score per 4 levels
-}
-//Generated a number between max and min
-int Active::generateRandomNumber(int min, int max) {
-	/* initialize random seed: */
-	return rand() % (max - min + 1) + min;
 }
 
 void Active::equipItem(Item* item) {

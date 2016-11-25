@@ -8,10 +8,12 @@ void GodmodeHostileNpcView::newHostileNpctView() {
 	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	cout << "Enter monster's name: " << endl;
-	cin >> name;
+	cin.ignore();
+	getline(cin, description);
 
 	cout << "Enter monster's description: " << endl;
-	cin >> description;
+	cin.ignore();
+	getline(cin, description);
 
 	cout << "Enter monster's level: " << endl;
 	cin >> level;
