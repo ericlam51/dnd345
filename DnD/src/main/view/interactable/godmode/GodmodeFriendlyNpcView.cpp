@@ -8,13 +8,16 @@ void GodmodeFriendlyNpcView::newFriendlyNpcView() {
 	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	cout << "Enter NPC's name: " << endl;
-	cin >> name;
+	cin.ignore();
+	getline(cin, description);
 
 	cout << "Enter NPC's description: " << endl;
-	cin >> description;
+	cin.ignore();
+	getline(cin, description);
 
 	cout << "Enter NPC's dialog: " << endl;
-	cin >> dialog;
+	cin.ignore();
+	getline(cin, description);
 
 	GodmodeFriendlyNpcController::instance()->newFriendlyNpc(name, description, dialog);
 }

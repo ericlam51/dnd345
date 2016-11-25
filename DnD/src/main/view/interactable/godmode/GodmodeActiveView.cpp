@@ -27,10 +27,12 @@ void GodmodeActiveView::newActiveView(int type) {
 		typeStr = "Monster";
 
 	cout << "Enter " << typeStr <<"'s name: " << endl;
-	cin >> name;
+	cin.ignore();
+	getline(cin, name);
 
 	cout << "Enter " << typeStr <<"'s description: " << endl;
-	cin >> description;
+	cin.ignore();
+	getline(cin, description);
 
 	cout << "Enter " << typeStr <<"'s level: " << endl;
 	cin >> level;

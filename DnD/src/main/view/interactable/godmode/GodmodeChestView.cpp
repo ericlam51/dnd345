@@ -8,10 +8,12 @@ void GodmodeChestView::newChestView() {
 	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	cout << "Enter chest's name: " << endl;
-	cin >> name;
+	cin.ignore();
+	getline(cin, description);
 
 	cout << "Enter chest's description: " << endl;
-	cin >> description;
+	cin.ignore();
+	getline(cin, description);
 
 	GodmodeChestController::instance()->newChest(name, description);
 }
