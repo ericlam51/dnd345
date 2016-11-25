@@ -48,6 +48,7 @@ void GodmodeItemController::addItem(int selection, string name)
 			GodmodeItemController::instance()->container->addItem(item);
 			break;
 	}
+	GodmodeItemView::successfulAction();
 	GodmodeItemView::itemOptionSelection();
 
 }
@@ -83,8 +84,8 @@ void GodmodeItemController::removeItem(string type, int index)
 {
 	Item* item = container->getItem(type, index - 1);
 	container->removeItem(item);
+	GodmodeItemView::successfulAction();
 	GodmodeItemView::itemOptionSelection();
-
 }
 
 //! method that returns a vector of the specific item type
@@ -107,6 +108,7 @@ void GodmodeItemController::saveItemInventory()
 	archive.Close();
 	theFile.Close();
 
+	GodmodeItemView::successfulAction();
 	GodmodeItemView::itemOptionSelection();
 }
 
@@ -115,6 +117,7 @@ void GodmodeItemController::loadItemInventory()
 {
 	loadSaveFile();
 
+	GodmodeItemView::successfulAction();
 	GodmodeItemView::itemOptionSelection();
 }
 

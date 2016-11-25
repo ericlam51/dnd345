@@ -6,17 +6,19 @@ void GodmodeItemView::createItem()
 	int selection = 0;
 	string name;
 
-	cout << "Item creation menu" << endl;
-	cout << endl << "Select the type of item you would like to create" << endl;
-	cout << "1. " << ItemTypes[ARMOR] << endl;
-	cout << "2. " << ItemTypes[SHIELD] << endl;
-	cout << "3. " << ItemTypes[WEAPON] << endl;
-	cout << "4. " << ItemTypes[BOOTS] << endl;
-	cout << "5. " << ItemTypes[RING] << endl;
-	cout << "6. " << ItemTypes[HELMET] << endl;
-
 	do
 	{
+		system("cls");
+		cout << "Item creation menu" << endl;
+		cout << endl << "Select the type of item you would like to create" << endl;
+		cout << "1. " << ItemTypes[ARMOR] << endl;
+		cout << "2. " << ItemTypes[SHIELD] << endl;
+		cout << "3. " << ItemTypes[WEAPON] << endl;
+		cout << "4. " << ItemTypes[BOOTS] << endl;
+		cout << "5. " << ItemTypes[RING] << endl;
+		cout << "6. " << ItemTypes[HELMET] << endl;
+
+		cout << "Input [1,6] : ";
 		cin.clear();
 		cin >> selection;
 	} while (selection < 1 || selection > 6);
@@ -24,6 +26,7 @@ void GodmodeItemView::createItem()
 	cout << endl << "Input the name you would like to give your item: " << endl;
 	cin >> name;
 
+	system("cls");
 	GodmodeItemController::instance()->addItem(selection, name);
 }
 
@@ -33,17 +36,19 @@ void GodmodeItemView::viewItemByType()
 	int selection = 0;
 	string name;
 
-	cout << "Item viewer menu" << endl;
-	cout << endl << "Select the type of items you would like to view" << endl;
-	cout << "1. " << ItemTypes[ARMOR] << endl;
-	cout << "2. " << ItemTypes[SHIELD] << endl;
-	cout << "3. " << ItemTypes[WEAPON] << endl;
-	cout << "4. " << ItemTypes[BOOTS] << endl;
-	cout << "5. " << ItemTypes[RING] << endl;
-	cout << "6. " << ItemTypes[HELMET] << endl;
-
 	do
 	{
+		system("cls");
+		cout << "Item viewer menu" << endl;
+		cout << endl << "Select the type of items you would like to view" << endl;
+		cout << "1. " << ItemTypes[ARMOR] << endl;
+		cout << "2. " << ItemTypes[SHIELD] << endl;
+		cout << "3. " << ItemTypes[WEAPON] << endl;
+		cout << "4. " << ItemTypes[BOOTS] << endl;
+		cout << "5. " << ItemTypes[RING] << endl;
+		cout << "6. " << ItemTypes[HELMET] << endl;
+
+		cout << "Input [1,6] : ";
 		cin.clear();
 		cin >> selection;
 	} while (selection < 1 || selection > 6);
@@ -67,27 +72,36 @@ void GodmodeItemView::viewAllItems()
 void GodmodeItemView::removeItem()
 {
 	int selection, itemToDelete; 
-
-	GodmodeItemView::viewAllItems();
 	vector<Item*> itemsSelected;
-
-	cout << "Select the item type of the item you would like to destroy." << endl;
-	cout << "1. " << ItemTypes[ARMOR] << endl;
-	cout << "2. " << ItemTypes[SHIELD] << endl;
-	cout << "3. " << ItemTypes[WEAPON] << endl;
-	cout << "4. " << ItemTypes[BOOTS] << endl;
-	cout << "5. " << ItemTypes[RING] << endl;
-	cout << "6. " << ItemTypes[HELMET] << endl;
 
 	do
 	{
+		system("cls");
+		GodmodeItemView::viewAllItems();
+
+		cout << "Select the item type of the item you would like to destroy.\nNo item will be deleted if there are no items of a specific type." << endl;
+
+		cout << "1. " << ItemTypes[ARMOR] << endl;
+		cout << "2. " << ItemTypes[SHIELD] << endl;
+		cout << "3. " << ItemTypes[WEAPON] << endl;
+		cout << "4. " << ItemTypes[BOOTS] << endl;
+		cout << "5. " << ItemTypes[RING] << endl;
+		cout << "6. " << ItemTypes[HELMET] << endl;
+		cout << "7. Return to Item Menu screen." << endl;
+
+		cout << "Input [1,7] : ";
 		cin.clear();
 		cin >> selection;
-	} while (selection < 1 || selection > 6);
+	} while (selection < 1 || selection > 7);
 
-	if (GodmodeItemController::instance()->getItemsOfType(selection).size() == 0)
+	if (selection == 7) 
 	{
-		cout << "There are no items of this type to remove." << endl;
+		system("cls");
+		itemOptionSelection();
+	}
+	else if (GodmodeItemController::instance()->getItemsOfType(selection).size() == 0)
+	{
+		removeItem();
 	}
 	else
 	{
@@ -113,6 +127,12 @@ void GodmodeItemView::saveItemInventory()
 void GodmodeItemView::loadItemInventory()
 {
 	GodmodeItemController::instance()->loadItemInventory();
+}
+
+//! Displays action success
+void GodmodeItemView::successfulAction()
+{
+	cout << "Action successfully completed." << endl; 
 }
 
 //! Displays all item of a specific type
@@ -148,6 +168,7 @@ void GodmodeItemView::itemOptionSelection() {
 			<< "5. Load item container" << endl
 			<< "6. Return to Selection menu" << endl
 			<< "------------------------------" << endl;
+		cout << "Input [1,6] : ";
 		cin >> input;
 		system("cls");
 	}
