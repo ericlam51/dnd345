@@ -18,7 +18,8 @@ Active::Active(string name, string description, int level) : Interactable(name, 
 	_equippedItems = new EquippedItems();
 
 	armorClass = calculateArmorClass();
-	currentHitPoints = calculateHitPoints();
+	maxHitPoints = calculateHitPoints();
+	currentHitPoints = maxHitPoints;
 	attackBonus = calculateAttackBonus();
 	damageBonus = getStrength();
 }
@@ -44,7 +45,13 @@ void Active::interact() {
 
 void Active::hit(int damage)
 {
-	currentHitPoints = currentHitPoints - damage;
+	maxHitPoints = currentHitPoints - damage;
+}
+
+void Active::levelUp()
+{
+	maxHitPoints = calculateHitPoints();
+	attackBonus = calculateAttackBonus();
 }
 
 int Active::getAbilityModifier(int abilityScore) {
@@ -107,7 +114,7 @@ void Active::print() {
 		<< "Intelligence: " << abilityScores[3] << endl
 		<< "Wisdom: " << abilityScores[4] << endl
 		<< "Charisma: " << abilityScores[5] << endl
-		<< "Hit Point: " << abilityScores[6] << endl
+		<< "Hit Point: " << maxHitPoints << endl
 		<< "Attack bonus: " << attackBonus << endl
 		<< "Armor class: " << armorClass << endl
 		<< "Damage bonus: " << damageBonus << endl;
@@ -178,6 +185,10 @@ int Active::getDamageBonus() const {
 
 int Active::getCurrentHitPoints() {
 	return currentHitPoints;
+}
+
+int Active::getMaxHitPoints() {
+	return maxHitPoints;
 }
 
 

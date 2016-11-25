@@ -19,7 +19,8 @@ public:
 	~Active();
 	bool validateNewPlayer();
 	void attack(Active &activeObj);
-	void hit(int damage);
+	void hit(int damage); 
+	void levelUp();
 	void equipItem(Item* item);
 
 	void print();
@@ -30,6 +31,7 @@ public:
 	int getAttackBonus() const;
 	int getDamageBonus() const;
 	int getCurrentHitPoints();
+	int getMaxHitPoints();
 	void setStrength(int str);
 	void setDexterity(int dex);
 	void setConstitution(int con);
