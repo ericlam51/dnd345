@@ -22,13 +22,13 @@ void HostileNpc::Serialize(CArchive& archive) {
 	CString cDescription(getDescription().c_str());
 
 	if (archive.IsStoring()) {
-		archive << cName << cDescription << level << currentHitPoints
+		archive << cName << cDescription << level << maxHitPoints
 			<< armorClass << attackBonus << damageBonus
 			<< abilityScores[0] << abilityScores[1] << abilityScores[2]
 			<< abilityScores[3] << abilityScores[4] << abilityScores[5]; //TODO serialize item
 	}
 	else {
-		archive >> cName >> cDescription >> level >> currentHitPoints
+		archive >> cName >> cDescription >> level >> maxHitPoints
 			>> armorClass >> attackBonus >> damageBonus
 			>> abilityScores[0] >> abilityScores[1] >> abilityScores[2]
 			>> abilityScores[3] >> abilityScores[4] >> abilityScores[5];

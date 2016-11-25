@@ -14,30 +14,22 @@ EquippedItems::EquippedItems()
 
 EquippedItems::~EquippedItems()
 {
+	delete equipped;
 }
 
 void EquippedItems::equipItem(Item * item)
 {
 	equipped->addItem(item);
-	/*if(equipped.at(item->type) == NULL)
-	{
-		equipped[item->type] = item;
-	}*/
 }
 
 void EquippedItems::removeItem(string itemType)
 {
-	//TODO
-	/*if (equipped.at(itemType) != NULL)
-	{
-		equipped[itemType] = NULL;
-	}*/
+	equipped->removeItem(getItem(itemType));
 }
 
 Item * EquippedItems::getItem(string itemType)
 {
-	//TODO: check proper item type
-	return NULL;//equipped[itemType];
+	return equipped->getItem(itemType, 0);
 }
 
 void EquippedItems::Serialize(CArchive & archive)

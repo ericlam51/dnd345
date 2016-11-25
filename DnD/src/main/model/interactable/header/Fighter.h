@@ -22,6 +22,8 @@ public:
 	Fighter();
 	~Fighter();
 	Fighter(string name, string description, int level);
+	void levelUp();
+	void lootItem(Item* item);
 	void interact();
 	void move(int x, int y);
 

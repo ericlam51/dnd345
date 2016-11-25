@@ -56,9 +56,14 @@ void GodmodeFriendlyNpcController::saveAndQuit(){
 	archive.Close();
 	theFile.Close();
 
-	delete(_friendlyNpc);
-	_friendlyNpc = NULL;
+	resetGodmodeFriendlyNpcController();
+
 	GodmodeInteractableView::interactableFileSelectionView();
+}
+
+void GodmodeFriendlyNpcController::resetGodmodeFriendlyNpcController() {
+	delete _friendlyNpc;
+	_friendlyNpc = NULL;
 }
 
 GodmodeFriendlyNpcController* GodmodeFriendlyNpcController::instance() {

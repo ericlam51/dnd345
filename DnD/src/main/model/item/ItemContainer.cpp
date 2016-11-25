@@ -17,6 +17,13 @@ ItemContainer::ItemContainer()
 
 ItemContainer::~ItemContainer()
 {
+	for (int i = 0; i <= HELMET; i++)
+	{
+		for (vector<Item*>::iterator it = items[ItemTypes[i]].begin(); it != items[ItemTypes[i]].end(); ++it)
+		{
+			delete[] *it;
+		}
+	}
 }
 
 //! add an item to the appropriate vector
@@ -35,8 +42,8 @@ void ItemContainer::removeItem(Item* item)
 	{
 		if (*it == item)
 		{
-			items[item->type].erase(it);
-			return;
+			it = items[item->type].erase(it);
+			break;
 		}
 	}
 }

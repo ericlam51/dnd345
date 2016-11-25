@@ -1,5 +1,4 @@
 #include "../header/Passive.h"
-#include "../../Location.h"
 #include <iostream>
 
 using namespace std;

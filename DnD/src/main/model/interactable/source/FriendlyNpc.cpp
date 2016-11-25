@@ -1,5 +1,4 @@
 #include "../header/FriendlyNpc.h"
-#include "../../Location.h"
 #include <iostream>
 
 using namespace std;

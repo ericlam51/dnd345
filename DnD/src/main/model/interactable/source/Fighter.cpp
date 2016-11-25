@@ -18,9 +18,24 @@ Fighter::~Fighter() {}
 void Fighter::move(int x, int y) {
 
 }
+
+void Fighter::levelUp()
+{
+	level = level + 1;
+	maxHitPoints = calculateHitPoints();
+	attackBonus = calculateAttackBonus();
+
+}
+
+void Fighter::lootItem(Item* item)
+{
+	_itemContainer->addItem(item);
+}
+
 void Fighter::interact() {
 	cout << "interact with fighter" << endl;
 }
+
 
 void Fighter::Serialize(CArchive& archive) {
 	CObject::Serialize(archive);
@@ -28,21 +43,21 @@ void Fighter::Serialize(CArchive& archive) {
 	CString cDescription(getDescription().c_str());
 
 	if (archive.IsStoring()) {
-		archive << cName << cDescription << level << currentHitPoints
+		archive << cName << cDescription << level << maxHitPoints
 			<< armorClass << attackBonus << damageBonus
 			<< abilityScores[0] << abilityScores[1] << abilityScores[2]
 			<< abilityScores[3] << abilityScores[4] << abilityScores[5];
 		
-		_equippedItems->Serialize(archive);
+		/*_equippedItems->Serialize(archive);*/
 
 	}
 	else {
-		archive >> cName >> cDescription >> level >> currentHitPoints
+		archive >> cName >> cDescription >> level >> maxHitPoints
 			>> armorClass >> attackBonus >> damageBonus
 			>> abilityScores[0] >> abilityScores[1] >> abilityScores[2]
 			>> abilityScores[3] >> abilityScores[4] >> abilityScores[5];
 
-		_equippedItems->Serialize(archive);
+		/*_equippedItems->Serialize(archive);*/
 
 		name = ((LPCTSTR)cName);
 		description = ((LPCTSTR)cDescription);

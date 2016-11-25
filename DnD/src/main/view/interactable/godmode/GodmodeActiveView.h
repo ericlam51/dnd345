@@ -21,7 +21,7 @@ public:
 	static void changeAbilityScoreView();
 	static void validateFighterView(bool isValidFighter);
 	static void warningMsgActiveLoaded();
-	static void saveAndQuitView(Active* fighter);
+	static void saveAndQuitView();
 
 private:
 	static string typeStr;

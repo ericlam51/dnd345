@@ -12,20 +12,21 @@ Active::Active(){
 }
 
 Active::Active(string name, string description, int level) : Interactable(name, description), level(level){
-	for (int i = 0; i < sizeof(abilityScores); i++)
+	for (int i = 0; i < 5; i++)
 		abilityScores[i] = generateRandomNumber(3, 18);
 
 	_equippedItems = new EquippedItems();
-
+	_itemContainer = new ItemContainer();
 	armorClass = calculateArmorClass();
-	currentHitPoints = calculateHitPoints();
+	maxHitPoints = calculateHitPoints();
+	currentHitPoints = maxHitPoints;
 	attackBonus = calculateAttackBonus();
 	damageBonus = getStrength();
 }
 
 Active::~Active() {
 	delete _equippedItems;
-	_equippedItems = NULL;
+	delete _itemContainer;
 }
 
 bool Active::validateNewPlayer() {
@@ -45,7 +46,7 @@ void Active::interact() {
 
 void Active::hit(int damage)
 {
-	currentHitPoints = currentHitPoints - damage;
+	maxHitPoints = currentHitPoints - damage;
 }
 
 int Active::getAbilityModifier(int abilityScore) {
@@ -74,9 +75,15 @@ int Active::generateRandomNumber(int min, int max) {
 }
 
 void Active::equipItem(Item* item) {
+	Item* currentlyEquippedItem = _equippedItems->getItem(item->type);
+
+	if (currentlyEquippedItem != NULL) {
+		cout << "Unequipping " << currentlyEquippedItem->getItemName() << " ...." << endl;
+		_equippedItems->removeItem(item->type);
+		_itemContainer->addItem(currentlyEquippedItem);
+	} 
 	cout << "Equipping item ...." << endl;
 	_equippedItems->equipItem(item);
-	
 }
 
 void Active::printEquipments() {
@@ -108,7 +115,7 @@ void Active::print() {
 		<< "Intelligence: " << abilityScores[3] << endl
 		<< "Wisdom: " << abilityScores[4] << endl
 		<< "Charisma: " << abilityScores[5] << endl
-		<< "Hit Point: " << abilityScores[6] << endl
+		<< "Hit Point: " << maxHitPoints << endl
 		<< "Attack bonus: " << attackBonus << endl
 		<< "Armor class: " << armorClass << endl
 		<< "Damage bonus: " << damageBonus << endl;
@@ -179,6 +186,10 @@ int Active::getDamageBonus() const {
 
 int Active::getCurrentHitPoints() {
 	return currentHitPoints;
+}
+
+int Active::getMaxHitPoints() {
+	return maxHitPoints;
 }
 
 

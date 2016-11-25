@@ -1,5 +1,4 @@
 #include <iostream>
-#include "../../Location.h"
 #include "../header/Interactable.h"
 
 IMPLEMENT_SERIAL(Interactable, CObject, 1)
