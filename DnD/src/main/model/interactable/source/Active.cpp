@@ -16,7 +16,7 @@ Active::Active(string name, string description, int level) : Interactable(name, 
 		abilityScores[i] = generateRandomNumber(3, 18);
 
 	_equippedItems = new EquippedItems();
-
+	_itemContainer = new ItemContainer();
 	armorClass = calculateArmorClass();
 	maxHitPoints = calculateHitPoints();
 	currentHitPoints = maxHitPoints;
@@ -26,6 +26,7 @@ Active::Active(string name, string description, int level) : Interactable(name, 
 
 Active::~Active() {
 	delete _equippedItems;
+	delete _itemContainer;
 }
 
 bool Active::validateNewPlayer() {
@@ -46,12 +47,6 @@ void Active::interact() {
 void Active::hit(int damage)
 {
 	maxHitPoints = currentHitPoints - damage;
-}
-
-void Active::levelUp()
-{
-	maxHitPoints = calculateHitPoints();
-	attackBonus = calculateAttackBonus();
 }
 
 int Active::getAbilityModifier(int abilityScore) {
@@ -80,9 +75,15 @@ int Active::generateRandomNumber(int min, int max) {
 }
 
 void Active::equipItem(Item* item) {
+	Item* currentlyEquippedItem = _equippedItems->getItem(item->type);
+
+	if (currentlyEquippedItem != NULL) {
+		cout << "Unequipping " << currentlyEquippedItem->getItemName() << " ...." << endl;
+		_equippedItems->removeItem(item->type);
+		_itemContainer->addItem(currentlyEquippedItem);
+	} 
 	cout << "Equipping item ...." << endl;
 	_equippedItems->equipItem(item);
-	
 }
 
 void Active::printEquipments() {

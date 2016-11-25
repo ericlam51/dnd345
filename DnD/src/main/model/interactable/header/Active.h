@@ -20,7 +20,6 @@ public:
 	bool validateNewPlayer();
 	void attack(Active &activeObj);
 	void hit(int damage); 
-	void levelUp();
 	void equipItem(Item* item);
 
 	void print();
@@ -45,7 +44,8 @@ public:
 	int getWisdom() const;
 	int getCharisma() const;
 	int getAbilityModifier(int);
-
+	int calculateHitPoints();
+	int calculateAttackBonus();
 	void interact();
 
 	void Serialize(CArchive& archive);
@@ -53,8 +53,6 @@ public:
 
 private:
 	int generateRandomNumber(int, int);
-	int calculateHitPoints();
-	int calculateAttackBonus();
 	int calculateArmorClass();
 	int calculateBonusAbilityScore();
 
@@ -65,5 +63,7 @@ protected:
 	int attackBonus;
 	int damageBonus;
 	int currentHitPoints;
+	int maxHitPoints;
 	EquippedItems* _equippedItems;
+	ItemContainer* _itemContainer;  // Contained in active because when a monster dies it drops whatever is in his itemContainer
 };

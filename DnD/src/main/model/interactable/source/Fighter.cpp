@@ -18,9 +18,24 @@ Fighter::~Fighter() {}
 void Fighter::move(int x, int y) {
 
 }
+
+void Fighter::levelUp()
+{
+	level = level + 1;
+	maxHitPoints = calculateHitPoints();
+	attackBonus = calculateAttackBonus();
+
+}
+
+void Fighter::lootItem(Item* item)
+{
+	_itemContainer->addItem(item);
+}
+
 void Fighter::interact() {
 	cout << "interact with fighter" << endl;
 }
+
 
 void Fighter::Serialize(CArchive& archive) {
 	CObject::Serialize(archive);

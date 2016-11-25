@@ -42,8 +42,8 @@ void ItemContainer::removeItem(Item* item)
 	{
 		if (*it == item)
 		{
-			items[item->type].erase(it);
-			return;
+			it = items[item->type].erase(it);
+			break;
 		}
 	}
 }
