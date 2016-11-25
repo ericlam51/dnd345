@@ -86,6 +86,9 @@ void GodmodeMapController::mapOptions(int input) {
 	case 3:
 		GodmodeMapController::instance()->saveMap();
 		break;
+	case 4:
+		GameModeView::displayView(3);
+		break;
 	default:
 		GodmodeMapView::warningMsgInvalidInput();
 		GodmodeMapView::mapOptionsMenuView();
@@ -104,7 +107,7 @@ void GodmodeMapController::saveMap() {
 	}
 
 	CFile theFile;
-	theFile.Open(_T("Map.txt"), CFile::modeCreate | CFile::modeWrite);
+	theFile.Open(_T("Map"), CFile::modeCreate | CFile::modeWrite);
 	CArchive archive(&theFile, CArchive::store);
 
 	map->Serialize(archive);
@@ -174,7 +177,7 @@ void GodmodeMapController::print() {
 //! Controller to receive request to load map
 void GodmodeMapController::loadMap() {
 	CFile theFile;
-	theFile.Open(_T("Map.txt"), CFile::modeRead);
+	theFile.Open(_T("Map"), CFile::modeRead);
 	CArchive archive(&theFile, CArchive::load);
 
 	map = new Map();

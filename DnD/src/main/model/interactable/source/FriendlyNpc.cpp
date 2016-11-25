@@ -1,5 +1,4 @@
 #include "../header/FriendlyNpc.h"
-#include "../../Location.h"
 #include <iostream>
 
 using namespace std;
@@ -14,6 +13,7 @@ FriendlyNpc::FriendlyNpc(string name, string description, string dialog) : Passi
 }
 
 FriendlyNpc::~FriendlyNpc() {}
+
 
 void FriendlyNpc::print() {
 	cout << "Name: " << name << endl

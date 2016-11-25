@@ -15,6 +15,7 @@ public:
 	~Chest();
 	void interact();
 	void open();
+	void print();
 	void Serialize(CArchive& archive);
 	DECLARE_SERIAL(Chest);
 private:

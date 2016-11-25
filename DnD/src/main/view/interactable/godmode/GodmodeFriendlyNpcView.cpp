@@ -47,7 +47,7 @@ void GodmodeFriendlyNpcView::warningMsgFriendlyNpcLoaded() {
 
 //! method to save Npc and quit
 void GodmodeFriendlyNpcView::saveAndQuitView(FriendlyNpc* friendlyNpc){
-	friendlyNpc->print();
 	cout << "NPC successfully created!" << endl;
+	friendlyNpc->print();
 	GodmodeFriendlyNpcController::instance()->saveAndQuit();
 }

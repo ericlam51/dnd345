@@ -16,6 +16,12 @@ void Chest::interact() {
 
 void Chest::open() {
 	cout << "open chest" << endl;
+	Sleep(1000);
+}
+
+void  Chest::print() {
+	cout << "Name: " << name << endl;
+	cout << "Description: " << description << endl;
 }
 
 void Chest::Serialize(CArchive& archive) {

@@ -66,7 +66,7 @@ void PlayModeController::movePlayer(char direction) {
 
 void PlayModeController::printEquipment() {
 	string input;
-	//_active->printEquipments();
+	_active->printEquipments();
 	_active->print();
 	cout << "Type anything to exit" << endl;
 	cin >> input;

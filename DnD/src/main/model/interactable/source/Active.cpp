@@ -7,23 +7,26 @@ using namespace std;
 
 IMPLEMENT_SERIAL(Active, CObject, 1)
 
-Active::Active(){}
+Active::Active(){
+	_equippedItems = new EquippedItems();
+}
 
 Active::Active(string name, string description, int level) : Interactable(name, description), level(level){
-	for (int i = 0; i < sizeof(abilityScores); i++)
+	for (int i = 0; i < 5; i++)
 		abilityScores[i] = generateRandomNumber(3, 18);
 
 	_equippedItems = new EquippedItems();
-
+	_itemContainer = new ItemContainer();
 	armorClass = calculateArmorClass();
-	currentHitPoints = calculateHitPoints();
+	maxHitPoints = calculateHitPoints();
+	currentHitPoints = maxHitPoints;
 	attackBonus = calculateAttackBonus();
 	damageBonus = getStrength();
 }
 
 Active::~Active() {
 	delete _equippedItems;
-	_equippedItems = NULL;
+	delete _itemContainer;
 }
 
 bool Active::validateNewPlayer() {
@@ -43,7 +46,7 @@ void Active::interact() {
 
 void Active::hit(int damage)
 {
-	currentHitPoints = currentHitPoints - damage;
+	maxHitPoints = currentHitPoints - damage;
 }
 
 int Active::getAbilityModifier(int abilityScore) {
@@ -72,20 +75,33 @@ int Active::generateRandomNumber(int min, int max) {
 }
 
 void Active::equipItem(Item* item) {
+	Item* currentlyEquippedItem = _equippedItems->getItem(item->type);
+
+	if (currentlyEquippedItem != NULL) {
+		cout << "Unequipping " << currentlyEquippedItem->getItemName() << " ...." << endl;
+		_equippedItems->removeItem(item->type);
+		_itemContainer->addItem(currentlyEquippedItem);
+	} 
 	cout << "Equipping item ...." << endl;
 	_equippedItems->equipItem(item);
-	
 }
 
 void Active::printEquipments() {
 	cout << "-+-+-+-+-+-+-+-+ EQUIPMENTS +-+-+-+-+-+-+-+-+-+-" << endl;
-	cout << "Helmet: " << (_equippedItems->getItem("HELMET") ? _equippedItems->getItem("HELMET")->getItemName() : "<Empty>") << endl;
-	cout << "Armor: " << (_equippedItems->getItem("ARMOR") ? _equippedItems->getItem("ARMOR")->getItemName() : "<Empty>") << endl;
-	cout << "Shield: " << (_equippedItems->getItem("SHIELD") ? _equippedItems->getItem("SHIELD")->getItemName() : "<Empty>") << endl;
-	cout << "Ring: " << (_equippedItems->getItem("RING") ? _equippedItems->getItem("RING")->getItemName() : "<Empty>") << endl;
+	cout << "Helmet: " << (_equippedItems->getEquipped()->getItem("HELMET", 0) ? _equippedItems->getEquipped()->getItem("HELMET", 0)->getItemName() : "<Empty>") << endl;
+	cout << "Armor: " << (_equippedItems->getEquipped()->getItem("ARMOR", 0) ? _equippedItems->getEquipped()->getItem("ARMOR", 0)->getItemName() : "<Empty>") << endl;
+	cout << "Shield: " << (_equippedItems->getEquipped()->getItem("SHIELD", 0) ? _equippedItems->getEquipped()->getItem("SHIELD", 0)->getItemName() : "<Empty>") << endl;
+	cout << "Ring: " << (_equippedItems->getEquipped()->getItem("RING", 0) ? _equippedItems->getEquipped()->getItem("RING", 0)->getItemName() : "<Empty>") << endl;
 	/*cout << "Belt: " << (_equippedItems->getItem("BELT") ? _equippedItems->getItem("BELT")->getItemName() : "<Empty>") << endl;*/
-	cout << "Boots: " << (_equippedItems->getItem("BOOTS") ? _equippedItems->getItem("BOOTS")->getItemName() : "<Empty>") << endl;
-	cout << "Weapon: " << (_equippedItems->getItem("WEAPON") ? _equippedItems->getItem("WEAPON")->getItemName() : "<Empty>") << endl;
+	cout << "Boots: " << (_equippedItems->getEquipped()->getItem("BOOTS", 0) ? _equippedItems->getEquipped()->getItem("BOOTS", 0)->getItemName() : "<Empty>") << endl;
+	cout << "Weapon: " << (_equippedItems->getEquipped()->getItem("WEAPON", 0) ? _equippedItems->getEquipped()->getItem("WEAPON", 0)->getItemName() : "<Empty>") << endl;
+	//cout << "Helmet: " << (_equippedItems->getItem("HELMET") ? _equippedItems->getItem("HELMET")->getItemName() : "<Empty>") << endl;
+	//cout << "Armor: " << (_equippedItems->getItem("ARMOR") ? _equippedItems->getItem("ARMOR")->getItemName() : "<Empty>") << endl;
+	//cout << "Shield: " << (_equippedItems->getItem("SHIELD") ? _equippedItems->getItem("SHIELD")->getItemName() : "<Empty>") << endl;
+	//cout << "Ring: " << (_equippedItems->getItem("RING") ? _equippedItems->getItem("RING")->getItemName() : "<Empty>") << endl;
+	///*cout << "Belt: " << (_equippedItems->getItem("BELT") ? _equippedItems->getItem("BELT")->getItemName() : "<Empty>") << endl;*/
+	//cout << "Boots: " << (_equippedItems->getItem("BOOTS") ? _equippedItems->getItem("BOOTS")->getItemName() : "<Empty>") << endl;
+	//cout << "Weapon: " << (_equippedItems->getItem("WEAPON") ? _equippedItems->getItem("WEAPON")->getItemName() : "<Empty>") << endl;
 }
 
 void Active::print() {
@@ -99,7 +115,7 @@ void Active::print() {
 		<< "Intelligence: " << abilityScores[3] << endl
 		<< "Wisdom: " << abilityScores[4] << endl
 		<< "Charisma: " << abilityScores[5] << endl
-		<< "Hit Point: " << abilityScores[6] << endl
+		<< "Hit Point: " << maxHitPoints << endl
 		<< "Attack bonus: " << attackBonus << endl
 		<< "Armor class: " << armorClass << endl
 		<< "Damage bonus: " << damageBonus << endl;
@@ -170,6 +186,10 @@ int Active::getDamageBonus() const {
 
 int Active::getCurrentHitPoints() {
 	return currentHitPoints;
+}
+
+int Active::getMaxHitPoints() {
+	return maxHitPoints;
 }
 
 

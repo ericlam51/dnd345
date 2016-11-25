@@ -11,6 +11,7 @@
 #include "../../../model/item/Ring.h"
 #include "../../../model/item/Weapon.h"
 #include "../../../model/item/Shield.h"
+#include "../../../controller/item/godmode/GodmodeItemController.h"
 //#include "../../../model/item/Belt.h" //TODO
 
 //! class for the implementation of load/edit active controller
@@ -20,7 +21,7 @@ class GodmodeActiveController {
 
 private:
 	// variable for the singleton 
-	Active* _active;
+	Active* _active = NULL;
 
 public:
 	//! method to create or get the singleton class
@@ -49,5 +50,7 @@ public:
 	void equipItem(char item);
 	//method to show to save and quit fighter/monsters edit
 	void saveAndQuit();
+	//method to reset controller
+	void resetGodmodeActiveController();
 
 }; 

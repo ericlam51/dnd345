@@ -58,6 +58,7 @@ void GodmodeMapView::mapOptionsMenuView() {
 		<< "1. Fill cell" << endl
 		<< "2. Validate map" << endl
 		<< "3. Save map" << endl
+		<< "4. Return to Selection menu" << endl
 		<< "Selection: ";
 
 	cin >> input;

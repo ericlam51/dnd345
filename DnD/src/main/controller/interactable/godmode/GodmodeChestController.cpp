@@ -56,12 +56,15 @@ void GodmodeChestController::saveAndQuit(){
 	archive.Close();
 	theFile.Close(); 
 
-	delete _chest;
-	_chest = NULL;
+	resetGodmodeChestController();
 
 	GodmodeInteractableView::interactableFileSelectionView();
 }
 
+void GodmodeChestController::resetGodmodeChestController() {
+	delete _chest;
+	_chest = NULL;
+}
 GodmodeChestController* GodmodeChestController::instance() {
 	if (!s_instance)
 		s_instance = new GodmodeChestController();

@@ -139,9 +139,6 @@ void GodmodeActiveView::warningMsgActiveLoaded() {
 	cout << typeStr <<" loaded" << endl;
 }
 
-void GodmodeActiveView::saveAndQuitView(Active* fighter) {
-	cout << typeStr << " successfully created" << endl;
-	fighter->print();
-	fighter->printEquipments();
+void GodmodeActiveView::saveAndQuitView() {
 	GodmodeActiveController::instance()->saveAndQuit();
 }

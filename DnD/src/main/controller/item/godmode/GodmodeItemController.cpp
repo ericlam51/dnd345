@@ -113,6 +113,12 @@ void GodmodeItemController::saveItemInventory()
 //! method that loads a serialized item inventory
 void GodmodeItemController::loadItemInventory()
 {
+	loadSaveFile();
+
+	GodmodeItemView::itemOptionSelection();
+}
+
+void GodmodeItemController::loadSaveFile() {
 	CFile theFile;
 	theFile.Open(_T("ItemInventory"), CFile::modeRead);
 	CArchive archive(&theFile, CArchive::load);
@@ -124,8 +130,10 @@ void GodmodeItemController::loadItemInventory()
 
 	archive.Close();
 	theFile.Close();
+}
 
-	GodmodeItemView::itemOptionSelection();
+ItemContainer* GodmodeItemController::getContainer() {
+	return container;
 }
 
 GodmodeItemController* GodmodeItemController::s_instance = GodmodeItemController::instance();

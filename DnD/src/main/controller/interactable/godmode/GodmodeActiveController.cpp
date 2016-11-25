@@ -72,7 +72,7 @@ void GodmodeActiveController::postCreation(bool input) {
 	if (input)
 		GodmodeActiveView::postCreationYesView();
 	else
-		GodmodeActiveView::saveAndQuitView(_active);  //TODO postCReationNo
+		GodmodeActiveController::saveAndQuit();  //TODO postCReationNo
 }
 
 //! method to show view to decide what to edit fighter/monsters
@@ -86,7 +86,7 @@ void GodmodeActiveController::postCreationYes(int input) {
 		GodmodeActiveView::equipItemView();
 		break;
 	case 3:
-		GodmodeActiveView::saveAndQuitView(_active);
+		GodmodeActiveController::saveAndQuit();
 			break;
 	default:
 		GodmodeInteractableView::interactableElementSelectionView();
@@ -120,31 +120,33 @@ void GodmodeActiveController::modifyAbilityScore(int abilityScore[6]) {
 //! method to show to equip item on fighter/monsters
 //! @param item: item to equip
 void GodmodeActiveController::equipItem(char item) {
+	GodmodeItemController::instance()->loadSaveFile();
+
 	switch (item) {
 		case 'h':
 		{
-			Helmet* helmet = new Helmet("Helmet");
+			Item* helmet = GodmodeItemController::instance()->getContainer()->getItem("HELMET", 0);
 			_active->equipItem(helmet);
 			cout << "successfully equipped" << endl;
 		}
 		break;
 		case 'a':
 		{
-			Armor* armor = new Armor("Armor");
+			Item* armor = GodmodeItemController::instance()->getContainer()->getItem("ARMOR", 0);
 			_active->equipItem(armor);
 			cout << "successfully equipped" << endl;
 		}
 		break;
 		case 's':
 		{
-			Shield* shield = new Shield("Shield");
+			Item* shield = GodmodeItemController::instance()->getContainer()->getItem("SHIELD", 0);
 			_active->equipItem(shield);
 			cout << "successfully equipped" << endl;
 		}
 		break;
 		case 'r':
 		{
-			Ring* ring = new Ring("Ring");
+			Item* ring = GodmodeItemController::instance()->getContainer()->getItem("RING", 0);
 			_active->equipItem(ring);
 			cout << "successfully equipped" << endl;
 		}
@@ -155,14 +157,14 @@ void GodmodeActiveController::equipItem(char item) {
 		//	break;
 		case 'j':
 		{
-			Boots* boots = new Boots("Boots");
+			Item* boots = GodmodeItemController::instance()->getContainer()->getItem("BOOTS", 0);
 			_active->equipItem(boots);
 			cout << "successfully equipped" << endl;
 		}
 		break;
 		case 'w':
 		{
-			Weapon* weapon = new Weapon("Weapon");
+			Item* weapon = GodmodeItemController::instance()->getContainer()->getItem("WEAPON", 0);
 			_active->equipItem(weapon);
 			cout << "successfully equipped" << endl;
 		}
@@ -186,12 +188,17 @@ void GodmodeActiveController::saveAndQuit(){
 
 	archive.Close();
 	theFile.Close();
-
-	//delete _active;
-	//_active = NULL;
+	cout << " successfully created" << endl;
+	_active->print();
+	_active->printEquipments();
+	resetGodmodeActiveController();
 	GodmodeInteractableView::interactableFileSelectionView();
 }
 
+void GodmodeActiveController::resetGodmodeActiveController() {
+	delete _active;
+	_active = NULL;
+}
 //! method to create or get the singleton class
 GodmodeActiveController* GodmodeActiveController::instance() {
 	if (!s_instance)
