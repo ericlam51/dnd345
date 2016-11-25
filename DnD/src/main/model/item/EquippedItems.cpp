@@ -4,32 +4,37 @@ IMPLEMENT_SERIAL(EquippedItems, CObject, 1)
 
 EquippedItems::EquippedItems()
 {
-	equipped = new ItemContainer();
+	equipped = map<string, Item*>();
 	for (int i = 0; i <= HELMET; i++) 
 	{
-		//equipped.insert(pair<string, Item*>(ItemTypes[i], NULL));
+		equipped.insert(pair<string, Item*>(ItemTypes[i], nullptr));
 	}
 }
 
 
 EquippedItems::~EquippedItems()
 {
-	delete equipped;
 }
 
 void EquippedItems::equipItem(Item * item)
 {
-	equipped->addItem(item);
+	if (item != nullptr && equipped[item->type] == nullptr)
+	{
+		equipped[item->type] = item;
+	}
 }
 
 void EquippedItems::removeItem(string itemType)
 {
-	equipped->removeItem(getItem(itemType));
+	if (equipped[itemType] != nullptr)
+	{
+		equipped[itemType] = nullptr;
+	}
 }
 
 Item * EquippedItems::getItem(string itemType)
 {
-	return equipped->getItem(itemType, 0);
+	return equipped[itemType];
 }
 
 void EquippedItems::Serialize(CArchive & archive)
@@ -41,14 +46,14 @@ void EquippedItems::Serialize(CArchive & archive)
 	 //now do the stuff for our specific class
 	if (archive.IsStoring()) 
 	{
-		equipped->Serialize(archive);
+		//equipped->Serialize(archive);
 	}
 	else
 	{
-		equipped->Serialize(archive);
+		//equipped->Serialize(archive);
 	}
 }
 
-ItemContainer* EquippedItems::getEquipped() {
+map<string, Item*> EquippedItems::getEquipped() {
 	return equipped;
 }

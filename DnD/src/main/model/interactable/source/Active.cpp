@@ -88,20 +88,20 @@ void Active::equipItem(Item* item) {
 
 void Active::printEquipments() {
 	cout << "-+-+-+-+-+-+-+-+ EQUIPMENTS +-+-+-+-+-+-+-+-+-+-" << endl;
-	cout << "Helmet: " << (_equippedItems->getEquipped()->getItem("HELMET", 0) ? _equippedItems->getEquipped()->getItem("HELMET", 0)->getItemName() : "<Empty>") << endl;
-	cout << "Armor: " << (_equippedItems->getEquipped()->getItem("ARMOR", 0) ? _equippedItems->getEquipped()->getItem("ARMOR", 0)->getItemName() : "<Empty>") << endl;
-	cout << "Shield: " << (_equippedItems->getEquipped()->getItem("SHIELD", 0) ? _equippedItems->getEquipped()->getItem("SHIELD", 0)->getItemName() : "<Empty>") << endl;
-	cout << "Ring: " << (_equippedItems->getEquipped()->getItem("RING", 0) ? _equippedItems->getEquipped()->getItem("RING", 0)->getItemName() : "<Empty>") << endl;
-	/*cout << "Belt: " << (_equippedItems->getItem("BELT") ? _equippedItems->getItem("BELT")->getItemName() : "<Empty>") << endl;*/
-	cout << "Boots: " << (_equippedItems->getEquipped()->getItem("BOOTS", 0) ? _equippedItems->getEquipped()->getItem("BOOTS", 0)->getItemName() : "<Empty>") << endl;
-	cout << "Weapon: " << (_equippedItems->getEquipped()->getItem("WEAPON", 0) ? _equippedItems->getEquipped()->getItem("WEAPON", 0)->getItemName() : "<Empty>") << endl;
-	//cout << "Helmet: " << (_equippedItems->getItem("HELMET") ? _equippedItems->getItem("HELMET")->getItemName() : "<Empty>") << endl;
-	//cout << "Armor: " << (_equippedItems->getItem("ARMOR") ? _equippedItems->getItem("ARMOR")->getItemName() : "<Empty>") << endl;
-	//cout << "Shield: " << (_equippedItems->getItem("SHIELD") ? _equippedItems->getItem("SHIELD")->getItemName() : "<Empty>") << endl;
-	//cout << "Ring: " << (_equippedItems->getItem("RING") ? _equippedItems->getItem("RING")->getItemName() : "<Empty>") << endl;
+	//cout << "Helmet: " << (_equippedItems->getEquipped()->getItem("HELMET", 0) ? _equippedItems->getEquipped()->getItem("HELMET", 0)->getItemName() : "<Empty>") << endl;
+	//cout << "Armor: " << (_equippedItems->getEquipped()->getItem("ARMOR", 0) ? _equippedItems->getEquipped()->getItem("ARMOR", 0)->getItemName() : "<Empty>") << endl;
+	//cout << "Shield: " << (_equippedItems->getEquipped()->getItem("SHIELD", 0) ? _equippedItems->getEquipped()->getItem("SHIELD", 0)->getItemName() : "<Empty>") << endl;
+	//cout << "Ring: " << (_equippedItems->getEquipped()->getItem("RING", 0) ? _equippedItems->getEquipped()->getItem("RING", 0)->getItemName() : "<Empty>") << endl;
 	///*cout << "Belt: " << (_equippedItems->getItem("BELT") ? _equippedItems->getItem("BELT")->getItemName() : "<Empty>") << endl;*/
-	//cout << "Boots: " << (_equippedItems->getItem("BOOTS") ? _equippedItems->getItem("BOOTS")->getItemName() : "<Empty>") << endl;
-	//cout << "Weapon: " << (_equippedItems->getItem("WEAPON") ? _equippedItems->getItem("WEAPON")->getItemName() : "<Empty>") << endl;
+	//cout << "Boots: " << (_equippedItems->getEquipped()->getItem("BOOTS", 0) ? _equippedItems->getEquipped()->getItem("BOOTS", 0)->getItemName() : "<Empty>") << endl;
+	//cout << "Weapon: " << (_equippedItems->getEquipped()->getItem("WEAPON", 0) ? _equippedItems->getEquipped()->getItem("WEAPON", 0)->getItemName() : "<Empty>") << endl;
+	cout << "Helmet: " << (_equippedItems->getItem("HELMET") ? _equippedItems->getItem("HELMET")->getItemName() : "<Empty>") << endl;
+	cout << "Armor: " << (_equippedItems->getItem("ARMOR") ? _equippedItems->getItem("ARMOR")->getItemName() : "<Empty>") << endl;
+	cout << "Shield: " << (_equippedItems->getItem("SHIELD") ? _equippedItems->getItem("SHIELD")->getItemName() : "<Empty>") << endl;
+	cout << "Ring: " << (_equippedItems->getItem("RING") ? _equippedItems->getItem("RING")->getItemName() : "<Empty>") << endl;
+	/*cout << "Belt: " << (_equippedItems->getItem("BELT") ? _equippedItems->getItem("BELT")->getItemName() : "<Empty>") << endl;*/
+	cout << "Boots: " << (_equippedItems->getItem("BOOTS") ? _equippedItems->getItem("BOOTS")->getItemName() : "<Empty>") << endl;
+	cout << "Weapon: " << (_equippedItems->getItem("WEAPON") ? _equippedItems->getItem("WEAPON")->getItemName() : "<Empty>") << endl;
 }
 
 void Active::print() {
