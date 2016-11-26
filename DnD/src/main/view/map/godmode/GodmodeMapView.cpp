@@ -128,7 +128,9 @@ void GodmodeMapView::mapFillOptionsMenuView() {
 	case 6:
 		GodmodeMapController::instance()->fillCell(x, y, CellHelper::PATH_TYPE);
 		break;
-	default: cout << "Invalid input"; break;
+	default: 
+		GodmodeMapController::instance()->fillCell(x, y, NULL);
+		break;
 	}
 }
 
@@ -173,4 +175,12 @@ void GodmodeMapView::warningMsgMapSaved() {
 
 void GodmodeMapView::warningMsgMapLoaded() {
 	cout << "Map loaded" << endl;
+}
+
+void GodmodeMapView::warningMsgWrongCoordinates() {
+	cout << "Coordinates inputted will go out of the map." << endl;
+}
+
+void GodmodeMapView::warningMsgWrongCellType() {
+	cout << "Input for cell type does not exist." << endl;
 }

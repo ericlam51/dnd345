@@ -31,4 +31,6 @@ public:
 	static void warningMsgValidMap();
 	static void warningMsgMapSaved();
 	static void warningMsgMapLoaded();
+	static void warningMsgWrongCoordinates();
+	static void warningMsgWrongCellType();
 };

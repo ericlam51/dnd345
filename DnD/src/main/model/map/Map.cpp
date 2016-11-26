@@ -561,3 +561,11 @@ bool Map::validateOutofBound(int newX, int newY) {
 		return false;
 	}
 }
+
+int Map::getHeight() {
+	return height;
+}
+
+int Map::getWidth() {
+	return width;
+}

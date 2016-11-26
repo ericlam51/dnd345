@@ -52,6 +52,18 @@ void GodmodeMapController::newMap(int width, int height) {
 //! @param x: x position of the Cell
 //! param charType: type of Cell. For all possible types, see CellHelper object.
 void GodmodeMapController::fillCell(int x, int y, char charType) {
+	if (x < 0 || x > map->getWidth() || y < 0 || y > map->getHeight()) {
+		GodmodeMapView::warningMsgWrongCoordinates();
+		GodmodeMapView::mapFillOptionsMenuView();
+		return;
+	}
+
+	if (charType == NULL) {
+		GodmodeMapView::warningMsgWrongCellType();
+		GodmodeMapView::mapFillOptionsMenuView();
+		return;
+	}
+
 	switch (charType) {
 	case CellHelper::WALL_TYPE:
 		s_instance->setCell(x, y, new WallCell());
