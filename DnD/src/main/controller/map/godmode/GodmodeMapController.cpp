@@ -58,6 +58,7 @@ void GodmodeMapController::fillCell(int x, int y, char charType) {
 		return;
 	}
 
+	if (charType == NULL) {
 		GodmodeMapView::warningMsgWrongCellType();
 		GodmodeMapView::mapFillOptionsMenuView();
 		return;
