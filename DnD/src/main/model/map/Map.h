@@ -59,5 +59,8 @@ public:
 
 	void Serialize(CArchive& archive);
 	DECLARE_SERIAL(Map);
+
+	int getWidth();
+	int getHeight();
 	
 };
