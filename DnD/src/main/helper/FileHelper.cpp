@@ -1,6 +1,10 @@
 #include "FileHelper.h"
 
 const string FileHelper::MAP_FILE_FOLDER = "mapfiles";
+const string FileHelper::FIGHTER_FILE_FOLDER = "fighterfiles";
+const string FileHelper::HOSTILE_FILE_FOLDER = "hostilefiles";
+const string FileHelper::FRIENDLY_FILE_FOLDER = "friendlyfiles";
+const string FileHelper::CHEST_FILE_FOLDER = "chestfiles";
 
 vector<string> FileHelper::getFilenamesInDirectory(string foldername) {
 	vector<string> filenames;

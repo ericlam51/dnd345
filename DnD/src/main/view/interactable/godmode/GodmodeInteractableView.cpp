@@ -52,3 +52,6 @@ void GodmodeInteractableView::interactableLoadView() {
 	cin >> input;
 	GodmodeInteractableController::instance()->interactableLoad(input);
 }
+void GodmodeInteractableView::warningMsgInvalidInput() {
+	cout << "Invalid input!" << endl;
+}

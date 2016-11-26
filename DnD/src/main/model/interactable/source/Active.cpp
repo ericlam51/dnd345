@@ -104,6 +104,7 @@ void Active::printEquipments() {
 void Active::print() {
 	cout << "Your player has the following attributes:" << endl
 		<< "Name: " << name << endl
+		<< "Description: " << description << endl
 		<< "Ability Modifier: " << getAbilityModifier(abilityScores[2]) << endl
 		<< "Level: " << getLevel() << endl
 		<< "Strength: " << abilityScores[0] << endl

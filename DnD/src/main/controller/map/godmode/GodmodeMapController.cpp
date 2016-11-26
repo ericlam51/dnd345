@@ -159,14 +159,14 @@ void GodmodeMapController::setCell(int x, int y, Cell* cell) {
 		//	break;
 	case  CellHelper::CHEST_TYPE:
 	{
-		GodmodeChestController::instance()->loadChestWithoutView();
+		//GodmodeChestController::instance()->loadChestWithoutView(); //TODO
 		Interactable* chest = GodmodeChestController::instance()->getChest();
 		dynamic_cast<ChestCell*>(cell)->setChest(chest);
 		break;
 	}
 	case  CellHelper::ENTITY_TYPE:
 	{
-		GodmodeActiveController::instance()->loadHostileNpcWithoutView();
+		//GodmodeActiveController::instance()->loadHostileNpcWithoutView();  //TODODO
 		Interactable* entity = GodmodeActiveController::instance()->getActive();
 		dynamic_cast<EntityCell*>(cell)->setEntity(entity);
 		break;
