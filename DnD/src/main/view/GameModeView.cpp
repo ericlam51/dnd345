@@ -109,6 +109,9 @@ void GameModeView::displayView(int gameMode) {
 
 		gameMode = 3;
 		GodmodeMapController::instance()->resetController();
+		GodmodeActiveController::instance()->resetGodmodeActiveController();
+		GodmodeChestController::instance()->resetGodmodeChestController();
+		GodmodeFriendlyNpcController::instance()->resetGodmodeFriendlyNpcController();
 	} while (true);
 
 }
