@@ -10,9 +10,9 @@ void GodmodeInteractableController::interactableFileSelection(int input) {
 		GodmodeInteractableView::interactableLoadView();
 		break;
 	case 3:
-		GameModeView::displayView(3);
 		break;
 	default:
+		GodmodeInteractableView::warningMsgInvalidInput();
 		GodmodeInteractableView::interactableFileSelectionView();
 		break;
 	}
@@ -34,6 +34,7 @@ void GodmodeInteractableController::interactableCreation(int input) {
 		GodmodeChestView::newChestView();
 		break;
 	default:
+		GodmodeInteractableView::warningMsgInvalidInput();
 		GodmodeInteractableView::interactableElementSelectionView();
 		break;
 	}
@@ -43,18 +44,19 @@ void GodmodeInteractableController::interactableCreation(int input) {
 void GodmodeInteractableController::interactableLoad(int input) {
 	switch (input) {
 	case 1:
-		GodmodeActiveView::loadActiveView(0);
+		GodmodeActiveController::instance()->getSavedActiveFiles(0);
 		break;
 	case 2:
-		GodmodeActiveView::loadActiveView(1);
+		GodmodeActiveController::instance()->getSavedActiveFiles(1);
 		break;
 	case 3:
-		GodmodeFriendlyNpcView::loadFriendlyNpcView();
+		GodmodeFriendlyNpcController::instance()->getSavedFiles();
 		break;
 	case 4:
-		GodmodeChestView::loadChestView();
+		GodmodeChestController::instance()->getSavedFiles();
 		break;
 	default:
+		GodmodeInteractableView::warningMsgInvalidInput();
 		GodmodeInteractableView::interactableElementSelectionView();
 		break;
 	}

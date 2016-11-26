@@ -12,6 +12,8 @@
 #include "../../../model/item/Weapon.h"
 #include "../../../model/item/Shield.h"
 #include "../../../controller/item/godmode/GodmodeItemController.h"
+#include "../../../helper/FileHelper.h"
+
 //#include "../../../model/item/Belt.h" //TODO
 
 //! class for the implementation of load/edit active controller
@@ -22,6 +24,7 @@ class GodmodeActiveController {
 private:
 	// variable for the singleton 
 	Active* _active = NULL;
+	vector<string> filenames;
 
 public:
 	//! method to create or get the singleton class
@@ -31,13 +34,13 @@ public:
 	//method to create a monster
 	void newHostileNpc(string name, string description, int level);
 	//method to load a fighter with the view to edit
-	void loadFighter();
+	void loadFighter(int input);
 	//method to load a fighter with the view to edit
-	void loadHostileNpc();
+	void loadHostileNpc(int input);
 	//method to load a fighter without the view to edit
-	void loadFighterWithoutView();
+	void loadFighterWithoutView(int input);
 	//method to load a monster without the view to edit
-	void loadHostileNpcWithoutView();
+	void loadHostileNpcWithoutView(int input);
 	//method to return a fighter  or monster created/loaded
 	Active* getActive();
 	//method to show view to edit fighter/monsters
@@ -48,9 +51,13 @@ public:
 	void modifyAbilityScore(int abilityScore[6]);
 	//method to show to equip item on fighter/monsters
 	void equipItem(char item);
+	//Validate character before save
+	void validateSaveRequirements();
 	//method to show to save and quit fighter/monsters edit
-	void saveAndQuit();
+	void saveAndQuit(string filename);
 	//method to reset controller
 	void resetGodmodeActiveController();
+	//method to load active
+	void getSavedActiveFiles(int type);
 
 }; 

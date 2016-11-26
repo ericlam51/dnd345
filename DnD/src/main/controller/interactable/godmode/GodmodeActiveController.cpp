@@ -22,43 +22,55 @@ void GodmodeActiveController::newHostileNpc(string name, string description, int
 }
 
 //!method to load a fighter with the view to edit
-void GodmodeActiveController::loadFighter(){
-	loadFighterWithoutView();
+void GodmodeActiveController::loadFighter(int input){
+	loadFighterWithoutView(input);
 	_active->print();
 	GodmodeActiveView::warningMsgActiveLoaded();
 	GodmodeActiveView::postCreationView();
 }
 //! method to load a fighter with the view to edit
-void GodmodeActiveController::loadHostileNpc(){
-	loadHostileNpcWithoutView();
+void GodmodeActiveController::loadHostileNpc(int input){
+	loadHostileNpcWithoutView(input);
 	_active->print();
 	GodmodeActiveView::warningMsgActiveLoaded();
 	GodmodeActiveView::postCreationView();
 }
 //! method to load a fighter without the view to edit
-void GodmodeActiveController::loadFighterWithoutView() {
-	CFile theFile;
-	theFile.Open(_T("Fighter"), CFile::modeRead);
-	CArchive archive(&theFile, CArchive::load);
+void GodmodeActiveController::loadFighterWithoutView(int input) {
+	if (input < 0 || input >= filenames.size()) {
+		GodmodeActiveView::activeChooseSaveFileView(filenames); //TODO
+	}
+	else {
+		CFile theFile;
+		string filePath = FileHelper::getDirectoryPath(FileHelper::FIGHTER_FILE_FOLDER) + filenames[input];
+		theFile.Open(_T(filePath.c_str()), CFile::modeRead);
+		CArchive archive(&theFile, CArchive::load);
 
-	_active = new Fighter();
-	_active->Serialize(archive);
+		_active = new Fighter();
+		_active->Serialize(archive);
 
-	archive.Close();
-	theFile.Close();
+		archive.Close();
+		theFile.Close();
+	}
 }
 
 //! method to load a monster without the view to edit
-void GodmodeActiveController::loadHostileNpcWithoutView() {
-	CFile theFile;
-	theFile.Open(_T("HostileNpc"), CFile::modeRead);
-	CArchive archive(&theFile, CArchive::load);
+void GodmodeActiveController::loadHostileNpcWithoutView(int input) {
+	if (input < 0 || input >= filenames.size()) {
+		GodmodeActiveView::activeChooseSaveFileView(filenames);
+	}
+	else {
+		CFile theFile;
+		string filePath = FileHelper::getDirectoryPath(FileHelper::HOSTILE_FILE_FOLDER) + filenames[input];
+		theFile.Open(_T(filePath.c_str()), CFile::modeRead);
+		CArchive archive(&theFile, CArchive::load);
 
-	_active = new HostileNpc();
-	_active->Serialize(archive);
+		_active = new HostileNpc();
+		_active->Serialize(archive);
 
-	archive.Close();
-	theFile.Close();
+		archive.Close();
+		theFile.Close();
+	}
 }
 
 //! method to return a fighter  or monster created/loaded
@@ -72,7 +84,7 @@ void GodmodeActiveController::postCreation(bool input) {
 	if (input)
 		GodmodeActiveView::postCreationYesView();
 	else
-		GodmodeActiveController::saveAndQuit();  //TODO postCReationNo
+		GodmodeActiveController::instance()->validateSaveRequirements();
 }
 
 //! method to show view to decide what to edit fighter/monsters
@@ -86,8 +98,8 @@ void GodmodeActiveController::postCreationYes(int input) {
 		GodmodeActiveView::equipItemView();
 		break;
 	case 3:
-		GodmodeActiveController::saveAndQuit();
-			break;
+		GodmodeActiveController::instance()->validateSaveRequirements();
+		break;
 	default:
 		GodmodeInteractableView::interactableElementSelectionView();
 		break;
@@ -173,24 +185,40 @@ void GodmodeActiveController::equipItem(char item) {
 			cout << "failed to equipped" << endl;
 	}
 }
+void GodmodeActiveController::validateSaveRequirements() {
+	bool valid = _active->validateNewPlayer();
+
+	if (!valid) {
+		GodmodeActiveView::warningInvalidCharacter();
+		GodmodeActiveView::postCreationYesView();
+		return;
+	}
+
+	GodmodeActiveView::activeAskSaveFileName();
+}
 
 //! method to show to save and quit fighter/monsters edit
-void GodmodeActiveController::saveAndQuit(){
+void GodmodeActiveController::saveAndQuit(string filename){
 	CFile theFile;
+	string fileDirectory = "";
 
 	if(strcmp(_active->GetRuntimeClass()->m_lpszClassName, "Fighter") == 0)
-		theFile.Open(_T("Fighter"), CFile::modeCreate | CFile::modeWrite);
+		fileDirectory = FileHelper::getDirectoryPath(FileHelper::FIGHTER_FILE_FOLDER) + filename;
 	else if (strcmp(_active->GetRuntimeClass()->m_lpszClassName, "HostileNpc") == 0)
-		theFile.Open(_T("HostileNpc"), CFile::modeCreate | CFile::modeWrite);
-
+		fileDirectory = FileHelper::getDirectoryPath(FileHelper::HOSTILE_FILE_FOLDER) + filename;
+		
+	theFile.Open(_T(fileDirectory.c_str()), CFile::modeCreate | CFile::modeWrite);
 	CArchive archive(&theFile, CArchive::store);
+
 	_active->Serialize(archive);
 
 	archive.Close();
 	theFile.Close();
+
 	cout << " successfully created" << endl;
 	_active->print();
 	_active->printEquipments();
+
 	resetGodmodeActiveController();
 	GodmodeInteractableView::interactableFileSelectionView();
 }
@@ -198,7 +226,21 @@ void GodmodeActiveController::saveAndQuit(){
 void GodmodeActiveController::resetGodmodeActiveController() {
 	delete _active;
 	_active = NULL;
+
+	filenames.clear();
+	vector<string>().swap(filenames);
 }
+
+void GodmodeActiveController::getSavedActiveFiles(int type) {
+
+	if (type == 0)
+		filenames = FileHelper::getFilenamesInDirectory(FileHelper::FIGHTER_FILE_FOLDER);
+	else if (type == 1)
+		filenames = FileHelper::getFilenamesInDirectory(FileHelper::HOSTILE_FILE_FOLDER);
+
+	GodmodeActiveView::activeChooseSaveFileView(filenames); 
+}
+
 //! method to create or get the singleton class
 GodmodeActiveController* GodmodeActiveController::instance() {
 	if (!s_instance)

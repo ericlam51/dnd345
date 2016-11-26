@@ -9,14 +9,17 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 class GodmodeFriendlyNpcView {
 public:
 	static void newFriendlyNpcView();
-	static void loadFriendlyNpcView();
 	static void postCreationView();
-	static void warningMsgFriendlyNpcLoaded();
-	static void saveAndQuitView(FriendlyNpc* friendlyNpc);
+	static void friendlyChooseSaveFileView(vector<string> filenames);
+	static void friendlyAskSaveFileName();
+	static void warningMsgInvalidInput();
+	static void warningMsgFriendlySaved();
+	static void warningMsgFriendlyLoaded();
 };

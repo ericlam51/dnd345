@@ -1,5 +1,5 @@
 #include "GodmodeFriendlyNpcView.h"
-
+#undef max
 //! method to create NPC
 void GodmodeFriendlyNpcView::newFriendlyNpcView() {
 
@@ -8,21 +8,17 @@ void GodmodeFriendlyNpcView::newFriendlyNpcView() {
 	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	cout << "Enter NPC's name: " << endl;
-	cin >> name;
+	cin.ignore();
+	getline(cin, name);
 
 	cout << "Enter NPC's description: " << endl;
-	cin >> description;
+	getline(cin, description);
 
 	cout << "Enter NPC's dialog: " << endl;
-	cin >> dialog;
+	getline(cin, dialog);
+
 
 	GodmodeFriendlyNpcController::instance()->newFriendlyNpc(name, description, dialog);
-}
-
-//! method to load NPC
-void GodmodeFriendlyNpcView::loadFriendlyNpcView() {
-	cout << "Loading NPC..." << endl;
-	GodmodeFriendlyNpcController::instance()->loadFriendlyNpc();
 }
 
 //! method to create another NPC or save and quit
@@ -39,15 +35,42 @@ void GodmodeFriendlyNpcView::postCreationView(){
 	cin >> input;
 	GodmodeFriendlyNpcController::instance()->postCreation(input);
 }
+void GodmodeFriendlyNpcView::friendlyChooseSaveFileView(vector<string> filenames) {
+	cout << "Please select one of the following files:" << endl;
 
-//! method to show NPC successfully loaded
-void GodmodeFriendlyNpcView::warningMsgFriendlyNpcLoaded() {
-	cout << "NPC loaded" << endl;
+	for (int i = 0; i < filenames.size(); i++) {
+		cout << i + 1 << ". " << filenames[i] << endl;
+	}
+
+	cout << "Selection: ";
+
+	int input;
+
+	cin >> input;
+
+	cin.clear(); //if cin fails because of wrong data type, clear error flag
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');  //clears the cin buffer
+
+	GodmodeFriendlyNpcController::instance()->loadFriendlyNpc(input - 1);
 }
 
-//! method to save Npc and quit
-void GodmodeFriendlyNpcView::saveAndQuitView(FriendlyNpc* friendlyNpc){
-	cout << "NPC successfully created!" << endl;
-	friendlyNpc->print();
-	GodmodeFriendlyNpcController::instance()->saveAndQuit();
+void GodmodeFriendlyNpcView::friendlyAskSaveFileName() {
+	cout << "Please enter filename: ";
+	string filename;
+
+	cin >> filename;
+
+	GodmodeFriendlyNpcController::instance()->saveAndQuit(filename);
+}
+
+void GodmodeFriendlyNpcView::warningMsgInvalidInput(){
+	cout << "Invalid input" << endl;
+}
+
+void GodmodeFriendlyNpcView::warningMsgFriendlySaved(){
+	cout << "NPC saved!" << endl;
+}
+
+void GodmodeFriendlyNpcView::warningMsgFriendlyLoaded(){
+	cout << "NPC loaded!" << endl;
 }

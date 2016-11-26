@@ -7,24 +7,31 @@ void GodmodeChestController::newChest(string name, string description) {
 }
 
 //! method to load chest
-void GodmodeChestController::loadChest() {
-	loadChestWithoutView();
+void GodmodeChestController::loadChest(int input) {
+	loadChestWithoutView(input);
 
+	print();
 	GodmodeChestView::warningMsgChestLoaded();
 	GodmodeChestView::postCreationView();
 }
 
 //! method to load chest without edit view
-void GodmodeChestController::loadChestWithoutView() {
-	CFile theFile;
-	theFile.Open(_T("Chest"), CFile::modeCreate | CFile::modeWrite);
-	CArchive archive(&theFile, CArchive::store);
+void GodmodeChestController::loadChestWithoutView(int input) {
+	if (input < 0 || input >= filenames.size()) {
+		GodmodeChestView::chestChooseSaveFileView(filenames);
+	}
+	else {
+		CFile theFile;
+		string filePath = FileHelper::getDirectoryPath(FileHelper::CHEST_FILE_FOLDER) + filenames[input];
+		theFile.Open(_T(filePath.c_str()), CFile::modeRead);
+		CArchive archive(&theFile, CArchive::load);
 
-	_chest = new Chest();
-	_chest->Serialize(archive);
+		_chest = new Chest();
+		_chest->Serialize(archive);
 
-	archive.Close();
-	theFile.Close();
+		archive.Close();
+		theFile.Close();
+	}
 }
 
 //! method to return chest object
@@ -39,7 +46,7 @@ void GodmodeChestController::postCreation(int input){
 			GodmodeChestView::newChestView();
 			break;
 		case 2:
-			GodmodeChestView::saveAndQuitView(_chest);
+			GodmodeChestView::chestAskSaveFileName();
 			break;
 		default:
 			GodmodeChestView::postCreationView();
@@ -48,23 +55,43 @@ void GodmodeChestController::postCreation(int input){
 }
 
 //! method to save and quit
-void GodmodeChestController::saveAndQuit(){
-	CFile theFile;
-	theFile.Open(_T("Chest"), CFile::modeCreate | CFile::modeWrite);
-	CArchive archive(&theFile, CArchive::store);
-	_chest->Serialize(archive);
-	archive.Close();
-	theFile.Close(); 
+void GodmodeChestController::saveAndQuit(string filename){
 
+	CFile theFile;
+	string fileDirectory = FileHelper::getDirectoryPath(FileHelper::CHEST_FILE_FOLDER) + filename;
+	theFile.Open(_T(fileDirectory.c_str()), CFile::modeCreate | CFile::modeWrite);
+	CArchive archive(&theFile, CArchive::store);
+
+	_chest->Serialize(archive);
+
+	archive.Close();
+	theFile.Close();
+
+	print();
 	resetGodmodeChestController();
 
+	GodmodeChestView::warningMsgChestSaved();
 	GodmodeInteractableView::interactableFileSelectionView();
+}
+
+void GodmodeChestController::getSavedFiles() {
+	filenames = FileHelper::getFilenamesInDirectory(FileHelper::CHEST_FILE_FOLDER);
+
+	GodmodeChestView::chestChooseSaveFileView(filenames); 
 }
 
 void GodmodeChestController::resetGodmodeChestController() {
 	delete _chest;
 	_chest = NULL;
+
+	filenames.clear();
+	vector<string>().swap(filenames);
 }
+
+void GodmodeChestController::print() {
+	_chest->print();
+}
+
 GodmodeChestController* GodmodeChestController::instance() {
 	if (!s_instance)
 		s_instance = new GodmodeChestController();

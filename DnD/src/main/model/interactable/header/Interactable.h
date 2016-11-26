@@ -7,10 +7,11 @@
 #define NO_WARN_MBCS_MFC_DEPRECATION
 #include <iostream>
 #include <afx.h>
+#include "../../../helper/Subject.h"
 
 using namespace std;
 
-class Interactable : public CObject
+class Interactable : public CObject, Subject
 {
 public:
 	Interactable();
