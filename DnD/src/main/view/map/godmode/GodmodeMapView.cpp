@@ -50,6 +50,25 @@ void GodmodeMapView::mapCreationInputView() {
 	GodmodeMapController::instance()->newMap(width, height);
 }
 
+void GodmodeMapView::mapChooseSaveMapFileView(vector<string> filenames) {
+	cout << "Please select one of the following files:" << endl;
+
+	for (int i = 0; i < filenames.size(); i++) {
+		cout << i+1 << ". " << filenames[i] << endl;
+	}
+
+	cout << "Selection: ";
+
+	int input;
+
+	cin >> input;
+
+	cin.clear(); //if cin fails because of wrong data type, clear error flag
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');  //clears the cin buffer
+
+	GodmodeMapController::instance()->loadMap(input-1);
+}
+
 //! Show options to edit the map
 void GodmodeMapView::mapOptionsMenuView() {
 	int input;
@@ -111,6 +130,15 @@ void GodmodeMapView::mapFillOptionsMenuView() {
 		break;
 	default: cout << "Invalid input"; break;
 	}
+}
+
+void GodmodeMapView::mapAskSaveFileName() {
+	cout << "Please enter filename: ";
+	string filename;
+
+	cin >> filename;
+
+	GodmodeMapController::instance()->saveMap(filename);
 }
 
 /* WARNING MESSAGES */
