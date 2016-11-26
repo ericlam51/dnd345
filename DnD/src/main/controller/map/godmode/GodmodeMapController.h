@@ -10,6 +10,7 @@ class GodmodeMapController {
 private:
 	Map* map;
 	void setCell(int x, int y, Cell* cell);
+	vector<string> filenames;
 
 public:
 	static GodmodeMapController* instance();
@@ -18,9 +19,13 @@ public:
 	void fillCell(int x, int y, char cellType);
 	void mapOptions(int input);
 	void validateMap();
+	void getSavedMapFiles();
+	void validateSaveRequirements();
 
-	void saveMap();
-	void loadMap();
+	void saveMap(string filename);
+	void loadMap(int inpu);
 
 	void print();
+
+	void resetController();
 };

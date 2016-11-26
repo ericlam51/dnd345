@@ -15,19 +15,29 @@ Map::Map(int width, int height) {
 }
 
 Map::~Map() {
-	//TODO
+	for (int y = 0; y < height; y++) {
+		for (int x = 0; x < width; x++) {
+			delete map[y][x];
+		}
+
+		map[y].clear();
+	}	
+	
+	map.clear();
+	pathCells.clear();
+	entityCells.clear();
+	chestCells.clear();
+	wallCells.clear();
+	passed.clear();
 }
 
 Map::Map() {}
 
 //! initiate the map vector
 void Map::initMap() {
-	//Init 2D array
-
 	map.resize(height, vector<Cell*>(width));
 
 	for (int y = 0; y < height; y++) {
-	
 		for (int x = 0; x < width; x++) {
 			map[y][x] = new PathCell();
 			map[y][x]->setPosX(x);
@@ -42,6 +52,7 @@ void Map::initMap() {
 
 //! Print the map
 void Map::print() {
+	//Print delimiter
 	cout << "=";
 	for (int i = 0; i < width; i++) {
 		cout << "=";
@@ -49,6 +60,7 @@ void Map::print() {
 	cout << "=";
 	cout << endl;
 
+	//Print map
 	for (int y = 0; y < height; y++) {
 		cout << "|";
 		for (int x = 0; x < width; x++) {
@@ -58,6 +70,7 @@ void Map::print() {
 		cout << "|" << endl;
 	}
 	
+	//Print delimiter
 	cout << "=";
 	for (int i = 0; i < width; i++) {
 		cout << "=";
@@ -126,8 +139,8 @@ void Map::fillCell(int x, int y, Cell* cell) {
 	}else if (cell->getType() == CellHelper::EXIT_TYPE) {
 		if (exitCell != NULL) {
 			GodmodeMapView::warningMsgChangingExitCell();
-			int previousExitX = startingCell->getPosX();
-			int previousExitY = startingCell->getPosY();
+			int previousExitX = exitCell->getPosX();
+			int previousExitY = exitCell->getPosY();
 			map[previousExitY][previousExitX] = new PathCell();
 
 			delete exitCell;
