@@ -20,6 +20,8 @@ public:
 	static void mapCreationInputView();
 	static void mapFillOptionsMenuView();
 	static void mapOptionsMenuView();
+	static void mapChooseSaveMapFileView(vector<string> filenames);
+	static void mapAskSaveFileName();
 
 	/* Warning messages */
 	static void warningMsgChangingEntranceCell();

@@ -19,7 +19,16 @@ Map::~Map() {
 		for (int x = 0; x < width; x++) {
 			delete map[y][x];
 		}
-	}
+
+		map[y].clear();
+	}	
+	
+	map.clear();
+	pathCells.clear();
+	entityCells.clear();
+	chestCells.clear();
+	wallCells.clear();
+	passed.clear();
 }
 
 Map::Map() {}

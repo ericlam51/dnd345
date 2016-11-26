@@ -6,6 +6,7 @@
 #include "../../interactable/godmode/GodmodeChestController.h"
 #include "../../interactable/godmode/GodmodeActiveController.h"
 #include "../../../model/interactable/header/Fighter.h"
+#include "../../../helper/FileHelper.h"
 
 //! Controller to receive request from GodmodeMapView::fileOptionsMenuView()
 //! @param input: user input
@@ -15,10 +16,11 @@ void GodmodeMapController::mapFileSelection(int input) {
 		GodmodeMapView::mapCreationInputView();
 		break;
 	case 2:
-		s_instance->loadMap();
+		s_instance->getSavedMapFiles();
+		//s_instance->loadMap();
 		break;
 	case 3:
-		GameModeView::displayView(3);
+		//GameModeView::displayView(3);
 		break;
 	default: 
 		GodmodeMapView::warningMsgInvalidInput();
@@ -87,10 +89,11 @@ void GodmodeMapController::mapOptions(int input) {
 		GodmodeMapController::instance()->validateMap();
 		break; 
 	case 3:
-		GodmodeMapController::instance()->saveMap();
+		GodmodeMapController::instance()->validateSaveRequirements();
+		//GodmodeMapController::instance()->saveMap();
 		break;
 	case 4:
-		GameModeView::displayView(3);
+		//GameModeView::displayView(3);
 		break;
 	default:
 		GodmodeMapView::warningMsgInvalidInput();
@@ -100,17 +103,10 @@ void GodmodeMapController::mapOptions(int input) {
 }
 
 //! Controller to receive request to save the map
-void GodmodeMapController::saveMap() {
-	bool valid = map->validateMap();
-
-	if (!valid) {
-		GodmodeMapView::warningMsgInvalidMap();
-		GodmodeMapView::mapOptionsMenuView();
-		return;
-	}
-
+void GodmodeMapController::saveMap(string filename) {
 	CFile theFile;
-	theFile.Open(_T("Map"), CFile::modeCreate | CFile::modeWrite);
+	string fileDirectory = FileHelper::getDirectoryPath(FileHelper::MAP_FILE_FOLDER) + filename;
+	theFile.Open(_T(fileDirectory.c_str()), CFile::modeCreate | CFile::modeWrite);
 	CArchive archive(&theFile, CArchive::store);
 
 	map->Serialize(archive);
@@ -120,6 +116,18 @@ void GodmodeMapController::saveMap() {
 
 	GodmodeMapView::warningMsgMapSaved();
 	GodmodeMapView::mapOptionsMenuView();
+}
+
+void GodmodeMapController::validateSaveRequirements() {
+	bool valid = map->validateMap();
+
+	if (!valid) {
+		GodmodeMapView::warningMsgInvalidMap();
+		GodmodeMapView::mapOptionsMenuView();
+		return;
+	}
+
+	GodmodeMapView::mapAskSaveFileName();
 }
 
 //! Controller to receive request to validate the map
@@ -178,20 +186,31 @@ void GodmodeMapController::print() {
 }
 
 //! Controller to receive request to load map
-void GodmodeMapController::loadMap() {
-	CFile theFile;
-	theFile.Open(_T("Map"), CFile::modeRead);
-	CArchive archive(&theFile, CArchive::load);
+void GodmodeMapController::loadMap(int input) {
+	if (input < 0 || input >= filenames.size()) {
+		GodmodeMapView::mapChooseSaveMapFileView(filenames);
+	} else {
+		CFile theFile;
+		string filePath = FileHelper::getDirectoryPath(FileHelper::MAP_FILE_FOLDER) + filenames[input];
+		theFile.Open(_T(filePath.c_str()), CFile::modeRead);
+		CArchive archive(&theFile, CArchive::load);
 
-	map = new Map();
-	map->Serialize(archive);
+		map = new Map();
+		map->Serialize(archive);
 
-	archive.Close();
-	theFile.Close();
+		archive.Close();
+		theFile.Close();
 
-	print();
-	GodmodeMapView::warningMsgMapLoaded();
-	GodmodeMapView::mapOptionsMenuView();
+		print();
+		GodmodeMapView::warningMsgMapLoaded();
+		GodmodeMapView::mapOptionsMenuView();
+	}
+}
+
+void GodmodeMapController::getSavedMapFiles() {
+	filenames = FileHelper::getFilenamesInDirectory(FileHelper::MAP_FILE_FOLDER);
+
+	GodmodeMapView::mapChooseSaveMapFileView(filenames);
 }
 
 GodmodeMapController* GodmodeMapController::instance() {
@@ -199,6 +218,14 @@ GodmodeMapController* GodmodeMapController::instance() {
 		s_instance = new GodmodeMapController();
 
 	return s_instance;
+}
+
+void GodmodeMapController::resetController() {
+	delete map;
+	map = NULL;
+
+	filenames.clear();
+	vector<string>().swap(filenames);
 }
 
 GodmodeMapController* GodmodeMapController::s_instance = GodmodeMapController::instance();
