@@ -9,9 +9,10 @@ int Dice :: roll(int times, int type, int z) {
 	}
 	numberDice = times;
 	typeOfDie = type;
+
 	srand((unsigned)time(NULL));
 	rolledValue = 0;
-	for (int i = 0; i < times; i++) {
+	for (int i = 0; i <= times; i++) {
 		rolledValue += rand() % type + 1;
 		Notify();
 	}
