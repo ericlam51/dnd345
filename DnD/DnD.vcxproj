@@ -114,6 +114,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\main\model\dice\Dice.h" />
     <ClInclude Include="src\main\helper\FileHelper.h" />
     <ClInclude Include="src\main\view\GameModeView.h" />
     <ClInclude Include="src\main\controller\interactable\godmode\GodmodeActiveController.h" />
