@@ -47,17 +47,21 @@ void Item::Serialize(CArchive & archive)
 
 	CString cType(type.c_str());
 	CString cName(getItemName().c_str());
+	CString cEnchantmentType(enchantmentType.c_str());
+	int cEnchantmentModifier = enchantmentModifier;
 
 	// now do the stuff for our specific class
 	if (archive.IsStoring())
 	{
-		archive << cType << cName;
+		archive << cType << cName << cEnchantmentType << cEnchantmentModifier;
 	}
 	else
 	{
-		archive >> cType >> cName;
+		archive >> cType >> cName >> cEnchantmentType >> cEnchantmentModifier;
 		itemName = ((LPCTSTR)cName);
 		type = ((LPCTSTR)cType);
+		enchantmentType = cEnchantmentType;
+		enchantmentModifier = cEnchantmentModifier;
 	}
 }
 
