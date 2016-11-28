@@ -33,78 +33,86 @@ void GameModeView::printPlayMenu() {
 
 //! method to display the view, with a default parameter of 0 for main menu, 1 for game mode, 2 for god mode
 void GameModeView::displayView(int gameMode) {
-	int playing = false;
-	//user input for the game mode menu
-	while (gameMode != 1 && gameMode != 2) {
-		printMainMenu();
-		cin >> gameMode;
-		system("cls");
-	}
-	//go to the game mode
-	if (gameMode == 1) {
-		int gameOption = 0;
-		playing = true;
-		PlayModeController pmc;
-		pmc.loadGame();
-		system("cls");
-		while (playing) {
-			while (gameOption < 1 || gameOption > 6) {
-				system("cls");
-				pmc.printMap();
-				printPlayMenu();
-				cin >> gameOption;
-				system("cls");
-			}
-			switch (gameOption) {
-				//Move up
-			case 1:
-				pmc.movePlayer('U');
-				break;
-				//Move down
-			case 2:
-				pmc.movePlayer('D');
-				break;
-				//Move Left
-			case 3:
-				pmc.movePlayer('L');
-				break;
-				//Move Right
-			case 4:
-				pmc.movePlayer('R');
-				break;
-				//Print equipped equipment
-			case 5:
-				pmc.printEquipment();
-				break;
-				//Exit the game
-			case 6:
-				playing = false;
-				break;
-			}
-			gameOption = 0;
-
-		}
-	}
-	//go to the god mode
-	else if (gameMode == 2) {
-		int godModeOption = 0;
-		//Get input from the user for the god mode menu
-		while (godModeOption != 1 && godModeOption != 2 && godModeOption != 3) {
-			printGodModeMenu();
-			cin >> godModeOption;
+	do {
+		int playing = false;
+		//user input for the game mode menu
+		while (gameMode != 1 && gameMode != 2) {
+			printMainMenu();
+			cin >> gameMode;
 			system("cls");
 		}
-		//Redirect to the correct god mode menu
-		if (godModeOption == 1) {
-			GodmodeMapView::fileOptionsMenuView();
+		//go to the game mode
+		if (gameMode == 1) {
+			int gameOption = 0;
+			playing = true;
+			PlayModeController pmc;
+			pmc.loadGame();
+			system("cls");
+			while (playing) {
+				while (gameOption < 1 || gameOption > 6) {
+					system("cls");
+					pmc.printMap();
+					printPlayMenu();
+					cin >> gameOption;
+					system("cls");
+				}
+				switch (gameOption) {
+					//Move up
+				case 1:
+					pmc.movePlayer('U');
+					break;
+					//Move down
+				case 2:
+					pmc.movePlayer('D');
+					break;
+					//Move Left
+				case 3:
+					pmc.movePlayer('L');
+					break;
+					//Move Right
+				case 4:
+					pmc.movePlayer('R');
+					break;
+					//Print equipped equipment
+				case 5:
+					pmc.printEquipment();
+					break;
+					//Exit the game
+				case 6:
+					playing = false;
+					break;
+				}
+				gameOption = 0;
+
+			}
 		}
-		else if (godModeOption == 2) {
-			GodmodeInteractableView::interactableFileSelectionView();
+		//go to the god mode
+		else if (gameMode == 2) {
+			int godModeOption = 0;
+			//Get input from the user for the god mode menu
+			while (godModeOption != 1 && godModeOption != 2 && godModeOption != 3) {
+				printGodModeMenu();
+				cin >> godModeOption;
+				system("cls");
+			}
+			//Redirect to the correct god mode menu
+			if (godModeOption == 1) {
+				GodmodeMapView::fileOptionsMenuView();
+			}
+			else if (godModeOption == 2) {
+				GodmodeInteractableView::interactableFileSelectionView();
+			}
+			else if (godModeOption == 3) {
+				GodmodeItemView::itemOptionSelection();
+			}
 		}
-		else if (godModeOption == 3) {
-			GodmodeItemView::itemOptionSelection();
-		}
-	}
+
+		gameMode = 3;
+		GodmodeMapController::instance()->resetController();
+		GodmodeActiveController::instance()->resetGodmodeActiveController();
+		GodmodeChestController::instance()->resetGodmodeChestController();
+		GodmodeFriendlyNpcController::instance()->resetGodmodeFriendlyNpcController();
+	} while (true);
 
 }
 

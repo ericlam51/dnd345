@@ -16,4 +16,5 @@ public:
 	static void interactableFileSelectionView();
 	static void interactableElementSelectionView();
 	static void interactableLoadView();
+	static void warningMsgInvalidInput();
 };

@@ -12,14 +12,18 @@ class GodmodeChestController {
 
 private:
 	Chest* _chest = NULL;
+	vector<string> filenames;
+
 public:
 	static GodmodeChestController* instance();
 	void newChest(string name, string description);
-	void loadChest();
-	void loadChestWithoutView();
+	void loadChest(int input);
+	void loadChestWithoutView(int input);
 	Chest* getChest();
 
 	void postCreation(int input);
-	void saveAndQuit();
+	void saveAndQuit(string filename);
+	void getSavedFiles();
 	void resetGodmodeChestController();
+	void print();
 };

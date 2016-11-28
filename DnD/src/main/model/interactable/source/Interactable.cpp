@@ -4,7 +4,7 @@
 IMPLEMENT_SERIAL(Interactable, CObject, 1)
 
 Interactable::Interactable() {}
-Interactable::Interactable(string name, string description) :name(name), description(description){
+Interactable::Interactable(string name, string description) : name(name), description(description){
 
 }
 

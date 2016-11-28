@@ -8,7 +8,8 @@
 #include "Interactable.h"
 #include "../../item/Item.h"
 #include "../../item/EquippedItems.h"
-
+#include "../../dice/Dice.h"
+#include "../../../helper/DiceLogger.h"
 using namespace std;
 
 class Active : public Interactable
@@ -64,6 +65,7 @@ protected:
 	int damageBonus;
 	int currentHitPoints;
 	int maxHitPoints;
+	DiceLogger *_diceLogger;
 	EquippedItems* _equippedItems;
 	ItemContainer* _itemContainer;  // Contained in active because when a monster dies it drops whatever is in his itemContainer
 };

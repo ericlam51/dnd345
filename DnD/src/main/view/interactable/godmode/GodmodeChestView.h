@@ -14,8 +14,11 @@ using namespace std;
 class GodmodeChestView {
 public:
 	static void newChestView();
-	static void loadChestView();
 	static void postCreationView();
+	static void chestChooseSaveFileView(vector<string> filenames);
+	static void chestAskSaveFileName();
+
+	static void warningMsgInvalidInput();
 	static void warningMsgChestLoaded();
-	static void saveAndQuitView(Chest* chest);
+	static void warningMsgChestSaved();
 };

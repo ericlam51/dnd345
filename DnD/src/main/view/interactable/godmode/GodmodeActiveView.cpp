@@ -1,5 +1,5 @@
 #include "GodmodeActiveView.h"
-
+#undef max
 string GodmodeActiveView::typeStr = "";
 
 bool readBooleanInput(char input) {
@@ -27,10 +27,11 @@ void GodmodeActiveView::newActiveView(int type) {
 		typeStr = "Monster";
 
 	cout << "Enter " << typeStr <<"'s name: " << endl;
-	cin >> name;
+	cin.ignore();
+	getline(cin, name);
 
 	cout << "Enter " << typeStr <<"'s description: " << endl;
-	cin >> description;
+	getline(cin, description);
 
 	cout << "Enter " << typeStr <<"'s level: " << endl;
 	cin >> level;
@@ -39,23 +40,6 @@ void GodmodeActiveView::newActiveView(int type) {
 		GodmodeActiveController::instance()->newFighter(name, description, level);
 	else if(type == 1)
 		GodmodeActiveController::instance()->newHostileNpc(name, description, level);
-}
-
-//! method to load new monster or fighter
-void GodmodeActiveView::loadActiveView(int type) {
-	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
-
-	if (type == 0)
-		typeStr = "Fighter";
-	else if (type == 1)
-		typeStr = "Monster";
-	
-	cout << "Loading " << typeStr << "..." << endl;
-
-	if (type == 0)
-		GodmodeActiveController::instance()->loadFighter();
-	else if (type == 1)
-		GodmodeActiveController::instance()->loadHostileNpc();
 }
 
 //! method to prompt edit monster or fighter
@@ -139,6 +123,39 @@ void GodmodeActiveView::warningMsgActiveLoaded() {
 	cout << typeStr <<" loaded" << endl;
 }
 
-void GodmodeActiveView::saveAndQuitView() {
-	GodmodeActiveController::instance()->saveAndQuit();
+void GodmodeActiveView::activeChooseSaveFileView(vector<string> filenames) {
+	cout << "Please select one of the following files:" << endl;
+
+	for (int i = 0; i < filenames.size(); i++) {
+		cout << i + 1 << ". " << filenames[i] << endl;
+	}
+
+	cout << "Selection: ";
+
+	int input;
+
+	cin >> input;
+	cin.clear(); //if cin fails because of wrong data type, clear error flag
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');  //clears the cin buffer
+	if (!typeStr.compare("Fighter"))
+		GodmodeActiveController::instance()->loadFighter(input - 1);
+	else if (!typeStr.compare("Monster"))
+		GodmodeActiveController::instance()->loadHostileNpc(input - 1);
+}
+
+void GodmodeActiveView::activeAskSaveFileName() {
+	cout << "Please enter filename: ";
+	string filename;
+
+	cin >> filename;
+
+	GodmodeActiveController::instance()->saveAndQuit(filename);
+}
+
+void GodmodeActiveView::warningMsgInvalidInput() {
+	cout << "Invalid input!" << endl;
+}
+
+void GodmodeActiveView::warningInvalidCharacter() {
+	cout << "Invalid character";
 }
