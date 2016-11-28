@@ -88,21 +88,30 @@ void GodmodeActiveView::changeAbilityScoreView() {
 
 //! method to equip item on monster or fighter
 void GodmodeActiveView::equipItemView() {
-	char input;
-	bool cont = true;
 
-	while (cont) {
-		char item;
-		cout << "Choose an item to equip : (h: helmet, a: armor, s: shield, r: ring, b: belt, j: boots, w: weapon" << endl;
-		cin >> item;
-
-		GodmodeActiveController::instance()->equipItem(item);
-
-		cout << "Do you want to continue to equip item? ([Y/n])" << endl;
-		cin >> input;
-
-		cont = readBooleanInput(input);
+	if (GodmodeItemController::instance()->getContainer()->size() == 0) 
+	{
+		system("cls");
+		cout << "Cannot equip items, since no items are in the item container.\nPlease load or save an item container." << endl;
 	}
+	else
+	{
+		char input;
+		bool cont = true;
+		while (cont) {
+			char item;
+			cout << "Choose an item to equip : (h: helmet, a: armor, s: shield, r: ring, b: belt, j: boots, w: weapon" << endl;
+			cin >> item;
+
+			GodmodeActiveController::instance()->equipItem(item);
+
+			cout << "Do you want to continue to equip item? ([Y/n])" << endl;
+			cin >> input;
+
+			cont = readBooleanInput(input);
+		}
+	}
+
 	postCreationYesView();
 }
 

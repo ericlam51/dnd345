@@ -120,13 +120,40 @@ void GodmodeItemView::removeItem()
 //! View option to save an item inventory
 void GodmodeItemView::saveItemInventory()
 {
-	GodmodeItemController::instance()->saveItemInventory();
+	cout << "Please enter filename: ";
+	string filename;
+
+	cin >> filename;
+
+	GodmodeItemController::instance()->saveItemInventory(filename);
 }
 
 //! View option to load an item inventory
-void GodmodeItemView::loadItemInventory()
+void GodmodeItemView::loadItemInventory(vector<string> filenames)
 {
-	GodmodeItemController::instance()->loadItemInventory();
+	if (filenames.size() == 0)
+	{
+		cout << "There are no item inventory files to load." << endl;
+	}
+	else
+	{
+		cout << "Please select one of the following files:" << endl;
+
+		for (int i = 0; i < filenames.size(); i++) {
+			cout << i + 1 << ". " << filenames[i] << endl;
+		}
+
+		int input = 0;
+		do
+		{
+			cout << "Selection: ";
+			cin >> input;
+		} while (input < 1 || input > filenames.size());
+
+		cin.clear(); //if cin fails because of wrong data type, clear error flag
+
+		GodmodeItemController::instance()->loadItemInventory(input - 1);
+	}
 }
 
 //! Displays action success

@@ -19,13 +19,16 @@ public:
 	void addItem(int, string);
 	void removeItem(string, int);
 	vector<Item*> getItemsOfType(int);
-	void saveItemInventory();
-	void loadItemInventory();
-	void loadSaveFile();
+	void saveItemInventory(string);
+	void loadItemInventory(int);
+	void loadSaveFile(string);
 	ItemContainer* getContainer();
 	void menuHelper(int selection);
+	string getLoadedFile();
+	void setLoadedFile(int);
 private:
 	ItemContainer* container;
 	GodmodeItemController();
+	int loadedFile = 0;
 };
 

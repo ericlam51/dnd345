@@ -23,6 +23,7 @@ public:
 	void removeItem(Item*);
 	Item* getItem(string, int);
 	vector<Item*> getItemsOfType(string);
+	int size();
 	DECLARE_SERIAL(ItemContainer)
 	void Serialize(CArchive& archive);
 private:

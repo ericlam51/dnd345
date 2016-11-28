@@ -13,6 +13,7 @@ public:
 	static const string HOSTILE_FILE_FOLDER;
 	static const string FRIENDLY_FILE_FOLDER;
 	static const string CHEST_FILE_FOLDER;
+	static const string ITEM_CONTAINER_FILE_FOLDER;
 	static vector<string> getFilenamesInDirectory(string foldername);
 	static string getDirectoryPath(string foldername);
 };

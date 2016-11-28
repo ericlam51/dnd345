@@ -73,6 +73,17 @@ vector<Item*> ItemContainer::getItemsOfType(string type)
 	return items[type];
 }
 
+int ItemContainer::size()
+{
+	int size = 0;
+	for (int i = 0; i <= HELMET; i++)
+	{
+		string str(ItemTypes[i]);
+		size += getItemsOfType(str).size();
+	}
+	return size;
+}
+
 //! serialize an item container
 void ItemContainer::Serialize(CArchive & archive)
 {
