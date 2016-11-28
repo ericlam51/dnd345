@@ -61,6 +61,16 @@ void Item::Serialize(CArchive & archive)
 	}
 }
 
+string Item::getEnchantmentType()
+{
+	return enchantmentType;
+}
+
+int Item::getEnchantmentModifier()
+{
+	return enchantmentModifier;
+}
+
 //! check if an item has a valid type
 //! @param type: type of the item
 //! @return bool

@@ -2,8 +2,12 @@
 
 IMPLEMENT_SERIAL(Helmet, CObject, 1)
 
+const string Helmet::enchantmentTypes[3] = { "Intelligence", "Wisdom", "Armor" };
+
 Helmet::Helmet(string name):Item(ItemTypes[HELMET], name)
 {
+	enchantmentType = enchantmentTypes[rand() % 3];
+	enchantmentModifier = rand() % 6 + 1;
 }
 
 

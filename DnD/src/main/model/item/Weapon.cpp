@@ -2,8 +2,12 @@
 
 IMPLEMENT_SERIAL(Weapon, CObject, 1)
 
+const string Weapon::enchantmentTypes[2] = { "Attack", "Damage" };
+
 Weapon::Weapon(string name):Item(ItemTypes[WEAPON], name)
 {
+	enchantmentType = enchantmentTypes[rand() % 2];
+	enchantmentModifier = rand() % 6 + 1;
 }
 
 

@@ -8,5 +8,7 @@ public:
 	Ring();
 	DECLARE_SERIAL(Ring)
 	void Serialize(CArchive& archive);
+private:
+	static const string enchantmentTypes[];
 };
 

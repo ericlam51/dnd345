@@ -4,6 +4,8 @@ IMPLEMENT_SERIAL(Shield, CObject, 1)
 
 Shield::Shield(string name):Item(ItemTypes[SHIELD], name)
 {
+	enchantmentType = "Armor";
+	enchantmentModifier = rand() % 6 + 1;
 }
 
 

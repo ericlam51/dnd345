@@ -2,8 +2,12 @@
 
 IMPLEMENT_SERIAL(Ring, CObject, 1)
 
+const string Ring::enchantmentTypes[5] = { "Armor", "Strength", "Constitution", "Wisdom", "Charisma" };
+
 Ring::Ring(string name):Item(ItemTypes[RING], name)
 {
+	enchantmentType = enchantmentTypes[rand() % 5];
+	enchantmentModifier = rand() % 6 + 1;
 }
 
 
