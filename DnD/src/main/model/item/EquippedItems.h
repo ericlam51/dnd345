@@ -19,6 +19,6 @@ public:
 	void Serialize(CArchive& archive);
 private:
 	map<string, Item*> equipped;
-	//ItemContainer* equipped;
+	int armorSize, shieldSize, weaponSize, bootsSize, ringSize, helmetSize;
 };
 
