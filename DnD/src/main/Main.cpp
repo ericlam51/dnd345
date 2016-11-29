@@ -11,6 +11,7 @@ using namespace std;
 
 int main(){
 
+	srand((unsigned)time(NULL));
 	GameModeView gmv;
 	gmv.displayView();
 	

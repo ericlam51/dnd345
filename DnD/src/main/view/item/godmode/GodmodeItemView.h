@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include <vector>
 #include "../../../controller/item/godmode/GodmodeItemController.h"
 
 using namespace std;
@@ -16,7 +17,8 @@ public:
 	static void removeItem();
 	static void itemOptionSelection();
 	static void saveItemInventory();
-	static void loadItemInventory();
+	static void loadItemInventory(vector<string>);
+	static void successfulAction();
 private:
 	static void displayItemHelper(int);
 };

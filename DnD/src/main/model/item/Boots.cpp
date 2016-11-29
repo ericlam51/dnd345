@@ -2,8 +2,12 @@
 
 IMPLEMENT_SERIAL(Boots, CObject, 1)
 
+const string Boots::enchantmentTypes[2] = { "Armor", "Dexterity" };
+
 Boots::Boots(string name):Item(ItemTypes[BOOTS], name)
 {
+	enchantmentType = enchantmentTypes[rand() % 2];
+	enchantmentModifier = rand() % 6 + 1;
 }
 
 

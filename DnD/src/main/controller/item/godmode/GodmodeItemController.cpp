@@ -48,6 +48,7 @@ void GodmodeItemController::addItem(int selection, string name)
 			GodmodeItemController::instance()->container->addItem(item);
 			break;
 	}
+	GodmodeItemView::successfulAction();
 	GodmodeItemView::itemOptionSelection();
 
 }
@@ -68,12 +69,26 @@ void GodmodeItemController::menuHelper(int input)
 		GodmodeItemView::saveItemInventory();
 		break;
 	case 5:
-		GodmodeItemView::loadItemInventory();
+		GodmodeItemView::loadItemInventory(FileHelper::getFilenamesInDirectory(FileHelper::ITEM_CONTAINER_FILE_FOLDER));
 		break;
 	case 6:
 		GameModeView::displayView(3);
 		break;
 	}
+}
+
+string GodmodeItemController::getLoadedFile()
+{
+	if (FileHelper::getFilenamesInDirectory(FileHelper::ITEM_CONTAINER_FILE_FOLDER).size() > 0)
+	{
+		return FileHelper::getDirectoryPath(FileHelper::ITEM_CONTAINER_FILE_FOLDER) + FileHelper::getFilenamesInDirectory(FileHelper::ITEM_CONTAINER_FILE_FOLDER)[loadedFile];
+	}
+	return "";
+}
+
+void GodmodeItemController::setLoadedFile(int file)
+{
+	loadedFile = file;
 }
 
 //! method that handles user input to remove an item from the item container
@@ -83,8 +98,8 @@ void GodmodeItemController::removeItem(string type, int index)
 {
 	Item* item = container->getItem(type, index - 1);
 	container->removeItem(item);
+	GodmodeItemView::successfulAction();
 	GodmodeItemView::itemOptionSelection();
-
 }
 
 //! method that returns a vector of the specific item type
@@ -95,10 +110,12 @@ vector<Item*> GodmodeItemController::getItemsOfType(int selection)
 	return GodmodeItemController::instance()->container->getItemsOfType(ItemTypes[selection - 1]);
 }
 
-void GodmodeItemController::saveItemInventory()
+//! method that serializes the item inventory
+void GodmodeItemController::saveItemInventory(string filename)
 {
 	CFile theFile;
-	theFile.Open(_T("ItemInventory"), CFile::modeCreate | CFile::modeWrite);
+	string fileDirectory = FileHelper::getDirectoryPath(FileHelper::ITEM_CONTAINER_FILE_FOLDER) + filename;
+	theFile.Open(_T(fileDirectory.c_str()), CFile::modeCreate | CFile::modeWrite);
 	CArchive archive(&theFile, CArchive::store);
 
 	container->Serialize(archive);
@@ -106,28 +123,36 @@ void GodmodeItemController::saveItemInventory()
 	archive.Close();
 	theFile.Close();
 
+	GodmodeItemView::successfulAction();
 	GodmodeItemView::itemOptionSelection();
 }
 
-void GodmodeItemController::loadItemInventory()
+//! method that loads a serialized item inventory
+void GodmodeItemController::loadItemInventory(int input)
 {
-	loadSaveFile();
+	setLoadedFile(input);
+	string filePath = FileHelper::getDirectoryPath(FileHelper::ITEM_CONTAINER_FILE_FOLDER) + FileHelper::getFilenamesInDirectory(FileHelper::ITEM_CONTAINER_FILE_FOLDER)[input];
+	loadSaveFile(filePath);
 
+	GodmodeItemView::successfulAction();
 	GodmodeItemView::itemOptionSelection();
 }
 
-void GodmodeItemController::loadSaveFile() {
-	CFile theFile;
-	theFile.Open(_T("ItemInventory"), CFile::modeRead);
-	CArchive archive(&theFile, CArchive::load);
+void GodmodeItemController::loadSaveFile(string filepath) {
+	if (filepath.length() > 0)
+	{
+		CFile theFile;
+		theFile.Open(_T(filepath.c_str()), CFile::modeRead);
+		CArchive archive(&theFile, CArchive::load);
 
-	ItemContainer* cont = new ItemContainer();
-	cont->Serialize(archive);
+		ItemContainer* cont = new ItemContainer();
+		cont->Serialize(archive);
 
-	container = cont;
+		container = cont;
 
-	archive.Close();
-	theFile.Close();
+		archive.Close();
+		theFile.Close();
+	}
 }
 
 ItemContainer* GodmodeItemController::getContainer() {

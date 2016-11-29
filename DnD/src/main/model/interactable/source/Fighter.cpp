@@ -48,7 +48,7 @@ void Fighter::Serialize(CArchive& archive) {
 			<< abilityScores[0] << abilityScores[1] << abilityScores[2]
 			<< abilityScores[3] << abilityScores[4] << abilityScores[5];
 		
-		/*_equippedItems->Serialize(archive);*/
+		_equippedItems->Serialize(archive);
 
 	}
 	else {
@@ -57,7 +57,7 @@ void Fighter::Serialize(CArchive& archive) {
 			>> abilityScores[0] >> abilityScores[1] >> abilityScores[2]
 			>> abilityScores[3] >> abilityScores[4] >> abilityScores[5];
 
-		/*_equippedItems->Serialize(archive);*/
+		_equippedItems->Serialize(archive);
 
 		name = ((LPCTSTR)cName);
 		description = ((LPCTSTR)cDescription);

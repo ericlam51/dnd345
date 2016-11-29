@@ -8,5 +8,7 @@ public:
 	Weapon();
 	DECLARE_SERIAL(Weapon)
 	void Serialize(CArchive& archive);
+private:
+	static const string enchantmentTypes[];
 };
 

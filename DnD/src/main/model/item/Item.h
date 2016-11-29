@@ -22,8 +22,13 @@ public:
 	DECLARE_SERIAL(Item)
 	void Serialize(CArchive& archive);
 	string type;
+	string getEnchantmentType();
+	int getEnchantmentModifier();
 private:
 	string itemName;
 	bool validItem(string);
+protected:
+	string enchantmentType;
+	int enchantmentModifier;
 };
 

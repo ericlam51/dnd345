@@ -1,21 +1,24 @@
 #include "GodmodeItemView.h"
 
+//! Displays the options of which item to create
 void GodmodeItemView::createItem()
 {
 	int selection = 0;
 	string name;
 
-	cout << "Item creation menu" << endl;
-	cout << endl << "Select the type of item you would like to create" << endl;
-	cout << "1. " << ItemTypes[ARMOR] << endl;
-	cout << "2. " << ItemTypes[SHIELD] << endl;
-	cout << "3. " << ItemTypes[WEAPON] << endl;
-	cout << "4. " << ItemTypes[BOOTS] << endl;
-	cout << "5. " << ItemTypes[RING] << endl;
-	cout << "6. " << ItemTypes[HELMET] << endl;
-
 	do
 	{
+		system("cls");
+		cout << "Item creation menu" << endl;
+		cout << endl << "Select the type of item you would like to create" << endl;
+		cout << "1. " << ItemTypes[ARMOR] << endl;
+		cout << "2. " << ItemTypes[SHIELD] << endl;
+		cout << "3. " << ItemTypes[WEAPON] << endl;
+		cout << "4. " << ItemTypes[BOOTS] << endl;
+		cout << "5. " << ItemTypes[RING] << endl;
+		cout << "6. " << ItemTypes[HELMET] << endl;
+
+		cout << "Input [1,6] : ";
 		cin.clear();
 		cin >> selection;
 	} while (selection < 1 || selection > 6);
@@ -23,25 +26,29 @@ void GodmodeItemView::createItem()
 	cout << endl << "Input the name you would like to give your item: " << endl;
 	cin >> name;
 
+	system("cls");
 	GodmodeItemController::instance()->addItem(selection, name);
 }
 
+//! Displays to user which items of type to view
 void GodmodeItemView::viewItemByType()
 {
 	int selection = 0;
 	string name;
 
-	cout << "Item viewer menu" << endl;
-	cout << endl << "Select the type of items you would like to view" << endl;
-	cout << "1. " << ItemTypes[ARMOR] << endl;
-	cout << "2. " << ItemTypes[SHIELD] << endl;
-	cout << "3. " << ItemTypes[WEAPON] << endl;
-	cout << "4. " << ItemTypes[BOOTS] << endl;
-	cout << "5. " << ItemTypes[RING] << endl;
-	cout << "6. " << ItemTypes[HELMET] << endl;
-
 	do
 	{
+		system("cls");
+		cout << "Item viewer menu" << endl;
+		cout << endl << "Select the type of items you would like to view" << endl;
+		cout << "1. " << ItemTypes[ARMOR] << endl;
+		cout << "2. " << ItemTypes[SHIELD] << endl;
+		cout << "3. " << ItemTypes[WEAPON] << endl;
+		cout << "4. " << ItemTypes[BOOTS] << endl;
+		cout << "5. " << ItemTypes[RING] << endl;
+		cout << "6. " << ItemTypes[HELMET] << endl;
+
+		cout << "Input [1,6] : ";
 		cin.clear();
 		cin >> selection;
 	} while (selection < 1 || selection > 6);
@@ -50,6 +57,7 @@ void GodmodeItemView::viewItemByType()
 	GodmodeItemView::itemOptionSelection();
 }
 
+//! Displays all items in container
 void GodmodeItemView::viewAllItems()
 {
 	cout << "All items: " << endl;
@@ -60,30 +68,40 @@ void GodmodeItemView::viewAllItems()
 	}
 }
 
+//! Displays to user which item to remove
 void GodmodeItemView::removeItem()
 {
 	int selection, itemToDelete; 
-
-	GodmodeItemView::viewAllItems();
 	vector<Item*> itemsSelected;
-
-	cout << "Select the item type of the item you would like to destroy." << endl;
-	cout << "1. " << ItemTypes[ARMOR] << endl;
-	cout << "2. " << ItemTypes[SHIELD] << endl;
-	cout << "3. " << ItemTypes[WEAPON] << endl;
-	cout << "4. " << ItemTypes[BOOTS] << endl;
-	cout << "5. " << ItemTypes[RING] << endl;
-	cout << "6. " << ItemTypes[HELMET] << endl;
 
 	do
 	{
+		system("cls");
+		GodmodeItemView::viewAllItems();
+
+		cout << "Select the item type of the item you would like to destroy.\nNo item will be deleted if there are no items of a specific type." << endl;
+
+		cout << "1. " << ItemTypes[ARMOR] << endl;
+		cout << "2. " << ItemTypes[SHIELD] << endl;
+		cout << "3. " << ItemTypes[WEAPON] << endl;
+		cout << "4. " << ItemTypes[BOOTS] << endl;
+		cout << "5. " << ItemTypes[RING] << endl;
+		cout << "6. " << ItemTypes[HELMET] << endl;
+		cout << "7. Return to Item Menu screen." << endl;
+
+		cout << "Input [1,7] : ";
 		cin.clear();
 		cin >> selection;
-	} while (selection < 1 || selection > 6);
+	} while (selection < 1 || selection > 7);
 
-	if (GodmodeItemController::instance()->getItemsOfType(selection).size() == 0)
+	if (selection == 7) 
 	{
-		cout << "There are no items of this type to remove." << endl;
+		system("cls");
+		itemOptionSelection();
+	}
+	else if (GodmodeItemController::instance()->getItemsOfType(selection).size() == 0)
+	{
+		removeItem();
 	}
 	else
 	{
@@ -99,16 +117,52 @@ void GodmodeItemView::removeItem()
 	}
 }
 
+//! View option to save an item inventory
 void GodmodeItemView::saveItemInventory()
 {
-	GodmodeItemController::instance()->saveItemInventory();
+	cout << "Please enter filename: ";
+	string filename;
+
+	cin >> filename;
+
+	GodmodeItemController::instance()->saveItemInventory(filename);
 }
 
-void GodmodeItemView::loadItemInventory()
+//! View option to load an item inventory
+void GodmodeItemView::loadItemInventory(vector<string> filenames)
 {
-	GodmodeItemController::instance()->loadItemInventory();
+	if (filenames.size() == 0)
+	{
+		cout << "There are no item inventory files to load." << endl;
+	}
+	else
+	{
+		cout << "Please select one of the following files:" << endl;
+
+		for (int i = 0; i < filenames.size(); i++) {
+			cout << i + 1 << ". " << filenames[i] << endl;
+		}
+
+		int input = 0;
+		do
+		{
+			cout << "Selection: ";
+			cin >> input;
+		} while (input < 1 || input > filenames.size());
+
+		cin.clear(); //if cin fails because of wrong data type, clear error flag
+
+		GodmodeItemController::instance()->loadItemInventory(input - 1);
+	}
 }
 
+//! Displays action success
+void GodmodeItemView::successfulAction()
+{
+	cout << "Action successfully completed." << endl; 
+}
+
+//! Displays all item of a specific type
 void GodmodeItemView::displayItemHelper(int selection) 
 {
 	vector<Item*> itemsSelected = GodmodeItemController::instance()->getItemsOfType(selection);
@@ -129,6 +183,7 @@ void GodmodeItemView::displayItemHelper(int selection)
 	}
 }
 
+//! Item menu interface
 void GodmodeItemView::itemOptionSelection() {
 	int input = 0;
 	while (input < 1 || input > 6) {
@@ -140,6 +195,7 @@ void GodmodeItemView::itemOptionSelection() {
 			<< "5. Load item container" << endl
 			<< "6. Return to Selection menu" << endl
 			<< "------------------------------" << endl;
+		cout << "Input [1,6] : ";
 		cin >> input;
 		system("cls");
 	}

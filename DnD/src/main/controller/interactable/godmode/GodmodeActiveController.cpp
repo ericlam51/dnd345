@@ -132,59 +132,103 @@ void GodmodeActiveController::modifyAbilityScore(int abilityScore[6]) {
 //! method to show to equip item on fighter/monsters
 //! @param item: item to equip
 void GodmodeActiveController::equipItem(char item) {
-	GodmodeItemController::instance()->loadSaveFile();
+	GodmodeItemController::instance()->loadSaveFile(
+		GodmodeItemController::instance()->getLoadedFile());
 
 	switch (item) {
-		case 'h':
+	case 'h':
+	{
+		Item* helmet = GodmodeItemController::instance()->getContainer()->getItem("HELMET", 0);
+		if (helmet == nullptr)
 		{
-			Item* helmet = GodmodeItemController::instance()->getContainer()->getItem("HELMET", 0);
+			cout << "There are currently no helmets created, you will need to create a helmet before you can equip one." << endl;
+		}
+		else
+		{
 			_active->equipItem(helmet);
-			cout << "successfully equipped" << endl;
+			cout << "Successfully equipped helmet." << endl;
 		}
-		break;
-		case 'a':
+	}
+	break;
+	case 'a':
+	{
+		Item* armor = GodmodeItemController::instance()->getContainer()->getItem("ARMOR", 0);
+		if (armor == nullptr)
 		{
-			Item* armor = GodmodeItemController::instance()->getContainer()->getItem("ARMOR", 0);
+			cout << "There are currently no armors created, you will need to create an armor before you can equip one." << endl;
+		}
+		else
+		{
 			_active->equipItem(armor);
-			cout << "successfully equipped" << endl;
+			cout << "Successfully equipped armor." << endl;
 		}
-		break;
-		case 's':
+	}
+	break;
+	case 's':
+	{
+		Item* shield = GodmodeItemController::instance()->getContainer()->getItem("SHIELD", 0);
+		if (shield == nullptr)
 		{
-			Item* shield = GodmodeItemController::instance()->getContainer()->getItem("SHIELD", 0);
+			cout << "There are currently no shields created, you will need to create a shield before you can equip one." << endl;
+		}
+		else
+		{
 			_active->equipItem(shield);
-			cout << "successfully equipped" << endl;
+			cout << "Successfully equipped shield." << endl;
 		}
-		break;
-		case 'r':
+	}
+	break;
+	case 'r':
+	{
+		Item* ring = GodmodeItemController::instance()->getContainer()->getItem("RING", 0);
+		if (ring == nullptr)
 		{
-			Item* ring = GodmodeItemController::instance()->getContainer()->getItem("RING", 0);
+			cout << "There are currently no rings created, you will need to create a ring before you can equip one." << endl;
+		}
+		else
+		{
 			_active->equipItem(ring);
-			cout << "successfully equipped" << endl;
+			cout << "Successfully equipped ring." << endl;
 		}
-		break;
-		//case 'b':
-		//	Helmet* helmet;
-		//	_active->equipItem(helmet);
-		//	break;
-		case 'j':
+	}
+	break;
+	//case 'b':
+	//	Helmet* helmet;
+	//	_active->equipItem(helmet);
+	//	break;
+	case 'j':
+	{
+		Item* boots = GodmodeItemController::instance()->getContainer()->getItem("BOOTS", 0);
+		if (boots == nullptr)
 		{
-			Item* boots = GodmodeItemController::instance()->getContainer()->getItem("BOOTS", 0);
+			cout << "There are currently no boots created, you will need to create boots before you can equip one." << endl;
+		}
+		else
+		{
 			_active->equipItem(boots);
-			cout << "successfully equipped" << endl;
+			cout << "Successfully equipped boots." << endl;
 		}
-		break;
-		case 'w':
+	}
+	break;
+	case 'w':
+	{
+		Item* weapon = GodmodeItemController::instance()->getContainer()->getItem("WEAPON", 0);
+		if (weapon == nullptr)
 		{
-			Item* weapon = GodmodeItemController::instance()->getContainer()->getItem("WEAPON", 0);
-			_active->equipItem(weapon);
-			cout << "successfully equipped" << endl;
+			cout << "There are currently no weapons created, you will need to create a weapon before you can equip one." << endl;
 		}
-		break;
-		default:
-			cout << "failed to equipped" << endl;
+		else
+		{
+			_active->equipItem(weapon);
+			cout << "Successfully equipped weapon." << endl;
+		}
+	}
+	break;
+	default:
+		cout << "Failed to equip." << endl;
 	}
 }
+
 void GodmodeActiveController::validateSaveRequirements() {
 	bool valid = _active->validateNewPlayer();
 
