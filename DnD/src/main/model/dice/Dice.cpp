@@ -10,7 +10,6 @@ int Dice :: roll(int times, int type, int z) {
 	numberDice = times;
 	typeOfDie = type;
 
-	srand((unsigned)time(NULL));
 	rolledValue = 0;
 	for (int i = 0; i <= times; i++) {
 		rolledValue += rand() % type + 1;
@@ -21,7 +20,7 @@ int Dice :: roll(int times, int type, int z) {
 
 
 void Dice::displayRollingMessage() {
-	cout << "You rolled a " << rolledValue << endl;
+	//cout << "You rolled a " << rolledValue << endl;
 }
 
 
