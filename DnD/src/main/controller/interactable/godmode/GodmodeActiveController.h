@@ -25,6 +25,7 @@ private:
 	// variable for the singleton 
 	Active* _active = NULL;
 	vector<string> filenames;
+	int option = 0;
 
 public:
 	//! method to create or get the singleton class
@@ -58,7 +59,7 @@ public:
 	//method to reset controller
 	void resetGodmodeActiveController();
 	//method to load active
-	void getSavedActiveFiles(int type);
+	void getSavedActiveFiles(int type, int option = 0);
 	//prtint character info
 	void print();
 
