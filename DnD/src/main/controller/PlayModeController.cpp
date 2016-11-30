@@ -21,6 +21,7 @@ void PlayModeController :: loadGame(string mapInput, string fighterInput) {
 
 //! method to load the map
 void PlayModeController::loadMap(string input) {
+	Logger::instance()->appendToNewLine("Loading map from " + input, "GAMECONTROLLER");
 	CFile theFile;
 	string filePath = FileHelper::getDirectoryPath(FileHelper::MAP_FILE_FOLDER) + input;
 	theFile.Open(_T(filePath.c_str()), CFile::modeRead);
@@ -66,6 +67,7 @@ void PlayModeController::movePlayer(char direction) {
 }
 
 void PlayModeController::printEquipment() {
+	Logger::instance()->appendToNewLine("Printing equipment", "GAMECONTROLLER");
 	string input;
 	_active->printEquipments();
 	_active->print();
@@ -75,6 +77,7 @@ void PlayModeController::printEquipment() {
 
 //!method to load fighter
 void PlayModeController::loadFighter(string input) {
+	Logger::instance()->appendToNewLine("Loading fighter from " + input, "GAMECONTROLLER");
 	CFile theFile;
 	string filePath = FileHelper::getDirectoryPath(FileHelper::FIGHTER_FILE_FOLDER) + input;
 	theFile.Open(_T(filePath.c_str()), CFile::modeRead);

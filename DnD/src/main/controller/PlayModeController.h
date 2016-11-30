@@ -8,7 +8,7 @@
 #include "../model/map/Map.h"
 #include "../model/map/Cell.h"
 #include "../model/interactable/header/Active.h"
-
+#include "../helper/Logger.h"
 //! class for the implementation of play mode controller
 //! this controller will handle the interaction between user and the software
 class PlayModeController {

@@ -19,7 +19,7 @@ int main(){
 	gmv.displayView();
 	//To start a Combat:
 	//Active* fighter = new Fighter("Taleb", "someone", 5);
-	//Active* monster = new HostileNpc("Roberto", "unpolite guy", 5);
+	//Active* monster = new HostileNpc("Roberto", "impolite guy", 5);
 	//CombatController cc;
 	//cc.beginCombat(fighter, monster);
 
