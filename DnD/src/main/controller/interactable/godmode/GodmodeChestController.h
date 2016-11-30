@@ -13,7 +13,7 @@ class GodmodeChestController {
 private:
 	Chest* _chest = NULL;
 	vector<string> filenames;
-	int option;
+	int option = 0;
 
 public:
 	static GodmodeChestController* instance();
