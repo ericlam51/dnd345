@@ -212,8 +212,8 @@ void GodmodeMapController::setCell(int x, int y, Cell* cell) {
 		EntityCell* ecell = dynamic_cast<EntityCell*>(cell);
 		
 		if (ecell->getIsFriendly()) {
-			
-			ecell->setEntity(NULL);
+			GodmodeFriendlyNpcController::instance()->getSavedFiles(-1);
+			ecell->setEntity(GodmodeFriendlyNpcController::instance()->getFriendlyNpc());
 		}
 		else {
 			GodmodeActiveController::instance()->getSavedActiveFiles(1, -1);
