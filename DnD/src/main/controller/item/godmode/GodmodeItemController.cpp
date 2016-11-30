@@ -91,6 +91,11 @@ void GodmodeItemController::setLoadedFile(int file)
 	loadedFile = file;
 }
 
+void GodmodeItemController::resetController()
+{
+	delete container;
+}
+
 //! method that handles user input to remove an item from the item container
 //! @param type: the object type to be deleted
 //! @param index: the index of the item to be deleted inside the vector 
