@@ -12,6 +12,7 @@ void GameModeView::printMainMenu() {
 	cout << "Select the mode:" << endl;
 	cout << "1. Play mode" << endl;
 	cout << "2. God mode" << endl;
+	cout << "3. End program" << endl;
 }
 
 //! method to display the god mode menu option
@@ -87,7 +88,7 @@ void GameModeView::displayView(int gameMode) {
 	do {
 		int playing = false;
 		//user input for the game mode menu
-		while (gameMode != 1 && gameMode != 2) {
+		while (gameMode != 1 && gameMode != 2 && gameMode != 3) {
 			printMainMenu();
 			cin >> gameMode;
 			system("cls");
@@ -157,8 +158,11 @@ void GameModeView::displayView(int gameMode) {
 				GodmodeItemView::itemOptionSelection();
 			}
 		}
+		else if (gameMode == 3) {
+			break;
+		}
 
-		gameMode = 3;
+		gameMode = -1;
 		GodmodeMapController::instance()->resetController();
 		GodmodeActiveController::instance()->resetGodmodeActiveController();
 		GodmodeChestController::instance()->resetGodmodeChestController();

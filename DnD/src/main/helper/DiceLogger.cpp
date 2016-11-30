@@ -14,7 +14,9 @@ DiceLogger::~DiceLogger()
 
 
 void DiceLogger::Update() {
-	display();
+	//display();
+	Logger::instance()->appendToNewLine("Logging dice...", "DICE");
+	Logger::instance()->appendToNewLine(Dice::instance()->rollingMessage(), "DICE");
 }
 
 void DiceLogger::display() {

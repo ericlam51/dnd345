@@ -1,5 +1,7 @@
 #include "Logger.h"
 
+using namespace std;
+
 Logger* Logger::instance() 
 {
 	if (!l_instance) {

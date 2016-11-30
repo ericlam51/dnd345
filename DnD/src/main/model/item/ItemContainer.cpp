@@ -86,6 +86,26 @@ int ItemContainer::size()
 	return size;
 }
 
+void ItemContainer::displayItemHelper(int selection)
+{
+	vector<Item*> itemsSelected = getItemsOfType(ItemTypes[selection - 1]);
+
+	if (itemsSelected.size() == 0)
+	{
+		cout << endl << "No items of type: " << ItemTypes[selection - 1] << endl;
+	}
+	else
+	{
+		cout << endl << "Displaying all items of type: " << ItemTypes[selection - 1] << endl;
+		int i = 1;
+		for (vector<Item*>::iterator it = itemsSelected.begin(); it != itemsSelected.end(); ++it)
+		{
+			cout << "Item: " << i++ << endl;
+			cout << "Item name: " << (*it)->getItemName() << endl;
+		}
+	}
+}
+
 //! serialize an item container
 void ItemContainer::Serialize(CArchive & archive)
 {

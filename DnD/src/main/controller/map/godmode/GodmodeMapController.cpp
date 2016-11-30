@@ -7,6 +7,7 @@
 #include "../../interactable/godmode/GodmodeActiveController.h"
 #include "../../../model/interactable/header/Fighter.h"
 #include "../../../helper/FileHelper.h"
+#include "../../../helper/Logger.h"
 
 //! Controller to receive request from GodmodeMapView::fileOptionsMenuView()
 //! @param input: user input
@@ -34,10 +35,18 @@ void GodmodeMapController::mapFileSelection(int input) {
 //! @param width: width of map
 void GodmodeMapController::newMap(int width, int height) {
 	if (width == 0 || height == 0) {
+		std::stringstream log;
+		log << "Failure to create a new map of size: (" << width << ',' << height << ')';
+		Logger::instance()->appendToNewLine(log.str(), "MAP");
+
 		GodmodeMapView::warningMsgInvalidInput();
 		GodmodeMapView::mapCreationInputView();
 	}
 	else {
+		std::stringstream log;
+		log << "Creating a new map of size: (" << width << ',' << height << ')';
+		Logger::instance()->appendToNewLine(log.str(), "MAP");
+
 		if (map != NULL)
 			delete map;
 
@@ -51,14 +60,22 @@ void GodmodeMapController::newMap(int width, int height) {
 //! @param y: y position of the cell
 //! @param x: x position of the Cell
 //! param charType: type of Cell. For all possible types, see CellHelper object.
-void GodmodeMapController::fillCell(int x, int y, char charType) {
+void GodmodeMapController::fillCell(int x, int y, char charType, int option) {
 	if (x < 0 || x > map->getWidth() || y < 0 || y > map->getHeight()) {
+		std::stringstream log;
+		log << "Failure to fill cell on map - Invalid cell coordinates: (" << x << ',' << ") - Entity Type: " << charType;
+		Logger::instance()->appendToNewLine(log.str(), "MAP");
+		
 		GodmodeMapView::warningMsgWrongCoordinates();
 		GodmodeMapView::mapFillOptionsMenuView();
 		return;
 	}
 
 	if (charType == NULL) {
+		std::stringstream log;
+		log << "Failure to fill cell on map - Cell coordinates: (" << x << ',' << ") - Entity Type: INVALID";
+		Logger::instance()->appendToNewLine(log.str(), "MAP");
+
 		GodmodeMapView::warningMsgWrongCellType();
 		GodmodeMapView::mapFillOptionsMenuView();
 		return;
@@ -78,7 +95,12 @@ void GodmodeMapController::fillCell(int x, int y, char charType) {
 		s_instance->setCell(x, y, new ChestCell());
 		break;
 	case  CellHelper::ENTITY_TYPE:
-		s_instance->setCell(x, y, new EntityCell());
+		if (option == 1) {
+			s_instance->setCell(x, y, new EntityCell(false));
+		}
+		else if (option == 2) {
+			s_instance->setCell(x, y, new EntityCell(true));
+		}
 		break;
 	case  CellHelper::PATH_TYPE:
 		s_instance->setCell(x, y, new PathCell());
@@ -116,6 +138,10 @@ void GodmodeMapController::mapOptions(int input) {
 
 //! Controller to receive request to save the map
 void GodmodeMapController::saveMap(string filename) {
+	std::stringstream log;
+	log << "Saving map to file " << filename;
+	Logger::instance()->appendToNewLine(log.str(), "MAP");
+
 	CFile theFile;
 	string fileDirectory = FileHelper::getDirectoryPath(FileHelper::MAP_FILE_FOLDER) + filename;
 	theFile.Open(_T(fileDirectory.c_str()), CFile::modeCreate | CFile::modeWrite);
@@ -138,13 +164,16 @@ void GodmodeMapController::validateSaveRequirements() {
 		GodmodeMapView::mapOptionsMenuView();
 		return;
 	}
-
 	GodmodeMapView::mapAskSaveFileName();
 }
 
 //! Controller to receive request to validate the map
 void GodmodeMapController::validateMap() {
 	bool valid = map->validateMap();
+
+	std::stringstream log;
+	log << "Validating map...";
+	Logger::instance()->appendToNewLine(log.str(), "MAP");
 
 	if (valid)
 		GodmodeMapView::warningMsgValidMap();
@@ -156,9 +185,10 @@ void GodmodeMapController::validateMap() {
 
 //! Method called by fillCell, which is turn called by the view. 
 void GodmodeMapController::setCell(int x, int y, Cell* cell) {
-	map->fillCell(x, y, cell);
-	map->print();
-	
+	std::stringstream log;
+	log << "Setting new cell on map: (" << x << "," << y << ") Cell Type: " << cell->getType();
+	Logger::instance()->appendToNewLine(log.str(), "MAP");
+
 	switch (cell->getType()) {
 		//case CellHelper::WALL_TYPE:
 		//	//dynamic_cast<WallCell*>(cell)->set
@@ -172,15 +202,27 @@ void GodmodeMapController::setCell(int x, int y, Cell* cell) {
 	case  CellHelper::CHEST_TYPE:
 	{
 		//GodmodeChestController::instance()->loadChestWithoutView(); //TODO
-		Interactable* chest = GodmodeChestController::instance()->getChest();
-		dynamic_cast<ChestCell*>(cell)->setChest(chest);
+		//Interactable* chest = GodmodeChestController::instance()->getChest();
+		GodmodeChestController::instance()->getSavedFiles(-1);
+		dynamic_cast<ChestCell*>(cell)->setChest(GodmodeChestController::instance()->getChest());
 		break;
 	}
 	case  CellHelper::ENTITY_TYPE:
 	{
+		EntityCell* ecell = dynamic_cast<EntityCell*>(cell);
+		
+		if (ecell->getIsFriendly()) {
+			GodmodeFriendlyNpcController::instance()->getSavedFiles(-1);
+			ecell->setEntity(GodmodeFriendlyNpcController::instance()->getFriendlyNpc());
+		}
+		else {
+			GodmodeActiveController::instance()->getSavedActiveFiles(1, -1);
+			ecell->setEntity(GodmodeActiveController::instance()->getActive());
+		}
+
 		//GodmodeActiveController::instance()->loadHostileNpcWithoutView();  //TODODO
-		Interactable* entity = GodmodeActiveController::instance()->getActive();
-		dynamic_cast<EntityCell*>(cell)->setEntity(entity);
+		//Interactable* entity = GodmodeActiveController::instance()->getActive();
+		//dynamic_cast<EntityCell*>(cell)->setEntity(entity);
 		break;
 	}
 	}
@@ -189,11 +231,18 @@ void GodmodeMapController::setCell(int x, int y, Cell* cell) {
 	//	break;
 	//}
 
+	map->fillCell(x, y, cell);
+	map->print();
+
 	GodmodeMapView::mapOptionsMenuView();
 }
 
 //! Controller to receive request to print the map
 void GodmodeMapController::print() {
+	std::stringstream log;
+	log << "Display map";
+	Logger::instance()->appendToNewLine(log.str(), "MAP");
+
 	map->print();
 }
 
@@ -202,6 +251,10 @@ void GodmodeMapController::loadMap(int input) {
 	if (input < 0 || input >= filenames.size()) {
 		GodmodeMapView::mapChooseSaveMapFileView(filenames);
 	} else {
+		std::stringstream log;
+		log << "Loading map from file " << filenames[input];
+		Logger::instance()->appendToNewLine(log.str(), "MAP");
+
 		CFile theFile;
 		string filePath = FileHelper::getDirectoryPath(FileHelper::MAP_FILE_FOLDER) + filenames[input];
 		theFile.Open(_T(filePath.c_str()), CFile::modeRead);
@@ -233,6 +286,10 @@ GodmodeMapController* GodmodeMapController::instance() {
 }
 
 void GodmodeMapController::resetController() {
+	std::stringstream log;
+	log << "Reset map controller";
+	Logger::instance()->appendToNewLine(log.str(), "MAP");
+
 	delete map;
 	map = NULL;
 

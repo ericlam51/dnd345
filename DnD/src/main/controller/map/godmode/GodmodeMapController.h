@@ -16,7 +16,7 @@ public:
 	static GodmodeMapController* instance();
 	void mapFileSelection(int input);
 	void newMap(int width, int height);
-	void fillCell(int x, int y, char cellType);
+	void fillCell(int x, int y, char cellType, int option = -1);
 	void mapOptions(int input);
 	void validateMap();
 	void getSavedMapFiles();
