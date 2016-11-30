@@ -25,8 +25,17 @@ int Dice :: roll(int times, int type, int z) {
 
 
 void Dice::displayRollingMessage() {
-	cout << "Rolling" << numberDice << "d" << typeOfDie << endl;
-	cout << "You rolled a " << rolledValue << endl;
+	cout << rollingMessage();
+}
+
+string Dice::rollingMessage() {
+	string str;
+	str.append("Rolling ");
+	str.append(numberDice + " ");
+	str.append("d");
+	str.append(" " + typeOfDie);
+	str.append(". Value Rolled: " + rolledValue);
+	return str;
 }
 
 

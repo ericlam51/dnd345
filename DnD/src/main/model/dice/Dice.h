@@ -10,6 +10,7 @@ public:
 	static Dice* instance();
 	int roll(int, int, int);
 	void displayRollingMessage();
+	string rollingMessage();
 
 private:
 	int typeOfDie;
