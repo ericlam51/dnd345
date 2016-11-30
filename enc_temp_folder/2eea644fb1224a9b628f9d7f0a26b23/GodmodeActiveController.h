@@ -59,7 +59,5 @@ public:
 	void resetGodmodeActiveController();
 	//method to load active
 	void getSavedActiveFiles(int type);
-	//prtint character info
-	void print();
 
 }; 

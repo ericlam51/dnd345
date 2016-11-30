@@ -24,21 +24,21 @@ void GodmodeActiveController::newHostileNpc(string name, string description, int
 //!method to load a fighter with the view to edit
 void GodmodeActiveController::loadFighter(int input){
 	loadFighterWithoutView(input);
-	print();
+	_active->print();
 	GodmodeActiveView::warningMsgActiveLoaded();
 	GodmodeActiveView::postCreationView();
 }
 //! method to load a fighter with the view to edit
 void GodmodeActiveController::loadHostileNpc(int input){
 	loadHostileNpcWithoutView(input);
-	print();
+	_active->print();
 	GodmodeActiveView::warningMsgActiveLoaded();
 	GodmodeActiveView::postCreationView();
 }
 //! method to load a fighter without the view to edit
 void GodmodeActiveController::loadFighterWithoutView(int input) {
 	if (input < 0 || input >= filenames.size()) {
-		GodmodeActiveView::activeChooseSaveFileView(filenames, 1); //TODO
+		GodmodeActiveView::activeChooseSaveFileView(filenames); //TODO
 	}
 	else {
 		CFile theFile;
@@ -57,7 +57,7 @@ void GodmodeActiveController::loadFighterWithoutView(int input) {
 //! method to load a monster without the view to edit
 void GodmodeActiveController::loadHostileNpcWithoutView(int input) {
 	if (input < 0 || input >= filenames.size()) {
-		GodmodeActiveView::activeChooseSaveFileView(filenames, 2);
+		GodmodeActiveView::activeChooseSaveFileView(filenames);
 	}
 	else {
 		CFile theFile;
@@ -256,7 +256,9 @@ void GodmodeActiveController::saveAndQuit(string filename){
 	theFile.Close();
 
 	cout << " successfully created" << endl;
-	print();
+	_active->print();
+	_active->printEquipments();
+	_active->printInventory();
 
 	resetGodmodeActiveController();
 	GodmodeInteractableView::interactableFileSelectionView();
@@ -277,13 +279,9 @@ void GodmodeActiveController::getSavedActiveFiles(int type) {
 	else if (type == 1)
 		filenames = FileHelper::getFilenamesInDirectory(FileHelper::HOSTILE_FILE_FOLDER);
 
-	GodmodeActiveView::activeChooseSaveFileView(filenames, type); 
+	GodmodeActiveView::activeChooseSaveFileView(filenames); 
 }
-void GodmodeActiveController::print() {
-	_active->print();
-	_active->printEquipments();
-	_active->printInventory();
-}
+
 //! method to create or get the singleton class
 GodmodeActiveController* GodmodeActiveController::instance() {
 	if (!s_instance)
@@ -291,7 +289,5 @@ GodmodeActiveController* GodmodeActiveController::instance() {
 
 	return s_instance;
 }
-
-
 
 GodmodeActiveController* GodmodeActiveController::s_instance = GodmodeActiveController::instance();

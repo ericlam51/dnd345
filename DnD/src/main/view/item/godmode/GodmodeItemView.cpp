@@ -165,9 +165,10 @@ void GodmodeItemView::successfulAction()
 //! Displays all item of a specific type
 void GodmodeItemView::displayItemHelper(int selection) 
 {
-	vector<Item*> itemsSelected = GodmodeItemController::instance()->getItemsOfType(selection);
+	GodmodeItemController::instance()->getContainer()->displayItemHelper(selection);
+	//vector<Item*> itemsSelected = GodmodeItemController::instance()->getItemsOfType(selection);
 
-	if (itemsSelected.size() == 0)
+	/*if (itemsSelected.size() == 0)
 	{
 		cout << endl << "No items of type: " << ItemTypes[selection - 1] <<  endl;
 	}
@@ -180,7 +181,7 @@ void GodmodeItemView::displayItemHelper(int selection)
 			cout << "Item: " << i++ << endl;
 			cout << "Item name: " << (*it)->getItemName() << endl;
 		}
-	}
+	}*/
 }
 
 //! Item menu interface
