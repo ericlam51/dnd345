@@ -65,6 +65,11 @@ void Map::print() {
 		cout << "|";
 		for (int x = 0; x < width; x++) {
 			char tpe = map[y][x]->getType();
+
+			if (tpe == CellHelper::ENTITY_TYPE) {
+				tpe = dynamic_cast<EntityCell*>(map[y][x])->printType();
+			}
+
 			cout << tpe;
 		}
 		cout << "|" << endl;
