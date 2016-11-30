@@ -13,6 +13,7 @@ class GodmodeChestController {
 private:
 	Chest* _chest = NULL;
 	vector<string> filenames;
+	int option;
 
 public:
 	static GodmodeChestController* instance();
@@ -23,7 +24,7 @@ public:
 
 	void postCreation(int input);
 	void saveAndQuit(string filename);
-	void getSavedFiles();
+	void getSavedFiles(int option = 0);
 	void resetGodmodeChestController();
 	void print();
 };

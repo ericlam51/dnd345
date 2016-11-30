@@ -10,9 +10,11 @@ void GodmodeChestController::newChest(string name, string description) {
 void GodmodeChestController::loadChest(int input) {
 	loadChestWithoutView(input);
 
-	print();
-	GodmodeChestView::warningMsgChestLoaded();
-	GodmodeChestView::postCreationView();
+	if (option == 0) {
+		print();
+		GodmodeChestView::warningMsgChestLoaded();
+		GodmodeChestView::postCreationView();
+	}
 }
 
 //! method to load chest without edit view
@@ -74,7 +76,8 @@ void GodmodeChestController::saveAndQuit(string filename){
 	GodmodeInteractableView::interactableFileSelectionView();
 }
 
-void GodmodeChestController::getSavedFiles() {
+void GodmodeChestController::getSavedFiles(int option) {
+	this->option = option;
 	filenames = FileHelper::getFilenamesInDirectory(FileHelper::CHEST_FILE_FOLDER);
 
 	GodmodeChestView::chestChooseSaveFileView(filenames); 
