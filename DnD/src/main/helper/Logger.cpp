@@ -1,5 +1,7 @@
 #include "Logger.h"
 
+using namespace std;
+
 Logger* Logger::instance() 
 {
 	if (!l_instance) {
@@ -22,6 +24,13 @@ void Logger::append(string str)
 void Logger::appendToNewLine(string str)
 {
 	l_instance->log += "\n" + str;
+}
+
+void Logger::saveLog() {
+	ofstream logfile;
+	logfile.open("log.txt");
+	logfile << l_instance->log;
+	logfile.close();
 }
 
 Logger* Logger::l_instance = Logger::instance();
