@@ -11,5 +11,10 @@ private:
 	static void printMainMenu();
 	static void printGodModeMenu();
 	static void printPlayMenu();
+	static void loadGame();
+	static void printLoadGame(vector<string>, vector<string>);
+	static string printLoadFighter(vector<string>);
+	static string printLoadMap(vector<string>);
+	
 };
 

@@ -3,9 +3,10 @@
 #include <ctime>
 #include <math.h>
 #include <string>
-
+#undef max
 using namespace std;
 //! method to display the main menu option
+PlayModeController pmc;
 void GameModeView::printMainMenu() {
 	cout << "Hello, welcome to Dungeons and Dragons!" << endl;
 	cout << "Select the mode:" << endl;
@@ -31,6 +32,56 @@ void GameModeView::printPlayMenu() {
 	cout << "6. Exit game" << endl;
 }
 
+void GameModeView::loadGame() {
+	vector<string> mapFilenames = FileHelper::getFilenamesInDirectory(FileHelper::MAP_FILE_FOLDER);
+	vector<string> fighterFilenames = FileHelper::getFilenamesInDirectory(FileHelper::FIGHTER_FILE_FOLDER);
+	GameModeView::printLoadGame(mapFilenames, fighterFilenames);
+}
+
+string GameModeView::printLoadMap(vector<string> mapFilenames) {
+	int mapInput = 0;
+	while (mapInput - 1 < 0 || mapInput - 1 >= mapFilenames.size()) {
+		cout << "Please select one of the following map files:" << endl;
+
+		for (int i = 0; i < mapFilenames.size(); i++) {
+			cout << i + 1 << ". " << mapFilenames[i] << endl;
+		}
+
+		cout << "Selection: ";
+
+		cin >> mapInput;
+
+		cin.clear(); //if cin fails because of wrong data type, clear error flag
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');  //clears the cin buffer
+	}
+
+	return mapFilenames[mapInput - 1];
+}
+
+string GameModeView::printLoadFighter(vector<string> fighterFilenames) {
+	int fighterInput = 0;
+	while (fighterInput - 1 < 0 || fighterInput - 1 >= fighterFilenames.size()) {
+		cout << "Please select one of the following fighter files:" << endl;
+
+		for (int i = 0; i < fighterFilenames.size(); i++) {
+			cout << i + 1 << ". " << fighterFilenames[i] << endl;
+		}
+
+		cout << "Selection: ";
+
+		cin >> fighterInput;
+		cin.clear(); //if cin fails because of wrong data type, clear error flag
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');  //clears the cin buffer
+	}
+	return fighterFilenames[fighterInput - 1];
+}
+void GameModeView::printLoadGame(vector<string> mapFilenames, vector<string> fighterFilenames) {
+	string mapName = printLoadMap(mapFilenames);
+	string fighterName = printLoadFighter(fighterFilenames);
+	//PlayModeController pmc;
+	pmc.loadGame(mapName, fighterName);
+}
+
 //! method to display the view, with a default parameter of 0 for main menu, 1 for game mode, 2 for god mode
 void GameModeView::displayView(int gameMode) {
 	do {
@@ -43,10 +94,10 @@ void GameModeView::displayView(int gameMode) {
 		}
 		//go to the game mode
 		if (gameMode == 1) {
+			//PlayModeController pmc;
 			int gameOption = 0;
 			playing = true;
-			PlayModeController pmc;
-			pmc.loadGame();
+			loadGame();
 			system("cls");
 			while (playing) {
 				while (gameOption < 1 || gameOption > 6) {

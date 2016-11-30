@@ -20,15 +20,15 @@ private:
 	// An active object ( the fighter )
 	Active* _active;
 	//method to load the Map
-	void loadMap();
+	void loadMap(string);
 	//method to load the Fighter
-	void loadFighter();
+	void loadFighter(string);
 
 public:
 	//! method to create or get the singleton class
 	static PlayModeController* instance();
 	//method to load the game
-	void loadGame();
+	void loadGame(string, string);
 	//method to move the player
 	void movePlayer(char direction);
 	//method to print the map
