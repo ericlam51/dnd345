@@ -428,7 +428,7 @@ void Map::Serialize(CArchive& archive) {
 void Map::movePlayer(char side) {
 	std::stringstream log;
 	log << "Move player to side: " << side;
-	Logger::instance()->appendToNewLine(log.str());
+	Logger::instance()->appendToNewLine(log.str(), "MAP");
 
 	int currentX = playerCell->getPosX();
 	int currentY = playerCell->getPosY();
@@ -464,7 +464,7 @@ void Map::movePlayer(char side) {
 void Map::interact(char side) {
 	std::stringstream log;
 	log << "Player interact with his side: " << side;
-	Logger::instance()->appendToNewLine(log.str());
+	Logger::instance()->appendToNewLine(log.str(), "MAP");
 
 	int currentX = playerCell->getPosX();
 	int currentY = playerCell->getPosY();
@@ -495,7 +495,7 @@ void Map::interact(char side) {
 void Map::startMap(Interactable* fighter) {
 	std::stringstream log;
 	log << "Set player on map";
-	Logger::instance()->appendToNewLine(log.str());
+	Logger::instance()->appendToNewLine(log.str(), "MAP");
 
 	playerCell = new EntityCell();
 	playerCell->setEntity(fighter);

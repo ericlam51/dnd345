@@ -26,6 +26,7 @@ public:
 	void menuHelper(int selection);
 	string getLoadedFile();
 	void setLoadedFile(int);
+	void resetController();
 private:
 	ItemContainer* container;
 	GodmodeItemController();
