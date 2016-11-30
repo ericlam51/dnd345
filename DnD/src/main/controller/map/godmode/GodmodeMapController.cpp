@@ -60,7 +60,7 @@ void GodmodeMapController::newMap(int width, int height) {
 //! @param y: y position of the cell
 //! @param x: x position of the Cell
 //! param charType: type of Cell. For all possible types, see CellHelper object.
-void GodmodeMapController::fillCell(int x, int y, char charType) {
+void GodmodeMapController::fillCell(int x, int y, char charType, int option) {
 	if (x < 0 || x > map->getWidth() || y < 0 || y > map->getHeight()) {
 		std::stringstream log;
 		log << "Failure to fill cell on map - Invalid cell coordinates: (" << x << ',' << ") - Entity Type: " << charType;
@@ -95,7 +95,12 @@ void GodmodeMapController::fillCell(int x, int y, char charType) {
 		s_instance->setCell(x, y, new ChestCell());
 		break;
 	case  CellHelper::ENTITY_TYPE:
-		s_instance->setCell(x, y, new EntityCell());
+		if (option == 1) {
+			s_instance->setCell(x, y, new EntityCell(false));
+		}
+		else if (option == 2) {
+			s_instance->setCell(x, y, new EntityCell(true));
+		}
 		break;
 	case  CellHelper::PATH_TYPE:
 		s_instance->setCell(x, y, new PathCell());
@@ -204,9 +209,20 @@ void GodmodeMapController::setCell(int x, int y, Cell* cell) {
 	}
 	case  CellHelper::ENTITY_TYPE:
 	{
+		EntityCell* ecell = dynamic_cast<EntityCell*>(cell);
+		
+		if (ecell->getIsFriendly()) {
+			
+			ecell->setEntity(NULL);
+		}
+		else {
+			GodmodeActiveController::instance()->getSavedActiveFiles(1, -1);
+			ecell->setEntity(GodmodeActiveController::instance()->getActive());
+		}
+
 		//GodmodeActiveController::instance()->loadHostileNpcWithoutView();  //TODODO
-		Interactable* entity = GodmodeActiveController::instance()->getActive();
-		dynamic_cast<EntityCell*>(cell)->setEntity(entity);
+		//Interactable* entity = GodmodeActiveController::instance()->getActive();
+		//dynamic_cast<EntityCell*>(cell)->setEntity(entity);
 		break;
 	}
 	}
