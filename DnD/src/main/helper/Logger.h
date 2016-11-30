@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -13,5 +14,6 @@ public:
 	void append(string);
 private:
 	string log;
+	const char* FILENAME = "gamelog.txt";
 };
 
