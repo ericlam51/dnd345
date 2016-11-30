@@ -50,7 +50,7 @@ void CombatController::enemyTurn() {
 	else {
 		damageRoll = Dice::instance()->roll(2, 4, 0);
 		CombatController::fighter->hit(damageRoll);
-		cout << enemy->getName() << "hits " << CombatController::fighter->getName() << " for " << damageRoll << " damage. " << endl;
+		cout << enemy->getName() << " hits " << CombatController::fighter->getName() << " for " << damageRoll << " damage. " << endl;
 		if (fighter->getCurrentHitPoints() <= 0) {
 			cout << fighter->getName() << " is dead! Enter anything to exit combat ";
 			cin >> input;
