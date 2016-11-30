@@ -89,6 +89,8 @@ void GodmodeChestController::resetGodmodeChestController() {
 
 	filenames.clear();
 	vector<string>().swap(filenames);
+
+	option = 0;
 }
 
 void GodmodeChestController::print() {
