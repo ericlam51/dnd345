@@ -19,7 +19,7 @@ string Logger::getLog()
 	return l_instance->log;
 }
 
-void Logger::append(string type, string str)
+void Logger::append(string str, string type = "MAP")
 {
 	if (!isTypeLocked(type)) 
 	{
@@ -33,7 +33,7 @@ void Logger::append(string type, string str)
 	}
 }
 
-void Logger::appendToNewLine(string type, string str)
+void Logger::appendToNewLine(string str, string type = "MAP")
 {
 	if (!isTypeLocked(type))
 	{
