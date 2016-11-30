@@ -159,7 +159,6 @@ void GameModeView::displayView(int gameMode) {
 			}
 		}
 		else if (gameMode == 3) {
-			Logger::instance()->saveLog();
 			break;
 		}
 

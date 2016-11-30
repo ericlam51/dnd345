@@ -37,7 +37,7 @@ void GodmodeMapController::newMap(int width, int height) {
 	if (width == 0 || height == 0) {
 		std::stringstream log;
 		log << "Failure to create a new map of size: (" << width << ',' << height << ')';
-		Logger::instance()->appendToNewLine(log.str());
+		Logger::instance()->appendToNewLine(log.str(), "MAP");
 
 		GodmodeMapView::warningMsgInvalidInput();
 		GodmodeMapView::mapCreationInputView();
@@ -45,7 +45,7 @@ void GodmodeMapController::newMap(int width, int height) {
 	else {
 		std::stringstream log;
 		log << "Creating a new map of size: (" << width << ',' << height << ')';
-		Logger::instance()->appendToNewLine(log.str());
+		Logger::instance()->appendToNewLine(log.str(), "MAP");
 
 		if (map != NULL)
 			delete map;
@@ -64,7 +64,7 @@ void GodmodeMapController::fillCell(int x, int y, char charType, int option) {
 	if (x < 0 || x > map->getWidth() || y < 0 || y > map->getHeight()) {
 		std::stringstream log;
 		log << "Failure to fill cell on map - Invalid cell coordinates: (" << x << ',' << ") - Entity Type: " << charType;
-		Logger::instance()->appendToNewLine(log.str());
+		Logger::instance()->appendToNewLine(log.str(), "MAP");
 		
 		GodmodeMapView::warningMsgWrongCoordinates();
 		GodmodeMapView::mapFillOptionsMenuView();
@@ -74,7 +74,7 @@ void GodmodeMapController::fillCell(int x, int y, char charType, int option) {
 	if (charType == NULL) {
 		std::stringstream log;
 		log << "Failure to fill cell on map - Cell coordinates: (" << x << ',' << ") - Entity Type: INVALID";
-		Logger::instance()->appendToNewLine(log.str());
+		Logger::instance()->appendToNewLine(log.str(), "MAP");
 
 		GodmodeMapView::warningMsgWrongCellType();
 		GodmodeMapView::mapFillOptionsMenuView();
@@ -140,7 +140,7 @@ void GodmodeMapController::mapOptions(int input) {
 void GodmodeMapController::saveMap(string filename) {
 	std::stringstream log;
 	log << "Saving map to file " << filename;
-	Logger::instance()->appendToNewLine(log.str());
+	Logger::instance()->appendToNewLine(log.str(), "MAP");
 
 	CFile theFile;
 	string fileDirectory = FileHelper::getDirectoryPath(FileHelper::MAP_FILE_FOLDER) + filename;
@@ -173,7 +173,7 @@ void GodmodeMapController::validateMap() {
 
 	std::stringstream log;
 	log << "Validating map...";
-	Logger::instance()->appendToNewLine(log.str());
+	Logger::instance()->appendToNewLine(log.str(), "MAP");
 
 	if (valid)
 		GodmodeMapView::warningMsgValidMap();
@@ -187,7 +187,7 @@ void GodmodeMapController::validateMap() {
 void GodmodeMapController::setCell(int x, int y, Cell* cell) {
 	std::stringstream log;
 	log << "Setting new cell on map: (" << x << "," << y << ") Cell Type: " << cell->getType();
-	Logger::instance()->appendToNewLine(log.str());
+	Logger::instance()->appendToNewLine(log.str(), "MAP");
 
 	switch (cell->getType()) {
 		//case CellHelper::WALL_TYPE:
@@ -241,7 +241,7 @@ void GodmodeMapController::setCell(int x, int y, Cell* cell) {
 void GodmodeMapController::print() {
 	std::stringstream log;
 	log << "Display map";
-	Logger::instance()->appendToNewLine(log.str());
+	Logger::instance()->appendToNewLine(log.str(), "MAP");
 
 	map->print();
 }
@@ -253,7 +253,7 @@ void GodmodeMapController::loadMap(int input) {
 	} else {
 		std::stringstream log;
 		log << "Loading map from file " << filenames[input];
-		Logger::instance()->appendToNewLine(log.str());
+		Logger::instance()->appendToNewLine(log.str(), "MAP");
 
 		CFile theFile;
 		string filePath = FileHelper::getDirectoryPath(FileHelper::MAP_FILE_FOLDER) + filenames[input];
@@ -288,7 +288,7 @@ GodmodeMapController* GodmodeMapController::instance() {
 void GodmodeMapController::resetController() {
 	std::stringstream log;
 	log << "Reset map controller";
-	Logger::instance()->appendToNewLine(log.str());
+	Logger::instance()->appendToNewLine(log.str(), "MAP");
 
 	delete map;
 	map = NULL;

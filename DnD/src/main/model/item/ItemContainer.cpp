@@ -19,11 +19,13 @@ ItemContainer::~ItemContainer()
 {
 	for (int i = 0; i <= HELMET; i++)
 	{
-		for (vector<Item*>::iterator it = items[ItemTypes[i]].begin(); it != items[ItemTypes[i]].end(); ++it)
+		vector<Item*> items = getItemsOfType(ItemTypes[i]);
+		for (vector<Item*>::iterator it = items.begin(); it != items.end(); ++it)
 		{
-			delete[] *it;
+			delete (*it);
 		}
 	}
+	items.clear();
 }
 
 //! add an item to the appropriate vector
