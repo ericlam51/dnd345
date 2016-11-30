@@ -14,15 +14,16 @@ PlayModeController* PlayModeController::instance() {
 PlayModeController* PlayModeController::s_instance = PlayModeController::instance();
 
 //! method to load the game
-void PlayModeController :: loadGame() {
-	PlayModeController::loadMap();
-	PlayModeController::loadFighter();
+void PlayModeController :: loadGame(string mapInput, string fighterInput) {
+	PlayModeController::loadFighter(fighterInput);
+	PlayModeController::loadMap(mapInput);
 }
 
 //! method to load the map
-void PlayModeController::loadMap() {
+void PlayModeController::loadMap(string input) {
 	CFile theFile;
-	theFile.Open(_T("Map.txt"), CFile::modeRead);
+	string filePath = FileHelper::getDirectoryPath(FileHelper::MAP_FILE_FOLDER) + input;
+	theFile.Open(_T(filePath.c_str()), CFile::modeRead);
 	CArchive archive(&theFile, CArchive::load);
 
 	map = new Map();
@@ -73,9 +74,10 @@ void PlayModeController::printEquipment() {
 }
 
 //!method to load fighter
-void PlayModeController::loadFighter() {
+void PlayModeController::loadFighter(string input) {
 	CFile theFile;
-	theFile.Open(_T("Fighter"), CFile::modeRead);
+	string filePath = FileHelper::getDirectoryPath(FileHelper::FIGHTER_FILE_FOLDER) + input;
+	theFile.Open(_T(filePath.c_str()), CFile::modeRead);
 	CArchive archive(&theFile, CArchive::load);
 
 	_active = new Fighter();
