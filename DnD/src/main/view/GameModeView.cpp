@@ -164,6 +164,7 @@ void GameModeView::displayView(int gameMode) {
 
 		gameMode = -1;
 		GodmodeMapController::instance()->resetController();
+		GodmodeItemController::instance()->resetController();
 		GodmodeActiveController::instance()->resetGodmodeActiveController();
 		GodmodeChestController::instance()->resetGodmodeChestController();
 		GodmodeFriendlyNpcController::instance()->resetGodmodeFriendlyNpcController();

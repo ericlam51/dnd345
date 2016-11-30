@@ -20,7 +20,7 @@ public:
 	void removeItem(string, int);
 	vector<Item*> getItemsOfType(int);
 	void saveItemInventory(string);
-	void loadItemInventory(int);
+	void loadItemInventory(int, bool);
 	void loadSaveFile(string);
 	ItemContainer* getContainer();
 	void menuHelper(int selection);
