@@ -24,14 +24,14 @@ void GodmodeActiveController::newHostileNpc(string name, string description, int
 //!method to load a fighter with the view to edit
 void GodmodeActiveController::loadFighter(int input){
 	loadFighterWithoutView(input);
-	_active->print();
+	print();
 	GodmodeActiveView::warningMsgActiveLoaded();
 	GodmodeActiveView::postCreationView();
 }
 //! method to load a fighter with the view to edit
 void GodmodeActiveController::loadHostileNpc(int input){
 	loadHostileNpcWithoutView(input);
-	_active->print();
+	print();
 	GodmodeActiveView::warningMsgActiveLoaded();
 	GodmodeActiveView::postCreationView();
 }
@@ -256,9 +256,7 @@ void GodmodeActiveController::saveAndQuit(string filename){
 	theFile.Close();
 
 	cout << " successfully created" << endl;
-	_active->print();
-	_active->printEquipments();
-	_active->printInventory();
+	print();
 
 	resetGodmodeActiveController();
 	GodmodeInteractableView::interactableFileSelectionView();
@@ -281,7 +279,11 @@ void GodmodeActiveController::getSavedActiveFiles(int type) {
 
 	GodmodeActiveView::activeChooseSaveFileView(filenames); 
 }
-
+void GodmodeActiveController::print() {
+	_active->print();
+	_active->printEquipments();
+	_active->printInventory();
+}
 //! method to create or get the singleton class
 GodmodeActiveController* GodmodeActiveController::instance() {
 	if (!s_instance)
@@ -289,5 +291,7 @@ GodmodeActiveController* GodmodeActiveController::instance() {
 
 	return s_instance;
 }
+
+
 
 GodmodeActiveController* GodmodeActiveController::s_instance = GodmodeActiveController::instance();
