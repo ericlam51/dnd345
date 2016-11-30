@@ -38,7 +38,7 @@ void GodmodeActiveController::loadHostileNpc(int input){
 //! method to load a fighter without the view to edit
 void GodmodeActiveController::loadFighterWithoutView(int input) {
 	if (input < 0 || input >= filenames.size()) {
-		GodmodeActiveView::activeChooseSaveFileView(filenames); //TODO
+		GodmodeActiveView::activeChooseSaveFileView(filenames, 1); //TODO
 	}
 	else {
 		CFile theFile;
@@ -57,7 +57,7 @@ void GodmodeActiveController::loadFighterWithoutView(int input) {
 //! method to load a monster without the view to edit
 void GodmodeActiveController::loadHostileNpcWithoutView(int input) {
 	if (input < 0 || input >= filenames.size()) {
-		GodmodeActiveView::activeChooseSaveFileView(filenames);
+		GodmodeActiveView::activeChooseSaveFileView(filenames, 2);
 	}
 	else {
 		CFile theFile;
@@ -277,7 +277,7 @@ void GodmodeActiveController::getSavedActiveFiles(int type) {
 	else if (type == 1)
 		filenames = FileHelper::getFilenamesInDirectory(FileHelper::HOSTILE_FILE_FOLDER);
 
-	GodmodeActiveView::activeChooseSaveFileView(filenames); 
+	GodmodeActiveView::activeChooseSaveFileView(filenames, type); 
 }
 void GodmodeActiveController::print() {
 	_active->print();

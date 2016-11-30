@@ -9,6 +9,7 @@ IMPLEMENT_SERIAL(Active, CObject, 1)
 
 Active::Active(){
 	_equippedItems = new EquippedItems();
+	_itemContainer = new ItemContainer();
 	_diceLogger = new DiceLogger();
 }
 

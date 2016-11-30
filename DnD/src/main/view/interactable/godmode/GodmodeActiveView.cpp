@@ -136,14 +136,12 @@ void GodmodeActiveView::warningMsgActiveLoaded() {
 	cout << typeStr <<" loaded" << endl;
 }
 
-void GodmodeActiveView::activeChooseSaveFileView(vector<string> filenames) {
+void GodmodeActiveView::activeChooseSaveFileView(vector<string> filenames, int type) {
 	cout << "Please select one of the following files:" << endl;
 	int input = 0;
 	for (int i = 0; i < filenames.size(); i++) {
 		cout << i + 1 << ". " << filenames[i] << endl;
 	}
-
-	cout << "Selection: ";
 
 	do {
 		cout << "Selection: " << endl;
@@ -151,9 +149,9 @@ void GodmodeActiveView::activeChooseSaveFileView(vector<string> filenames) {
 		cin >> input;
 	} while (input < 1 || input > filenames.size());
 
-	if (!typeStr.compare("Fighter"))
+	if (type == 0 )
 		GodmodeActiveController::instance()->loadFighter(input - 1);
-	else if (!typeStr.compare("Monster"))
+	else if (type == 1)
 		GodmodeActiveController::instance()->loadHostileNpc(input - 1);
 }
 

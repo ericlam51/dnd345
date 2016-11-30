@@ -39,10 +39,13 @@ void Fighter::interact() {
 
 void Fighter::Serialize(CArchive& archive) {
 	CObject::Serialize(archive);
-	CString cName(getName().c_str());
-	CString cDescription(getDescription().c_str());
+
+	CString cName;
+	CString cDescription;
 
 	if (archive.IsStoring()) {
+		cName = getName().c_str();
+		cDescription = getDescription().c_str();
 		archive << cName << cDescription << level << maxHitPoints
 			<< armorClass << attackBonus << damageBonus
 			<< abilityScores[0] << abilityScores[1] << abilityScores[2]
