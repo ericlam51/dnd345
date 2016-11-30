@@ -29,27 +29,29 @@ void GodmodeFriendlyNpcView::postCreationView(){
 
 	cout << "Please select an option" << endl;
 	cout << "1. Create another NPC" << endl
-		 << "2. Save and Quit" << endl
-		 << "Selection: ";
+		<< "2. Save and Quit" << endl;
 
-	cin >> input;
+	do {
+		cout << "Selection: " << endl;
+		cin.clear();
+		cin >> input;
+	} while (input < 1 || input > 2);
+	
 	GodmodeFriendlyNpcController::instance()->postCreation(input);
 }
 void GodmodeFriendlyNpcView::friendlyChooseSaveFileView(vector<string> filenames) {
 	cout << "Please select one of the following files:" << endl;
-
+	int input;
 	for (int i = 0; i < filenames.size(); i++) {
 		cout << i + 1 << ". " << filenames[i] << endl;
 	}
 
-	cout << "Selection: ";
+	do {
+		cout << "Selection: " << endl;
+		cin.clear();
+		cin >> input;
+	} while (input < 1 || input > filenames.size());
 
-	int input;
-
-	cin >> input;
-
-	cin.clear(); //if cin fails because of wrong data type, clear error flag
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');  //clears the cin buffer
 
 	GodmodeFriendlyNpcController::instance()->loadFriendlyNpc(input - 1);
 }

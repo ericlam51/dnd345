@@ -24,21 +24,27 @@ void GodmodeActiveController::newHostileNpc(string name, string description, int
 //!method to load a fighter with the view to edit
 void GodmodeActiveController::loadFighter(int input){
 	loadFighterWithoutView(input);
-	_active->print();
-	GodmodeActiveView::warningMsgActiveLoaded();
-	GodmodeActiveView::postCreationView();
+
+	if (option == 0) {
+		print();
+		GodmodeActiveView::warningMsgActiveLoaded();
+		GodmodeActiveView::postCreationView();
+	}
 }
 //! method to load a fighter with the view to edit
 void GodmodeActiveController::loadHostileNpc(int input){
 	loadHostileNpcWithoutView(input);
-	_active->print();
-	GodmodeActiveView::warningMsgActiveLoaded();
-	GodmodeActiveView::postCreationView();
+	
+	if (option == 0) {
+		print();
+		GodmodeActiveView::warningMsgActiveLoaded();
+		GodmodeActiveView::postCreationView();
+	}
 }
 //! method to load a fighter without the view to edit
 void GodmodeActiveController::loadFighterWithoutView(int input) {
 	if (input < 0 || input >= filenames.size()) {
-		GodmodeActiveView::activeChooseSaveFileView(filenames); //TODO
+		GodmodeActiveView::activeChooseSaveFileView(filenames, 1); //TODO
 	}
 	else {
 		CFile theFile;
@@ -57,7 +63,7 @@ void GodmodeActiveController::loadFighterWithoutView(int input) {
 //! method to load a monster without the view to edit
 void GodmodeActiveController::loadHostileNpcWithoutView(int input) {
 	if (input < 0 || input >= filenames.size()) {
-		GodmodeActiveView::activeChooseSaveFileView(filenames);
+		GodmodeActiveView::activeChooseSaveFileView(filenames, 2);
 	}
 	else {
 		CFile theFile;
@@ -133,7 +139,7 @@ void GodmodeActiveController::modifyAbilityScore(int abilityScore[6]) {
 //! @param item: item to equip
 void GodmodeActiveController::equipItem(char item) {
 	GodmodeItemController::instance()->loadSaveFile(
-		GodmodeItemController::instance()->getLoadedFile());
+	GodmodeItemController::instance()->getLoadedFile());
 
 	switch (item) {
 	case 'h':
@@ -192,10 +198,6 @@ void GodmodeActiveController::equipItem(char item) {
 		}
 	}
 	break;
-	//case 'b':
-	//	Helmet* helmet;
-	//	_active->equipItem(helmet);
-	//	break;
 	case 'j':
 	{
 		Item* boots = GodmodeItemController::instance()->getContainer()->getItem("BOOTS", 0);
@@ -260,8 +262,7 @@ void GodmodeActiveController::saveAndQuit(string filename){
 	theFile.Close();
 
 	cout << " successfully created" << endl;
-	_active->print();
-	_active->printEquipments();
+	print();
 
 	resetGodmodeActiveController();
 	GodmodeInteractableView::interactableFileSelectionView();
@@ -273,18 +274,25 @@ void GodmodeActiveController::resetGodmodeActiveController() {
 
 	filenames.clear();
 	vector<string>().swap(filenames);
+
+	option = 0;
 }
 
-void GodmodeActiveController::getSavedActiveFiles(int type) {
+void GodmodeActiveController::getSavedActiveFiles(int type, int option) {
+	this->option = option;
 
 	if (type == 0)
 		filenames = FileHelper::getFilenamesInDirectory(FileHelper::FIGHTER_FILE_FOLDER);
 	else if (type == 1)
 		filenames = FileHelper::getFilenamesInDirectory(FileHelper::HOSTILE_FILE_FOLDER);
 
-	GodmodeActiveView::activeChooseSaveFileView(filenames); 
+	GodmodeActiveView::activeChooseSaveFileView(filenames, type); 
 }
-
+void GodmodeActiveController::print() {
+	_active->print();
+	_active->printEquipments();
+	_active->printInventory();
+}
 //! method to create or get the singleton class
 GodmodeActiveController* GodmodeActiveController::instance() {
 	if (!s_instance)
@@ -292,5 +300,7 @@ GodmodeActiveController* GodmodeActiveController::instance() {
 
 	return s_instance;
 }
+
+
 
 GodmodeActiveController* GodmodeActiveController::s_instance = GodmodeActiveController::instance();

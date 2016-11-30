@@ -9,9 +9,12 @@ void GodmodeFriendlyNpcController::newFriendlyNpc(string name, string descriptio
 //! method to load NPC
 void GodmodeFriendlyNpcController::loadFriendlyNpc(int input) {
 	loadFriendlyNpcWithoutView(input);
-	print();
-	GodmodeFriendlyNpcView::warningMsgFriendlyLoaded();
-	GodmodeFriendlyNpcView::postCreationView();
+
+	if (option == 0) {
+		print();
+		GodmodeFriendlyNpcView::warningMsgFriendlyLoaded();
+		GodmodeFriendlyNpcView::postCreationView();
+	}
 }
 
 //! method to load NPC with post creation view
@@ -72,7 +75,9 @@ void GodmodeFriendlyNpcController::saveAndQuit(string filename){
 	GodmodeInteractableView::interactableFileSelectionView();
 }
 
-void GodmodeFriendlyNpcController::getSavedFiles() {
+void GodmodeFriendlyNpcController::getSavedFiles(int option) {
+	this->option = option;
+
 	filenames = FileHelper::getFilenamesInDirectory(FileHelper::FRIENDLY_FILE_FOLDER);
 
 	GodmodeFriendlyNpcView::friendlyChooseSaveFileView(filenames);
@@ -88,6 +93,8 @@ void GodmodeFriendlyNpcController::resetGodmodeFriendlyNpcController() {
 
 	filenames.clear();
 	vector<string>().swap(filenames);
+
+	option = 0;
 }
 
 GodmodeFriendlyNpcController* GodmodeFriendlyNpcController::instance() {

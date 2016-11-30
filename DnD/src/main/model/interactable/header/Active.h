@@ -22,9 +22,10 @@ public:
 	void attack(Active &activeObj);
 	void hit(int damage); 
 	void equipItem(Item* item);
-
+	void equipementEnhancement(string abilityScore, int enhancement);
 	void print();
 	void printEquipments();
+	void printInventory();
 
 	int getLevel() const;
 	int getArmorClass() const;

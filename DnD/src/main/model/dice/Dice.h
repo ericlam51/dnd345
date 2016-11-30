@@ -6,9 +6,11 @@ using namespace std;
 class Dice : public Subject {
 
 public:
+	Dice();
 	static Dice* instance();
 	int roll(int, int, int);
 	void displayRollingMessage();
+	string rollingMessage();
 
 private:
 	int typeOfDie;

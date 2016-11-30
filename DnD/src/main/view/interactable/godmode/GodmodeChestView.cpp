@@ -21,34 +21,38 @@ void GodmodeChestView::newChestView() {
 
 //! method to create chest another chest or save and quit
 void GodmodeChestView::postCreationView(){
-	int input;
+	int input = 0;
 
 	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 
 	cout << "Please select an option" << endl;
 	cout << "1. Create another Chest" << endl
-		 << "2. Save and Quit" << endl
-		 << "Selection: ";
+		<< "2. Save and Quit" << endl;
+		 
+	do {
+		cout << "Selection: " << endl;
+		cin.clear();
+	} while (input < 1 || input > 2);
 
 	cin >> input;
+
 	GodmodeChestController::instance()->postCreation(input);
 }
 
 void GodmodeChestView::chestChooseSaveFileView(vector<string> filenames) {
 	cout << "Please select one of the following files:" << endl;
 
+	int input;
+
 	for (int i = 0; i < filenames.size(); i++) {
 		cout << i + 1 << ". " << filenames[i] << endl;
 	}
 
-	cout << "Selection: ";
-
-	int input;
-
-	cin >> input;
-
-	cin.clear(); //if cin fails because of wrong data type, clear error flag
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');  //clears the cin buffer
+	do {
+		cout << "Selection: " << endl;
+		cin.clear();
+		cin >> input;
+	} while (input < 1 || input > filenames.size());
 
 	GodmodeChestController::instance()->loadChest(input - 1);
 }

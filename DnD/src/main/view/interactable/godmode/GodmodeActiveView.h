@@ -19,7 +19,7 @@ public:
 	static void equipItemView();
 	static void changeAbilityScoreView();
 	static void validateFighterView(bool isValidFighter);
-	static void activeChooseSaveFileView(vector<string> filenames);
+	static void activeChooseSaveFileView(vector<string> filenames, int type);
 	static void activeAskSaveFileName();
 	static void warningMsgActiveLoaded();
 	static void warningMsgInvalidInput(); 

@@ -9,6 +9,10 @@
 
 //! Show options to load or create map
 void GodmodeMapView::fileOptionsMenuView() {
+	std::stringstream log;
+	log << "Display main view for god mode map";
+	Logger::instance()->appendToNewLine(log.str());
+
 	int input = 0;
 
 	cout << "------------------------------" << endl
@@ -29,6 +33,10 @@ void GodmodeMapView::fileOptionsMenuView() {
 
 //! Ask user for map parameters creation
 void GodmodeMapView::mapCreationInputView() {
+	std::stringstream log;
+	log << "Display map creation size input view";
+	Logger::instance()->appendToNewLine(log.str());
+
 	int width = 0, height = 0;
 
 	cout << "------------------------------" << endl
@@ -51,6 +59,10 @@ void GodmodeMapView::mapCreationInputView() {
 }
 
 void GodmodeMapView::mapChooseSaveMapFileView(vector<string> filenames) {
+	std::stringstream log;
+	log << "Display map load file selection view";
+	Logger::instance()->appendToNewLine(log.str());
+
 	cout << "Please select one of the following files:" << endl;
 
 	for (int i = 0; i < filenames.size(); i++) {
@@ -71,6 +83,10 @@ void GodmodeMapView::mapChooseSaveMapFileView(vector<string> filenames) {
 
 //! Show options to edit the map
 void GodmodeMapView::mapOptionsMenuView() {
+	std::stringstream log;
+	log << "Display map editor view";
+	Logger::instance()->appendToNewLine(log.str());
+
 	int input;
 
 	cout << "------------------------------" << endl
@@ -92,6 +108,10 @@ void GodmodeMapView::mapOptionsMenuView() {
 
 //! Show options to fill a cell on the map
 void GodmodeMapView::mapFillOptionsMenuView() {
+	std::stringstream log;
+	log << "Display cell editor view";
+	Logger::instance()->appendToNewLine(log.str());
+
 	int x, y;
 	int option;
 
@@ -102,10 +122,11 @@ void GodmodeMapView::mapFillOptionsMenuView() {
 	cout << "Pleae choose one of the following types (1, 2, 3, ...): " << endl
 		<< "1. WALL (*)" << endl
 		<< "2. START POINT (S)" << endl
-		<< "3. EXIT POINT (D)" << endl
+		<< "3. EXIT POINT (E)" << endl
 		<< "4. CHEST (C)" << endl
-		<< "5. ENTITY (E)" << endl
-		<< "6. EMPTY ( )" << endl
+		<< "5. ENTITY ENEMY (X)" << endl
+		<< "6. ENTITY NPC (N)" << endl
+		<< "7. EMPTY ( )" << endl
 		<< "Option: ";
 	cin >> option;
 
@@ -123,9 +144,12 @@ void GodmodeMapView::mapFillOptionsMenuView() {
 		GodmodeMapController::instance()->fillCell(x, y, CellHelper::CHEST_TYPE);
 		break;
 	case 5:
-		GodmodeMapController::instance()->fillCell(x, y, CellHelper::ENTITY_TYPE);
+		GodmodeMapController::instance()->fillCell(x, y, CellHelper::ENTITY_TYPE, 1);
 		break;
 	case 6:
+		GodmodeMapController::instance()->fillCell(x, y, CellHelper::ENTITY_TYPE, 2);
+		break;
+	case 7:
 		GodmodeMapController::instance()->fillCell(x, y, CellHelper::PATH_TYPE);
 		break;
 	default: 
@@ -146,18 +170,39 @@ void GodmodeMapView::mapAskSaveFileName() {
 /* WARNING MESSAGES */
 
 void GodmodeMapView::warningMsgInvalidInput() {
+	std::stringstream log;
+	log << "Map view: invalid input";
+	Logger::instance()->appendToNewLine(log.str());
+
 	cout << "Invalid input!" << endl;
 }
 
 void GodmodeMapView::warningMsgChangingEntranceCell() {
-	cout << "The previous entrance cell has been removed." << endl;
+	string msg = "The previous entrance cell has been removed.";
+
+	std::stringstream log;
+	log << msg;
+	Logger::instance()->appendToNewLine(log.str());
+
+	cout << msg << endl;
 }
 
 void GodmodeMapView::warningMsgChangingExitCell() {
-	cout << "The previous exit cell has been removed." << endl;
+	string msg = "The previous exit cell has been removed.";
+
+	std::stringstream log;
+	log << msg;
+	Logger::instance()->appendToNewLine(log.str());
+	
+	cout << msg << endl;
+
 }
 
 void GodmodeMapView::warningMsgInvalidMap() {
+	std::stringstream log;
+	log << "Map is invalid";
+	Logger::instance()->appendToNewLine(log.str());
+
 	cout << "The map is invalid. To be a valid map, it must"
 		<< "have an entrance and an exit cell, have a valid path between those two points"
 		<< "and have all walkable cells be reachable (that is, all non-wall type)"
@@ -165,16 +210,32 @@ void GodmodeMapView::warningMsgInvalidMap() {
 }
 
 void GodmodeMapView::warningMsgValidMap() {
+	std::stringstream log;
+	log << "Map is valid";
+	Logger::instance()->appendToNewLine(log.str());
+
 	cout << "This is a valid map." << endl;
 }
 
 
 void GodmodeMapView::warningMsgMapSaved() {
-	cout << "Map saved" << endl;
+	string msg = "Map saved";
+
+	std::stringstream log;
+	log << msg;
+	Logger::instance()->appendToNewLine(log.str());
+
+	cout << msg << endl;
 }
 
 void GodmodeMapView::warningMsgMapLoaded() {
-	cout << "Map loaded" << endl;
+	string msg = "Map loaded";
+
+	std::stringstream log;
+	log << msg;
+	Logger::instance()->appendToNewLine(log.str());
+
+	cout << msg << endl;
 }
 
 void GodmodeMapView::warningMsgWrongCoordinates() {
