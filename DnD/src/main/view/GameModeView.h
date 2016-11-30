@@ -3,6 +3,8 @@
 #include "interactable\godmode\GodmodeInteractableView.h"
 #include "item\godmode\GodmodeItemView.h"
 #include "..\controller\PlayModeController.h"
+#include "..\helper\Logger.h"
+
 class GameModeView
 {
 public:
