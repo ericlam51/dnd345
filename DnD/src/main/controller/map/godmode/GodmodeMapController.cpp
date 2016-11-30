@@ -156,9 +156,6 @@ void GodmodeMapController::validateMap() {
 
 //! Method called by fillCell, which is turn called by the view. 
 void GodmodeMapController::setCell(int x, int y, Cell* cell) {
-	map->fillCell(x, y, cell);
-	map->print();
-	
 	switch (cell->getType()) {
 		//case CellHelper::WALL_TYPE:
 		//	//dynamic_cast<WallCell*>(cell)->set
@@ -172,8 +169,9 @@ void GodmodeMapController::setCell(int x, int y, Cell* cell) {
 	case  CellHelper::CHEST_TYPE:
 	{
 		//GodmodeChestController::instance()->loadChestWithoutView(); //TODO
-		Interactable* chest = GodmodeChestController::instance()->getChest();
-		dynamic_cast<ChestCell*>(cell)->setChest(chest);
+		//Interactable* chest = GodmodeChestController::instance()->getChest();
+		GodmodeChestController::instance()->getSavedFiles(-1);
+		dynamic_cast<ChestCell*>(cell)->setChest(GodmodeChestController::instance()->getChest());
 		break;
 	}
 	case  CellHelper::ENTITY_TYPE:
@@ -188,6 +186,9 @@ void GodmodeMapController::setCell(int x, int y, Cell* cell) {
 	//	s_instance->setCell(x, y, new PathCell());
 	//	break;
 	//}
+
+	map->fillCell(x, y, cell);
+	map->print();
 
 	GodmodeMapView::mapOptionsMenuView();
 }
