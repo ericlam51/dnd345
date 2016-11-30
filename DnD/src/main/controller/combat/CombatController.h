@@ -1,7 +1,7 @@
 #pragma once
 
 class CombatView;
-
+#include "../../helper/Logger.h"
 #include "../../model/interactable/header/Active.h"
 #include "../../view/combat/CombatView.h"
 #include "../../model/dice/Dice.h"
