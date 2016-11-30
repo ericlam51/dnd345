@@ -25,6 +25,7 @@ public:
 
 	void print();
 	void printEquipments();
+	void printInventory();
 
 	int getLevel() const;
 	int getArmorClass() const;

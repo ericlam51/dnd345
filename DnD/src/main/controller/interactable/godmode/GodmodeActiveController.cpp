@@ -133,7 +133,7 @@ void GodmodeActiveController::modifyAbilityScore(int abilityScore[6]) {
 //! @param item: item to equip
 void GodmodeActiveController::equipItem(char item) {
 	GodmodeItemController::instance()->loadSaveFile(
-		GodmodeItemController::instance()->getLoadedFile());
+	GodmodeItemController::instance()->getLoadedFile());
 
 	switch (item) {
 	case 'h':
@@ -192,10 +192,6 @@ void GodmodeActiveController::equipItem(char item) {
 		}
 	}
 	break;
-	//case 'b':
-	//	Helmet* helmet;
-	//	_active->equipItem(helmet);
-	//	break;
 	case 'j':
 	{
 		Item* boots = GodmodeItemController::instance()->getContainer()->getItem("BOOTS", 0);
@@ -262,6 +258,7 @@ void GodmodeActiveController::saveAndQuit(string filename){
 	cout << " successfully created" << endl;
 	_active->print();
 	_active->printEquipments();
+	_active->printInventory();
 
 	resetGodmodeActiveController();
 	GodmodeInteractableView::interactableFileSelectionView();

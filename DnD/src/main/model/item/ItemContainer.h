@@ -21,6 +21,7 @@ public:
 	~ItemContainer();
 	void addItem(Item*);
 	void removeItem(Item*);
+	void displayItemHelper(int selection);
 	Item* getItem(string, int);
 	vector<Item*> getItemsOfType(string);
 	int size();

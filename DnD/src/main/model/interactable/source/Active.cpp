@@ -101,6 +101,15 @@ void Active::printEquipments() {
 	cout << "Weapon: " << (_equippedItems->getItem("WEAPON") ? _equippedItems->getItem("WEAPON")->getItemName() : "<Empty>") << endl;
 }
 
+void Active::printInventory() {
+	cout << "All items: " << endl;
+
+	for (int i = 1; i <= HELMET + 1; i++)
+	{
+		_itemContainer->displayItemHelper(i);
+	}
+}
+
 void Active::print() {
 	cout << "Your player has the following attributes:" << endl
 		<< "Name: " << name << endl
