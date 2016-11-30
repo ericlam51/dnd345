@@ -10,10 +10,15 @@ void GodmodeInteractableView::interactableFileSelectionView() {
 	cout << "Interactable (Fighter, Monster, NPC, Chest)" << endl;
 	cout << "1. New Interactable" << endl
 		<< "2. Load Interactable" << endl
-		<< "3. Return to Selection menu" << endl
-		<< "Selection: ";
+		<< "3. Return to Selection menu" << endl;
+		
 
-	cin >> input;
+	do {
+		cout << "Selection: " << endl;
+		cin.clear();
+		cin >> input;
+	} while (input < 1 || input > 3);
+	
 
 	GodmodeInteractableController::instance()->interactableFileSelection(input);
 }
@@ -29,10 +34,14 @@ void GodmodeInteractableView::interactableElementSelectionView() {
 	cout << "1. Fighter" << endl
 		<< "2. Monster" << endl
 		<< "3. NPC" << endl
-		<< "4. Chest" << endl
-		<< "Selection: ";
+		<< "4. Chest" << endl;
 
-	cin >> input;
+	do {
+		cout << "Selection: " << endl;
+		cin.clear();
+		cin >> input;
+	} while (input < 1 || input > 4);
+
 	GodmodeInteractableController::instance()->interactableCreation(input);
 }
 
@@ -46,10 +55,14 @@ void GodmodeInteractableView::interactableLoadView() {
 	cout << "1. Fighter" << endl
 		<< "2. Monster" << endl
 		<< "3. NPC" << endl
-		<< "4. Chest" << endl
-		<< "Selection: ";
+		<< "4. Chest" << endl;
 
-	cin >> input;
+	do {
+		cout << "Selection: " << endl;
+		cin.clear();
+		cin >> input;
+	} while (input < 1 || input > 4);
+
 	GodmodeInteractableController::instance()->interactableLoad(input);
 }
 void GodmodeInteractableView::warningMsgInvalidInput() {

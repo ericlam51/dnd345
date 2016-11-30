@@ -64,10 +64,14 @@ void GodmodeActiveView::postCreationYesView() {
 	cout << "Please select and option" << endl;
 	cout << "1. Change starting ability score" << endl
 		<< "2. Equip item" << endl
-		<< "3. Save and Quit" << endl
-		<< "Selection: ";
+		<< "3. Save and Quit" << endl;
 
-	cin >> input;
+	do {
+		cout << "Selection: " << endl;
+		cin.clear();
+		cin >> input;
+	} while (input < 1 || input > 3);
+	
 	GodmodeActiveController::instance()->postCreationYes(input);
 }
 
@@ -134,18 +138,19 @@ void GodmodeActiveView::warningMsgActiveLoaded() {
 
 void GodmodeActiveView::activeChooseSaveFileView(vector<string> filenames) {
 	cout << "Please select one of the following files:" << endl;
-
+	int input = 0;
 	for (int i = 0; i < filenames.size(); i++) {
 		cout << i + 1 << ". " << filenames[i] << endl;
 	}
 
 	cout << "Selection: ";
 
-	int input;
+	do {
+		cout << "Selection: " << endl;
+		cin.clear();
+		cin >> input;
+	} while (input < 1 || input > filenames.size());
 
-	cin >> input;
-	cin.clear(); //if cin fails because of wrong data type, clear error flag
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');  //clears the cin buffer
 	if (!typeStr.compare("Fighter"))
 		GodmodeActiveController::instance()->loadFighter(input - 1);
 	else if (!typeStr.compare("Monster"))
