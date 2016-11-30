@@ -122,10 +122,11 @@ void GodmodeMapView::mapFillOptionsMenuView() {
 	cout << "Pleae choose one of the following types (1, 2, 3, ...): " << endl
 		<< "1. WALL (*)" << endl
 		<< "2. START POINT (S)" << endl
-		<< "3. EXIT POINT (D)" << endl
+		<< "3. EXIT POINT (E)" << endl
 		<< "4. CHEST (C)" << endl
-		<< "5. ENTITY (E)" << endl
-		<< "6. EMPTY ( )" << endl
+		<< "5. ENTITY ENEMY (X)" << endl
+		<< "6. ENTITY NPC (N)" << endl
+		<< "7. EMPTY ( )" << endl
 		<< "Option: ";
 	cin >> option;
 
@@ -143,9 +144,12 @@ void GodmodeMapView::mapFillOptionsMenuView() {
 		GodmodeMapController::instance()->fillCell(x, y, CellHelper::CHEST_TYPE);
 		break;
 	case 5:
-		GodmodeMapController::instance()->fillCell(x, y, CellHelper::ENTITY_TYPE);
+		GodmodeMapController::instance()->fillCell(x, y, CellHelper::ENTITY_TYPE, 1);
 		break;
 	case 6:
+		GodmodeMapController::instance()->fillCell(x, y, CellHelper::ENTITY_TYPE, 2);
+		break;
+	case 7:
 		GodmodeMapController::instance()->fillCell(x, y, CellHelper::PATH_TYPE);
 		break;
 	default: 

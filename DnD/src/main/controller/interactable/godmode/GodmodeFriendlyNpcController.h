@@ -13,6 +13,7 @@ class GodmodeFriendlyNpcController {
 private:
 	FriendlyNpc* _friendlyNpc;
 	vector<string> filenames;
+	int option = 0;
 
 public:
 	void newFriendlyNpc(string name, string description, string dialog);
@@ -21,7 +22,7 @@ public:
 	FriendlyNpc* getFriendlyNpc();
 	void postCreation(int input);
 	void saveAndQuit(string filename);
-	void getSavedFiles();
+	void getSavedFiles(int option = 0);
 	void resetGodmodeFriendlyNpcController();
 	void print();
 	static GodmodeFriendlyNpcController* instance();

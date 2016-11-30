@@ -24,16 +24,22 @@ void GodmodeActiveController::newHostileNpc(string name, string description, int
 //!method to load a fighter with the view to edit
 void GodmodeActiveController::loadFighter(int input){
 	loadFighterWithoutView(input);
-	print();
-	GodmodeActiveView::warningMsgActiveLoaded();
-	GodmodeActiveView::postCreationView();
+
+	if (option == 0) {
+		print();
+		GodmodeActiveView::warningMsgActiveLoaded();
+		GodmodeActiveView::postCreationView();
+	}
 }
 //! method to load a fighter with the view to edit
 void GodmodeActiveController::loadHostileNpc(int input){
 	loadHostileNpcWithoutView(input);
-	print();
-	GodmodeActiveView::warningMsgActiveLoaded();
-	GodmodeActiveView::postCreationView();
+	
+	if (option == 0) {
+		print();
+		GodmodeActiveView::warningMsgActiveLoaded();
+		GodmodeActiveView::postCreationView();
+	}
 }
 //! method to load a fighter without the view to edit
 void GodmodeActiveController::loadFighterWithoutView(int input) {
@@ -268,9 +274,12 @@ void GodmodeActiveController::resetGodmodeActiveController() {
 
 	filenames.clear();
 	vector<string>().swap(filenames);
+
+	option = 0;
 }
 
-void GodmodeActiveController::getSavedActiveFiles(int type) {
+void GodmodeActiveController::getSavedActiveFiles(int type, int option) {
+	this->option = option;
 
 	if (type == 0)
 		filenames = FileHelper::getFilenamesInDirectory(FileHelper::FIGHTER_FILE_FOLDER);
