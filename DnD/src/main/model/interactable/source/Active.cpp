@@ -75,33 +75,28 @@ void Active::equipItem(Item* item) {
 	Item* currentlyEquippedItem = _equippedItems->getItem(item->type);
 
 	if (currentlyEquippedItem != NULL) {
+		equipementEnhancement(currentlyEquippedItem->getEnchantmentType(), -currentlyEquippedItem->getEnchantmentModifier());
 		cout << "Unequipping " << currentlyEquippedItem->getItemName() << " ...." << endl;
 		_equippedItems->removeItem(item->type);
 		_itemContainer->addItem(currentlyEquippedItem);
 	} 
 	cout << "Equipping item ...." << endl;
 	_equippedItems->equipItem(item);
+	equipementEnhancement(item->getEnchantmentType(), item->getEnchantmentModifier());
 }
 
 void Active::printEquipments() {
 	cout << "-+-+-+-+-+-+-+-+ EQUIPMENTS +-+-+-+-+-+-+-+-+-+-" << endl;
-	//cout << "Helmet: " << (_equippedItems->getEquipped()->getItem("HELMET", 0) ? _equippedItems->getEquipped()->getItem("HELMET", 0)->getItemName() : "<Empty>") << endl;
-	//cout << "Armor: " << (_equippedItems->getEquipped()->getItem("ARMOR", 0) ? _equippedItems->getEquipped()->getItem("ARMOR", 0)->getItemName() : "<Empty>") << endl;
-	//cout << "Shield: " << (_equippedItems->getEquipped()->getItem("SHIELD", 0) ? _equippedItems->getEquipped()->getItem("SHIELD", 0)->getItemName() : "<Empty>") << endl;
-	//cout << "Ring: " << (_equippedItems->getEquipped()->getItem("RING", 0) ? _equippedItems->getEquipped()->getItem("RING", 0)->getItemName() : "<Empty>") << endl;
-	///*cout << "Belt: " << (_equippedItems->getItem("BELT") ? _equippedItems->getItem("BELT")->getItemName() : "<Empty>") << endl;*/
-	//cout << "Boots: " << (_equippedItems->getEquipped()->getItem("BOOTS", 0) ? _equippedItems->getEquipped()->getItem("BOOTS", 0)->getItemName() : "<Empty>") << endl;
-	//cout << "Weapon: " << (_equippedItems->getEquipped()->getItem("WEAPON", 0) ? _equippedItems->getEquipped()->getItem("WEAPON", 0)->getItemName() : "<Empty>") << endl;
 	cout << "Helmet: " << (_equippedItems->getItem("HELMET") ? _equippedItems->getItem("HELMET")->getItemName() : "<Empty>") << endl;
 	cout << "Armor: " << (_equippedItems->getItem("ARMOR") ? _equippedItems->getItem("ARMOR")->getItemName() : "<Empty>") << endl;
 	cout << "Shield: " << (_equippedItems->getItem("SHIELD") ? _equippedItems->getItem("SHIELD")->getItemName() : "<Empty>") << endl;
 	cout << "Ring: " << (_equippedItems->getItem("RING") ? _equippedItems->getItem("RING")->getItemName() : "<Empty>") << endl;
-	/*cout << "Belt: " << (_equippedItems->getItem("BELT") ? _equippedItems->getItem("BELT")->getItemName() : "<Empty>") << endl;*/
 	cout << "Boots: " << (_equippedItems->getItem("BOOTS") ? _equippedItems->getItem("BOOTS")->getItemName() : "<Empty>") << endl;
 	cout << "Weapon: " << (_equippedItems->getItem("WEAPON") ? _equippedItems->getItem("WEAPON")->getItemName() : "<Empty>") << endl;
 }
 
 void Active::printInventory() {
+	cout << "-+-+-+-+-+-+-+-+ Inventory +-+-+-+-+-+-+-+-+-+-" << endl;
 	cout << "All items: " << endl;
 
 	for (int i = 1; i <= HELMET + 1; i++)
@@ -150,6 +145,27 @@ void Active::setWisdom(int wis) {
 
 void Active::setCharisma(int cha) {
 	abilityScores[5] = cha;
+}
+
+void Active::equipementEnhancement(string abilityScore, int enhancement) {
+	if (abilityScore == "Armor")
+		armorClass = armorClass + enhancement;
+	else if (abilityScore == "Strength")
+		abilityScores[0] = abilityScores[0] + enhancement;
+	else if (abilityScore == "Dexterity")
+		abilityScores[1] = abilityScores[1] + enhancement;
+	else if (abilityScore == "Constitution")
+		abilityScores[2] = abilityScores[2] + enhancement;
+	else if (abilityScore == "Intelligence")
+		abilityScores[3] = abilityScores[3] + enhancement;
+	else if (abilityScore == "Wisdom")
+		abilityScores[4] = abilityScores[4] + enhancement;
+	else if (abilityScore == "Charisma")
+		abilityScores[5] = abilityScores[5] + enhancement;
+	else if (abilityScore == "Attack")
+		attackBonus = attackBonus + enhancement;
+	else if (abilityScore == "Damage")
+		damageBonus = damageBonus + enhancement;
 }
 
 int Active::getLevel() const {
