@@ -4,6 +4,7 @@
 #include "item\godmode\GodmodeItemView.h"
 #include "..\controller\PlayModeController.h"
 #include "..\helper\Logger.h"
+#include "settings\godmode\GodmodeSettingsView.h"
 
 class GameModeView
 {

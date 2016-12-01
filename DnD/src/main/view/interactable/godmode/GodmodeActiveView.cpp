@@ -93,13 +93,14 @@ void GodmodeActiveView::changeAbilityScoreView() {
 //! method to equip item on monster or fighter
 void GodmodeActiveView::equipItemView() {
 
-	if (GodmodeItemController::instance()->getContainer()->size() == 0) 
+	GodmodeItemController::instance()->resetController();
+	system("cls");
+	cout << "Please begin by selecting an inventory to load." << endl;
+	vector<string> files = FileHelper::getFilenamesInDirectory(FileHelper::ITEM_CONTAINER_FILE_FOLDER);
+	if (files.size() > 0)
 	{
-		system("cls");
-		cout << "Cannot equip items, since no items are in the item container.\nPlease load or save an item container." << endl;
-	}
-	else
-	{
+		GodmodeItemView::loadItemInventoryHelper(FileHelper::getFilenamesInDirectory(FileHelper::ITEM_CONTAINER_FILE_FOLDER));
+
 		char input;
 		bool cont = true;
 		while (cont) {
@@ -115,7 +116,10 @@ void GodmodeActiveView::equipItemView() {
 			cont = readBooleanInput(input);
 		}
 	}
-
+	else
+	{
+		cout << "There are currently no inventories, please create and save one to equip an item." << endl;
+	}
 	postCreationYesView();
 }
 

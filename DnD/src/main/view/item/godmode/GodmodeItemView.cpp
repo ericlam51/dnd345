@@ -152,7 +152,7 @@ void GodmodeItemView::loadItemInventory(vector<string> filenames)
 
 		cin.clear(); //if cin fails because of wrong data type, clear error flag
 
-		GodmodeItemController::instance()->loadItemInventory(input - 1);
+		GodmodeItemController::instance()->loadItemInventory(input - 1, false);
 	}
 }
 
@@ -160,6 +160,33 @@ void GodmodeItemView::loadItemInventory(vector<string> filenames)
 void GodmodeItemView::successfulAction()
 {
 	cout << "Action successfully completed." << endl; 
+}
+
+void GodmodeItemView::loadItemInventoryHelper(vector<string> filenames)
+{
+	if (filenames.size() == 0)
+	{
+		cout << "Create and save an item inventory." << endl;
+	}
+	else
+	{
+		cout << "Please select one of the following files:" << endl;
+
+		for (int i = 0; i < filenames.size(); i++) {
+			cout << i + 1 << ". " << filenames[i] << endl;
+		}
+
+		int input = 0;
+		do
+		{
+			cout << "Selection: ";
+			cin >> input;
+		} while (input < 1 || input > filenames.size());
+
+		cin.clear(); //if cin fails because of wrong data type, clear error flag
+
+		GodmodeItemController::instance()->loadItemInventory(input - 1, true);
+	}
 }
 
 //! Displays all item of a specific type

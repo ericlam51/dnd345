@@ -19,6 +19,7 @@ public:
 	static void saveItemInventory();
 	static void loadItemInventory(vector<string>);
 	static void successfulAction();
+	static void loadItemInventoryHelper(vector<string>);
 private:
 	static void displayItemHelper(int);
 };

@@ -94,6 +94,9 @@ void GodmodeItemController::setLoadedFile(int file)
 void GodmodeItemController::resetController()
 {
 	delete container;
+	container = NULL;
+	delete s_instance;
+	s_instance = NULL;
 }
 
 //! method that handles user input to remove an item from the item container
@@ -133,14 +136,17 @@ void GodmodeItemController::saveItemInventory(string filename)
 }
 
 //! method that loads a serialized item inventory
-void GodmodeItemController::loadItemInventory(int input)
+void GodmodeItemController::loadItemInventory(int input, bool skip)
 {
 	setLoadedFile(input);
 	string filePath = FileHelper::getDirectoryPath(FileHelper::ITEM_CONTAINER_FILE_FOLDER) + FileHelper::getFilenamesInDirectory(FileHelper::ITEM_CONTAINER_FILE_FOLDER)[input];
 	loadSaveFile(filePath);
 
 	GodmodeItemView::successfulAction();
-	GodmodeItemView::itemOptionSelection();
+	if (!skip) 
+	{
+		GodmodeItemView::itemOptionSelection();	
+	}
 }
 
 void GodmodeItemController::loadSaveFile(string filepath) {

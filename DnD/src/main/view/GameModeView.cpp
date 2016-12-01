@@ -12,7 +12,8 @@ void GameModeView::printMainMenu() {
 	cout << "Select the mode:" << endl;
 	cout << "1. Play mode" << endl;
 	cout << "2. God mode" << endl;
-	cout << "3. End program" << endl;
+	cout << "3. Logger settings" << endl;
+	cout << "4. End program" << endl;
 }
 
 //! method to display the god mode menu option
@@ -88,7 +89,7 @@ void GameModeView::displayView(int gameMode) {
 	do {
 		int playing = false;
 		//user input for the game mode menu
-		while (gameMode != 1 && gameMode != 2 && gameMode != 3) {
+		while (gameMode != 1 && gameMode != 2 && gameMode != 3 && gameMode != 4) {
 			printMainMenu();
 			cin >> gameMode;
 			system("cls");
@@ -159,11 +160,15 @@ void GameModeView::displayView(int gameMode) {
 			}
 		}
 		else if (gameMode == 3) {
+			GodmodeSettingsView::displaySettings();
+		}
+		else if (gameMode == 4) {
 			break;
 		}
 
 		gameMode = -1;
 		GodmodeMapController::instance()->resetController();
+		GodmodeItemController::instance()->resetController();
 		GodmodeActiveController::instance()->resetGodmodeActiveController();
 		GodmodeChestController::instance()->resetGodmodeChestController();
 		GodmodeFriendlyNpcController::instance()->resetGodmodeFriendlyNpcController();
