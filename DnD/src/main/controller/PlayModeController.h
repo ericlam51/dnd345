@@ -35,4 +35,7 @@ public:
 	void printMap();
 	//method to print the equipment
 	void printEquipment();
+	Active* getPlayer() {
+		return _active;
+	}
 };
