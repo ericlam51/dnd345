@@ -49,7 +49,7 @@ void Active::interact() {
 
 void Active::hit(int damage)
 {
-	maxHitPoints = currentHitPoints - damage;
+	currentHitPoints -= damage;
 }
 
 int Active::getAbilityModifier(int abilityScore) {
