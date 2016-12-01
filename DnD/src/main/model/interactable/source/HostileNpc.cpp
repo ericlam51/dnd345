@@ -1,6 +1,6 @@
 #include <iostream>
 #include "../header/HostileNpc.h"
-
+#include "../../../controller/PlayModeController.h"
 IMPLEMENT_SERIAL(HostileNpc, CObject, 1)
 
 HostileNpc::HostileNpc(){}
@@ -12,7 +12,9 @@ HostileNpc::HostileNpc(string name, string description, int level) : Active(name
 HostileNpc::~HostileNpc() {}
 
 void HostileNpc::interact(){
-	cout << "interact with hostile npc" << endl;
+	Active * active = PlayModeController::instance()->getPlayer();
+	cc.beginCombat(active, this);
+	cout << "Returning to map." << endl;
 	Sleep(1000);
 }
 
@@ -22,13 +24,13 @@ void HostileNpc::Serialize(CArchive& archive) {
 	CString cDescription(getDescription().c_str());
 
 	if (archive.IsStoring()) {
-		archive << cName << cDescription << level << maxHitPoints
+		archive << cName << cDescription << level << maxHitPoints << currentHitPoints
 			<< armorClass << attackBonus << damageBonus
 			<< abilityScores[0] << abilityScores[1] << abilityScores[2]
 			<< abilityScores[3] << abilityScores[4] << abilityScores[5]; //TODO serialize item
 	}
 	else {
-		archive >> cName >> cDescription >> level >> maxHitPoints
+		archive >> cName >> cDescription >> level >> maxHitPoints >> currentHitPoints
 			>> armorClass >> attackBonus >> damageBonus
 			>> abilityScores[0] >> abilityScores[1] >> abilityScores[2]
 			>> abilityScores[3] >> abilityScores[4] >> abilityScores[5];

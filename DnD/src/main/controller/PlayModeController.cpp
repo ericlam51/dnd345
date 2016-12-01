@@ -29,6 +29,7 @@ void PlayModeController::loadMap(string input) {
 
 	map = new Map();
 	map->Serialize(archive);
+	s_instance->map = map;
 
 	archive.Close();
 	theFile.Close();
@@ -85,7 +86,7 @@ void PlayModeController::loadFighter(string input) {
 
 	_active = new Fighter();
 	_active->Serialize(archive);
-
+	s_instance->_active = _active;
 	archive.Close();
 	theFile.Close();
 }

@@ -1,7 +1,7 @@
 /*! HostileNpc class
 * Monster class, sub class of Active
 */
-
+#include "../../../controller/combat/CombatController.h"
 #pragma once
 
 #include <iostream>
@@ -22,5 +22,6 @@ public:
 	DECLARE_SERIAL(HostileNpc);
 
 private:
+	CombatController cc;
 	int size;
 };
