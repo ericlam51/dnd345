@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../header/HostileNpc.h"
 #include "../../../controller/PlayModeController.h"
+#include "../../../controller/combat/CombatController.h"
 IMPLEMENT_SERIAL(HostileNpc, CObject, 1)
 
 HostileNpc::HostileNpc(){}
@@ -13,7 +14,7 @@ HostileNpc::~HostileNpc() {}
 
 void HostileNpc::interact(){
 	Active * active = PlayModeController::instance()->getPlayer();
-	cc.beginCombat(active, this);
+	CombatController::instance()->beginCombat(active, this);
 	cout << "Returning to map." << endl;
 	Sleep(1000);
 }
