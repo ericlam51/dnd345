@@ -48,7 +48,7 @@ void PlayModeController::printMap() {
 void PlayModeController::movePlayer(char direction) {
 	bool validateInteractable = map->getNextCellInteractibility(direction);
 	if (validateInteractable) {
-		int input = 0;
+		/*int input = 0;
 		while (input < 1 || input >2) {
 			cout << "Do you want to interact with the cell?" << endl
 				<< "1. Yes" << endl
@@ -56,8 +56,13 @@ void PlayModeController::movePlayer(char direction) {
 			cin >> input;
 		}
 		if (input == 2)
-			return;
+			return;*/
+
 		map->interact(direction);
+		int x = map->getNextDirectionX(direction);
+		int y = map->getNextDirectionY(direction);
+
+		map->fillCell(x, y, new PathCell());
 
 	}
 	bool validateWalkable = map->getNextCellWalkability(direction);
