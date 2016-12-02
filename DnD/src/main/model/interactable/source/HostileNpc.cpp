@@ -2,6 +2,7 @@
 #include "../header/HostileNpc.h"
 #include "../../../controller/PlayModeController.h"
 #include "../../../controller/combat/CombatController.h"
+#include "../../../controller/loot/LootController.h"
 IMPLEMENT_SERIAL(HostileNpc, CObject, 1)
 
 HostileNpc::HostileNpc() : Active() {}
@@ -23,7 +24,7 @@ void HostileNpc::interact(){
 		pmc->endGame();
 	}
 	else {
-		//Monster is dead
+		LootController::instance()->startMonsterLoot(this, active);
 	}
 	Sleep(1000);
 	system("cls");

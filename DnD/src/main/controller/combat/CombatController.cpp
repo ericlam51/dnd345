@@ -24,7 +24,7 @@ void CombatController::beginCombat(Active* fighter, Active* enemy) {
 
 void CombatController::fighterTurn() {
 	Logger::instance()->appendToNewLine(fighter->getName() + "'s turn started. ", "COMBAT");
-	int input;
+	char input;
 	int damageRoll = 0;
 	int hitRoll = Dice::instance()->roll(1, 20, CombatController::fighter->getAttackBonus());
 	Logger::instance()->appendToNewLine(fighter->getName() + " rolled " + to_string(hitRoll) + " for hit roll against an AC of " + to_string(enemy->getArmorClass()), "COMBAT");
@@ -47,12 +47,13 @@ void CombatController::fighterTurn() {
 	}
 	cout << "Enter anything to continue the combat" << endl;
 	cin >> input;
+	cin.clear();
 	cv.printCombat(CombatController::fighter, CombatController::enemy, false);
 }
 
 void CombatController::enemyTurn() {
 	Logger::instance()->appendToNewLine(enemy->getName() + "'s turn started. ", "COMBAT");
-	int input;
+	char input;
 	int damageRoll = 0;
 	int hitRoll = Dice::instance()->roll(1, 20, CombatController::enemy->getAttackBonus());
 	Logger::instance()->appendToNewLine(enemy->getName() + " rolled " + to_string(hitRoll) + " for hit roll against an AC of " + to_string(fighter->getArmorClass()), "COMBAT");
@@ -75,6 +76,7 @@ void CombatController::enemyTurn() {
 	}
 	cout << "Enter anything to continue the combat" << endl;
 	cin >> input;
+	cin.clear();
 	cv.printCombat(CombatController::fighter, CombatController::enemy, true);
 }
 

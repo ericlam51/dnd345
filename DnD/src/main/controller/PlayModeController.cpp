@@ -72,6 +72,7 @@ void PlayModeController::printEquipment() {
 	string input;
 	_active->printEquipments();
 	_active->print();
+	_active->printInventory();
 	cout << "Type anything to exit" << endl;
 	cin >> input;
 }

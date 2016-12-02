@@ -3,7 +3,7 @@
 //! method Create new chest
 void GodmodeChestController::newChest(string name, string description) {
 	_chest = new Chest(name, description);
-	GodmodeChestView::postCreationView();
+	GodmodeChestView::addItemToChestView();
 }
 
 //! method to load chest
@@ -95,6 +95,97 @@ void GodmodeChestController::resetGodmodeChestController() {
 
 void GodmodeChestController::print() {
 	_chest->print();
+}
+
+void GodmodeChestController::addItem(char item) {
+	switch (item) {
+	case 'h':
+	{
+		Item* helmet = GodmodeItemController::instance()->getContainer()->getItem("HELMET", 0);
+		if (helmet == nullptr)
+		{
+			cout << "There are currently no helmets created, you will need to create a helmet before you can add one." << endl;
+		}
+		else
+		{
+			_chest->addItem(helmet);
+			cout << "Successfully added helmet." << endl;
+		}
+	}
+	break;
+	case 'a':
+	{
+		Item* armor = GodmodeItemController::instance()->getContainer()->getItem("ARMOR", 0);
+		if (armor == nullptr)
+		{
+			cout << "There are currently no armors created, you will need to create an armor before you can add one." << endl;
+		}
+		else
+		{
+			_chest->addItem(armor);
+			cout << "Successfully added armor." << endl;
+		}
+	}
+	break;
+	case 's':
+	{
+		Item* shield = GodmodeItemController::instance()->getContainer()->getItem("SHIELD", 0);
+		if (shield == nullptr)
+		{
+			cout << "There are currently no shields created, you will need to create a shield before you can add one." << endl;
+		}
+		else
+		{
+			_chest->addItem(shield);
+			cout << "Successfully added shield." << endl;
+		}
+	}
+	break;
+	case 'r':
+	{
+		Item* ring = GodmodeItemController::instance()->getContainer()->getItem("RING", 0);
+		if (ring == nullptr)
+		{
+			cout << "There are currently no rings created, you will need to create a ring before you can add one." << endl;
+		}
+		else
+		{
+			_chest->addItem(ring);
+			cout << "Successfully added ring." << endl;
+		}
+	}
+	break;
+	case 'j':
+	{
+		Item* boots = GodmodeItemController::instance()->getContainer()->getItem("BOOTS", 0);
+		if (boots == nullptr)
+		{
+			cout << "There are currently no boots created, you will need to create boots before you can add one." << endl;
+		}
+		else
+		{
+			_chest->addItem(boots);
+			cout << "Successfully added boots." << endl;
+		}
+	}
+	break;
+	case 'w':
+	{
+		Item* weapon = GodmodeItemController::instance()->getContainer()->getItem("WEAPON", 0);
+		if (weapon == nullptr)
+		{
+			cout << "There are currently no weapons created, you will need to create a weapon before you can add one." << endl;
+		}
+		else
+		{
+			_chest->addItem(weapon);
+			cout << "Successfully added weapon." << endl;
+		}
+	}
+	break;
+	default:
+		cout << "Failed to add." << endl;
+	}
 }
 
 GodmodeChestController* GodmodeChestController::instance() {
