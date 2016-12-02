@@ -90,3 +90,7 @@ void PlayModeController::loadFighter(string input) {
 	archive.Close();
 	theFile.Close();
 }
+
+void PlayModeController::endGame() {
+	GameModeView::endGame();
+}

@@ -13,10 +13,20 @@ HostileNpc::HostileNpc(string name, string description, int level) : Active(name
 HostileNpc::~HostileNpc() {}
 
 void HostileNpc::interact(){
+
+	PlayModeController * pmc = PlayModeController::instance();
 	Active * active = PlayModeController::instance()->getPlayer();
 	CombatController::instance()->beginCombat(active, this);
-	cout << "Returning to map." << endl;
+	cout << "Combat Ended." << endl;
+	if (active->getCurrentHitPoints() <= 0) {
+		cout << "Game Over!" << endl;
+		pmc->endGame();
+	}
+	else {
+		//Monster is dead
+	}
 	Sleep(1000);
+	system("cls");
 }
 
 void HostileNpc::Serialize(CArchive& archive) {
