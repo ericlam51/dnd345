@@ -579,6 +579,36 @@ bool Map::validateOutofBound(int newX, int newY) {
 	}
 }
 
+int Map::getNextDirectionX(char direction) {
+	int nextX = playerCell->getPosX();
+
+	switch (direction){
+	case 'R':
+		nextX = nextX + 1;
+		break;
+	case 'L':
+		nextX = nextX - 1;
+		break;
+	}
+
+	return nextX;
+}
+
+int Map::getNextDirectionY(char direction) {
+	int nextY = playerCell->getPosY();
+
+	switch (direction) {
+	case 'D':
+		nextY = nextY + 1;
+		break;
+	case 'U':
+		nextY = nextY - 1;
+		break;
+	}
+
+	return nextY;
+}
+
 int Map::getHeight() {
 	return height;
 }
