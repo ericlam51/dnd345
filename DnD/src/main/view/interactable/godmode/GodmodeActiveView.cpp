@@ -105,7 +105,7 @@ void GodmodeActiveView::equipItemView() {
 		bool cont = true;
 		while (cont) {
 			char item;
-			cout << "Choose an item to equip : (h: helmet, a: armor, s: shield, r: ring, b: belt, j: boots, w: weapon" << endl;
+			cout << "Choose an item to equip : (h: helmet, a: armor, s: shield, r: ring, j: boots, w: weapon" << endl;
 			cin >> item;
 
 			GodmodeActiveController::instance()->equipItem(item);
