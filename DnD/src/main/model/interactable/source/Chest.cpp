@@ -39,3 +39,11 @@ void Chest::Serialize(CArchive& archive) {
 		description = ((LPCTSTR)cDescription);
 	}
 }
+
+void Chest::addItem(Item* item) {
+	_chestContent->addItem(item);
+}
+
+ItemContainer* Chest::lootItems() {
+	return _chestContent;
+}

@@ -4,6 +4,8 @@
 #pragma once
 #include <iostream>
 #include "Passive.h"
+#include "../../item/ItemContainer.h"
+#include "../../item/Item.h"
 
 using namespace std;
 
@@ -14,10 +16,12 @@ public:
 	Chest(string name, string description);
 	~Chest();
 	void interact();
+	void addItem(Item* item);
+	ItemContainer* lootItems();
 	void open();
 	void print();
 	void Serialize(CArchive& archive);
 	DECLARE_SERIAL(Chest);
 private:
-	//item
+	ItemContainer* _chestContent;
 };
