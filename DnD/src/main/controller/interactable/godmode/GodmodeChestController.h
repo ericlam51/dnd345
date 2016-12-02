@@ -21,6 +21,7 @@ public:
 	void loadChest(int input);
 	void loadChestWithoutView(int input);
 	Chest* getChest();
+	void addItem(char item);
 
 	void postCreation(int input);
 	void saveAndQuit(string filename);

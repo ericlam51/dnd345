@@ -17,8 +17,12 @@ public:
 	static void postCreationView();
 	static void chestChooseSaveFileView(vector<string> filenames);
 	static void chestAskSaveFileName();
+	static void addItemToChestView();
 
 	static void warningMsgInvalidInput();
 	static void warningMsgChestLoaded();
 	static void warningMsgChestSaved();
+
+private:
+	static bool readBooleanInput(char input);
 };
