@@ -59,6 +59,11 @@ void GodmodeMapView::mapCreationInputView() {
 }
 
 void GodmodeMapView::mapChooseSaveMapFileView(vector<string> filenames) {
+	if (filenames.size() == 0) {
+		cout << "No files created. Please create some first" << endl;
+		return;
+	}
+
 	std::stringstream log;
 	log << "Display map load file selection view";
 	Logger::instance()->appendToNewLine(log.str(), "MAP");

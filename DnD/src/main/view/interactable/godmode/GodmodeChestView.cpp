@@ -39,6 +39,11 @@ void GodmodeChestView::postCreationView(){
 }
 
 void GodmodeChestView::chestChooseSaveFileView(vector<string> filenames) {
+	if (filenames.size() == 0) {
+		cout << "No files created. Please create some first" << endl;
+		return;
+	}
+
 	cout << "Please select one of the following files:" << endl;
 
 	int input;
