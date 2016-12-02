@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../header/HostileNpc.h"
 #include "../../../controller/PlayModeController.h"
+#include "../../../controller/combat/CombatController.h"
 IMPLEMENT_SERIAL(HostileNpc, CObject, 1)
 
 HostileNpc::HostileNpc(){}
@@ -12,9 +13,10 @@ HostileNpc::HostileNpc(string name, string description, int level) : Active(name
 HostileNpc::~HostileNpc() {}
 
 void HostileNpc::interact(){
+
 	PlayModeController * pmc = PlayModeController::instance();
-	Active * active = pmc->getPlayer();
-	cc.beginCombat(active, this);
+	Active * active = PlayModeController::instance()->getPlayer();
+	CombatController::instance()->beginCombat(active, this);
 	cout << "Combat Ended." << endl;
 	if (active->getCurrentHitPoints() <= 0) {
 		cout << "Game Over!" << endl;
