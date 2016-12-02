@@ -4,7 +4,7 @@
 #include "../../../controller/combat/CombatController.h"
 IMPLEMENT_SERIAL(HostileNpc, CObject, 1)
 
-HostileNpc::HostileNpc(){}
+HostileNpc::HostileNpc() : Active() {}
 
 HostileNpc::HostileNpc(string name, string description, int level) : Active(name, description, level), size(size){
 
@@ -38,13 +38,17 @@ void HostileNpc::Serialize(CArchive& archive) {
 		archive << cName << cDescription << level << maxHitPoints << currentHitPoints
 			<< armorClass << attackBonus << damageBonus
 			<< abilityScores[0] << abilityScores[1] << abilityScores[2]
-			<< abilityScores[3] << abilityScores[4] << abilityScores[5]; //TODO serialize item
+			<< abilityScores[3] << abilityScores[4] << abilityScores[5]; 
+
+		_equippedItems->Serialize(archive);
 	}
 	else {
 		archive >> cName >> cDescription >> level >> maxHitPoints >> currentHitPoints
 			>> armorClass >> attackBonus >> damageBonus
 			>> abilityScores[0] >> abilityScores[1] >> abilityScores[2]
 			>> abilityScores[3] >> abilityScores[4] >> abilityScores[5];
+
+		_equippedItems->Serialize(archive);
 
 		name = ((LPCTSTR)cName);
 		description = ((LPCTSTR)cDescription);
