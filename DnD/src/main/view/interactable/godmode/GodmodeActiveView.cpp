@@ -115,7 +115,7 @@ void GodmodeActiveView::equipItemView() {
 
 			cont = readBooleanInput(input);
 		}
-
+		GodmodeItemController::instance()->resetPointers();
 	}
 	else
 	{
