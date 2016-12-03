@@ -264,7 +264,8 @@ void GodmodeActiveController::saveAndQuit(string filename){
 	cout << " successfully created" << endl;
 	print();
 
-	resetGodmodeActiveController();
+	GodmodeItemController::instance()->resetPointers();
+	//resetGodmodeActiveController();
 	GodmodeInteractableView::interactableFileSelectionView();
 }
 

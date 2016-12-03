@@ -115,6 +115,7 @@ void GodmodeActiveView::equipItemView() {
 
 			cont = readBooleanInput(input);
 		}
+
 	}
 	else
 	{
