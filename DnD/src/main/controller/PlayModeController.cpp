@@ -124,8 +124,8 @@ void PlayModeController::equipFromInventory(char item) {
 			} while (index < 0 || index > helmets.size());
 			
 			Item* itemToEquip = _active->getInventory()->getItem(ItemTypes[HELMET], index - 1);
-			_active->equipItem(itemToEquip);
 			_active->removeFromInventory(itemToEquip);
+			_active->equipItem(itemToEquip);
 		}
 	}
 	break;
@@ -145,8 +145,8 @@ void PlayModeController::equipFromInventory(char item) {
 			} while (index < 0 || index > armors.size());
 
 			Item* itemToEquip = _active->getInventory()->getItem(ItemTypes[ARMOR], index - 1);
-			_active->equipItem(itemToEquip);
 			_active->removeFromInventory(itemToEquip);
+			_active->equipItem(itemToEquip);
 		}
 	}
 	break;
@@ -166,8 +166,8 @@ void PlayModeController::equipFromInventory(char item) {
 			} while (index < 0 || index > shields.size());
 
 			Item* itemToEquip = _active->getInventory()->getItem(ItemTypes[SHIELD], index - 1);
-			_active->equipItem(itemToEquip);
 			_active->removeFromInventory(itemToEquip);
+			_active->equipItem(itemToEquip);
 		}
 	}
 	break;
@@ -187,8 +187,8 @@ void PlayModeController::equipFromInventory(char item) {
 			} while (index < 0 || index > rings.size());
 
 			Item* itemToEquip = _active->getInventory()->getItem(ItemTypes[RING], index - 1);
-			_active->equipItem(itemToEquip);
 			_active->removeFromInventory(itemToEquip);
+			_active->equipItem(itemToEquip);
 		}
 	}
 	break;
@@ -208,8 +208,8 @@ void PlayModeController::equipFromInventory(char item) {
 			} while (index < 0 || index > boots.size());
 
 			Item* itemToEquip = _active->getInventory()->getItem(ItemTypes[BOOTS], index - 1);
-			_active->equipItem(itemToEquip);
 			_active->removeFromInventory(itemToEquip);
+			_active->equipItem(itemToEquip);
 		}
 	}
 	break;
@@ -229,8 +229,8 @@ void PlayModeController::equipFromInventory(char item) {
 			} while (index < 0 || index > weapons.size());
 
 			Item* itemToEquip = _active->getInventory()->getItem(ItemTypes[WEAPON], index - 1);
-			_active->equipItem(itemToEquip);
 			_active->removeFromInventory(itemToEquip);
+			_active->equipItem(itemToEquip);
 		}
 	}
 	break;
