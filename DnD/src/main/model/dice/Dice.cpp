@@ -2,6 +2,8 @@
 #include <iostream>
 #include <regex>
 #include<time.h>
+#include <sstream>
+
 using namespace std;
 
 Dice::Dice() {
@@ -29,13 +31,9 @@ void Dice::displayRollingMessage() {
 }
 
 string Dice::rollingMessage() {
-	string str;
-	str.append("Rolling ");
-	str.append(numberDice + " ");
-	str.append("d");
-	str.append(" " + typeOfDie);
-	str.append(". Value Rolled: " + rolledValue);
-	return str;
+	stringstream  str;
+	str << "Rolling " << numberDice << "d" << typeOfDie << ". Value rolled " << rolledValue;
+	return str.str();
 }
 
 
