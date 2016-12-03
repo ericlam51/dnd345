@@ -22,6 +22,7 @@ public:
 	void attack(Active &activeObj);
 	void hit(int damage); 
 	void equipItem(Item* item);
+	void removeFromInventory(Item* item);
 	void addItemToInventory(Item* item);
 	void equipementEnhancement(string abilityScore, int enhancement);
 	void print();
@@ -29,6 +30,7 @@ public:
 	void printInventory();
 
 	EquippedItems* getEquippedItem();
+	ItemContainer* getInventory();
 	int getLevel() const;
 	int getArmorClass() const;
 	int getAttackBonus() const;

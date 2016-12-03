@@ -32,7 +32,8 @@ void GameModeView::printPlayMenu() {
 	cout << "3. Move Left" << endl;
 	cout << "4. Move Right" << endl;
 	cout << "5. Show Player Inventory" << endl;
-	cout << "6. Exit game" << endl;
+	cout << "6. Equip Item" << endl;
+	cout << "7. Exit game" << endl;
 }
 
 void GameModeView::loadGame() {
@@ -103,7 +104,7 @@ void GameModeView::displayView(int gameMode) {
 			loadGame();
 			system("cls");
 			while (playing) {
-				while (gameOption < 1 || gameOption > 6) {
+				while (gameOption < 1 || gameOption > 7) {
 					system("cls");
 					pmc->printMap();
 					printPlayMenu();
@@ -133,6 +134,9 @@ void GameModeView::displayView(int gameMode) {
 					break;
 					//Exit the game
 				case 6:
+					pmc->itemSelection();
+					break;
+				case 7:
 					playing = false;
 					break;
 				}

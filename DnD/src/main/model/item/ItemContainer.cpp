@@ -102,6 +102,8 @@ void ItemContainer::displayItemHelper(int selection)
 		{
 			cout << "Item: " << i++ << endl;
 			cout << "Item name: " << (*it)->getItemName() << endl;
+			cout << "Enchantement type: " << (*it)->getEnchantmentType() << endl;
+			cout << "Enchantement bonus: " << "+" << (*it)->getEnchantmentModifier() << endl;
 		}
 	}
 }

@@ -19,6 +19,5 @@ private:
 	static void printLoadGame(vector<string>, vector<string>);
 	static string printLoadFighter(vector<string>);
 	static string printLoadMap(vector<string>);
-	
 };
 
