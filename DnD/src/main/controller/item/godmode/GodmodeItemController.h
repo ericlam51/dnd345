@@ -28,6 +28,7 @@ public:
 	string getLoadedFile();
 	void setLoadedFile(int);
 	void resetController();
+	void resetPointers();
 private:
 	ItemContainer* container;
 	GodmodeItemController();

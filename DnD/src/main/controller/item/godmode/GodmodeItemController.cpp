@@ -176,6 +176,10 @@ void GodmodeItemController::loadSaveFile(string filepath) {
 	}
 }
 
+void GodmodeItemController::resetPointers() {
+	container = NULL;
+}
+
 ItemContainer* GodmodeItemController::getContainer() {
 	return container;
 }

@@ -79,7 +79,7 @@ void Active::equipItem(Item* item) {
 		equipementEnhancement(currentlyEquippedItem->getEnchantmentType(), -currentlyEquippedItem->getEnchantmentModifier());
 		cout << "Unequipping " << currentlyEquippedItem->getItemName() << " ...." << endl;
 		_equippedItems->removeItem(item->type);
-		//_itemContainer->addItem(currentlyEquippedItem);
+		_itemContainer->addItem(currentlyEquippedItem);
 	} 
 	cout << "Equipping item ...." << endl;
 	_equippedItems->equipItem(item);

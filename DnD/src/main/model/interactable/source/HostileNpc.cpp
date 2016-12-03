@@ -42,6 +42,7 @@ void HostileNpc::Serialize(CArchive& archive) {
 			<< abilityScores[3] << abilityScores[4] << abilityScores[5]; 
 
 		_equippedItems->Serialize(archive);
+		_itemContainer->Serialize(archive);
 	}
 	else {
 		archive >> cName >> cDescription >> level >> maxHitPoints >> currentHitPoints
@@ -50,6 +51,7 @@ void HostileNpc::Serialize(CArchive& archive) {
 			>> abilityScores[3] >> abilityScores[4] >> abilityScores[5];
 
 		_equippedItems->Serialize(archive);
+		_itemContainer->Serialize(archive);
 
 		name = ((LPCTSTR)cName);
 		description = ((LPCTSTR)cDescription);
