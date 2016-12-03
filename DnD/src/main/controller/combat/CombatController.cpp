@@ -15,8 +15,8 @@ void CombatController::beginCombat(Active* fighter, Active* enemy) {
 
 	int fighterInit = Dice::instance()->roll(1, 20, fighter ->getDexterity());
 	int enemyInit = Dice::instance()->roll(1, 20, enemy->getDexterity());;
-	Logger::instance()->appendToNewLine(fighter->getName() + " rolled " + to_string(fighterInit) + " for initiative.", "COMBAT");
-	Logger::instance()->appendToNewLine(enemy->getName() + " rolled " + to_string(enemyInit) + " for initiative.", "COMBAT");	
+	Logger::instance()->appendToNewLine(fighter->getName() + " rolled " + to_string(fighterInit) + " for initiative. (Obtained from (1d20 + dex [" + to_string(fighter->getDexterity()) + "])", "COMBAT");
+	Logger::instance()->appendToNewLine(enemy->getName() + " rolled " + to_string(enemyInit) + " for initiative. (Obtained from (1d20 + dex [" + to_string(enemy->getDexterity()) + "])", "COMBAT");
 	bool fighterStart = fighterInit >= enemyInit;
 	Logger::instance()->appendToNewLine(fighter->getName() + " starting: " + to_string(fighterStart), "COMBAT");
 	cv.printCombat(CombatController::fighter, CombatController::enemy, fighterStart);
@@ -27,6 +27,7 @@ void CombatController::fighterTurn() {
 	char input;
 	int damageRoll = 0;
 	int hitRoll = Dice::instance()->roll(1, 20, CombatController::fighter->getAttackBonus());
+	Logger::instance()->appendToNewLine(fighter->getName() + "'s hit roll obtained from rolling: 1d20 + Attack Bonus[" + to_string(fighter->getAttackBonus()) +"]. ", "COMBAT");
 	Logger::instance()->appendToNewLine(fighter->getName() + " rolled " + to_string(hitRoll) + " for hit roll against an AC of " + to_string(enemy->getArmorClass()), "COMBAT");
 	if (hitRoll < CombatController::enemy->getArmorClass()) {
 		Logger::instance()->appendToNewLine(fighter->getName() + "'s Attack missed!", "COMBAT");
@@ -35,6 +36,7 @@ void CombatController::fighterTurn() {
 	else {
 		damageRoll = Dice::instance()->roll(2, 4, 1);
 		CombatController::enemy->hit(damageRoll);
+		Logger::instance()->appendToNewLine("Damage Roll is obtained from 2d4 ", "COMBAT");
 		Logger::instance()->appendToNewLine(fighter->getName() + "'s Attack landed, and dealt " + to_string(damageRoll) + " damage.", "COMBAT");
 		cout << fighter->getName() << " hits " << CombatController::enemy->getName() << " for " << damageRoll << " damage. " << endl;
 		if (enemy->getCurrentHitPoints() <= 0) {
@@ -56,7 +58,8 @@ void CombatController::enemyTurn() {
 	char input;
 	int damageRoll = 0;
 	int hitRoll = Dice::instance()->roll(1, 20, CombatController::enemy->getAttackBonus());
-	Logger::instance()->appendToNewLine(enemy->getName() + " rolled " + to_string(hitRoll) + " for hit roll against an AC of " + to_string(fighter->getArmorClass()), "COMBAT");
+	Logger::instance()->appendToNewLine(enemy->getName() + "'s hit roll obtained from rolling: 1d20 + Attack Bonus[" + to_string(enemy->getAttackBonus()) + "]. ", "COMBAT");
+	Logger::instance()->appendToNewLine(enemy->getName() + " rolled " + to_string(hitRoll) + " for hit roll against an AC of " + to_string(enemy->getArmorClass()), "COMBAT");
 	if (hitRoll < CombatController::fighter->getArmorClass()) {
 		Logger::instance()->appendToNewLine(enemy->getName() + "'s Attack missed!", "COMBAT");
 		cout << enemy->getName() << "'s Attack missed!" << endl;
@@ -64,6 +67,7 @@ void CombatController::enemyTurn() {
 	else {
 		damageRoll = Dice::instance()->roll(2, 4, 1);
 		CombatController::fighter->hit(damageRoll);
+		Logger::instance()->appendToNewLine("Damage Roll is obtained from 2d4 ", "COMBAT");
 		Logger::instance()->appendToNewLine(enemy->getName() + "'s Attack landed, and dealt " + to_string(damageRoll) + " damage.", "COMBAT");
 		cout << enemy->getName() << " hits " << CombatController::fighter->getName() << " for " << damageRoll << " damage. " << endl;
 		if (fighter->getCurrentHitPoints() <= 0) {

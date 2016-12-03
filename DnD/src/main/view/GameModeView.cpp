@@ -94,6 +94,8 @@ void GameModeView::displayView(int gameMode) {
 		while (gameMode != 1 && gameMode != 2 && gameMode != 3 && gameMode != 4) {
 			printMainMenu();
 			cin >> gameMode;
+			cin.clear(); //if cin fails because of wrong data type, clear error flag
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');  //clears the cin buffer
 			system("cls");
 		}
 		//go to the game mode
@@ -109,6 +111,8 @@ void GameModeView::displayView(int gameMode) {
 					pmc->printMap();
 					printPlayMenu();
 					cin >> gameOption;
+					cin.clear(); //if cin fails because of wrong data type, clear error flag
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');  //clears the cin buffer
 					system("cls");
 				}
 				switch (gameOption) {
@@ -151,6 +155,8 @@ void GameModeView::displayView(int gameMode) {
 			while (godModeOption != 1 && godModeOption != 2 && godModeOption != 3) {
 				printGodModeMenu();
 				cin >> godModeOption;
+				cin.clear(); //if cin fails because of wrong data type, clear error flag
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');  //clears the cin buffer
 				system("cls");
 			}
 			//Redirect to the correct god mode menu
