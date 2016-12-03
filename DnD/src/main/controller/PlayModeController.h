@@ -25,6 +25,8 @@ private:
 	void loadMap(string);
 	//method to load the Fighter
 	void loadFighter(string);
+	//method to equip from inventory
+	void equipFromInventory(char item);
 
 public:
 	//! method to create or get the singleton class
@@ -37,6 +39,7 @@ public:
 	void printMap();
 	//method to print the equipment
 	void printEquipment();
+	void itemSelection();
 	Active* getPlayer() {
 		return _active;
 	}

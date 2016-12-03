@@ -82,6 +82,162 @@ void PlayModeController::printEquipment() {
 	cin >> input;
 }
 
+void PlayModeController::itemSelection() {
+	char input;
+	_active->printInventory();
+
+	bool cont = true;
+	while (cont) {
+		char item;
+		cout << "Choose an item to equip : (h: helmet, a: armor, s: shield, r: ring, j: boots, w: weapon" << endl;
+		cin >> item;
+
+		equipFromInventory(item);
+
+		cout << "Do you want to continue to equip item? ([Y/n])" << endl;
+		cin >> input;
+
+		if (input == 'y' || input == 'Y')
+			cont = true;
+
+		if (input == 'n' || input == 'N')
+			cont = false;
+	}
+
+}
+
+void PlayModeController::equipFromInventory(char item) {
+	switch (item) {
+	case 'h':
+	{
+		vector<Item*> helmets = _active->getInventory()->getItemsOfType(ItemTypes[HELMET]);
+		if (helmets.size() == 0)
+		{
+			cout << endl << "No items of type: Helmet" << endl;
+		}
+		else
+		{
+			int index;
+			cout << endl << "Select a Helmet to equip: " << endl;
+			do {
+				cin >> index;
+			} while (index < 0 || index > helmets.size());
+			
+			Item* itemToEquip = _active->getInventory()->getItem(ItemTypes[HELMET], index - 1);
+			_active->removeFromInventory(itemToEquip);
+			_active->equipItem(itemToEquip);
+		}
+	}
+	break;
+	case 'a':
+	{
+		vector<Item*> armors = _active->getInventory()->getItemsOfType(ItemTypes[ARMOR]);
+		if (armors.size() == 0)
+		{
+			cout << endl << "No items of type: armors" << endl;
+		}
+		else
+		{
+			int index;
+			cout << endl << "Select a armor to equip: " << endl;
+			do {
+				cin >> index;
+			} while (index < 0 || index > armors.size());
+
+			Item* itemToEquip = _active->getInventory()->getItem(ItemTypes[ARMOR], index - 1);
+			_active->removeFromInventory(itemToEquip);
+			_active->equipItem(itemToEquip);
+		}
+	}
+	break;
+	case 's':
+	{
+		vector<Item*> shields = _active->getInventory()->getItemsOfType(ItemTypes[SHIELD]);
+		if (shields.size() == 0)
+		{
+			cout << endl << "No items of type: shields" << endl;
+		}
+		else
+		{
+			int index;
+			cout << endl << "Select a shield to equip: " << endl;
+			do {
+				cin >> index;
+			} while (index < 0 || index > shields.size());
+
+			Item* itemToEquip = _active->getInventory()->getItem(ItemTypes[SHIELD], index - 1);
+			_active->removeFromInventory(itemToEquip);
+			_active->equipItem(itemToEquip);
+		}
+	}
+	break;
+	case 'r':
+	{
+		vector<Item*> rings = _active->getInventory()->getItemsOfType(ItemTypes[RING]);
+		if (rings.size() == 0)
+		{
+			cout << endl << "No items of type: shields" << endl;
+		}
+		else
+		{
+			int index;
+			cout << endl << "Select a shield to equip: " << endl;
+			do {
+				cin >> index;
+			} while (index < 0 || index > rings.size());
+
+			Item* itemToEquip = _active->getInventory()->getItem(ItemTypes[RING], index - 1);
+			_active->removeFromInventory(itemToEquip);
+			_active->equipItem(itemToEquip);
+		}
+	}
+	break;
+	case 'j':
+	{
+		vector<Item*> boots = _active->getInventory()->getItemsOfType(ItemTypes[BOOTS]);
+		if (boots.size() == 0)
+		{
+			cout << endl << "No items of type: boot" << endl;
+		}
+		else
+		{
+			int index;
+			cout << endl << "Select a boot to equip: " << endl;
+			do {
+				cin >> index;
+			} while (index < 0 || index > boots.size());
+
+			Item* itemToEquip = _active->getInventory()->getItem(ItemTypes[BOOTS], index - 1);
+			_active->removeFromInventory(itemToEquip);
+			_active->equipItem(itemToEquip);
+		}
+	}
+	break;
+	case 'w':
+	{
+		vector<Item*> weapons = _active->getInventory()->getItemsOfType(ItemTypes[WEAPON]);
+		if (weapons.size() == 0)
+		{
+			cout << endl << "No items of type: weapon" << endl;
+		}
+		else
+		{
+			int index;
+			cout << endl << "Select a weapon to equip: " << endl;
+			do {
+				cin >> index;
+			} while (index < 0 || index > weapons.size());
+
+			Item* itemToEquip = _active->getInventory()->getItem(ItemTypes[WEAPON], index - 1);
+			_active->removeFromInventory(itemToEquip);
+			_active->equipItem(itemToEquip);
+		}
+	}
+	break;
+	default:
+		cout << "Failed to equip." << endl;
+	}
+}
 //!method to load fighter
 void PlayModeController::loadFighter(string input) {
 	Logger::instance()->appendToNewLine("Loading fighter from " + input, "GAMECONTROLLER");

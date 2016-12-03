@@ -2,6 +2,7 @@
 #include "Cell.h"
 #include "../interactable/header/Interactable.h"
 #include "../interactable/header/HostileNpc.h"
+#include "../interactable/header/FriendlyNpc.h"
 
 class EntityCell : public Cell
 {

@@ -22,6 +22,7 @@ void FriendlyNpc::print() {
 }
 void FriendlyNpc::interact() {
 	cout << dialog << endl;
+	Sleep(1000);
 }
 
 void FriendlyNpc::Serialize(CArchive& archive) {

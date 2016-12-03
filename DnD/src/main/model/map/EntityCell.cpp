@@ -51,12 +51,17 @@ void EntityCell::Serialize(CArchive& archive) {
 
 	// now do the stuff for our specific class
 	if (archive.IsStoring()) {
-		archive << posX << posY << type;
+		archive << posX << posY << type << isFriendly;
 		entity->Serialize(archive);
 	}
 	else {
-		archive >> posX >> posY >> type;
-		entity = new HostileNpc();
+		archive >> posX >> posY >> type >> isFriendly;
+		
+		if (isFriendly)
+			entity = new FriendlyNpc();
+		else
+			entity = new HostileNpc();
+
 		entity->Serialize(archive);
 	}
 }

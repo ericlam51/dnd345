@@ -86,6 +86,10 @@ void Active::equipItem(Item* item) {
 	equipementEnhancement(item->getEnchantmentType(), item->getEnchantmentModifier());
 }
 
+void Active::removeFromInventory(Item* item) {
+	_itemContainer->removeItem(item);
+}
+
 void Active::addItemToInventory(Item* item) {
 	_itemContainer->addItem(item);
 }
@@ -111,6 +115,7 @@ void Active::printInventory() {
 }
 
 void Active::print() {
+	cout << "-+-+-+-+-+-+-+-+ CHARACTER +-+-+-+-+-+-+-+-+-+-" << endl;
 	cout << "Your player has the following attributes:" << endl
 		<< "Name: " << name << endl
 		<< "Description: " << description << endl
@@ -175,6 +180,10 @@ void Active::equipementEnhancement(string abilityScore, int enhancement) {
 
 EquippedItems* Active::getEquippedItem() {
 	return _equippedItems;
+}
+
+ItemContainer* Active::getInventory() {
+	return _itemContainer;
 }
 
 int Active::getLevel() const {
