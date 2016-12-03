@@ -26,26 +26,32 @@ void GodmodeItemController::addItem(int selection, string name)
 		case 1:
 			item = new Armor(name);
 			GodmodeItemController::instance()->container->addItem(item);
+			Logger::instance()->appendToNewLine("GAMECONTROLLER: Adding Armor to inventory.", "GAMECONTROLLER");
 			break;
 		case 2:
 			item = new Shield(name);
 			GodmodeItemController::instance()->container->addItem(item);
+			Logger::instance()->appendToNewLine("GAMECONTROLLER: Adding Shield to inventory.", "GAMECONTROLLER");
 			break;
 		case 3:
 			item = new Weapon(name);
 			GodmodeItemController::instance()->container->addItem(item);
+			Logger::instance()->appendToNewLine("GAMECONTROLLER: Adding Weapon to inventory.", "GAMECONTROLLER");
 			break;
 		case 4:
 			item = new Boots(name);
 			GodmodeItemController::instance()->container->addItem(item);
+			Logger::instance()->appendToNewLine("GAMECONTROLLER: Adding Boots to inventory.", "GAMECONTROLLER");
 			break;
 		case 5:
 			item = new Ring(name);
 			GodmodeItemController::instance()->container->addItem(item);
+			Logger::instance()->appendToNewLine("GAMECONTROLLER: Adding Ring to inventory.", "GAMECONTROLLER");
 			break;
 		case 6:
 			item = new Helmet(name);
 			GodmodeItemController::instance()->container->addItem(item);
+			Logger::instance()->appendToNewLine("GAMECONTROLLER: Adding Helmet to inventory.", "GAMECONTROLLER");
 			break;
 	}
 	GodmodeItemView::successfulAction();
@@ -81,6 +87,7 @@ string GodmodeItemController::getLoadedFile()
 {
 	if (FileHelper::getFilenamesInDirectory(FileHelper::ITEM_CONTAINER_FILE_FOLDER).size() > 0)
 	{
+		Logger::instance()->appendToNewLine("GAMECONTROLLER: Retrieving loaded files.", "GAMECONTROLLER");
 		return FileHelper::getDirectoryPath(FileHelper::ITEM_CONTAINER_FILE_FOLDER) + FileHelper::getFilenamesInDirectory(FileHelper::ITEM_CONTAINER_FILE_FOLDER)[loadedFile];
 	}
 	return "";
@@ -104,6 +111,7 @@ void GodmodeItemController::resetController()
 //! @param index: the index of the item to be deleted inside the vector 
 void GodmodeItemController::removeItem(string type, int index)
 {
+	Logger::instance()->appendToNewLine("GAMECONTROLLER: Removing item from inventory.", "GAMECONTROLLER");
 	Item* item = container->getItem(type, index - 1);
 	container->removeItem(item);
 	GodmodeItemView::successfulAction();
@@ -121,6 +129,7 @@ vector<Item*> GodmodeItemController::getItemsOfType(int selection)
 //! method that serializes the item inventory
 void GodmodeItemController::saveItemInventory(string filename)
 {
+	Logger::instance()->appendToNewLine("GAMECONTROLLER: Saving item inventory.", "GAMECONTROLLER");
 	CFile theFile;
 	string fileDirectory = FileHelper::getDirectoryPath(FileHelper::ITEM_CONTAINER_FILE_FOLDER) + filename;
 	theFile.Open(_T(fileDirectory.c_str()), CFile::modeCreate | CFile::modeWrite);
@@ -138,6 +147,7 @@ void GodmodeItemController::saveItemInventory(string filename)
 //! method that loads a serialized item inventory
 void GodmodeItemController::loadItemInventory(int input, bool skip)
 {
+	Logger::instance()->appendToNewLine("GAMECONTROLLER: Loading item inventory.", "GAMECONTROLLER");
 	setLoadedFile(input);
 	string filePath = FileHelper::getDirectoryPath(FileHelper::ITEM_CONTAINER_FILE_FOLDER) + FileHelper::getFilenamesInDirectory(FileHelper::ITEM_CONTAINER_FILE_FOLDER)[input];
 	loadSaveFile(filePath);

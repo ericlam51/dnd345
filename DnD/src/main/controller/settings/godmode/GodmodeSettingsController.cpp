@@ -11,6 +11,7 @@ GodmodeSettingsController* GodmodeSettingsController::instance()
 
 void GodmodeSettingsController::changeSettings(string input)
 {
+	Logger::instance()->appendToNewLine("GAMECONTROLLER: Changing logger settings.", "GAMECONTROLLER");
 	if (input.find('1') != string::npos)
 	{
 		Logger::instance()->gcLock = !Logger::instance()->gcLock;

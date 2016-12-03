@@ -9,6 +9,7 @@
 #include "../../../model/item/Shield.h"
 #include "../../../model/item/Weapon.h"
 #include "../../../view/GameModeView.h"
+#include "../../../helper/Logger.h"
 
 
 class GodmodeItemController
