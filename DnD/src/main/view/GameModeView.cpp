@@ -79,10 +79,27 @@ string GameModeView::printLoadFighter(vector<string> fighterFilenames) {
 	return fighterFilenames[fighterInput - 1];
 }
 void GameModeView::printLoadGame(vector<string> mapFilenames, vector<string> fighterFilenames) {
-	string mapName = printLoadMap(mapFilenames);
-	string fighterName = printLoadFighter(fighterFilenames);
+	if (mapFilenames.size() != 0 && fighterFilenames.size() != 0) {
+		string mapName = printLoadMap(mapFilenames);
+		string fighterName = printLoadFighter(fighterFilenames);
+		pmc->loadGame(mapName, fighterName);
+	}
+	else if (mapFilenames.size() == 0) 
+	{
+		cout << "There are no maps created. Please create one to play." << endl;
+	}
+	else if (fighterFilenames.size() == 0)	
+	{
+		cout << "There are no fighters created. Please create one to play." << endl;
+	}
 	//PlayModeController pmc;
-	pmc->loadGame(mapName, fighterName);
+}
+
+bool GameModeView::isPlayable()
+{
+	vector<string> mapFilenames = FileHelper::getFilenamesInDirectory(FileHelper::MAP_FILE_FOLDER);
+	vector<string> fighterFilenames = FileHelper::getFilenamesInDirectory(FileHelper::FIGHTER_FILE_FOLDER);
+	return mapFilenames.size() != 0 && fighterFilenames.size() != 0;
 }
 
 //! method to display the view, with a default parameter of 0 for main menu, 1 for game mode, 2 for god mode
@@ -99,9 +116,12 @@ void GameModeView::displayView(int gameMode) {
 		if (gameMode == 1) {
 			//PlayModeController pmc;
 			int gameOption = 0;
-			playing = true;
 			loadGame();
 			system("cls");
+			playing = GameModeView::isPlayable();
+			if (!playing) {
+				cout << "Please ensure that both maps and fighters are created." << endl;
+			}
 			while (playing) {
 				while (gameOption < 1 || gameOption > 6) {
 					system("cls");
