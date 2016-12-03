@@ -21,10 +21,14 @@ void LootView::chestLootOptionsView(int input) {
 
 	if (in == 'n' || in == 'N')
 		cond = false;
-	
+
 	if (input == 1)
+	{
+		Logger::instance()->appendToNewLine("GAMECONTROLLER: Player is looting chest.", "GAMECONTROLLER");
 		LootController::instance()->lootChest(cond);
-	else
+	}
+	else {
+		Logger::instance()->appendToNewLine("GAMECONTROLLER: Player is looting chest.", "GAMECONTROLLER");
 		LootController::instance()->lootHostile(cond);
-	cout << "-+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-" << endl;
+	}
 }
