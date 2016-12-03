@@ -5,8 +5,9 @@
 #include <string>
 #undef max
 using namespace std;
+static bool playing;
 //! method to display the main menu option
-PlayModeController pmc;
+PlayModeController * pmc = PlayModeController::instance();
 void GameModeView::printMainMenu() {
 	cout << "Hello, welcome to Dungeons and Dragons!" << endl;
 	cout << "Select the mode:" << endl;
@@ -81,13 +82,13 @@ void GameModeView::printLoadGame(vector<string> mapFilenames, vector<string> fig
 	string mapName = printLoadMap(mapFilenames);
 	string fighterName = printLoadFighter(fighterFilenames);
 	//PlayModeController pmc;
-	pmc.loadGame(mapName, fighterName);
+	pmc->loadGame(mapName, fighterName);
 }
 
 //! method to display the view, with a default parameter of 0 for main menu, 1 for game mode, 2 for god mode
 void GameModeView::displayView(int gameMode) {
 	do {
-		int playing = false;
+		playing = false;
 		//user input for the game mode menu
 		while (gameMode != 1 && gameMode != 2 && gameMode != 3 && gameMode != 4) {
 			printMainMenu();
@@ -104,7 +105,7 @@ void GameModeView::displayView(int gameMode) {
 			while (playing) {
 				while (gameOption < 1 || gameOption > 6) {
 					system("cls");
-					pmc.printMap();
+					pmc->printMap();
 					printPlayMenu();
 					cin >> gameOption;
 					system("cls");
@@ -112,23 +113,23 @@ void GameModeView::displayView(int gameMode) {
 				switch (gameOption) {
 					//Move up
 				case 1:
-					pmc.movePlayer('U');
+					pmc->movePlayer('U');
 					break;
 					//Move down
 				case 2:
-					pmc.movePlayer('D');
+					pmc->movePlayer('D');
 					break;
 					//Move Left
 				case 3:
-					pmc.movePlayer('L');
+					pmc->movePlayer('L');
 					break;
 					//Move Right
 				case 4:
-					pmc.movePlayer('R');
+					pmc->movePlayer('R');
 					break;
 					//Print equipped equipment
 				case 5:
-					pmc.printEquipment();
+					pmc->printEquipment();
 					break;
 					//Exit the game
 				case 6:
@@ -174,5 +175,9 @@ void GameModeView::displayView(int gameMode) {
 		GodmodeFriendlyNpcController::instance()->resetGodmodeFriendlyNpcController();
 	} while (true);
 
+}
+void GameModeView::endGame() {
+
+	playing = false;
 }
 

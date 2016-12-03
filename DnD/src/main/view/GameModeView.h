@@ -10,6 +10,7 @@ class GameModeView
 {
 public:
 	static void displayView(int gameMode = 0);
+	static void endGame();
 private:
 	static void printMainMenu();
 	static void printGodModeMenu();

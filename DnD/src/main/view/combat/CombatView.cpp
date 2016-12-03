@@ -8,7 +8,7 @@ CombatView* CombatView::instance() {
 		s_instance = new CombatView();
 
 	return s_instance;
-	return new CombatView();
+	//return new CombatView();
 }
 
 void CombatView::printCombat(Active* fighter, Active* monster, bool fighterStart) {

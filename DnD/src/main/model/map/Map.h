@@ -56,6 +56,8 @@ public:
 	void startMap(Interactable* fighter);
 	bool getNextCellInteractibility(char side);
 	bool getNextCellWalkability(char side);
+	int getNextDirectionX(char direction);
+	int getNextDirectionY(char direction);
 
 	void Serialize(CArchive& archive);
 	DECLARE_SERIAL(Map);

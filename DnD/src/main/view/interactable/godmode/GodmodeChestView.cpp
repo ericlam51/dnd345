@@ -32,14 +32,18 @@ void GodmodeChestView::postCreationView(){
 	do {
 		cout << "Selection: " << endl;
 		cin.clear();
+		cin >> input;
 	} while (input < 1 || input > 2);
-
-	cin >> input;
 
 	GodmodeChestController::instance()->postCreation(input);
 }
 
 void GodmodeChestView::chestChooseSaveFileView(vector<string> filenames) {
+	if (filenames.size() == 0) {
+		cout << "No files created. Please create some first" << endl;
+		return;
+	}
+
 	cout << "Please select one of the following files:" << endl;
 
 	int input;
@@ -64,6 +68,51 @@ void GodmodeChestView::chestAskSaveFileName() {
 	cin >> filename;
 
 	GodmodeChestController::instance()->saveAndQuit(filename);
+}
+
+void GodmodeChestView::addItemToChestView() {
+
+	GodmodeItemController::instance()->resetController();
+	system("cls");
+	cout << "Please begin by selecting an inventory to load." << endl;
+	vector<string> files = FileHelper::getFilenamesInDirectory(FileHelper::ITEM_CONTAINER_FILE_FOLDER);
+	if (files.size() > 0)
+	{
+		GodmodeItemView::loadItemInventoryHelper(FileHelper::getFilenamesInDirectory(FileHelper::ITEM_CONTAINER_FILE_FOLDER));
+
+		char input;
+		bool cont = true;
+		while (cont) {
+			char item;
+			cout << "Choose an item to equip : (h: helmet, a: armor, s: shield, r: ring, j: boots, w: weapon" << endl;
+			cin >> item;
+
+			GodmodeChestController::instance()->addItem(item);
+
+			cout << "Do you want to continue to add item? ([Y/n])" << endl;
+			cin >> input;
+
+			cont = readBooleanInput(input);
+		}
+
+		GodmodeChestView::postCreationView();
+	}
+	else
+	{
+		cout << "There are currently no inventories, please create and save one to equip an item." << endl;
+	}
+	//postCreationYesView();
+}
+
+bool GodmodeChestView::readBooleanInput(char input) {
+	if (input == 'y' || input == 'Y')
+		return true;
+
+	if (input == 'n' || input == 'N')
+		return false;
+
+	return false;
+
 }
 
 //! method show success creation message

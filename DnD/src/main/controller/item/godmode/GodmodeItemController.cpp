@@ -78,7 +78,7 @@ void GodmodeItemController::menuHelper(int input)
 		GodmodeItemView::loadItemInventory(FileHelper::getFilenamesInDirectory(FileHelper::ITEM_CONTAINER_FILE_FOLDER));
 		break;
 	case 6:
-		GameModeView::displayView(3);
+		//GameModeView::displayView(3);
 		break;
 	}
 }

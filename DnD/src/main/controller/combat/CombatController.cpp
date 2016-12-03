@@ -24,7 +24,7 @@ void CombatController::beginCombat(Active* fighter, Active* enemy) {
 
 void CombatController::fighterTurn() {
 	Logger::instance()->appendToNewLine(fighter->getName() + "'s turn started. ", "COMBAT");
-	int input;
+	char input;
 	int damageRoll = 0;
 	int hitRoll = Dice::instance()->roll(1, 20, CombatController::fighter->getAttackBonus());
 	Logger::instance()->appendToNewLine(fighter->getName() + " rolled " + to_string(hitRoll) + " for hit roll against an AC of " + to_string(enemy->getArmorClass()), "COMBAT");
@@ -33,7 +33,7 @@ void CombatController::fighterTurn() {
 		cout << fighter->getName() << "'s Attack missed!" << endl;
 	}
 	else {
-		damageRoll = Dice::instance()->roll(2, 4, 0);
+		damageRoll = Dice::instance()->roll(2, 4, 1);
 		CombatController::enemy->hit(damageRoll);
 		Logger::instance()->appendToNewLine(fighter->getName() + "'s Attack landed, and dealt " + to_string(damageRoll) + " damage.", "COMBAT");
 		cout << fighter->getName() << " hits " << CombatController::enemy->getName() << " for " << damageRoll << " damage. " << endl;
@@ -47,12 +47,13 @@ void CombatController::fighterTurn() {
 	}
 	cout << "Enter anything to continue the combat" << endl;
 	cin >> input;
+	cin.clear();
 	cv.printCombat(CombatController::fighter, CombatController::enemy, false);
 }
 
 void CombatController::enemyTurn() {
 	Logger::instance()->appendToNewLine(enemy->getName() + "'s turn started. ", "COMBAT");
-	int input;
+	char input;
 	int damageRoll = 0;
 	int hitRoll = Dice::instance()->roll(1, 20, CombatController::enemy->getAttackBonus());
 	Logger::instance()->appendToNewLine(enemy->getName() + " rolled " + to_string(hitRoll) + " for hit roll against an AC of " + to_string(fighter->getArmorClass()), "COMBAT");
@@ -61,7 +62,7 @@ void CombatController::enemyTurn() {
 		cout << enemy->getName() << "'s Attack missed!" << endl;
 	}
 	else {
-		damageRoll = Dice::instance()->roll(2, 4, 0);
+		damageRoll = Dice::instance()->roll(2, 4, 1);
 		CombatController::fighter->hit(damageRoll);
 		Logger::instance()->appendToNewLine(enemy->getName() + "'s Attack landed, and dealt " + to_string(damageRoll) + " damage.", "COMBAT");
 		cout << enemy->getName() << " hits " << CombatController::fighter->getName() << " for " << damageRoll << " damage. " << endl;
@@ -75,6 +76,7 @@ void CombatController::enemyTurn() {
 	}
 	cout << "Enter anything to continue the combat" << endl;
 	cin >> input;
+	cin.clear();
 	cv.printCombat(CombatController::fighter, CombatController::enemy, true);
 }
 

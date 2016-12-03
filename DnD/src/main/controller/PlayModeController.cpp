@@ -29,6 +29,7 @@ void PlayModeController::loadMap(string input) {
 
 	map = new Map();
 	map->Serialize(archive);
+	s_instance->map = map;
 
 	archive.Close();
 	theFile.Close();
@@ -47,7 +48,7 @@ void PlayModeController::printMap() {
 void PlayModeController::movePlayer(char direction) {
 	bool validateInteractable = map->getNextCellInteractibility(direction);
 	if (validateInteractable) {
-		int input = 0;
+		/*int input = 0;
 		while (input < 1 || input >2) {
 			cout << "Do you want to interact with the cell?" << endl
 				<< "1. Yes" << endl
@@ -55,8 +56,13 @@ void PlayModeController::movePlayer(char direction) {
 			cin >> input;
 		}
 		if (input == 2)
-			return;
+			return;*/
+
 		map->interact(direction);
+		int x = map->getNextDirectionX(direction);
+		int y = map->getNextDirectionY(direction);
+
+		map->fillCell(x, y, new PathCell());
 
 	}
 	bool validateWalkable = map->getNextCellWalkability(direction);
@@ -71,6 +77,7 @@ void PlayModeController::printEquipment() {
 	string input;
 	_active->printEquipments();
 	_active->print();
+	_active->printInventory();
 	cout << "Type anything to exit" << endl;
 	cin >> input;
 }
@@ -85,7 +92,11 @@ void PlayModeController::loadFighter(string input) {
 
 	_active = new Fighter();
 	_active->Serialize(archive);
-
+	s_instance->_active = _active;
 	archive.Close();
 	theFile.Close();
+}
+
+void PlayModeController::endGame() {
+	GameModeView::endGame();
 }

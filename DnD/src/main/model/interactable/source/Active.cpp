@@ -86,6 +86,10 @@ void Active::equipItem(Item* item) {
 	equipementEnhancement(item->getEnchantmentType(), item->getEnchantmentModifier());
 }
 
+void Active::addItemToInventory(Item* item) {
+	_itemContainer->addItem(item);
+}
+
 void Active::printEquipments() {
 	cout << "-+-+-+-+-+-+-+-+ EQUIPMENTS +-+-+-+-+-+-+-+-+-+-" << endl;
 	cout << "Helmet: " << (_equippedItems->getItem("HELMET") ? _equippedItems->getItem("HELMET")->getItemName() : "<Empty>") << endl;
@@ -167,6 +171,10 @@ void Active::equipementEnhancement(string abilityScore, int enhancement) {
 		attackBonus = attackBonus + enhancement;
 	else if (abilityScore == "Damage")
 		damageBonus = damageBonus + enhancement;
+}
+
+EquippedItems* Active::getEquippedItem() {
+	return _equippedItems;
 }
 
 int Active::getLevel() const {

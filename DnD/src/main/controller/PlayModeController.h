@@ -9,6 +9,8 @@
 #include "../model/map/Cell.h"
 #include "../model/interactable/header/Active.h"
 #include "../helper/Logger.h"
+#include "../view/GameModeView.h"
+
 //! class for the implementation of play mode controller
 //! this controller will handle the interaction between user and the software
 class PlayModeController {
@@ -35,4 +37,8 @@ public:
 	void printMap();
 	//method to print the equipment
 	void printEquipment();
+	Active* getPlayer() {
+		return _active;
+	}
+	void endGame();
 };

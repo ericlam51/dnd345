@@ -46,7 +46,7 @@ void Fighter::Serialize(CArchive& archive) {
 	if (archive.IsStoring()) {
 		cName = getName().c_str();
 		cDescription = getDescription().c_str();
-		archive << cName << cDescription << level << maxHitPoints
+		archive << cName << cDescription << level << maxHitPoints << currentHitPoints
 			<< armorClass << attackBonus << damageBonus
 			<< abilityScores[0] << abilityScores[1] << abilityScores[2]
 			<< abilityScores[3] << abilityScores[4] << abilityScores[5];
@@ -55,7 +55,7 @@ void Fighter::Serialize(CArchive& archive) {
 
 	}
 	else {
-		archive >> cName >> cDescription >> level >> maxHitPoints
+		archive >> cName >> cDescription >> level >> maxHitPoints >> currentHitPoints
 			>> armorClass >> attackBonus >> damageBonus
 			>> abilityScores[0] >> abilityScores[1] >> abilityScores[2]
 			>> abilityScores[3] >> abilityScores[4] >> abilityScores[5];

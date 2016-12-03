@@ -40,6 +40,11 @@ void GodmodeFriendlyNpcView::postCreationView(){
 	GodmodeFriendlyNpcController::instance()->postCreation(input);
 }
 void GodmodeFriendlyNpcView::friendlyChooseSaveFileView(vector<string> filenames) {
+	if (filenames.size() == 0) {
+		cout << "No files created. Please create some first" << endl;
+		return;
+	}
+
 	cout << "Please select one of the following files:" << endl;
 	int input;
 	for (int i = 0; i < filenames.size(); i++) {
